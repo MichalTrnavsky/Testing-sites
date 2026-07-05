@@ -544,5 +544,79 @@ window.QUESTION_BANK = [
       uk: { q: "Як називається група міністрів, що керує Швецією на чолі з прем'єр-міністром?", opts: ["Riksdagen (парламент)", "Regeringen (уряд)", "Апеляційний суд", "Landstinget"] },
       ar: { q: "ماذا تُسمّى مجموعة الوزراء التي تحكم السويد بقيادة رئيس الوزراء؟", opts: ["البرلمان (Riksdagen)", "الحكومة (Regeringen)", "محكمة الاستئناف", "Landstinget"] }
     }
+  },
+  {
+    id: "sv030",
+    theme: "Att komma till Sverige",
+    q: "Vad betyder det att söka asyl i Sverige?",
+    opts: [
+      "Att söka arbete",
+      "Att söka skydd undan förföljelse i sitt hemland",
+      "Att söka bostad",
+      "Att söka svenskt pass"
+    ],
+    correct: 1,
+    expl: {
+      en: "Seeking asylum means asking for protection because you risk persecution in your home country.",
+      uk: "Просити притулок означає шукати захисту, бо на батьківщині людині загрожує переслідування.",
+      ar: "طلب اللجوء يعني طلب الحماية بسبب خطر التعرّض للاضطهاد في بلدك الأصلي."
+    }
+  },
+  {
+    id: "sv031",
+    theme: "Jämställdhet",
+    q: "Vad säger svensk lag om kvinnor och män på arbetsmarknaden?",
+    opts: [
+      "Män ska ha högre lön",
+      "Kvinnor och män ska behandlas lika",
+      "Bara män får vara chefer",
+      "Kvinnor får inte arbeta natt"
+    ],
+    correct: 1,
+    expl: {
+      en: "Swedish law requires that women and men be treated equally at work — equal opportunities and no discrimination.",
+      uk: "Шведське законодавство вимагає рівного ставлення до жінок і чоловіків на роботі — рівні можливості й заборона дискримінації.",
+      ar: "يقتضي القانون السويدي معاملة النساء والرجال بالتساوي في العمل — تكافؤ الفرص وعدم التمييز."
+    }
+  },
+  {
+    id: "sv032",
+    theme: "Hälsa och vård",
+    q: "Vad är en vårdcentral i Sverige?",
+    opts: [
+      "Ett apotek",
+      "Den plats man oftast kontaktar först för icke-akut vård",
+      "Ett sjukhus enbart för operationer",
+      "En tandläkarmottagning"
+    ],
+    correct: 1,
+    expl: {
+      en: "A vårdcentral (health centre) is usually where you turn first for non-emergency care. For advice you can also call 1177.",
+      uk: "Vårdcentral (медичний центр) — це місце, куди зазвичай звертаються першим для неекстреної допомоги. За порадою можна також телефонувати 1177.",
+      ar: "المركز الصحي (vårdcentral) هو عادةً أول جهة تلجأ إليها للرعاية غير الطارئة. وللاستشارة يمكنك أيضًا الاتصال بالرقم 1177."
+    },
+    terms: [
+      {
+        term: "1177",
+        expl: {
+          sv: "Telefonnummer och webbplats för sjukvårdsrådgivning i Sverige.",
+          en: "Phone number and website for health-care advice in Sweden.",
+          uk: "телефонний номер і сайт для медичних консультацій у Швеції.",
+          ar: "رقم هاتف وموقع إلكتروني للاستشارات الصحية في السويد."
+        }
+      }
+    ]
+  },
+  {
+    id: "sv033",
+    theme: "Rättssystemet",
+    q: "Vilken myndighet har till uppgift att förhindra och utreda brott?",
+    opts: ["Polisen", "Skatteverket", "Migrationsverket", "Försäkringskassan"],
+    correct: 0,
+    expl: {
+      en: "The police (Polisen) work to prevent and investigate crime, and to keep people safe.",
+      uk: "Поліція (Polisen) працює над запобіганням і розслідуванням злочинів та над безпекою людей.",
+      ar: "الشرطة (Polisen) تعمل على منع الجرائم والتحقيق فيها وحماية الناس."
+    }
   }
 ];
