@@ -109,8 +109,17 @@ token) so it never silently runs live with dev-mode payments.
 ### Funnel metrics
 
 `GET /api/metrics` (guard with `METRICS_TOKEN`) returns counts per event —
-`page_view`, `session_start`, `paywall_open`, `checkout_submit`, `purchase`
-— the conversion data the paid-acquisition model depends on.
+`page_view`, `session_start`, `paywall_open`, `checkout_submit`, `purchase`,
+`nurture_sent` — the conversion data the paid-acquisition model depends on.
+
+### Exam-countdown nurture
+
+Users can save their exam date (`POST /api/exam-date {token, date}`). A daily
+job then emails "your exam is in X days" reminders at 14/7/3/1 days out —
+one per milestone, idempotent, in the user's language. Run it via cron
+(`node server/nurture.js`) or in-process (`NURTURE_ENABLED=1`). A booked exam
+date is the strongest return-and-convert signal, so this drives both
+retention and free→paid conversion.
 
 ### Ingest (`ingest/`)
 

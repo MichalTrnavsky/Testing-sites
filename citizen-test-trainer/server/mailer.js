@@ -50,4 +50,23 @@ function receiptEmail({ to, amount, currency, lang }) {
   return { to, subject: m.subject, text: m.body };
 }
 
-module.exports = { sendMail, magicLinkEmail, receiptEmail };
+function nurtureEmail({ to, daysLeft, link, lang }) {
+  const t = {
+    da: {
+      subject: `Din prøve er om ${daysLeft} dage`,
+      body: `Hej!\n\nDer er ${daysLeft} dage til din prøve. Er du klar?\n\nTag en fuld prøvesimulator nu og se, hvor du står:\n${link}\n\nDu kan det her. Held og lykke!`,
+    },
+    sv: {
+      subject: `Ditt prov är om ${daysLeft} dagar`,
+      body: `Hej!\n\nDet är ${daysLeft} dagar kvar till ditt prov. Är du redo?\n\nKör en full provsimulator nu och se var du står:\n${link}\n\nDu klarar det här. Lycka till!`,
+    },
+    en: {
+      subject: `Your exam is in ${daysLeft} days`,
+      body: `Hi!\n\nYour exam is in ${daysLeft} days. Are you ready?\n\nTake a full exam simulation now and see where you stand:\n${link}\n\nYou've got this. Good luck!`,
+    },
+  };
+  const m = t[lang] || t.en;
+  return { to, subject: m.subject, text: m.body };
+}
+
+module.exports = { sendMail, magicLinkEmail, receiptEmail, nurtureEmail };

@@ -115,6 +115,50 @@ async function run() {
   assert.ok(sm.includes("<urlset") && sm.includes("/trainer.sv.html"));
   ok("sitemap.xml lists public pages");
 
+  // ---- exam date + nurture --------------------------------------------
+  const { runNurture, pickMilestone } = require("./nurture");
+
+  assert.equal(pickMilestone(20), null);   // too far out
+  assert.equal(pickMilestone(14), 14);
+  assert.equal(pickMilestone(10), 14);     // still inside the 14-day bracket
+  assert.equal(pickMilestone(7), 7);       // just entered the 7-day bracket
+  assert.equal(pickMilestone(3), 3);
+  assert.equal(pickMilestone(1), 1);
+  assert.equal(pickMilestone(0), null);    // exam day/past
+  ok("pickMilestone selects the bracket the user has entered");
+
+  // set up a paid user with an exam in 7 days
+  const buy = await (await post("/api/checkout", { email: "nurt@example.se", market: "SE" })).json();
+  const ref = new Date("2026-08-01T00:00:00Z");
+  const examIn7 = "2026-08-08";
+  r = await post("/api/exam-date", { token: buy.token, date: examIn7 });
+  assert.equal(r.status, 200);
+  ok("exam date saved via /api/exam-date");
+
+  r = await post("/api/exam-date", { token: buy.token, date: "not-a-date" });
+  assert.equal(r.status, 400);
+  ok("exam date rejects bad format");
+
+  const captured = [];
+  const fakeSend = async (m) => captured.push(m);
+  let sent = await runNurture(ref, fakeSend);
+  const mine = sent.find((s) => s.email === "nurt@example.se");
+  assert.ok(mine && mine.milestone === 7, "should fire the 7-day milestone");
+  assert.ok(captured.some((m) => /7 dagar/.test(m.subject)), "Swedish subject with 7 days");
+  ok("nurture fires the 7-day reminder in Swedish");
+
+  // second run same day -> no duplicate
+  captured.length = 0;
+  sent = await runNurture(ref, fakeSend);
+  assert.ok(!sent.find((s) => s.email === "nurt@example.se"), "no duplicate for same milestone");
+  ok("nurture is idempotent per milestone");
+
+  // a run 4 days later -> 3-day milestone fires
+  sent = await runNurture(new Date("2026-08-05T00:00:00Z"), fakeSend);
+  const three = sent.find((s) => s.email === "nurt@example.se");
+  assert.ok(three && three.milestone === 3, "3-day milestone fires later");
+  ok("nurture advances to the next milestone on a later run");
+
   console.log(`\n✅ ${passed} server tests passed`);
 }
 

@@ -34,7 +34,20 @@ db.exec(`
     id TEXT PRIMARY KEY,
     ts TEXT NOT NULL
   );
+  CREATE TABLE IF NOT EXISTS sent_nurture (
+    email     TEXT NOT NULL,
+    milestone INTEGER NOT NULL,
+    ts        TEXT NOT NULL,
+    PRIMARY KEY (email, milestone)
+  );
 `);
+
+// Migration: add exam_date to users if an older DB predates it.
+try {
+  db.exec("ALTER TABLE users ADD COLUMN exam_date TEXT");
+} catch {
+  /* column already exists */
+}
 
 const now = () => new Date().toISOString();
 const norm = (email) => String(email).trim().toLowerCase();
@@ -54,6 +67,10 @@ const stmts = {
   countEvents: db.prepare("SELECT name, COUNT(*) AS n FROM events GROUP BY name"),
   getProcessed: db.prepare("SELECT id FROM processed_events WHERE id = ?"),
   markProcessed: db.prepare("INSERT OR IGNORE INTO processed_events (id, ts) VALUES (?, ?)"),
+  setExamDate: db.prepare("UPDATE users SET exam_date = ? WHERE token = ?"),
+  paidWithExam: db.prepare("SELECT * FROM users WHERE paid = 1 AND exam_date IS NOT NULL"),
+  nurtureSent: db.prepare("SELECT 1 FROM sent_nurture WHERE email = ? AND milestone = ?"),
+  markNurture: db.prepare("INSERT OR IGNORE INTO sent_nurture (email, milestone, ts) VALUES (?, ?, ?)"),
 };
 
 function upsertUser(email, market) {
@@ -105,6 +122,26 @@ function claimStripeEvent(eventId) {
   return true;
 }
 
+/* ---- exam-date + nurture (exam-countdown reminders) -------------------- */
+
+// Returns true if the token matched a user (date is YYYY-MM-DD).
+function setExamDate(token, date) {
+  const r = stmts.setExamDate.run(date, token);
+  return r.changes > 0;
+}
+
+function paidUsersWithExam() {
+  return stmts.paidWithExam.all();
+}
+
+function nurtureAlreadySent(email, milestone) {
+  return !!stmts.nurtureSent.get(norm(email), milestone);
+}
+
+function markNurtureSent(email, milestone) {
+  stmts.markNurture.run(norm(email), milestone, now());
+}
+
 module.exports = {
   db,
   upsertUser,
@@ -114,4 +151,8 @@ module.exports = {
   recordEvent,
   funnelSummary,
   claimStripeEvent,
+  setExamDate,
+  paidUsersWithExam,
+  nurtureAlreadySent,
+  markNurtureSent,
 };

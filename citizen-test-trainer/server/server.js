@@ -176,6 +176,20 @@ app.post("/api/login", (req, res) => {
   res.json({ ok: true });
 });
 
+/** Save the user's exam date (drives the countdown nurture emails). */
+app.post("/api/exam-date", (req, res) => {
+  if (!rateLimit(`examdate:${clientIp(req)}`, 20, 60_000))
+    return res.status(429).json({ error: "too many requests" });
+  const { token, date } = req.body || {};
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date || "")))
+    return res.status(400).json({ error: "date must be YYYY-MM-DD" });
+  if (new Date(date + "T00:00:00Z") < new Date(Date.now() - 86_400_000))
+    return res.status(400).json({ error: "date is in the past" });
+  if (!db.setExamDate(String(token || ""), date))
+    return res.status(404).json({ error: "unknown token" });
+  res.json({ ok: true });
+});
+
 /** Funnel analytics: the app posts anonymous events (page views, free
  *  start, paywall hit, purchase intent) so we can measure conversion — the
  *  metric the whole paid-acquisition model depends on. */
@@ -231,8 +245,19 @@ function checkConfig() {
   if (warn.length) console.warn("⚠ CONFIG:\n" + warn.map((w) => "  - " + w).join("\n"));
 }
 
+// Optional in-process daily nurture run (alternative to a cron job).
+function scheduleNurture() {
+  if (!process.env.NURTURE_ENABLED) return;
+  const { runNurture } = require("./nurture");
+  const DAY = 24 * 60 * 60 * 1000;
+  const tick = () => runNurture().then((s) => s.length && console.log(`nurture: sent ${s.length}`)).catch((e) => console.error("nurture:", e.message));
+  tick();
+  setInterval(tick, DAY);
+}
+
 if (require.main === module) {
   checkConfig();
+  scheduleNurture();
   app.listen(PORT, () => {
     console.log(`CitizenPrep running on ${PUBLIC_URL} (stripe: ${stripe ? "live" : "dev mode"})`);
   });
