@@ -1,4 +1,7 @@
-# Citizen Test Trainer 🇩🇰
+# CitizenPrep 🇩🇰
+
+Domains: **citizenprep.dk** (primary), citizenprep.se + citizenprep.no
+(reserved for expansion), citizenprep.com (redirect, if available).
 
 Prototype of a fully automated exam-prep business: training for the Danish
 citizenship tests (**indfødsretsprøven** — citizenship, and

@@ -133,7 +133,7 @@ app.post("/api/checkout", async (req, res) => {
               price_data: {
                 currency: "dkk",
                 unit_amount: PRICE_DKK * 100,
-                product_data: { name: "Indfødsretsprøven Trainer — fuld adgang" },
+                product_data: { name: "CitizenPrep — fuld adgang" },
               },
             },
       ],

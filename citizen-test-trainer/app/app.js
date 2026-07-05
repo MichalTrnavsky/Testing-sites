@@ -1,4 +1,4 @@
-/* Indfødsretsprøven Trainer — practice, mistake review and exam simulator
+/* CitizenPrep — practice, mistake review and exam simulator
  * with freemium gating backed by the API in ../server (optional: the app
  * degrades gracefully to free mode on pure static hosting).
  *
