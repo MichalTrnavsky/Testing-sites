@@ -286,7 +286,7 @@ window.QUESTION_BANK = [
   },
   {
     id: "sv016",
-    theme: "Att försörja sig i Sverige",
+    theme: "Att försörja sig och utvecklas i Sverige",
     q: "Vad är a-kassa i Sverige?",
     opts: [
       "En avgift man betalar för att bo i Sverige",
@@ -311,5 +311,238 @@ window.QUESTION_BANK = [
         }
       }
     ]
+  },
+  {
+    id: "sv017",
+    theme: "Att komma till Sverige",
+    q: "Vilken myndighet beslutar om uppehållstillstånd och svenskt medborgarskap?",
+    opts: ["Skatteverket", "Migrationsverket", "Polisen", "Försäkringskassan"],
+    correct: 1,
+    expl: {
+      en: "The Swedish Migration Agency (Migrationsverket) decides on residence permits and citizenship.",
+      uk: "Міграційна служба Швеції (Migrationsverket) вирішує питання дозволів на проживання та громадянства.",
+      ar: "مصلحة الهجرة السويدية (Migrationsverket) هي التي تبتّ في تصاريح الإقامة والجنسية."
+    },
+    tr: {
+      uk: { q: "Який орган ухвалює рішення щодо дозволу на проживання та шведського громадянства?", opts: ["Податкова служба", "Міграційна служба", "Поліція", "Каса соцстрахування"] },
+      ar: { q: "أي جهة تبتّ في تصريح الإقامة والجنسية السويدية؟", opts: ["مصلحة الضرائب", "مصلحة الهجرة", "الشرطة", "صندوق التأمين"] }
+    },
+    terms: [
+      {
+        term: "Migrationsverket",
+        expl: {
+          sv: "Myndigheten som prövar ansökningar om asyl, uppehållstillstånd och medborgarskap.",
+          en: "The agency that handles applications for asylum, residence permits and citizenship.",
+          uk: "орган, який розглядає заяви про надання притулку, дозволу на проживання та громадянства.",
+          ar: "الجهة التي تنظر في طلبات اللجوء وتصاريح الإقامة والجنسية."
+        }
+      }
+    ]
+  },
+  {
+    id: "sv018",
+    theme: "Att bo i Sverige",
+    q: "Vilket är huvudspråket i Sverige?",
+    opts: ["Engelska", "Svenska", "Finska", "Danska"],
+    correct: 1,
+    expl: {
+      en: "Swedish is the main (official) language of Sweden according to the Language Act (2009).",
+      uk: "Шведська є головною (офіційною) мовою Швеції згідно із Законом про мову (2009).",
+      ar: "السويدية هي اللغة الرئيسية (الرسمية) للسويد وفقًا لقانون اللغة (2009)."
+    }
+  },
+  {
+    id: "sv019",
+    theme: "Att bo i Sverige",
+    q: "Vilka är Sveriges fem nationella minoritetsspråk?",
+    opts: [
+      "Finska, jiddisch, meänkieli, romani chib och samiska",
+      "Engelska, tyska, franska, spanska och arabiska",
+      "Norska, danska, isländska, finska och samiska",
+      "Endast finska och samiska"
+    ],
+    correct: 0,
+    expl: {
+      en: "Sweden's five national minority languages are Finnish, Yiddish, Meänkieli, Romani Chib and Sami.",
+      uk: "П'ять національних мов меншин Швеції: фінська, їдиш, меянкієлі, ромська (романі чіб) і саамська.",
+      ar: "لغات الأقليات الوطنية الخمس في السويد هي: الفنلندية واليديشية والميانكيلي والرومانية (روماني تشيب) والسامية."
+    }
+  },
+  {
+    id: "sv020",
+    theme: "Att försörja sig och utvecklas i Sverige",
+    q: "Vad används skatterna i Sverige främst till?",
+    opts: [
+      "Att betala kungen",
+      "Att finansiera välfärd som skola, vård och omsorg",
+      "Privata företags vinster",
+      "Att sänka priserna i affärerna"
+    ],
+    correct: 1,
+    expl: {
+      en: "Taxes mainly fund the welfare system — schools, healthcare and social care that everyone can use.",
+      uk: "Податки переважно фінансують систему добробуту — школи, охорону здоров'я та соціальну допомогу, доступні всім.",
+      ar: "تُموّل الضرائب أساسًا نظام الرفاه — المدارس والرعاية الصحية والرعاية الاجتماعية المتاحة للجميع."
+    },
+    tr: {
+      uk: { q: "На що переважно використовуються податки у Швеції?", opts: ["На виплати королю", "На фінансування добробуту: школи, охорону здоров'я, догляд", "На прибутки приватних компаній", "На зниження цін у магазинах"] },
+      ar: { q: "فيمَ تُستخدم الضرائب في السويد بشكل أساسي؟", opts: ["لدفع رواتب الملك", "لتمويل الرفاه: المدارس والرعاية الصحية والرعاية", "لأرباح الشركات الخاصة", "لخفض الأسعار في المتاجر"] }
+    }
+  },
+  {
+    id: "sv021",
+    theme: "Individens rättigheter och skyldigheter",
+    q: "Vad innebär religionsfrihet i Sverige?",
+    opts: [
+      "Att alla måste tillhöra Svenska kyrkan",
+      "Rätten att ha vilken religion man vill — eller ingen alls",
+      "Att religion är förbjuden",
+      "Att bara vissa religioner är tillåtna"
+    ],
+    correct: 1,
+    expl: {
+      en: "Freedom of religion means you may practise any religion, or none. It is protected by the constitution.",
+      uk: "Свобода віросповідання означає право сповідувати будь-яку релігію або жодну. Її захищає конституція.",
+      ar: "حرية الدين تعني حق ممارسة أي دين أو عدم اعتناق أي دين. وهي محميّة بموجب الدستور."
+    }
+  },
+  {
+    id: "sv022",
+    theme: "Att bilda familj och leva med barn i Sverige",
+    q: "Från vilken ålder gäller skolplikt i Sverige (från förskoleklass)?",
+    opts: ["3 år", "5 år", "6 år", "9 år"],
+    correct: 2,
+    expl: {
+      en: "Compulsory schooling in Sweden starts at age 6, with the förskoleklass (preschool class).",
+      uk: "Обов'язкова шкільна освіта у Швеції починається з 6 років — із förskoleklass (підготовчого класу).",
+      ar: "يبدأ التعليم الإلزامي في السويد في سن السادسة، بصف ما قبل المدرسة (förskoleklass)."
+    },
+    tr: {
+      uk: { q: "З якого віку у Швеції діє обов'язкове шкільне навчання (з förskoleklass)?", opts: ["3 роки", "5 років", "6 років", "9 років"] },
+      ar: { q: "من أي عمر يبدأ التعليم الإلزامي في السويد (من صف ما قبل المدرسة)؟", opts: ["3 سنوات", "5 سنوات", "6 سنوات", "9 سنوات"] }
+    }
+  },
+  {
+    id: "sv023",
+    theme: "Att bilda familj och leva med barn i Sverige",
+    q: "Vad är barnbidrag i Sverige?",
+    opts: [
+      "En avgift som föräldrar betalar",
+      "Ekonomiskt stöd från staten till familjer med barn",
+      "En sorts skola",
+      "Ett lån till barnfamiljer"
+    ],
+    correct: 1,
+    expl: {
+      en: "Child allowance (barnbidrag) is money the state pays to families with children, to help with the cost of raising them.",
+      uk: "Допомога на дитину (barnbidrag) — це кошти, які держава виплачує сім'ям з дітьми на покриття витрат на виховання.",
+      ar: "بدل الأطفال (barnbidrag) مبلغ تدفعه الدولة للأسر التي لديها أطفال للمساعدة في تكاليف تربيتهم."
+    }
+  },
+  {
+    id: "sv024",
+    theme: "Att ta hand om sig själv och andra",
+    q: "Vad gör socialtjänsten i en kommun?",
+    opts: [
+      "Bygger vägar och broar",
+      "Ger stöd och hjälp till personer som behöver det",
+      "Sköter posten",
+      "Bestämmer hur hög skatten ska vara"
+    ],
+    correct: 1,
+    expl: {
+      en: "The social services (socialtjänsten) in each municipality support people who need help — e.g. families, children at risk, people in financial hardship.",
+      uk: "Соціальна служба (socialtjänsten) кожної комуни підтримує людей, які потребують допомоги — сім'ї, дітей у групі ризику, людей у скруті.",
+      ar: "الخدمات الاجتماعية (socialtjänsten) في كل بلدية تدعم من يحتاجون المساعدة — كالأسر والأطفال المعرّضين للخطر ومن يعانون ضائقة مالية."
+    },
+    tr: {
+      uk: { q: "Що робить соціальна служба (socialtjänsten) у комуні?", opts: ["Будує дороги й мости", "Надає підтримку та допомогу тим, хто її потребує", "Керує поштою", "Визначає розмір податків"] },
+      ar: { q: "ماذا تفعل الخدمات الاجتماعية (socialtjänsten) في البلدية؟", opts: ["تبني الطرق والجسور", "تقدّم الدعم والمساعدة لمن يحتاجها", "تدير البريد", "تحدّد مقدار الضريبة"] }
+    }
+  },
+  {
+    id: "sv025",
+    theme: "Att ta hand om sig själv och andra",
+    q: "Vem har ansvar för äldreomsorgen i Sverige?",
+    opts: ["Staten", "Regionerna", "Kommunerna", "Privatpersoner"],
+    correct: 2,
+    expl: {
+      en: "Municipalities (kommunerna) are responsible for elderly care, such as home care and care homes.",
+      uk: "За догляд за літніми людьми (домашній догляд, будинки для літніх) відповідають комуни.",
+      ar: "البلديات (kommunerna) مسؤولة عن رعاية المسنّين، مثل الرعاية المنزلية ودور الرعاية."
+    }
+  },
+  {
+    id: "sv026",
+    theme: "Att ta hand om sig själv och andra",
+    q: "Vad gör Försäkringskassan?",
+    opts: [
+      "Säljer bilförsäkringar",
+      "Betalar ut ersättningar som föräldrapenning och sjukpenning",
+      "Sköter sjukhusen",
+      "Utfärdar pass"
+    ],
+    correct: 1,
+    expl: {
+      en: "Försäkringskassan (the Social Insurance Agency) pays out benefits such as parental benefit and sickness benefit.",
+      uk: "Försäkringskassan (Каса соціального страхування) виплачує допомоги, як-от батьківську та лікарняну.",
+      ar: "Försäkringskassan (هيئة التأمين الاجتماعي) تصرف إعانات مثل إعانة الوالدين وإعانة المرض."
+    },
+    terms: [
+      {
+        term: "föräldrapenning",
+        expl: {
+          sv: "Pengar från Försäkringskassan när du är hemma med ditt barn i stället för att arbeta.",
+          en: "Money from Försäkringskassan when you stay home with your child instead of working.",
+          uk: "виплата від Försäkringskassan, коли ви залишаєтеся вдома з дитиною замість роботи.",
+          ar: "مبلغ من Försäkringskassan عندما تبقى في المنزل مع طفلك بدلًا من العمل."
+        }
+      }
+    ]
+  },
+  {
+    id: "sv027",
+    theme: "Sveriges historia",
+    q: "Vilket land var Sverige i union med fram till 1905?",
+    opts: ["Danmark", "Norge", "Finland", "Tyskland"],
+    correct: 1,
+    expl: {
+      en: "Sweden and Norway were in a union that was peacefully dissolved in 1905.",
+      uk: "Швеція та Норвегія перебували в унії, яку мирно розпустили у 1905 році.",
+      ar: "كانت السويد والنرويج في اتحاد جرى حلّه سلميًا عام 1905."
+    }
+  },
+  {
+    id: "sv028",
+    theme: "Sveriges historia",
+    q: "Deltog Sverige som stridande part i första och andra världskriget?",
+    opts: [
+      "Ja, i båda krigen",
+      "Nej, Sverige var neutralt i båda",
+      "Bara i första världskriget",
+      "Bara i andra världskriget"
+    ],
+    correct: 1,
+    expl: {
+      en: "Sweden stayed neutral and was not a fighting party in either the First or the Second World War.",
+      uk: "Швеція зберігала нейтралітет і не була воюючою стороною ані в Першій, ані в Другій світовій війні.",
+      ar: "بقيت السويد محايدة ولم تكن طرفًا محاربًا في الحرب العالمية الأولى ولا الثانية."
+    }
+  },
+  {
+    id: "sv029",
+    theme: "Sveriges styrelseskick",
+    q: "Vad kallas gruppen av ministrar som styr Sverige och leds av statsministern?",
+    opts: ["Riksdagen", "Regeringen", "Hovrätten", "Landstinget"],
+    correct: 1,
+    expl: {
+      en: "The government (regeringen) is the group of ministers, led by the prime minister, that governs the country.",
+      uk: "Уряд (regeringen) — це група міністрів на чолі з прем'єр-міністром, яка керує країною.",
+      ar: "الحكومة (regeringen) هي مجموعة الوزراء بقيادة رئيس الوزراء التي تحكم البلاد."
+    },
+    tr: {
+      uk: { q: "Як називається група міністрів, що керує Швецією на чолі з прем'єр-міністром?", opts: ["Riksdagen (парламент)", "Regeringen (уряд)", "Апеляційний суд", "Landstinget"] },
+      ar: { q: "ماذا تُسمّى مجموعة الوزراء التي تحكم السويد بقيادة رئيس الوزراء؟", opts: ["البرلمان (Riksdagen)", "الحكومة (Regeringen)", "محكمة الاستئناف", "Landstinget"] }
+    }
   }
 ];
