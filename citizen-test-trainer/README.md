@@ -22,23 +22,49 @@ student's own language.
   demo tests + public curriculum) and Sweden (brand-new medborgarskapsprov,
   first sitting August 2026 — greenfield market).
 
-## What's here
+## Architecture
 
-| Path | Purpose |
-| --- | --- |
-| `app/` | Static exam trainer: practice mode with instant feedback + explanations, and an exam simulator (25 questions / 30 min / pass ≥ 20, matching the real format). No backend needed — open `app/index.html` in a browser. |
-| `app/questions.js` | Question bank. Currently a **sample bank** (28 questions authored to match the real format and themes). Replace/extend with real exam sets via the ingest script. |
-| `ingest/fetch_exams.py` | Downloads SIRI's published exam PDFs and parses them (questions + answer keys) into `questions.json`. Run from a network that can reach siri.dk (blocked in the sandbox this prototype was built in). |
-
-## Running the app
-
-Open `app/index.html` directly, or serve the folder:
-
-```bash
-cd app && python3 -m http.server 8080
+```
+app/      static frontend (vanilla JS, no build step)
+server/   Express API + static hosting + Stripe checkout
+ingest/   pipeline that turns SIRI's published exam PDFs into the bank
 ```
 
-## Ingesting the real exam sets
+### Frontend (`app/`)
+
+- **Practice mode** — instant feedback, explanations in EN/UK/PL (selector),
+  filterable by topic.
+- **Mistake review** — re-drills only the questions you got wrong.
+- **Exam simulator** — real format: 25 questions / 30 min / pass ≥ 20.
+  Free users get a 10-question demo exam instead.
+- **Freemium gating** — free bank = first 10 questions; full bank unlocks
+  via the API entitlement (`/api/access`). Works as a pure static site too
+  (falls back to free mode when no backend answers).
+- Progress stats (answered, accuracy, weakest topic, last exam) in
+  localStorage; UI in Danish/English; keyboard shortcuts (A/B/C, Enter);
+  dark mode via `prefers-color-scheme`.
+
+### Backend (`server/`)
+
+- `POST /api/checkout` — Stripe Checkout session. **Dev mode** (no
+  `STRIPE_SECRET_KEY` set): grants access instantly and returns the token,
+  so the whole funnel is testable without a Stripe account.
+- `POST /api/stripe-webhook` — marks the buyer paid on
+  `checkout.session.completed` (signature-verified).
+- `GET /api/claim?session_id=` — success-URL fallback: verifies payment
+  with Stripe and redirects to `/?token=…` (covers webhook delays).
+- `GET /api/access?token=` — entitlement check used by the app on load.
+- `POST /api/login` — magic-link re-login for returning buyers.
+- Storage: `db.json` (prototype). Swap for SQLite/Postgres before launch.
+
+```bash
+cd server
+npm install
+cp .env.example .env   # optionally add Stripe keys
+npm start              # serves app + API on :8080
+```
+
+### Ingest (`ingest/`)
 
 ```bash
 cd ingest
@@ -46,19 +72,30 @@ pip install requests pypdf beautifulsoup4
 python fetch_exams.py
 ```
 
-Verify parser output against a couple of PDFs before trusting the bank —
-the PDF layout can drift between years. Questions whose answer key did not
-match are emitted with `"correct": null` and must not be shipped.
+Downloads SIRI's published exam PDFs and parses questions + answer keys
+into `questions.json`. Run from a network that can reach siri.dk (the
+sandbox this prototype was built in blocks it). Verify parser output
+against a couple of PDFs before trusting the bank — questions with
+`"correct": null` (unmatched answer key) must not be shipped.
 
-## Productization roadmap (not in prototype)
+## Question bank status
 
-1. Real question bank from all published sets + AI explanations generated
-   per question in 6–8 languages (reviewed once, cached forever).
-2. Paywall: first N questions free → one-time purchase (~149 DKK) for full
-   access until your exam date. Stripe checkout + magic-link access.
-3. SEO pages generated per topic/question theme; ads only around exam dates.
-4. Clone for medborgerskabsprøven (same data source), then Norway, then
-   Sweden's new test (first sitting August 2026).
+`app/questions.js` currently holds a **28-question sample bank** authored
+to match the real format and the official learning-material themes.
+Replace/extend with real exam sets via the ingest script, then generate
+explanations per question (translate once, review once, cache forever).
+
+## Launch checklist
+
+- [ ] Run ingest on the full SIRI archive; merge + verify answer keys
+- [ ] Generate explanations for all questions (EN/UK/PL/AR), spot-check
+- [ ] Buy domain, deploy server (any small VPS / Fly.io / Railway)
+- [ ] Create Stripe account + price (149 DKK), set env vars, test webhook
+- [ ] Transactional email (Postmark/Resend) for magic links — TODOs marked
+      in `server/server.js`
+- [ ] Privacy policy + terms (GDPR: we store email + purchase only)
+- [ ] SEO topic pages generated from the bank; Google Ads around exam dates
+- [ ] Clone for medborgerskabsprøven, then Norway, then Sweden (Aug 2026)
 
 *This is not an official service. Exam questions © SIRI — published by the
 agency for public preparation; verify licensing terms before commercial use.*
