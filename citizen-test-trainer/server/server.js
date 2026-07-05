@@ -1,84 +1,56 @@
 /* API + static hosting for the citizenship exam trainer.
  *
+ * Storage is SQLite (server/db.js). Emails go through server/mailer.js.
+ *
  * Modes:
- *  - Without STRIPE_SECRET_KEY (dev mode): POST /api/checkout grants access
- *    immediately and returns the access token — lets you test the whole
- *    funnel locally with no Stripe account.
+ *  - Without STRIPE_SECRET_KEY (dev): POST /api/checkout grants access
+ *    immediately and returns the token — the whole funnel is testable with
+ *    no Stripe account.
  *  - With STRIPE_SECRET_KEY: /api/checkout creates a Stripe Checkout
- *    session; the webhook (or the success-page claim fallback) marks the
- *    user paid and the success URL hands the token back to the app.
+ *    session; the (idempotent) webhook and the success-page claim mark the
+ *    user paid and email them a magic link.
  *
- * Storage is a JSON file (db.json). Fine for a prototype and low volume;
- * swap for SQLite/Postgres before real traffic.
- *
- * Env vars: PORT, PUBLIC_URL, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET,
- *           STRIPE_PRICE_ID (or PRICE_DKK, default 149).
+ * Env: PORT, PUBLIC_URL, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET,
+ *      STRIPE_PRICE_ID | PRICE_AMOUNT + PRICE_CURRENCY, EMAIL_PROVIDER…
  */
 
-const crypto = require("crypto");
-const fs = require("fs");
 const path = require("path");
 const express = require("express");
+const db = require("./db");
+const { sendMail, magicLinkEmail, receiptEmail } = require("./mailer");
 
 const PORT = process.env.PORT || 8080;
 const PUBLIC_URL = process.env.PUBLIC_URL || `http://localhost:${PORT}`;
-const PRICE_DKK = parseInt(process.env.PRICE_DKK || "149", 10);
-const DB_FILE = path.join(__dirname, "db.json");
+const PRICE_AMOUNT = parseInt(process.env.PRICE_AMOUNT || "499", 10);
+const PRICE_CURRENCY = (process.env.PRICE_CURRENCY || "sek").toLowerCase();
 const APP_DIR = path.join(__dirname, "..", "app");
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? require("stripe")(process.env.STRIPE_SECRET_KEY)
   : null;
 
-/* ------------------------------------------------------------ storage */
+const isEmail = (s) => typeof s === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s) && s.length <= 254;
+const langFor = (market) => (market === "SE" ? "sv" : market === "DK" ? "da" : "en");
 
-function loadDb() {
-  try {
-    return JSON.parse(fs.readFileSync(DB_FILE, "utf8"));
-  } catch {
-    return { users: {} }; // users[email] = {token, paid, createdAt, paidAt, sessionId}
-  }
+/* ---- tiny in-memory rate limiter (per IP + bucket) ---------------------- */
+
+const buckets = new Map();
+function rateLimit(key, max, windowMs) {
+  const nowMs = Date.now();
+  const hits = (buckets.get(key) || []).filter((t) => nowMs - t < windowMs);
+  hits.push(nowMs);
+  buckets.set(key, hits);
+  return hits.length <= max;
 }
+const clientIp = (req) =>
+  (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket.remoteAddress || "?";
 
-function saveDb(db) {
-  const tmp = DB_FILE + ".tmp";
-  fs.writeFileSync(tmp, JSON.stringify(db, null, 2));
-  fs.renameSync(tmp, DB_FILE);
-}
-
-function upsertUser(db, email) {
-  const key = email.trim().toLowerCase();
-  if (!db.users[key]) {
-    db.users[key] = {
-      token: crypto.randomBytes(24).toString("base64url"),
-      paid: false,
-      createdAt: new Date().toISOString(),
-    };
-  }
-  return db.users[key];
-}
-
-function findByToken(db, token) {
-  return Object.entries(db.users).find(([, u]) => u.token === token);
-}
-
-function markPaid(db, email, sessionId) {
-  const user = upsertUser(db, email);
-  user.paid = true;
-  user.paidAt = user.paidAt || new Date().toISOString();
-  if (sessionId) user.sessionId = sessionId;
-  saveDb(db);
-  return user;
-}
-
-const isEmail = (s) => typeof s === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
-
-/* --------------------------------------------------------------- app */
+/* ---- app ---------------------------------------------------------------- */
 
 const app = express();
+app.set("trust proxy", true);
 
-// Stripe webhook needs the raw body for signature verification — register
-// it before the JSON parser.
+// Stripe webhook needs the raw body for signature verification — before JSON.
 app.post("/api/stripe-webhook", express.raw({ type: "application/json" }), (req, res) => {
   if (!stripe) return res.status(400).send("stripe not configured");
   let event;
@@ -90,38 +62,49 @@ app.post("/api/stripe-webhook", express.raw({ type: "application/json" }), (req,
     return res.status(400).send(`webhook error: ${err.message}`);
   }
 
+  // Idempotency: Stripe can deliver the same event more than once.
+  if (!db.claimStripeEvent(event.id)) return res.json({ received: true, duplicate: true });
+
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
     const email = session.customer_email || session.customer_details?.email;
+    const market = session.metadata?.market;
     if (email) {
-      const db = loadDb();
-      markPaid(db, email, session.id);
-      console.log(`[paid] ${email} (webhook)`);
-      // TODO(production): email the magic link `${PUBLIC_URL}/?token=...`
-      // via a transactional provider (Postmark/Resend).
+      const user = db.markPaid(email, session.id, market);
+      db.recordEvent({ name: "purchase", market, meta: { via: "webhook" } });
+      const link = `${PUBLIC_URL}/${market === "SE" ? "trainer.sv.html" : "trainer.html"}?token=${encodeURIComponent(user.token)}`;
+      sendMail(magicLinkEmail({ to: email, link, lang: langFor(market) })).catch((e) => console.error("mail:", e.message));
     }
   }
   res.json({ received: true });
 });
 
-app.use(express.json());
+app.use(express.json({ limit: "16kb" }));
 
 /** Start a purchase. Dev mode grants access instantly. */
 app.post("/api/checkout", async (req, res) => {
-  const { email } = req.body || {};
+  if (!rateLimit(`checkout:${clientIp(req)}`, 10, 60_000))
+    return res.status(429).json({ error: "too many requests" });
+
+  const { email, market } = req.body || {};
   if (!isEmail(email)) return res.status(400).json({ error: "invalid email" });
 
-  const db = loadDb();
+  db.recordEvent({ name: "checkout_start", market, meta: {} });
 
   if (!stripe) {
-    const user = markPaid(db, email, null);
+    const user = db.markPaid(email, null, market);
+    db.recordEvent({ name: "purchase", market, meta: { via: "dev" } });
+    sendMail(magicLinkEmail({
+      to: email,
+      link: `${PUBLIC_URL}/${market === "SE" ? "trainer.sv.html" : "trainer.html"}?token=${encodeURIComponent(user.token)}`,
+      lang: langFor(market),
+    })).catch(() => {});
     console.log(`[paid] ${email} (dev mode — no Stripe key)`);
     return res.json({ devMode: true, token: user.token });
   }
 
   try {
-    const user = upsertUser(db, email);
-    saveDb(db);
+    const user = db.upsertUser(email, market);
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       customer_email: email,
@@ -131,15 +114,15 @@ app.post("/api/checkout", async (req, res) => {
           : {
               quantity: 1,
               price_data: {
-                currency: "dkk",
-                unit_amount: PRICE_DKK * 100,
-                product_data: { name: "CitizenPrep — fuld adgang" },
+                currency: PRICE_CURRENCY,
+                unit_amount: PRICE_AMOUNT * 100,
+                product_data: { name: "CitizenPrep — full access" },
               },
             },
       ],
       success_url: `${PUBLIC_URL}/api/claim?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${PUBLIC_URL}/`,
-      metadata: { token: user.token },
+      metadata: { token: user.token, market: market || "" },
     });
     res.json({ url: session.url });
   } catch (err) {
@@ -149,16 +132,17 @@ app.post("/api/checkout", async (req, res) => {
 });
 
 /** Success-page fallback: verify the session with Stripe, then hand the
- *  token to the app via redirect. Covers webhook delays/misconfiguration. */
+ *  token to the app via redirect (covers webhook delays/misconfig). */
 app.get("/api/claim", async (req, res) => {
   if (!stripe) return res.redirect("/");
   try {
     const session = await stripe.checkout.sessions.retrieve(String(req.query.session_id));
     if (session.payment_status === "paid") {
       const email = session.customer_email || session.customer_details?.email;
-      const db = loadDb();
-      const user = markPaid(db, email, session.id);
-      return res.redirect(`/trainer.html?token=${encodeURIComponent(user.token)}`);
+      const market = session.metadata?.market;
+      const user = db.markPaid(email, session.id, market);
+      const page = market === "SE" ? "trainer.sv.html" : "trainer.html";
+      return res.redirect(`/${page}?token=${encodeURIComponent(user.token)}`);
     }
   } catch (err) {
     console.error("claim failed:", err.message);
@@ -168,36 +152,56 @@ app.get("/api/claim", async (req, res) => {
 
 /** Entitlement check used by the app on load. */
 app.get("/api/access", (req, res) => {
-  const db = loadDb();
-  const hit = findByToken(db, String(req.query.token || ""));
-  if (!hit) return res.status(404).json({ paid: false });
-  const [email, user] = hit;
-  res.json({ email, paid: !!user.paid });
+  const user = db.getByToken(String(req.query.token || ""));
+  if (!user) return res.status(404).json({ paid: false });
+  res.json({ email: user.email, paid: !!user.paid });
 });
 
-/** Magic-link re-login: look up an existing paid user by email.
- *  In production this sends an email; in dev it returns the link. */
+/** Magic-link re-login for returning buyers. Always 200 (no account probing). */
 app.post("/api/login", (req, res) => {
-  const { email } = req.body || {};
+  if (!rateLimit(`login:${clientIp(req)}`, 5, 60_000))
+    return res.status(429).json({ error: "too many requests" });
+
+  const { email, market } = req.body || {};
   if (!isEmail(email)) return res.status(400).json({ error: "invalid email" });
-  const db = loadDb();
-  const user = db.users[email.trim().toLowerCase()];
-  // Always answer 200 so the endpoint can't be used to probe accounts.
+
+  const user = db.getByEmail(email);
   if (user?.paid) {
-    const link = `${PUBLIC_URL}/trainer.html?token=${encodeURIComponent(user.token)}`;
-    console.log(`[magic-link] ${email}: ${link}`);
-    if (!stripe) return res.json({ ok: true, devLink: link });
-    // TODO(production): send `link` by email.
+    const page = user.market === "SE" || market === "SE" ? "trainer.sv.html" : "trainer.html";
+    const link = `${PUBLIC_URL}/${page}?token=${encodeURIComponent(user.token)}`;
+    const out = sendMail(magicLinkEmail({ to: email, link, lang: langFor(user.market || market) }));
+    // Dev mode returns the link so the flow is testable end-to-end.
+    return out.then((r) => res.json({ ok: true, devLink: r.dev ? link : undefined }));
   }
   res.json({ ok: true });
 });
 
-app.get("/api/health", (_req, res) =>
-  res.json({ ok: true, stripe: !!stripe, questions: undefined })
-);
+/** Funnel analytics: the app posts anonymous events (page views, free
+ *  start, paywall hit, purchase intent) so we can measure conversion — the
+ *  metric the whole paid-acquisition model depends on. */
+app.post("/api/event", (req, res) => {
+  if (!rateLimit(`event:${clientIp(req)}`, 120, 60_000)) return res.status(429).end();
+  const { name, market, anonId, meta } = req.body || {};
+  if (typeof name !== "string" || !name) return res.status(400).json({ error: "name required" });
+  db.recordEvent({ name, market, anonId, meta });
+  res.json({ ok: true });
+});
+
+app.get("/api/health", (_req, res) => res.json({ ok: true, stripe: !!stripe }));
+
+// Basic funnel counts (guard with a token in production).
+app.get("/api/metrics", (req, res) => {
+  if (process.env.METRICS_TOKEN && req.query.token !== process.env.METRICS_TOKEN)
+    return res.status(403).json({ error: "forbidden" });
+  res.json(db.funnelSummary());
+});
 
 app.use(express.static(APP_DIR));
 
-app.listen(PORT, () => {
-  console.log(`trainer running on ${PUBLIC_URL} (stripe: ${stripe ? "live" : "dev mode"})`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`CitizenPrep running on ${PUBLIC_URL} (stripe: ${stripe ? "live" : "dev mode"})`);
+  });
+}
+
+module.exports = app;

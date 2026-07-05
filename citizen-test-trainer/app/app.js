@@ -185,6 +185,35 @@ const UI = {
 // Right-to-left explanation/translation languages.
 const RTL_LANGS = new Set(["ar", "fa", "ur"]);
 
+/* ------------------------------------------------- funnel analytics */
+
+// Anonymous funnel tracking so we can measure conversion — the metric the
+// paid-acquisition model lives or dies on. No PII; a random per-browser id.
+function anonId() {
+  let id = null;
+  try {
+    id = localStorage.getItem("itt:anon");
+    if (!id) {
+      id = (crypto.randomUUID && crypto.randomUUID()) ||
+        String(Date.now()) + Math.random().toString(36).slice(2);
+      localStorage.setItem("itt:anon", id);
+    }
+  } catch {}
+  return id;
+}
+
+function track(name, meta) {
+  try {
+    const body = JSON.stringify({ name, market: MARKET.country || null, anonId: anonId(), meta: meta || {} });
+    // sendBeacon survives page unload (e.g. redirect to Stripe).
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(API + "/api/event", new Blob([body], { type: "application/json" }));
+    } else {
+      fetch(API + "/api/event", { method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true });
+    }
+  } catch {}
+}
+
 /* ------------------------------------------------------- persistence */
 
 const store = {
@@ -354,6 +383,7 @@ function renderStart() {
 
 function startSession(mode, questions) {
   if (!questions.length) return;
+  track("session_start", { mode, paid });
   state = { mode, questions, index: 0, answers: [], config: paid ? EXAM_CONFIG : DEMO_CONFIG };
 
   els.timer.classList.toggle("hidden", mode !== "exam");
@@ -595,6 +625,7 @@ async function checkAccess() {
 }
 
 function openBuyDialog() {
+  track("paywall_open");
   els.buyError.classList.add("hidden");
   els.buyDialog.showModal();
   els.buyEmail.focus();
@@ -607,8 +638,9 @@ async function submitBuy(e) {
   els.buySubmit.disabled = true;
   els.buySubmit.textContent = t("buying");
   els.buyError.classList.add("hidden");
+  track("checkout_submit");
   try {
-    const out = await api("/api/checkout", { method: "POST", body: JSON.stringify({ email }) });
+    const out = await api("/api/checkout", { method: "POST", body: JSON.stringify({ email, market: MARKET.country || null }) });
     if (out.url) {
       location.href = out.url; // Stripe Checkout
       return;
@@ -685,6 +717,7 @@ document.addEventListener("keydown", (e) => {
 
 applyI18n();
 show("start");
+track("page_view", { paid });
 checkAccess();
 
 // Deep link from the landing page: /trainer.html?buy=1 opens the purchase

@@ -1,0 +1,12 @@
+{
+  "name": "citizen-test-trainer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CitizenPrep — citizenship exam trainer (SE + DK)",
+  "scripts": {
+    "validate": "node tools/validate_bank.js app/questions.js app/questions.sv.js",
+    "test:server": "node server/test_server.js",
+    "test": "npm run validate && npm run test:server",
+    "start": "node server/server.js"
+  }
+}
