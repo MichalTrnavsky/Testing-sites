@@ -18,9 +18,18 @@ student's own language.
   residency; candidates pay for preparation without hesitation.
 - **Perfect ad timing.** Exams run twice a year — Google Ads spike for
   6–8 weeks before each sitting, SEO carries the rest of the year.
-- **Differentiator vs. local competitors:** every answer is explained in the
-  student's native language (English, Ukrainian, Polish, Arabic, …) — cheap
-  to produce with AI, absent from monolingual Danish incumbents.
+- **Differentiator vs. local competitors:** the Danish question is shown
+  with a native-language translation *right underneath it*, and every answer
+  is explained in the student's language — cheap to produce with AI, absent
+  from monolingual Danish incumbents.
+
+  **Language priority** is driven by who actually takes the test. Recent top
+  nationalities granted Danish citizenship include Germany, UK, Iran,
+  Ukraine and India, with large established groups from Syria, Turkey,
+  Afghanistan, Iraq, Pakistan, Poland and Romania. Since German/UK applicants
+  are comfortable in English, the *translation* feature matters most for:
+  **Arabic, Farsi, Ukrainian, Turkish**, then Polish, Romanian, Somali, Urdu.
+  (Source: Integrationsbarometer / Danmarks Statistik.)
 - **Expansion path:** same engine for Norway (statsborgerprøven — official
   demo tests + public curriculum) and Sweden (brand-new medborgarskapsprov,
   first sitting August 2026 — greenfield market).
@@ -87,6 +96,22 @@ against a couple of PDFs before trusting the bank — questions with
 to match the real format and the official learning-material themes.
 Replace/extend with real exam sets via the ingest script, then generate
 explanations per question (translate once, review once, cache forever).
+
+Each question can carry a `tr` field with per-language translations of the
+question text and options, e.g.:
+
+```js
+tr: {
+  uk: { q: "…", opts: ["…", "…", "…"] },
+  ar: { q: "…", opts: ["…", "…", "…"] }   // rendered right-to-left
+}
+```
+
+The app shows the Danish original with this translation underneath (a
+comprehension aid — Danish stays primary because the real exam is in
+Danish). RTL languages (ar/fa/ur) render right-aligned automatically. The
+sample bank includes Ukrainian for the first ~10 questions and Arabic for a
+few, to demonstrate; the translation pipeline fills the rest.
 
 ## Launch checklist
 

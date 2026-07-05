@@ -25,6 +25,7 @@
           <option value="en">English</option>
           <option value="uk">Українська</option>
           <option value="pl">Polski</option>
+          <option value="ar">العربية</option>
           <option value="none" data-i18n-opt="expl_none">Kun dansk</option>
         </select>
       </div>
@@ -89,6 +90,7 @@
       <div class="quiz-head">
         <div id="quiz-progress"></div>
         <div class="quiz-head-right">
+          <button id="btn-translate" class="translate-toggle hidden" type="button"></button>
           <div id="quiz-timer" class="timer hidden"></div>
         </div>
       </div>
@@ -96,6 +98,7 @@
       <div class="qcard">
         <div class="theme" id="q-theme"></div>
         <h2 id="q-text"></h2>
+        <div id="q-translation" class="q-translation hidden"></div>
         <div id="q-options" class="options"></div>
         <div id="q-feedback" class="feedback hidden"></div>
         <div class="quiz-actions">

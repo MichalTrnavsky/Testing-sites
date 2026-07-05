@@ -65,6 +65,8 @@ const UI = {
     buy_failed: "Betalingen kunne ikke startes. Prøv igen, eller kontakt os.",
     unlocked: "Fuld adgang låst op! 🎉",
     offline_buy: "Betaling er ikke tilgængelig i denne demo-visning (backend kører ikke).",
+    show_tr: "🌐 Vis oversættelse",
+    hide_tr: "🌐 Skjul oversættelse",
   },
   en: {
     ui_lang: "Language:",
@@ -115,8 +117,13 @@ const UI = {
     buy_failed: "Could not start the payment. Please try again or contact us.",
     unlocked: "Full access unlocked! 🎉",
     offline_buy: "Payment is not available in this demo view (backend not running).",
+    show_tr: "🌐 Show translation",
+    hide_tr: "🌐 Hide translation",
   },
 };
+
+// Right-to-left explanation/translation languages.
+const RTL_LANGS = new Set(["ar", "fa", "ur"]);
 
 /* ------------------------------------------------------- persistence */
 
@@ -137,6 +144,7 @@ let explLang = store.get("explLang", "en");
 let qstats = store.get("qstats", {});      // { [qid]: {right, wrong} }
 let examHistory = store.get("examHistory", []); // [{ts, score, total, passed}]
 let accessToken = store.get("token", null);
+let showTranslation = store.get("showTr", true);
 let paid = false;
 
 const t = (key, ...args) => {
@@ -154,7 +162,9 @@ const els = {
   statsPanel: $("stats-panel"),
   pricing: $("pricing"), freeInfo: $("free-info"), bankInfo: $("bank-info"),
   progress: $("quiz-progress"), timer: $("quiz-timer"), progressFill: $("progressbar-fill"),
-  theme: $("q-theme"), qText: $("q-text"), options: $("q-options"), feedback: $("q-feedback"),
+  theme: $("q-theme"), qText: $("q-text"), qTranslation: $("q-translation"),
+  options: $("q-options"), feedback: $("q-feedback"),
+  translateToggle: $("btn-translate"),
   next: $("btn-next"), quit: $("btn-quit"),
   resultBadge: $("result-badge"), resultTitle: $("result-title"),
   resultDetail: $("result-detail"), resultReview: $("result-review"), resultUpsell: $("result-upsell"),
@@ -198,6 +208,13 @@ function mistakeQuestions() {
 function explanationFor(q) {
   if (explLang === "none") return "";
   return q.expl?.[explLang] || q.expl?.en || "";
+}
+
+// Translation of the question + options into the selected language, if we
+// have one for this question. Danish stays primary; this is comprehension aid.
+function translationFor(q) {
+  if (explLang === "none") return null;
+  return q.tr?.[explLang] || null;
 }
 
 /* --------------------------------------------------------------- i18n */
@@ -331,10 +348,27 @@ function renderQuestion() {
   els.next.classList.add("hidden");
   els.options.innerHTML = "";
 
+  const tr = translationFor(q);
+  const rtl = RTL_LANGS.has(explLang);
+
+  // Translated question under the Danish original.
+  els.translateToggle.classList.toggle("hidden", !tr);
+  els.translateToggle.textContent = showTranslation ? t("hide_tr") : t("show_tr");
+  if (tr && showTranslation) {
+    els.qTranslation.textContent = tr.q;
+    els.qTranslation.dir = rtl ? "rtl" : "ltr";
+    els.qTranslation.classList.remove("hidden");
+  } else {
+    els.qTranslation.classList.add("hidden");
+  }
+
   q.opts.forEach((opt, i) => {
     const btn = document.createElement("button");
     btn.className = "opt";
-    btn.innerHTML = `<span class="letter">${LETTERS[i]}</span>${opt}`;
+    const trOpt = tr && showTranslation && tr.opts?.[i];
+    btn.innerHTML =
+      `<span class="letter">${LETTERS[i]}</span>${opt}` +
+      (trOpt ? `<span class="opt-tr" dir="${rtl ? "rtl" : "ltr"}">${trOpt}</span>` : "");
     btn.addEventListener("click", () => answer(i, btn));
     els.options.appendChild(btn);
   });
@@ -507,6 +541,15 @@ els.uiLang.addEventListener("change", () => {
 els.explLang.addEventListener("change", () => {
   explLang = els.explLang.value;
   store.set("explLang", explLang);
+  // Re-render the current question so a language switch updates inline
+  // translation immediately (unless it's already been answered).
+  if (state && state.answers.length === state.index) renderQuestion();
+});
+
+els.translateToggle.addEventListener("click", () => {
+  showTranslation = !showTranslation;
+  store.set("showTr", showTranslation);
+  if (state && state.answers.length === state.index) renderQuestion();
 });
 
 $("btn-practice").addEventListener("click", startPractice);

@@ -111,6 +111,31 @@ body.landing main { max-width: 960px; }
 .why h3 { margin: 0.5rem 0 0.3rem; font-size: 1rem; }
 .why p { color: var(--muted); font-size: 0.9rem; margin: 0; }
 
+/* Bilingual demo card */
+.bilingual-demo {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; max-width: 620px;
+}
+.bd-theme {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--red); font-weight: 700; margin-bottom: 0.5rem;
+}
+.bd-q { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.3rem; }
+.bd-tr {
+  color: var(--muted); font-style: italic; font-size: 0.98rem;
+  padding-left: 0.7rem; border-left: 3px solid var(--border); margin-bottom: 0.25rem;
+}
+.bd-tr[dir="rtl"] {
+  padding-left: 0; padding-right: 0.7rem; border-left: none;
+  border-right: 3px solid var(--border); text-align: right;
+}
+.bd-opts { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem; }
+.bd-opts span {
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 0.4rem 0.9rem; font-size: 0.92rem;
+}
+.bd-opts .bd-correct { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); font-weight: 600; }
+
 /* Tips */
 .tips { margin: 1.2rem 0 0 1.2rem; display: grid; gap: 0.9rem; }
 .tips li { max-width: 74ch; padding-left: 0.4rem; }

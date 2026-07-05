@@ -173,7 +173,42 @@ h1 { font-size: 1.7rem; line-height: 1.25; margin-bottom: 0.7rem; }
 
 .qcard { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem; }
 .theme { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); font-weight: 700; margin-bottom: 0.5rem; }
-#q-text { font-size: 1.2rem; margin-bottom: 1.1rem; }
+#q-text { font-size: 1.2rem; margin-bottom: 0.4rem; }
+
+.q-translation {
+  font-size: 1.02rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 1.1rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--border);
+}
+.q-translation[dir="rtl"] {
+  padding-left: 0; padding-right: 0.7rem;
+  border-left: none; border-right: 3px solid var(--border);
+  text-align: right;
+}
+.opt-tr {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+.opt-tr[dir="rtl"] { text-align: right; }
+
+.quiz-head-right { display: flex; align-items: center; gap: 0.6rem; }
+.translate-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.translate-toggle:hover { border-color: var(--red); color: var(--ink); }
 
 .options { display: grid; gap: 0.6rem; }
 .opt {

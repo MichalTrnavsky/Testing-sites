@@ -13,6 +13,10 @@ window.QUESTION_BANK = [
     id: "s001",
     theme: "Demokrati og grundloven",
     q: "Hvilket år fik Danmark sin første grundlov?",
+    tr: {
+      uk: { q: "Якого року Данія отримала свою першу конституцію?", opts: ["1849", "1901", "1920"] },
+      ar: { q: "في أي عام حصلت الدنمارك على أول دستور لها؟", opts: ["1849", "1901", "1920"] }
+    },
     opts: ["1849", "1901", "1920"],
     correct: 0,
     expl: {
@@ -25,6 +29,10 @@ window.QUESTION_BANK = [
     id: "s002",
     theme: "Demokrati og grundloven",
     q: "Hvor mange medlemmer har Folketinget?",
+    tr: {
+      uk: { q: "Скільки членів налічує Фолькетинг (парламент Данії)?", opts: ["159", "179", "199"] },
+      ar: { q: "كم عدد أعضاء البرلمان الدنماركي (فولكتينغ)؟", opts: ["159", "179", "199"] }
+    },
     opts: ["159", "179", "199"],
     correct: 1,
     expl: {
@@ -37,6 +45,10 @@ window.QUESTION_BANK = [
     id: "s003",
     theme: "Demokrati og grundloven",
     q: "Hvor gammel skal man være for at kunne stemme til folketingsvalg?",
+    tr: {
+      uk: { q: "Скільки років має бути людині, щоб голосувати на парламентських виборах?", opts: ["16 років", "18 років", "21 рік"] },
+      ar: { q: "كم يجب أن يكون عمر الشخص للتصويت في الانتخابات البرلمانية؟", opts: ["16 عامًا", "18 عامًا", "21 عامًا"] }
+    },
     opts: ["16 år", "18 år", "21 år"],
     correct: 1,
     expl: {
@@ -49,6 +61,9 @@ window.QUESTION_BANK = [
     id: "s004",
     theme: "Demokrati og grundloven",
     q: "Hvor ofte skal der senest afholdes valg til Folketinget?",
+    tr: {
+      uk: { q: "Як часто щонайпізніше мають відбуватися вибори до Фолькетингу?", opts: ["Кожні 3 роки", "Кожні 4 роки", "Кожні 5 років"] }
+    },
     opts: ["Hvert 3. år", "Hvert 4. år", "Hvert 5. år"],
     correct: 1,
     expl: {
@@ -61,6 +76,9 @@ window.QUESTION_BANK = [
     id: "s005",
     theme: "Demokrati og grundloven",
     q: "Hvad kaldes Danmarks styreform?",
+    tr: {
+      uk: { q: "Як називається форма правління Данії?", opts: ["Республіка", "Конституційна монархія", "Абсолютна монархія"] }
+    },
     opts: ["Republik", "Konstitutionelt monarki", "Absolut monarki"],
     correct: 1,
     expl: {
@@ -73,6 +91,9 @@ window.QUESTION_BANK = [
     id: "s006",
     theme: "Demokrati og grundloven",
     q: "Hvor holder Folketinget til?",
+    tr: {
+      uk: { q: "Де засідає Фолькетинг?", opts: ["Амалієнборг", "Крістіансборг", "Розенборг"] }
+    },
     opts: ["Amalienborg", "Christiansborg", "Rosenborg"],
     correct: 1,
     expl: {
@@ -85,6 +106,9 @@ window.QUESTION_BANK = [
     id: "s007",
     theme: "Demokrati og grundloven",
     q: "Hvem kontrollerer, at de offentlige myndigheder behandler borgerne korrekt?",
+    tr: {
+      uk: { q: "Хто контролює, щоб державні органи належно поводилися з громадянами?", opts: ["Парламентський омбудсмен", "Прем'єр-міністр", "Поліція"] }
+    },
     opts: ["Folketingets Ombudsmand", "Statsministeren", "Politiet"],
     correct: 0,
     expl: {
@@ -97,6 +121,9 @@ window.QUESTION_BANK = [
     id: "s008",
     theme: "Demokrati og grundloven",
     q: "Hvornår fik kvinder valgret til Rigsdagen (Folketinget)?",
+    tr: {
+      uk: { q: "Коли жінки отримали право голосу до Рігсдагу (Фолькетингу)?", opts: ["1901", "1915", "1953"] }
+    },
     opts: ["1901", "1915", "1953"],
     correct: 1,
     expl: {
@@ -109,6 +136,9 @@ window.QUESTION_BANK = [
     id: "s009",
     theme: "Historie",
     q: "Hvornår blev Danmark besat af Tyskland under 2. verdenskrig?",
+    tr: {
+      uk: { q: "Коли Данію окупувала Німеччина під час Другої світової війни?", opts: ["9 квітня 1940", "1 вересня 1939", "5 травня 1945"] }
+    },
     opts: ["9. april 1940", "1. september 1939", "5. maj 1945"],
     correct: 0,
     expl: {
@@ -121,6 +151,9 @@ window.QUESTION_BANK = [
     id: "s010",
     theme: "Historie",
     q: "Hvilket år blev Danmark befriet efter den tyske besættelse?",
+    tr: {
+      uk: { q: "Якого року Данію було звільнено після німецької окупації?", opts: ["1944", "1945", "1948"] }
+    },
     opts: ["1944", "1945", "1948"],
     correct: 1,
     expl: {
