@@ -1,0 +1,9 @@
+**/node_modules
+**/data.sqlite
+**/data.sqlite-*
+**/db.json
+**/.env
+.git
+design
+tools
+**/*.md

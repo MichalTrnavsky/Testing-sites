@@ -76,6 +76,42 @@ cp .env.example .env   # optionally add Stripe keys
 npm start              # serves app + API on :8080
 ```
 
+Storage is SQLite (built-in `node:sqlite`, no dependency): users, funnel
+events and Stripe idempotency records in `server/data.sqlite`. The Stripe
+webhook is idempotent, checkout/login/event endpoints are rate-limited, and
+`/robots.txt` + `/sitemap.xml` are served from `PUBLIC_URL`.
+
+### Tests
+
+```bash
+cd citizen-test-trainer
+npm --prefix server ci   # install server deps once
+npm test                 # validates both question banks + 13 API tests
+```
+
+CI runs the same on every push (`.github/workflows/ci.yml`).
+
+### Deploy
+
+```bash
+docker build -f server/Dockerfile -t citizenprep .
+docker run -p 8080:8080 -v cp-data:/data \
+  -e PUBLIC_URL=https://citizenprep.se \
+  -e STRIPE_SECRET_KEY=sk_live_... -e STRIPE_WEBHOOK_SECRET=whsec_... \
+  -e EMAIL_PROVIDER=postmark -e EMAIL_API_KEY=... \
+  -e METRICS_TOKEN=... citizenprep
+```
+
+On a non-localhost `PUBLIC_URL`, the server warns loudly about any missing
+production config (Stripe keys, webhook secret, email provider, metrics
+token) so it never silently runs live with dev-mode payments.
+
+### Funnel metrics
+
+`GET /api/metrics` (guard with `METRICS_TOKEN`) returns counts per event —
+`page_view`, `session_start`, `paywall_open`, `checkout_submit`, `purchase`
+— the conversion data the paid-acquisition model depends on.
+
 ### Ingest (`ingest/`)
 
 ```bash

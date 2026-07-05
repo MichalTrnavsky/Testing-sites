@@ -189,6 +189,26 @@ app.post("/api/event", (req, res) => {
 
 app.get("/api/health", (_req, res) => res.json({ ok: true, stripe: !!stripe }));
 
+/* ---- technical SEO (driven by PUBLIC_URL, so no hard-coded domain) ------ */
+
+// Public, indexable pages. API and success/claim URLs stay out of the map.
+const PUBLIC_PAGES = ["/", "/trainer.html", "/trainer.sv.html"];
+
+app.get("/robots.txt", (_req, res) => {
+  res.type("text/plain").send(
+    `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${PUBLIC_URL}/sitemap.xml\n`
+  );
+});
+
+app.get("/sitemap.xml", (_req, res) => {
+  const urls = PUBLIC_PAGES.map(
+    (p) => `  <url><loc>${PUBLIC_URL}${p}</loc><changefreq>weekly</changefreq></url>`
+  ).join("\n");
+  res.type("application/xml").send(
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+  );
+});
+
 // Basic funnel counts (guard with a token in production).
 app.get("/api/metrics", (req, res) => {
   if (process.env.METRICS_TOKEN && req.query.token !== process.env.METRICS_TOKEN)
@@ -198,7 +218,21 @@ app.get("/api/metrics", (req, res) => {
 
 app.use(express.static(APP_DIR));
 
+// Fail loud on an obviously misconfigured production deploy, so we never
+// silently run live with dev-mode payments or drop magic-link emails.
+function checkConfig() {
+  const isProd = process.env.NODE_ENV === "production" || !PUBLIC_URL.includes("localhost");
+  if (!isProd) return;
+  const warn = [];
+  if (!stripe) warn.push("STRIPE_SECRET_KEY missing — payments run in DEV mode (access granted free!)");
+  if (stripe && !process.env.STRIPE_WEBHOOK_SECRET) warn.push("STRIPE_WEBHOOK_SECRET missing — webhook signatures not verified");
+  if (!process.env.EMAIL_PROVIDER) warn.push("EMAIL_PROVIDER missing — magic-link emails only log to console");
+  if (!process.env.METRICS_TOKEN) warn.push("METRICS_TOKEN missing — /api/metrics is public");
+  if (warn.length) console.warn("⚠ CONFIG:\n" + warn.map((w) => "  - " + w).join("\n"));
+}
+
 if (require.main === module) {
+  checkConfig();
   app.listen(PORT, () => {
     console.log(`CitizenPrep running on ${PUBLIC_URL} (stripe: ${stripe ? "live" : "dev mode"})`);
   });

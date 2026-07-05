@@ -102,6 +102,19 @@ async function run() {
   assert.ok((await r.text()).includes("CitizenPrep"));
   ok("serves the Swedish trainer page");
 
+  // technical SEO
+  r = await get("/robots.txt");
+  assert.equal(r.status, 200);
+  const robots = await r.text();
+  assert.ok(robots.includes("Disallow: /api/") && robots.includes("sitemap.xml"));
+  ok("robots.txt disallows /api and points to the sitemap");
+
+  r = await get("/sitemap.xml");
+  assert.equal(r.status, 200);
+  const sm = await r.text();
+  assert.ok(sm.includes("<urlset") && sm.includes("/trainer.sv.html"));
+  ok("sitemap.xml lists public pages");
+
   console.log(`\n✅ ${passed} server tests passed`);
 }
 
