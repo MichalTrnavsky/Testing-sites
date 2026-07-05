@@ -158,7 +158,7 @@ app.get("/api/claim", async (req, res) => {
       const email = session.customer_email || session.customer_details?.email;
       const db = loadDb();
       const user = markPaid(db, email, session.id);
-      return res.redirect(`/?token=${encodeURIComponent(user.token)}`);
+      return res.redirect(`/trainer.html?token=${encodeURIComponent(user.token)}`);
     }
   } catch (err) {
     console.error("claim failed:", err.message);
@@ -184,7 +184,7 @@ app.post("/api/login", (req, res) => {
   const user = db.users[email.trim().toLowerCase()];
   // Always answer 200 so the endpoint can't be used to probe accounts.
   if (user?.paid) {
-    const link = `${PUBLIC_URL}/?token=${encodeURIComponent(user.token)}`;
+    const link = `${PUBLIC_URL}/trainer.html?token=${encodeURIComponent(user.token)}`;
     console.log(`[magic-link] ${email}: ${link}`);
     if (!stripe) return res.json({ ok: true, devLink: link });
     // TODO(production): send `link` by email.

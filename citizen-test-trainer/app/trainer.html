@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CitizenPrep — bestå indfødsretsprøven og medborgerskabsprøven</title>
+  <meta name="description" content="Øv til indfødsretsprøven og medborgerskabsprøven med realistiske prøvespørgsmål, eksamenssimulator og forklaringer på dit eget sprog.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇩🇰</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🇩🇰 Citizen<span>Prep</span></div>
+    <div class="topbar-controls">
+      <div class="lang-picker">
+        <label for="uiLang" data-i18n="ui_lang">Sprog:</label>
+        <select id="uiLang">
+          <option value="da">Dansk</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <div class="lang-picker">
+        <label for="explLang" data-i18n="expl_lang">Forklaringer:</label>
+        <select id="explLang">
+          <option value="en">English</option>
+          <option value="uk">Українська</option>
+          <option value="pl">Polski</option>
+          <option value="none" data-i18n-opt="expl_none">Kun dansk</option>
+        </select>
+      </div>
+      <span id="paid-badge" class="badge hidden" data-i18n="full_access">Fuld adgang ✓</span>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- Start / landing -->
+    <section id="screen-start" class="screen">
+      <h1 data-i18n="hero_title">Bestå indfødsretsprøven i første forsøg</h1>
+      <p class="sub" data-i18n="hero_sub">
+        Træn med spørgsmål i samme format som den rigtige prøve — med
+        øjeblikkelig feedback og forklaringer på dit eget sprog.
+      </p>
+
+      <div class="mode-cards">
+        <button class="card" id="btn-practice">
+          <h2>📖 <span data-i18n="mode_practice">Øvelse</span></h2>
+          <p data-i18n="mode_practice_sub">Ét spørgsmål ad gangen med øjeblikkelig feedback og forklaring.</p>
+          <div class="card-extra">
+            <label for="themeFilter" class="visually-hidden" data-i18n="theme">Emne</label>
+            <select id="themeFilter" onclick="event.stopPropagation()"></select>
+          </div>
+        </button>
+        <button class="card" id="btn-exam">
+          <h2>⏱️ <span data-i18n="mode_exam">Prøvesimulator</span></h2>
+          <p id="exam-card-sub"></p>
+        </button>
+        <button class="card" id="btn-mistakes">
+          <h2>🔁 <span data-i18n="mode_mistakes">Repetér fejl</span></h2>
+          <p id="mistakes-card-sub"></p>
+        </button>
+      </div>
+
+      <div id="stats-panel" class="stats hidden">
+        <div class="stat"><div class="stat-num" id="stat-answered">0</div><div class="stat-label" data-i18n="stat_answered">besvarede</div></div>
+        <div class="stat"><div class="stat-num" id="stat-accuracy">–</div><div class="stat-label" data-i18n="stat_accuracy">rigtige</div></div>
+        <div class="stat"><div class="stat-num" id="stat-weakest">–</div><div class="stat-label" data-i18n="stat_weakest">svageste emne</div></div>
+        <div class="stat"><div class="stat-num" id="stat-exams">–</div><div class="stat-label" data-i18n="stat_exams">seneste eksamen</div></div>
+      </div>
+
+      <div id="pricing" class="pricing hidden">
+        <div class="pricing-inner">
+          <div>
+            <h2 data-i18n="pricing_title">Fuld adgang</h2>
+            <p data-i18n="pricing_sub">Alle spørgsmål, fuld eksamenssimulator og alle forklaringer — indtil du har bestået.</p>
+          </div>
+          <div class="pricing-cta">
+            <div class="price">149 kr.</div>
+            <button id="btn-buy" class="primary" data-i18n="buy">Køb fuld adgang</button>
+          </div>
+        </div>
+        <p class="note" id="free-info"></p>
+      </div>
+
+      <p class="note" id="bank-info"></p>
+    </section>
+
+    <!-- Quiz -->
+    <section id="screen-quiz" class="screen hidden">
+      <div class="quiz-head">
+        <div id="quiz-progress"></div>
+        <div class="quiz-head-right">
+          <div id="quiz-timer" class="timer hidden"></div>
+        </div>
+      </div>
+      <div class="progressbar"><div id="progressbar-fill"></div></div>
+      <div class="qcard">
+        <div class="theme" id="q-theme"></div>
+        <h2 id="q-text"></h2>
+        <div id="q-options" class="options"></div>
+        <div id="q-feedback" class="feedback hidden"></div>
+        <div class="quiz-actions">
+          <button id="btn-next" class="primary hidden" data-i18n="next">Næste →</button>
+          <button id="btn-quit" class="ghost" data-i18n="quit">Afslut</button>
+          <span class="kbd-hint" data-i18n="kbd_hint">Tastatur: A · B · C, Enter = næste</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="screen-result" class="screen hidden">
+      <div class="result-box">
+        <div id="result-badge"></div>
+        <h1 id="result-title"></h1>
+        <p id="result-detail" class="sub"></p>
+      </div>
+      <div id="result-upsell" class="pricing hidden">
+        <div class="pricing-inner">
+          <p data-i18n="upsell" style="margin:0">Vil du træne med hele spørgsmålsbanken og den fulde eksamen?</p>
+          <div class="pricing-cta">
+            <button id="btn-buy-2" class="primary" data-i18n="buy">Køb fuld adgang</button>
+          </div>
+        </div>
+      </div>
+      <div id="result-review"></div>
+      <div class="quiz-actions center">
+        <button id="btn-restart" class="primary" data-i18n="again">Prøv igen</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Buy dialog -->
+  <dialog id="buy-dialog">
+    <form method="dialog" id="buy-form">
+      <h2 data-i18n="buy_title">Køb fuld adgang</h2>
+      <p class="sub" data-i18n="buy_sub">Indtast din e-mail. Du får et adgangslink tilsendt efter betaling.</p>
+      <input type="email" id="buy-email" required placeholder="din@email.dk" autocomplete="email">
+      <p class="error hidden" id="buy-error"></p>
+      <div class="quiz-actions">
+        <button type="submit" class="primary" id="buy-submit" data-i18n="buy_pay">Til betaling</button>
+        <button type="button" class="ghost" id="buy-cancel" data-i18n="cancel">Annuller</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <footer>
+    <p data-i18n="footer">Prototype. Spørgsmålsformatet følger den officielle prøve (SIRI). Dette er ikke en officiel tjeneste.</p>
+  </footer>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

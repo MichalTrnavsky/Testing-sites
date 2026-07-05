@@ -3,152 +3,258 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CitizenPrep — bestå indfødsretsprøven og medborgerskabsprøven</title>
-  <meta name="description" content="Øv til indfødsretsprøven og medborgerskabsprøven med realistiske prøvespørgsmål, eksamenssimulator og forklaringer på dit eget sprog.">
+  <title>Indfødsretsprøven 2026: øv på rigtige spørgsmål | CitizenPrep</title>
+  <meta name="description" content="Forbered dig til indfødsretsprøven og medborgerskabsprøven med rigtige spørgsmål fra tidligere officielle prøver, en eksamenssimulator og forklaringer på dit eget sprog. Start gratis.">
+  <link rel="canonical" href="https://citizenprep.dk/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CitizenPrep — bestå indfødsretsprøven i første forsøg">
+  <meta property="og:description" content="Øv på rigtige spørgsmål fra tidligere officielle prøver. Eksamenssimulator og forklaringer på dit eget sprog. Start gratis.">
+  <meta property="og:locale" content="da_DK">
+  <meta name="robots" content="index, follow">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇩🇰</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="landing.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Course",
+        "name": "CitizenPrep — forberedelse til indfødsretsprøven",
+        "description": "Online træning til den danske indfødsretsprøve og medborgerskabsprøve med rigtige spørgsmål fra tidligere prøver, eksamenssimulator og flersprogede forklaringer.",
+        "provider": { "@type": "Organization", "name": "CitizenPrep", "url": "https://citizenprep.dk" },
+        "inLanguage": "da",
+        "offers": { "@type": "Offer", "price": "149", "priceCurrency": "DKK", "category": "Full access" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Hvor mange spørgsmål er der i indfødsretsprøven?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Indfødsretsprøven består af 45 spørgsmål, som skal besvares på 45 minutter. Du skal have mindst 36 rigtige for at bestå, heraf mindst 4 af de 5 spørgsmål om danske værdier." }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvad er beståelsesprocenten for indfødsretsprøven?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Beståelsesprocenten har historisk svinget mellem cirka 47 % og 62 %. Det betyder, at omkring halvdelen af deltagerne dumper hver gang — prøven er svær, og forberedelse gør en stor forskel." }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvad koster det, hvis jeg dumper indfødsretsprøven?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Prøven afholdes kun to gange om året (typisk i juni og november). Dumper du, skal du vente et halvt år, betale prøvegebyret igen og udskyde din ansøgning om statsborgerskab tilsvarende." }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvor kommer jeres spørgsmål fra?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Vores spørgsmål bygger på SIRI's officielt offentliggjorte tidligere prøvesæt (med facitlister) og det officielle læremateriale. Vi opdaterer løbende spørgsmålene om aktuelle forhold før hver prøvetermin." }
+          },
+          {
+            "@type": "Question",
+            "name": "Garanterer I, at jeg består?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nej. Ingen kan garantere et bestået resultat, og det gør vi heller ikke. Vi giver dig den bedst mulige forberedelse med rigtige spørgsmål og en realistisk eksamenssimulator — men resultatet afhænger af din indsats." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
-<body>
+<body class="landing">
   <header class="topbar">
     <div class="brand">🇩🇰 Citizen<span>Prep</span></div>
-    <div class="topbar-controls">
-      <div class="lang-picker">
-        <label for="uiLang" data-i18n="ui_lang">Sprog:</label>
-        <select id="uiLang">
-          <option value="da">Dansk</option>
-          <option value="en">English</option>
-        </select>
-      </div>
-      <div class="lang-picker">
-        <label for="explLang" data-i18n="expl_lang">Forklaringer:</label>
-        <select id="explLang">
-          <option value="en">English</option>
-          <option value="uk">Українська</option>
-          <option value="pl">Polski</option>
-          <option value="none" data-i18n-opt="expl_none">Kun dansk</option>
-        </select>
-      </div>
-      <span id="paid-badge" class="badge hidden" data-i18n="full_access">Fuld adgang ✓</span>
-    </div>
+    <nav class="landing-nav">
+      <a href="#proeven">Om prøven</a>
+      <a href="#statistik">Beståelse</a>
+      <a href="#metode">Vores metode</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="trainer.html">Start gratis</a>
+    </nav>
   </header>
 
-  <main id="app">
-    <!-- Start / landing -->
-    <section id="screen-start" class="screen">
-      <h1 data-i18n="hero_title">Bestå indfødsretsprøven i første forsøg</h1>
-      <p class="sub" data-i18n="hero_sub">
-        Træn med spørgsmål i samme format som den rigtige prøve — med
-        øjeblikkelig feedback og forklaringer på dit eget sprog.
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="badge-line">🇩🇰 Indfødsretsprøven &amp; medborgerskabsprøven · 2026</div>
+        <h1>Bestå indfødsretsprøven i første forsøg</h1>
+        <p class="lead">
+          Træn på <strong>rigtige spørgsmål fra tidligere officielle prøver</strong>,
+          prøv en fuld eksamenssimulator under tidspres, og få hvert svar forklaret
+          på <strong>dit eget sprog</strong>. Kun cirka halvdelen består hver gang —
+          sørg for at være i den halvdel.
+        </p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="trainer.html">Start gratis træning</a>
+          <a class="btn-outline" href="#statistik">Se beståelsesprocenten →</a>
+        </div>
+        <p class="hero-trust">Ingen tilmelding for at prøve · Forklaringer på English · Українська · Polski</p>
+      </div>
+      <aside class="facts-card" aria-label="Fakta om prøven">
+        <h2>Indfødsretsprøven kort</h2>
+        <ul class="facts">
+          <li><span class="fact-num">45</span><span class="fact-label">spørgsmål</span></li>
+          <li><span class="fact-num">45</span><span class="fact-label">minutter</span></li>
+          <li><span class="fact-num">36</span><span class="fact-label">rigtige for at bestå</span></li>
+          <li><span class="fact-num">2×</span><span class="fact-label">om året (jun · nov)</span></li>
+        </ul>
+        <p class="facts-note">Heraf skal mindst 4 af 5 værdispørgsmål være rigtige.</p>
+      </aside>
+    </section>
+
+    <!-- OM PRØVEN -->
+    <section id="proeven" class="content">
+      <h2>Hvad er indfødsretsprøven?</h2>
+      <p>
+        Indfødsretsprøven er en obligatorisk prøve, du skal bestå for at kunne få
+        dansk statsborgerskab (indfødsret). Den tester dit kendskab til danske
+        samfundsforhold, dansk historie og kultur samt danske værdier. Prøven
+        udarbejdes og administreres af <strong>SIRI</strong> (Styrelsen for
+        International Rekruttering og Integration).
       </p>
-
-      <div class="mode-cards">
-        <button class="card" id="btn-practice">
-          <h2>📖 <span data-i18n="mode_practice">Øvelse</span></h2>
-          <p data-i18n="mode_practice_sub">Ét spørgsmål ad gangen med øjeblikkelig feedback og forklaring.</p>
-          <div class="card-extra">
-            <label for="themeFilter" class="visually-hidden" data-i18n="theme">Emne</label>
-            <select id="themeFilter" onclick="event.stopPropagation()"></select>
-          </div>
-        </button>
-        <button class="card" id="btn-exam">
-          <h2>⏱️ <span data-i18n="mode_exam">Prøvesimulator</span></h2>
-          <p id="exam-card-sub"></p>
-        </button>
-        <button class="card" id="btn-mistakes">
-          <h2>🔁 <span data-i18n="mode_mistakes">Repetér fejl</span></h2>
-          <p id="mistakes-card-sub"></p>
-        </button>
-      </div>
-
-      <div id="stats-panel" class="stats hidden">
-        <div class="stat"><div class="stat-num" id="stat-answered">0</div><div class="stat-label" data-i18n="stat_answered">besvarede</div></div>
-        <div class="stat"><div class="stat-num" id="stat-accuracy">–</div><div class="stat-label" data-i18n="stat_accuracy">rigtige</div></div>
-        <div class="stat"><div class="stat-num" id="stat-weakest">–</div><div class="stat-label" data-i18n="stat_weakest">svageste emne</div></div>
-        <div class="stat"><div class="stat-num" id="stat-exams">–</div><div class="stat-label" data-i18n="stat_exams">seneste eksamen</div></div>
-      </div>
-
-      <div id="pricing" class="pricing hidden">
-        <div class="pricing-inner">
-          <div>
-            <h2 data-i18n="pricing_title">Fuld adgang</h2>
-            <p data-i18n="pricing_sub">Alle spørgsmål, fuld eksamenssimulator og alle forklaringer — indtil du har bestået.</p>
-          </div>
-          <div class="pricing-cta">
-            <div class="price">149 kr.</div>
-            <button id="btn-buy" class="primary" data-i18n="buy">Køb fuld adgang</button>
-          </div>
+      <p>Prøven består af <strong>45 multiple choice-spørgsmål</strong>, fordelt sådan:</p>
+      <div class="split-cards">
+        <div class="split-card">
+          <div class="split-num">35</div>
+          <h3>Spørgsmål fra lærematerialet</h3>
+          <p>Om Danmarks historie, politik, økonomi, kultur og hverdag — baseret på SIRI's officielle læremateriale på ca. 235 sider.</p>
         </div>
-        <p class="note" id="free-info"></p>
-      </div>
-
-      <p class="note" id="bank-info"></p>
-    </section>
-
-    <!-- Quiz -->
-    <section id="screen-quiz" class="screen hidden">
-      <div class="quiz-head">
-        <div id="quiz-progress"></div>
-        <div class="quiz-head-right">
-          <div id="quiz-timer" class="timer hidden"></div>
+        <div class="split-card">
+          <div class="split-num">5</div>
+          <h3>Aktuelle forhold</h3>
+          <p>Om nye begivenheder i politik, samfund og kultur. Disse ændrer sig fra prøve til prøve — og opdaterer vi før hver termin.</p>
+        </div>
+        <div class="split-card">
+          <div class="split-num">5</div>
+          <h3>Danske værdier</h3>
+          <p>Om grundlæggende danske værdier. Særlig regel: du skal have mindst <strong>4 ud af 5</strong> rigtige her — ellers dumper du uanset resten.</p>
         </div>
       </div>
-      <div class="progressbar"><div id="progressbar-fill"></div></div>
-      <div class="qcard">
-        <div class="theme" id="q-theme"></div>
-        <h2 id="q-text"></h2>
-        <div id="q-options" class="options"></div>
-        <div id="q-feedback" class="feedback hidden"></div>
-        <div class="quiz-actions">
-          <button id="btn-next" class="primary hidden" data-i18n="next">Næste →</button>
-          <button id="btn-quit" class="ghost" data-i18n="quit">Afslut</button>
-          <span class="kbd-hint" data-i18n="kbd_hint">Tastatur: A · B · C, Enter = næste</span>
-        </div>
+      <div class="callout">
+        <strong>To prøver — samme metode.</strong> Skal du have permanent
+        opholdstilladelse i stedet for statsborgerskab, er det
+        <em>medborgerskabsprøven</em>: 25 spørgsmål, 30 minutter, mindst 20 rigtige.
+        CitizenPrep dækker begge.
       </div>
     </section>
 
-    <!-- Results -->
-    <section id="screen-result" class="screen hidden">
-      <div class="result-box">
-        <div id="result-badge"></div>
-        <h1 id="result-title"></h1>
-        <p id="result-detail" class="sub"></p>
+    <!-- STATISTIK -->
+    <section id="statistik" class="content alt">
+      <h2>Beståelsesprocent — hvor svær er prøven egentlig?</h2>
+      <p>
+        Svaret: svær nok til, at <strong>omkring halvdelen dumper hver gang</strong>.
+        Her er den officielle beståelsesprocent de seneste år (kilde:
+        Integrationsbarometer / SIRI):
+      </p>
+      <div class="chart" role="img" aria-label="Beståelsesprocent 2019 til 2025">
+        <div class="bar"><span class="bar-fill" style="height:55%"></span><span class="bar-val">55 %</span><span class="bar-label">2019</span></div>
+        <div class="bar"><span class="bar-fill" style="height:62%"></span><span class="bar-val">62 %</span><span class="bar-label">2020</span></div>
+        <div class="bar"><span class="bar-fill" style="height:54%"></span><span class="bar-val">54 %</span><span class="bar-label">2021</span></div>
+        <div class="bar"><span class="bar-fill" style="height:50%"></span><span class="bar-val">50 %</span><span class="bar-label">2022</span></div>
+        <div class="bar"><span class="bar-fill" style="height:47%"></span><span class="bar-val">47 %</span><span class="bar-label">2023</span></div>
+        <div class="bar"><span class="bar-fill hl" style="height:58%"></span><span class="bar-val">58 %</span><span class="bar-label">2025*</span></div>
       </div>
-      <div id="result-upsell" class="pricing hidden">
-        <div class="pricing-inner">
-          <p data-i18n="upsell" style="margin:0">Vil du træne med hele spørgsmålsbanken og den fulde eksamen?</p>
-          <div class="pricing-cta">
-            <button id="btn-buy-2" class="primary" data-i18n="buy">Køb fuld adgang</button>
-          </div>
+      <p class="chart-note">*maj 2025: 5.959 tilmeldte, 3.470 bestod (58,2 %). Beståelsen svinger fra termin til termin — i november 2021 bestod kun 40,7 %.</p>
+      <p>
+        Med andre ord: at møde op uforberedt er et rigtigt dårligt væddemål. Og
+        prisen for at dumpe er ikke kun gebyret — det er <strong>et halvt års
+        forsinkelse</strong> af dit statsborgerskab, indtil næste prøvetermin.
+      </p>
+    </section>
+
+    <!-- METODE / DATA -->
+    <section id="metode" class="content">
+      <h2>Sådan bygger vi vores spørgsmål — helt åbent</h2>
+      <p>
+        Mange øvesider gætter sig til, hvad der kommer på prøven. Det gør vi ikke.
+        Vores materiale bygger på <strong>offentligt tilgængelige, officielle kilder</strong>:
+      </p>
+      <ul class="check-list">
+        <li><strong>Tidligere officielle prøver.</strong> SIRI offentliggør hvert prøvesæt som PDF — med facitliste — to gange om året, mange år tilbage. Vi bruger de rigtige spørgsmål og de rigtige svar.</li>
+        <li><strong>Det officielle læremateriale.</strong> De 35 videnspørgsmål trækkes fra SIRI's læremateriale på ca. 235 sider. Vi dækker hvert kapitel systematisk.</li>
+        <li><strong>Løbende opdatering.</strong> De 5 spørgsmål om aktuelle forhold ændrer sig hver termin. Vi opdaterer dem før hver prøvedato, så du øver på det, der er relevant nu.</li>
+        <li><strong>Forklaringer på dit sprog.</strong> Hvert svar forklares — ikke bare “rigtigt/forkert”, men <em>hvorfor</em> — på engelsk, ukrainsk, polsk og flere. Det er her, de danske konkurrenter falder fra.</li>
+      </ul>
+      <div class="honesty">
+        <h3>Vi garanterer <u>ikke</u>, at du består</h3>
+        <p>
+          Lad os være ærlige: ingen kan love dig et bestået resultat — og enhver,
+          der gør, er ikke til at stole på. Prøven afhænger af din egen indsats,
+          og de 5 aktuelle spørgsmål kan ingen kende på forhånd. Det, vi
+          <em>kan</em> love, er den bedst mulige forberedelse: rigtige spørgsmål,
+          en realistisk simulator og forklaringer, du faktisk forstår. Resten er op til dig.
+        </p>
+      </div>
+    </section>
+
+    <!-- HVORFOR OS -->
+    <section id="hvorfor" class="content alt">
+      <h2>Derfor vælger du CitizenPrep</h2>
+      <div class="why-grid">
+        <div class="why"><span>🎯</span><h3>Rigtige spørgsmål</h3><p>Fra tidligere officielle prøver med korrekte facitlister — ikke gætværk.</p></div>
+        <div class="why"><span>🌍</span><h3>Dit eget sprog</h3><p>Forklaringer på engelsk, ukrainsk, polsk m.fl. Forstå <em>hvorfor</em> svaret er rigtigt.</p></div>
+        <div class="why"><span>⏱️</span><h3>Eksamenssimulator</h3><p>Præcis samme format: 45 spørgsmål, 45 minutter, tidspres. Ingen overraskelser til den rigtige prøve.</p></div>
+        <div class="why"><span>🔁</span><h3>Repetér dine fejl</h3><p>Systemet husker, hvad du svarer forkert, og lader dig træne netop dét igen.</p></div>
+        <div class="why"><span>🆕</span><h3>Altid opdateret</h3><p>Spørgsmål om aktuelle forhold opdateres før hver prøvetermin.</p></div>
+        <div class="why"><span>💳</span><h3>Fair pris</h3><p>149 kr. for fuld adgang, indtil du består. En brøkdel af et sprogskolekursus — og af prisen for at dumpe.</p></div>
+      </div>
+    </section>
+
+    <!-- STUDIETIPS / PSYKOLOGI -->
+    <section id="tips" class="content">
+      <h2>5 forskningsbaserede råd, der får dig til at bestå</h2>
+      <p>Det handler ikke om at læse mere, men at læse rigtigt. Sådan husker hjernen bedst:</p>
+      <ol class="tips">
+        <li><strong>Test dig selv i stedet for at genlæse.</strong> At <em>hente</em> et svar frem fra hukommelsen (aktiv genkaldelse) fæstner viden langt bedre end at læse teksten igen. Derfor er quizzer mere effektive end at nærlæse lærematerialet.</li>
+        <li><strong>Fordel læsningen over flere dage.</strong> 20 minutter hver dag i to uger slår fire timer aftenen før (spaced repetition). Kort, dagligt og gentaget vinder hver gang.</li>
+        <li><strong>Øv under samme vilkår som prøven.</strong> Kør den fulde simulator med tidtagning. Når selve prøven føles bekendt, falder nervøsiteten — og nervøsitet er en af de største årsager til at dumpe.</li>
+        <li><strong>Jagt dine svage emner.</strong> Brug din tid der, hvor du fejler mest — ikke på det, du allerede kan. Vores statistik viser dig automatisk dit svageste emne.</li>
+        <li><strong>Sæt en konkret prøvedato.</strong> Et fast mål (“jeg tager prøven i november”) og en plan slår løse intentioner. Tilmeld dig tidligt — det forpligter.</li>
+      </ol>
+    </section>
+
+    <!-- PRIS / CTA -->
+    <section id="pris" class="content alt">
+      <div class="price-box">
+        <div>
+          <h2>Fuld adgang — 149 kr.</h2>
+          <p>Alle spørgsmål, fuld eksamenssimulator og alle forklaringer — indtil du har bestået. Engangsbeløb, ingen abonnement.</p>
+          <ul class="price-list">
+            <li>✓ Hele spørgsmålsbanken fra tidligere prøver</li>
+            <li>✓ Fuld eksamenssimulator (45 spørgsmål / 45 min)</li>
+            <li>✓ Forklaringer på dit eget sprog</li>
+            <li>✓ Repetér-fejl og fremskridtsstatistik</li>
+          </ul>
+        </div>
+        <div class="price-cta">
+          <div class="price-tag">149 kr.</div>
+          <a class="btn-primary" href="trainer.html?buy=1">Køb fuld adgang</a>
+          <a class="btn-text" href="trainer.html">…eller prøv gratis først</a>
         </div>
       </div>
-      <div id="result-review"></div>
-      <div class="quiz-actions center">
-        <button id="btn-restart" class="primary" data-i18n="again">Prøv igen</button>
-      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="content">
+      <h2>Ofte stillede spørgsmål</h2>
+      <details><summary>Hvor mange spørgsmål er der i indfødsretsprøven?</summary><p>45 spørgsmål på 45 minutter. Du skal have mindst 36 rigtige for at bestå, heraf mindst 4 af de 5 værdispørgsmål.</p></details>
+      <details><summary>Hvad er beståelsesprocenten?</summary><p>Historisk mellem ca. 47 % og 62 %. Cirka halvdelen dumper hver gang — så forberedelse er afgørende.</p></details>
+      <details><summary>Hvor tit afholdes prøven?</summary><p>To gange om året, typisk i juni og november. Dumper du, skal du vente til næste termin.</p></details>
+      <details><summary>Hvad koster den officielle prøve?</summary><p>Du betaler et prøvegebyr til kommunen ved tilmelding. CitizenPrep er din forberedelse — ikke selve prøven.</p></details>
+      <details><summary>På hvilket sprog er prøven?</summary><p>Selve prøven er på dansk. Hos os kan du få svarene <em>forklaret</em> på dit eget sprog, så du forstår stoffet — mens du vænner dig til de danske formuleringer.</p></details>
+      <details><summary>Garanterer I, at jeg består?</summary><p>Nej. Ingen kan garantere det. Vi giver dig den bedst mulige forberedelse med rigtige spørgsmål og en realistisk simulator — resultatet afhænger af din indsats.</p></details>
+      <details><summary>Hvor kommer jeres spørgsmål fra?</summary><p>Fra SIRI's officielt offentliggjorte tidligere prøver (med facitlister) og det officielle læremateriale. Vi opdaterer de aktuelle spørgsmål før hver termin.</p></details>
+    </section>
+
+    <section class="final-cta">
+      <h2>Klar til at bestå?</h2>
+      <p>Start gratis nu — ingen tilmelding. Se selv, hvor tæt vores spørgsmål ligger på den rigtige prøve.</p>
+      <a class="btn-primary big" href="trainer.html">Start gratis træning</a>
     </section>
   </main>
 
-  <!-- Buy dialog -->
-  <dialog id="buy-dialog">
-    <form method="dialog" id="buy-form">
-      <h2 data-i18n="buy_title">Køb fuld adgang</h2>
-      <p class="sub" data-i18n="buy_sub">Indtast din e-mail. Du får et adgangslink tilsendt efter betaling.</p>
-      <input type="email" id="buy-email" required placeholder="din@email.dk" autocomplete="email">
-      <p class="error hidden" id="buy-error"></p>
-      <div class="quiz-actions">
-        <button type="submit" class="primary" id="buy-submit" data-i18n="buy_pay">Til betaling</button>
-        <button type="button" class="ghost" id="buy-cancel" data-i18n="cancel">Annuller</button>
-      </div>
-    </form>
-  </dialog>
-
-  <div id="toast" class="toast hidden"></div>
-
   <footer>
-    <p data-i18n="footer">Prototype. Spørgsmålsformatet følger den officielle prøve (SIRI). Dette er ikke en officiel tjeneste.</p>
+    <p>© CitizenPrep. Prototype. Spørgsmålsformatet følger den officielle prøve. Dette er ikke en officiel tjeneste og er ikke tilknyttet SIRI eller danske myndigheder. Prøvespørgsmål © SIRI.</p>
   </footer>
-
-  <script src="questions.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>

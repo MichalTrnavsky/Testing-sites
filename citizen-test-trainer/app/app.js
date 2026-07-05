@@ -537,3 +537,9 @@ document.addEventListener("keydown", (e) => {
 applyI18n();
 show("start");
 checkAccess();
+
+// Deep link from the landing page: /trainer.html?buy=1 opens the purchase
+// dialog straight away (unless the visitor already has full access).
+if (new URL(location.href).searchParams.get("buy") === "1" && !paid) {
+  openBuyDialog();
+}
