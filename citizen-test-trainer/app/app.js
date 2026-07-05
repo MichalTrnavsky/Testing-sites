@@ -7,10 +7,15 @@
  * bank and a 10-question demo exam.
  */
 
-const EXAM_CONFIG = { questionCount: 25, minutes: 30, passMark: 20 };
-const DEMO_CONFIG = { questionCount: 10, minutes: 12, passMark: 8 };
-const FREE_QUESTIONS = 10;
-const LETTERS = ["A", "B", "C"];
+// Per-market configuration. Each trainer page sets window.MARKET before
+// loading this script (Denmark and Sweden differ in exam format, number of
+// answer options and default UI language). Danish values are the defaults.
+const MARKET = window.MARKET || {};
+const EXAM_CONFIG = MARKET.exam || { questionCount: 25, minutes: 30, passMark: 20, passRatio: 0.8 };
+const DEMO_CONFIG = MARKET.demo || { questionCount: 10, minutes: 12, passMark: 8, passRatio: 0.8 };
+const FREE_QUESTIONS = MARKET.freeQuestions || 10;
+// Enough letters for 3-option (DK) and 4-option (SE) questions.
+const LETTERS = ["A", "B", "C", "D", "E", "F"];
 const API = ""; // same origin; server serves both app and /api
 
 /* ---------------------------------------------------------------- i18n */
@@ -120,6 +125,58 @@ const UI = {
     show_tr: "🌐 Show translation",
     hide_tr: "🌐 Hide translation",
   },
+  sv: {
+    ui_lang: "Språk:",
+    expl_lang: "Förklaringar:",
+    expl_none: "Endast svenska",
+    full_access: "Full tillgång ✓",
+    hero_title: "Klara medborgarskapsprovet på första försöket",
+    hero_sub: "Träna med frågor i samma format som det riktiga provet — med direkt återkoppling och förklaringar på ditt eget språk.",
+    mode_practice: "Öva",
+    mode_practice_sub: "En fråga i taget med direkt återkoppling och förklaring.",
+    mode_exam: "Provsimulator",
+    mode_mistakes: "Repetera fel",
+    theme: "Ämne",
+    all_themes: "Alla ämnen",
+    stat_answered: "besvarade",
+    stat_accuracy: "rätt",
+    stat_weakest: "svagaste ämne",
+    stat_exams: "senaste provet",
+    pricing_title: "Full tillgång",
+    pricing_sub: "Alla frågor, hela provsimulatorn och alla förklaringar — tills du har klarat provet.",
+    buy: "Köp full tillgång",
+    buy_title: "Köp full tillgång",
+    buy_sub: "Ange din e-post. Du får en åtkomstlänk efter betalningen.",
+    buy_pay: "Till betalning",
+    cancel: "Avbryt",
+    next: "Nästa →",
+    quit: "Avsluta",
+    again: "Försök igen",
+    kbd_hint: "Tangentbord: A · B · C · D, Enter = nästa",
+    upsell: "Vill du träna med hela frågebanken och det fullständiga provet?",
+    footer: "Prototyp. Frågeformatet följer det officiella provet (UHR). Detta är inte en officiell tjänst.",
+    exam_sub_full: (n, min) => `${n} frågor · ${min} minuter · som på det riktiga provet.`,
+    exam_sub_demo: (n, min) => `Demo: ${n} frågor · ${min} minuter. Hela provet kräver full tillgång.`,
+    mistakes_sub: (n) => n ? `${n} frågor som du tidigare svarat fel på.` : "Inga fel att repetera — än.",
+    free_info: (free, total) => `Gratisversion: ${free} av ${total} frågor.`,
+    bank_info: (n) => `Frågebank: ${n} frågor · prototyp (utökas med UHR:s exempelfrågor och Sverige i fokus).`,
+    q_progress: (i, n) => `Fråga ${i} av ${n}`,
+    correct_fb: "✅ Rätt!",
+    wrong_fb: (letter, text) => `❌ Fel. Rätt svar är <strong>${letter}: ${text}</strong>.`,
+    passed: "Godkänt!",
+    failed: "Inte godkänt — än",
+    result_detail: (score, total, pass) => `${score} av ${total} rätt (godkäntgräns: ${pass})`,
+    timed_out: " · Tiden tog slut",
+    review_title: "Gå igenom dina fel",
+    all_correct: "Alla svar var rätta — snyggt!",
+    last_exam: (score, total) => `${score}/${total}`,
+    buying: "Vänta…",
+    buy_failed: "Betalningen kunde inte startas. Försök igen eller kontakta oss.",
+    unlocked: "Full tillgång upplåst! 🎉",
+    offline_buy: "Betalning är inte tillgänglig i den här demovisningen (ingen backend körs).",
+    show_tr: "🌐 Visa översättning",
+    hide_tr: "🌐 Dölj översättning",
+  },
 };
 
 // Right-to-left explanation/translation languages.
@@ -139,7 +196,7 @@ const store = {
   },
 };
 
-let uiLang = store.get("uiLang", "da");
+let uiLang = store.get("uiLang", MARKET.uiDefault || "da");
 let explLang = store.get("explLang", "en");
 let qstats = store.get("qstats", {});      // { [qid]: {right, wrong} }
 let examHistory = store.get("examHistory", []); // [{ts, score, total, passed}]
@@ -422,7 +479,11 @@ function finishSession(timedOut) {
   const total = state.questions.length;
   const score = state.answers.filter((a) => a.correct).length;
   const isExam = state.mode === "exam";
-  const passMark = isExam ? state.config.passMark : Math.ceil(total * 0.8);
+  // Pass mark scales to the number of questions actually served, so the
+  // simulator stays playable while the sample bank is smaller than a real
+  // exam (real ratios: DK 20/25 = 0.8, SE 45/60 = 0.75).
+  const passRatio = (isExam && state.config.passRatio) || 0.8;
+  const passMark = Math.ceil(total * passRatio);
   const passed = score >= passMark;
 
   if (isExam) {
@@ -567,7 +628,8 @@ document.addEventListener("keydown", (e) => {
   if (els.screens.quiz.classList.contains("hidden")) return;
   if (els.buyDialog.open) return;
   const key = e.key.toLowerCase();
-  const idx = ["a", "1"].includes(key) ? 0 : ["b", "2"].includes(key) ? 1 : ["c", "3"].includes(key) ? 2 : -1;
+  const map = { a: 0, "1": 0, b: 1, "2": 1, c: 2, "3": 2, d: 3, "4": 3 };
+  const idx = key in map ? map[key] : -1;
   if (idx >= 0) {
     const btn = els.options.children[idx];
     if (btn && !btn.disabled) btn.click();
