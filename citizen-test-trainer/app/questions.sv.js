@@ -29,7 +29,18 @@ window.QUESTION_BANK = [
     tr: {
       uk: { q: "Скільки депутатів налічує шведський парламент (Riksdagen)?", opts: ["149", "249", "349", "449"] },
       ar: { q: "كم عدد أعضاء البرلمان السويدي (الريكسداغ)؟", opts: ["149", "249", "349", "449"] }
-    }
+    },
+    terms: [
+      {
+        term: "riksdag",
+        expl: {
+          sv: "Sveriges folkvalda parlament som stiftar lagar.",
+          en: "Sweden's elected parliament that makes the laws.",
+          uk: "обраний парламент Швеції, який ухвалює закони.",
+          ar: "البرلمان المنتخب في السويد الذي يسنّ القوانين."
+        }
+      }
+    ]
   },
   {
     id: "sv002",
@@ -196,6 +207,17 @@ window.QUESTION_BANK = [
       uk: "Ґендерна рівність (jämställdhet) означає, що жінки й чоловіки мають однакові права, можливості та обов'язки в усіх сферах життя — ключова цінність у Швеції.",
       ar: "المساواة بين الجنسين تعني أن للنساء والرجال الحقوق والفرص والواجبات نفسها في جميع مجالات الحياة — وهي قيمة محورية في السويد."
     },
+    terms: [
+      {
+        term: "jämställdhet",
+        expl: {
+          sv: "Att kvinnor och män har samma rättigheter, möjligheter och skyldigheter.",
+          en: "That women and men have the same rights, opportunities and obligations.",
+          uk: "рівні права, можливості та обов'язки жінок і чоловіків.",
+          ar: "أن للنساء والرجال الحقوق والفرص والواجبات نفسها."
+        }
+      }
+    ],
     tr: {
       uk: { q: "Що означає ґендерна рівність у шведському суспільстві?", opts: ["Що всі мають однакову зарплату", "Що жінки й чоловіки мають однакові права та можливості", "Що працювати можуть лише жінки", "Що всі мають бути однакові"] },
       ar: { q: "ماذا تعني المساواة بين الجنسين في المجتمع السويدي؟", opts: ["أن للجميع الراتب نفسه", "أن للنساء والرجال الحقوق والفرص نفسها", "أن النساء فقط يحق لهن العمل", "أن يكون الجميع متشابهين"] }
@@ -216,7 +238,27 @@ window.QUESTION_BANK = [
       en: "A personnummer is a unique personal identity number given to people registered in Sweden. You need it for healthcare, banking, work and most public services.",
       uk: "Personnummer — це унікальний ідентифікаційний номер особи, зареєстрованої у Швеції. Він потрібен для медицини, банку, роботи та більшості державних послуг.",
       ar: "الرقم الشخصي (personnummer) هو رقم هوية فريد يُمنح للمسجّلين في السويد. تحتاجه للرعاية الصحية والبنوك والعمل ومعظم الخدمات العامة."
-    }
+    },
+    terms: [
+      {
+        term: "personnummer",
+        expl: {
+          sv: "Ett unikt identitetsnummer för alla som är folkbokförda i Sverige.",
+          en: "A unique ID number for everyone registered as living in Sweden.",
+          uk: "унікальний ідентифікаційний номер для всіх, хто зареєстрований у Швеції.",
+          ar: "رقم هوية فريد لكل شخص مسجّل للإقامة في السويد."
+        }
+      },
+      {
+        term: "folkbokförd",
+        expl: {
+          sv: "Registrerad som bosatt på en adress i Sverige hos Skatteverket.",
+          en: "Registered with the Tax Agency as living at an address in Sweden.",
+          uk: "зареєстрований у податковій службі як мешканець за адресою у Швеції.",
+          ar: "مسجّل لدى مصلحة الضرائب كمقيم على عنوان في السويد."
+        }
+      }
+    ]
   },
   {
     id: "sv014",
@@ -257,6 +299,17 @@ window.QUESTION_BANK = [
       en: "A-kassa (unemployment insurance) gives you income compensation if you lose your job, provided you are a member and meet the conditions.",
       uk: "A-kassa (страхування на випадок безробіття) виплачує компенсацію доходу, якщо ви втратили роботу, за умови членства й виконання вимог.",
       ar: "تأمين البطالة (A-kassa) يمنحك تعويضًا عن الدخل إذا فقدت عملك، شرط أن تكون عضوًا وتستوفي الشروط."
-    }
+    },
+    terms: [
+      {
+        term: "a-kassa",
+        expl: {
+          sv: "Arbetslöshetsförsäkring som ger pengar en tid om du blir arbetslös.",
+          en: "Unemployment insurance that pays you for a period if you lose your job.",
+          uk: "страхування на випадок безробіття, що певний час виплачує гроші, якщо ви втратили роботу.",
+          ar: "تأمين ضد البطالة يدفع لك لفترة إذا فقدت عملك."
+        }
+      }
+    ]
   }
 ];

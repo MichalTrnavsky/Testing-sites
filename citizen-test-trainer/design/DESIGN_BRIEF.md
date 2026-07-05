@@ -15,11 +15,36 @@ produkt pre dva trhy (Švédsko = priorita, Dánsko = paralelný anchor).
 - **Obchodný kanál:** primárne **platená reklama (Google Ads)** + SEO obsah. Landing musí konvertovať studenú návštevnosť.
 - **Kľúčová diferenciácia:** dánska/švédska otázka + **preklad do rodného jazyka priamo pod ňou** (vrátane RTL pre arabčinu/farsi).
 
+## 1b. Cena a positioning: NEceníme dole
+
+Rozhodnutie: **cenu dorovnávame konkurencii, nevyhrávame lacnotou.** Seriózna
+švédska kotva je **499 SEK** (medborgarskapsprov.se). Ideme na **499 SEK** a
+odlíšime sa **prispôsobením migrantom** (sekcia 2b), nie zľavou. Dizajn preto
+musí vyžarovať kvalitu a hodnotu, nie „výpredaj".
+
 ## 2. Tón a positioning
 
 - Dôveryhodný, pokojný, „štátno-oficiálny, ale ľudský". **Nie** kричľavý, nie scammy (nika je plná spamu — musíme pôsobiť seriózne).
 - **POZOR (legal):** nesmieme pôsobiť ako oficiálna štátna služba ani imitovať úrady (SIRI/UHR). Žiadne štátne znaky, žiadne „gov" vizuály.
 - Čestnosť ako hodnota: otvorene komunikujeme „negarantujeme, že prejdeš" — dizajn to má podporiť, nie skrývať.
+
+## 2b. Migrant-first diferenciácia (naše jadro proti konkurencii)
+
+Konkurent za 499 SEK je **monolingválny švédsky**. Celá naša pridaná hodnota =
+**sme spravené pre cudzinca, ktorý po švédsky ešte nevie dobre.** Dizajn musí
+tieto prvky vypichnúť ako hlavný predajný argument (nie ako drobnosť):
+
+1. **Bilingválne otázky** — švédsky originál + preklad v rodnom jazyku pod ním (vrátane RTL). *(hotové)*
+2. **Vysvetlenia v rodnom jazyku** — nielen preklad, ale „prečo je odpoveď správna". *(hotové)*
+3. **Glosár ťažkých pojmov** — občianske termíny (riksdag, personnummer, a-kassa, jämställdhet) s jednoduchou definíciou v rodnom jazyku, na klik. *(hotové — nový komponent)*
+4. **Onboarding podľa jazyka a krajiny pôvodu** — prvé, čo user spraví, je výber rodného jazyka; všetko sa prispôsobí. *(navrhnúť)*
+5. **Audio / počúvanie** — časť cieľovky má nízku gramotnosť vo švédčine; prehratie otázky nahlas (UHR má audio *Sverige i fokus*). *(roadmap)*
+6. **Kultúrny kontext** — krátke vysvetlenie pojmov, ktoré sú pre niekoho z iného systému neznáme (ako funguje jämställdhet, regióny v zdravotníctve). *(navrhnúť)*
+7. **Praktický presah** — prepojiť fakty na reálny život migranta (personnummer, a-kassa, ako voliť) — hodnota nad rámec testu. *(navrhnúť)*
+8. **Dôvera pre skepticú cieľovku** — nika plná podvodov; jasná cena, transparentnosť, recenzie v rodnom jazyku. *(navrhnúť)*
+9. **Nízka digitálna gramotnosť + lacné telefóny** — extra čisté mobilné UI, veľké terče, ikonami vedené, nízke dáta (PWA). *(navrhnúť)*
+
+Dizajnová priorita: prvky 1–3 sú hotové a treba ich **povýšiť na hrdý predajný prvok** (na landing aj v produkte), 4–9 nadizajnovať.
 
 ## 3. Značka a systém (návrhové rozhodnutia)
 
@@ -109,6 +134,7 @@ Navrhnúť ako systém (light+dark, per-country akcent):
 - Karty: režimová karta, „prečo my" karta, split-karta (3/5/5 skladba testu)
 - **Option button** (odpoveď) — stavy: default, hover, vybraté, správne, zle, disabled; s písmenom A–D
 - **Bilingválny blok otázky** — originál + preklad pod ním, LTR aj **RTL** variant
+- **Glosár ťažkých pojmov** — chip s pojmom (tappable) + rozbalená definícia v rodnom jazyku (LTR/RTL)
 - Stat tile (dlaždica štatistiky), KPI riadok
 - Cenník box + porovnávacia tabuľka free/full
 - Graf úspešnosti (stĺpce), sparkline pokroku

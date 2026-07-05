@@ -72,6 +72,7 @@ const UI = {
     offline_buy: "Betaling er ikke tilgængelig i denne demo-visning (backend kører ikke).",
     show_tr: "🌐 Vis oversættelse",
     hide_tr: "🌐 Skjul oversættelse",
+    hard_words: "Svære ord:",
   },
   en: {
     ui_lang: "Language:",
@@ -124,6 +125,7 @@ const UI = {
     offline_buy: "Payment is not available in this demo view (backend not running).",
     show_tr: "🌐 Show translation",
     hide_tr: "🌐 Hide translation",
+    hard_words: "Hard words:",
   },
   sv: {
     ui_lang: "Språk:",
@@ -176,6 +178,7 @@ const UI = {
     offline_buy: "Betalning är inte tillgänglig i den här demovisningen (ingen backend körs).",
     show_tr: "🌐 Visa översättning",
     hide_tr: "🌐 Dölj översättning",
+    hard_words: "Svåra ord:",
   },
 };
 
@@ -220,6 +223,7 @@ const els = {
   pricing: $("pricing"), freeInfo: $("free-info"), bankInfo: $("bank-info"),
   progress: $("quiz-progress"), timer: $("quiz-timer"), progressFill: $("progressbar-fill"),
   theme: $("q-theme"), qText: $("q-text"), qTranslation: $("q-translation"),
+  qTerms: $("q-terms"),
   options: $("q-options"), feedback: $("q-feedback"),
   translateToggle: $("btn-translate"),
   next: $("btn-next"), quit: $("btn-quit"),
@@ -419,6 +423,10 @@ function renderQuestion() {
     els.qTranslation.classList.add("hidden");
   }
 
+  // Hard-word glossary (migrant aid): tappable civic terms with a plain
+  // definition in the student's language (falls back to Swedish/English).
+  renderTerms(q);
+
   q.opts.forEach((opt, i) => {
     const btn = document.createElement("button");
     btn.className = "opt";
@@ -429,6 +437,42 @@ function renderQuestion() {
     btn.addEventListener("click", () => answer(i, btn));
     els.options.appendChild(btn);
   });
+}
+
+function renderTerms(q) {
+  const terms = q.terms || [];
+  els.qTerms.innerHTML = "";
+  if (!terms.length) {
+    els.qTerms.classList.add("hidden");
+    return;
+  }
+  const label = document.createElement("span");
+  label.className = "terms-label";
+  label.textContent = t("hard_words");
+  els.qTerms.appendChild(label);
+
+  const def = document.createElement("div");
+  def.className = "term-def hidden";
+
+  terms.forEach((term) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "term-chip";
+    chip.textContent = term.term;
+    chip.addEventListener("click", () => {
+      const lang = explLang === "none" ? "sv" : explLang;
+      const text = term.expl?.[lang] || term.expl?.en || term.expl?.sv || "";
+      def.textContent = `${term.term} — ${text}`;
+      def.dir = RTL_LANGS.has(lang) ? "rtl" : "ltr";
+      def.classList.remove("hidden");
+      els.qTerms.querySelectorAll(".term-chip").forEach((c) => c.classList.remove("active"));
+      chip.classList.add("active");
+    });
+    els.qTerms.appendChild(chip);
+  });
+
+  els.qTerms.appendChild(def);
+  els.qTerms.classList.remove("hidden");
 }
 
 function recordStat(qid, correct) {
