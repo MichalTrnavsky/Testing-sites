@@ -75,6 +75,10 @@ const UI = {
     hard_words: "Svære ord:",
     exam_date_label: "Hvornår er din prøve?",
     exam_date_saved: "Gemt — vi minder dig, når prøven nærmer sig.",
+    readiness: "Klar til prøven",
+    exam_in: "Din prøve",
+    days_left: (n) => `${n} dage tilbage`,
+    set_date_short: "Sæt en dato",
   },
   en: {
     ui_lang: "Language:",
@@ -130,6 +134,10 @@ const UI = {
     hard_words: "Hard words:",
     exam_date_label: "When is your exam?",
     exam_date_saved: "Saved — we'll remind you as the exam approaches.",
+    readiness: "Exam readiness",
+    exam_in: "Your exam",
+    days_left: (n) => `${n} days left`,
+    set_date_short: "Set a date",
   },
   sv: {
     ui_lang: "Språk:",
@@ -185,6 +193,10 @@ const UI = {
     hard_words: "Svåra ord:",
     exam_date_label: "När är ditt prov?",
     exam_date_saved: "Sparat — vi påminner dig när provet närmar sig.",
+    readiness: "Redo för provet",
+    exam_in: "Ditt prov",
+    days_left: (n) => `${n} dagar kvar`,
+    set_date_short: "Välj ett datum",
   },
 };
 
@@ -265,6 +277,8 @@ const els = {
   resultBadge: $("result-badge"), resultTitle: $("result-title"),
   resultDetail: $("result-detail"), resultReview: $("result-review"), resultUpsell: $("result-upsell"),
   examDate: $("examDate"), examDateHint: $("exam-date-hint"),
+  dashRow: $("dash-row"), readyRing: $("ready-ring"), readyPct: $("ready-pct"),
+  readyLabel: $("ready-label"), countdownCard: $("countdown-card"), countdownVal: $("countdown-val"),
   buyDialog: $("buy-dialog"), buyForm: $("buy-form"), buyEmail: $("buy-email"),
   buyError: $("buy-error"), buySubmit: $("buy-submit"),
   toast: $("toast"),
@@ -328,6 +342,32 @@ function applyI18n() {
 
 /* -------------------------------------------------------- start screen */
 
+// Dashboard hero: readiness ring (overall accuracy) + exam countdown.
+// Shown once the user has answered something or set an exam date.
+function renderDashboard() {
+  if (!els.dashRow) return;
+  const answered = Object.values(qstats).reduce((s, x) => s + x.right + x.wrong, 0);
+  const right = Object.values(qstats).reduce((s, x) => s + x.right, 0);
+  const examDate = store.get("examDate", null);
+  const show = answered > 0 || examDate;
+  els.dashRow.classList.toggle("hidden", !show);
+  if (!show) return;
+
+  const pct = answered ? Math.round((right / answered) * 100) : 0;
+  els.readyRing.style.setProperty("--pct", pct);
+  els.readyPct.textContent = answered ? pct + "%" : "–";
+  els.readyLabel.textContent = answered ? `${right}/${answered}` : t("set_date_short");
+
+  if (examDate) {
+    const days = Math.round((new Date(examDate + "T00:00:00Z") - new Date(new Date().toISOString().slice(0, 10) + "T00:00:00Z")) / 86400000);
+    els.countdownVal.innerHTML = days >= 0
+      ? `${examDate} <small>· ${t("days_left", days)}</small>`
+      : examDate;
+  } else {
+    els.countdownVal.textContent = t("set_date_short");
+  }
+}
+
 function renderStart() {
   const bank = availableBank();
   const exam = paid ? EXAM_CONFIG : DEMO_CONFIG;
@@ -346,6 +386,9 @@ function renderStart() {
   els.themeFilter.innerHTML =
     `<option value="">${t("all_themes")}</option>` +
     themes.map((th) => `<option value="${th}">${th}</option>`).join("");
+
+  // Dashboard: readiness ring (accuracy) + exam countdown.
+  renderDashboard();
 
   // Stats
   const answered = Object.values(qstats).reduce((s, x) => s + x.right + x.wrong, 0);
