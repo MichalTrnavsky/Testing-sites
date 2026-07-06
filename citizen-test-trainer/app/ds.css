@@ -1,0 +1,108 @@
+/* CitizenPrep design system — tokens + components from the Claude Design
+ * handoff (direction "1c"). Fixed light design with dark bands; single
+ * conversion color = yellow. Reused by the landing and the app screens.
+ */
+
+:root {
+  --brand-blue: #005293;
+  --brand-blue-dark: #003D6E;
+  --blue-tint: #EAF1F8;
+  --blue-tint-2: #F7FAFD;
+  --action-yellow: #FECC02;
+  --on-yellow: #005293;
+  --ink: #0F1722;
+  --ink-footer: #0B1119;
+  --muted-1: #56616E;
+  --muted-2: #7A8595;
+  --muted-3: #8A94A2;
+  --hairline: #E5E9EE;
+  --hairline-2: #EEF1F4;
+  --surface-tint: #F6F8FA;
+  --field-bg: #F3F5F8;
+  --success: #16A34A;
+  --success-bg: #EFFAF3;
+  --warm-cancel: #FDF3E7;
+  --white: #FFFFFF;
+
+  --display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --naskh: 'Noto Naskh Arabic', serif;
+
+  --container: 1120px;
+  --pad: 24px;
+
+  --shadow-card: 0 26px 64px -38px rgba(15, 23, 34, .38);
+  --shadow-hero: 0 40px 80px -30px rgba(0, 0, 0, .55);
+  --shadow-sticky: 0 -8px 24px -16px rgba(15, 23, 34, .3);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -0.03em; margin: 0; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); }
+.section { padding: clamp(52px, 7vw, 84px) 0; }
+.section--tint { background: var(--surface-tint); }
+.eyebrow {
+  font-family: var(--body); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand-blue);
+}
+
+/* ---- logo ------------------------------------------------------------ */
+.logo { display: inline-flex; align-items: center; gap: 9px; font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--brand-blue); color: var(--action-yellow); display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; }
+
+/* ---- buttons: one conversion color (yellow) -------------------------- */
+.cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--action-yellow); color: var(--on-yellow);
+  font-family: var(--body); font-weight: 700; font-size: 16px;
+  border: none; border-radius: 12px; padding: 14px 22px; cursor: pointer;
+  text-decoration: none; transition: filter .15s, transform .05s;
+}
+.cta:hover { filter: brightness(0.94); }
+.cta:active { transform: translateY(1px); }
+.cta--lg { padding: 16px 28px; font-size: 17px; }
+.cta--block { display: flex; width: 100%; }
+
+.ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--white); color: var(--brand-blue);
+  font-family: var(--body); font-weight: 600; font-size: 16px;
+  border: 1px solid #CBD9E6; border-radius: 12px; padding: 13px 20px; cursor: pointer;
+  text-decoration: none; transition: background .15s;
+}
+.ghost:hover { background: var(--blue-tint); }
+
+/* ---- pills / chips --------------------------------------------------- */
+.pill { display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 600; }
+.pill--tint { background: var(--blue-tint); color: var(--brand-blue); }
+
+/* ---- cards ----------------------------------------------------------- */
+.card { background: var(--white); border: 1px solid var(--hairline); border-radius: 16px; padding: 24px; }
+
+/* ---- inputs ---------------------------------------------------------- */
+.field {
+  width: 100%; font: inherit; padding: 13px 15px;
+  background: var(--field-bg); border: 1px solid var(--hairline);
+  border-radius: 11px; color: var(--ink);
+}
+.field:focus { outline: none; border-color: var(--brand-blue); }
+
+/* ---- swedish/native mixed-direction question block ------------------- */
+.q-sv { font-family: var(--display); font-weight: 700; line-height: 1.35; }
+.q-native { color: var(--muted-1); background: var(--field-bg); border-radius: 11px; padding: 12px 15px; line-height: 1.7; }
+.q-native[dir="rtl"] { font-family: var(--naskh); text-align: right; }
+
+/* screen-reader only */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
