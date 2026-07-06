@@ -53,8 +53,17 @@ ingest/   pipeline that turns SIRI's published exam PDFs into the bank
   via the API entitlement (`/api/access`). Works as a pure static site too
   (falls back to free mode when no backend answers).
 - Progress stats (answered, accuracy, weakest topic, last exam) in
-  localStorage; UI in Danish/English; keyboard shortcuts (A/B/C, Enter);
-  dark mode via `prefers-color-scheme`.
+  localStorage; UI in Danish/English/Swedish; keyboard shortcuts (A–D,
+  Enter); dark mode via `prefers-color-scheme`.
+- **Migrant-first:** bilingual questions (Danish/Swedish original + native
+  translation, RTL-aware) and a tap-to-explain glossary of hard civic terms.
+- **PWA:** installable, and practice works fully offline (service worker
+  precaches the app shell + question bank) — for cheap phones and patchy
+  signal. `manifest.webmanifest` + `sw.js`; `/api` stays online and degrades
+  to the free tier when offline.
+- **Markets:** Swedish (`index.sv.html` + `trainer.sv.html`, 60q/90min/4
+  options) and Danish (`index.html` + `trainer.html`, 45q/45min/3 options)
+  share one engine via `window.MARKET`. hreflang links the two landings.
 
 ### Backend (`server/`)
 

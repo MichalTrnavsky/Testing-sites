@@ -1,0 +1,15 @@
+{
+  "name": "CitizenPrep — medborgarskapsprovet",
+  "short_name": "CitizenPrep",
+  "description": "Öva inför Sveriges medborgarskapsprov på ditt eget språk.",
+  "lang": "sv",
+  "start_url": "/trainer.sv.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#131316",
+  "theme_color": "#005293",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

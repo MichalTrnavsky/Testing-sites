@@ -755,6 +755,11 @@ show("start");
 track("page_view", { paid });
 checkAccess();
 
+// PWA: installable + offline practice on cheap phones / patchy signal.
+if ("serviceWorker" in navigator) {
+  addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+}
+
 // Deep link from the landing page: /trainer.html?buy=1 opens the purchase
 // dialog straight away (unless the visitor already has full access).
 if (new URL(location.href).searchParams.get("buy") === "1" && !paid) {
