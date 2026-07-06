@@ -1,14 +1,15 @@
 name: Fly Deploy
 
-# Auto-deploys the app to Fly.io on every push that touches it.
-# One-time setup (you do this once, locally):
-#   1. Install flyctl + `fly auth login`
-#   2. cd citizen-test-trainer && fly launch --no-deploy --copy-config --name citizenprep
-#   3. fly volumes create cp_data --region arn --size 1
-#   4. fly tokens create deploy -x 999999h    # copy the token
-#   5. GitHub repo → Settings → Secrets → Actions → new secret
-#      FLY_API_TOKEN = <the token>
-# After that, every push here deploys automatically.
+# Deploys the app to Fly.io from GitHub's servers (they can reach Fly).
+# The workflow creates the app + volume on first run and deploys on every
+# push — so there is NOTHING to run in a terminal.
+#
+# ONE-TIME (browser only):
+#   1. Fly dashboard → Tokens (https://fly.io/dashboard → Account → Access Tokens)
+#      → Create a deploy token → copy it.
+#   2. GitHub repo → Settings → Secrets and variables → Actions →
+#      New repository secret: name = FLY_API_TOKEN, value = <the token>.
+# That's it. Every push then deploys automatically.
 
 on:
   push:
@@ -20,10 +21,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     concurrency: deploy-citizenprep
+    defaults:
+      run:
+        working-directory: citizen-test-trainer
+    env:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      FLY_APP: citizenprep
+      FLY_REGION: arn
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only --config fly.toml
-        working-directory: citizen-test-trainer
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Ensure app exists
+        run: flyctl apps create "$FLY_APP" --org personal || true
+
+      - name: Ensure SQLite volume exists (single volume → single machine)
+        run: |
+          if ! flyctl volumes list -a "$FLY_APP" | grep -q cp_data; then
+            flyctl volumes create cp_data -a "$FLY_APP" -r "$FLY_REGION" -n 1 -s 1 --yes
+          fi
+
+      - name: Deploy
+        run: flyctl deploy --remote-only --config fly.toml --ha=false
