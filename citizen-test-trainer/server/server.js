@@ -108,6 +108,9 @@ app.post("/api/checkout", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       customer_email: email,
+      // Card, Swish and Klarna (whatever is enabled on the Stripe account)
+      // are offered on Stripe's hosted, PCI-compliant checkout page.
+      automatic_payment_methods: { enabled: true },
       line_items: [
         process.env.STRIPE_PRICE_ID
           ? { price: process.env.STRIPE_PRICE_ID, quantity: 1 }
@@ -121,7 +124,7 @@ app.post("/api/checkout", async (req, res) => {
             },
       ],
       success_url: `${PUBLIC_URL}/api/claim?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${PUBLIC_URL}/`,
+      cancel_url: `${PUBLIC_URL}/avbrutet.html`,
       metadata: { token: user.token, market: market || "" },
     });
     res.json({ url: session.url });
@@ -141,7 +144,9 @@ app.get("/api/claim", async (req, res) => {
       const email = session.customer_email || session.customer_details?.email;
       const market = session.metadata?.market;
       const user = db.markPaid(email, session.id, market);
-      const page = market === "SE" ? "trainer.sv.html" : "trainer.html";
+      // Swedish buyers land on the styled welcome page; Danish (no funnel
+      // pages yet) go straight to the trainer.
+      const page = market === "SE" ? "valkommen.html" : "trainer.html";
       return res.redirect(`/${page}?token=${encodeURIComponent(user.token)}`);
     }
   } catch (err) {

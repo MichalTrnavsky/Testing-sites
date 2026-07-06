@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Välkommen — CitizenPrep</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23005293%22/><text x=%2250%22 y=%2272%22 font-size=%2260%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22%23FECC02%22 text-anchor=%22middle%22>C</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ds.css">
+  <style>
+    body { background: var(--surface-tint); min-height: 100vh; }
+    .wrap { max-width: 460px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+    .fcard { background: #fff; border: 1px solid var(--hairline); border-radius: 20px; padding: 34px 26px; box-shadow: var(--shadow-card); }
+    .check { width: 66px; height: 66px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: grid; place-items: center; font-size: 34px; margin: 0 auto 18px; }
+    h1 { font-size: 26px; margin: 0 0 8px; }
+    .muted { color: var(--muted-1); font-size: 15px; line-height: 1.6; }
+    .mail { background: var(--blue-tint); color: var(--brand-blue); border-radius: 12px; padding: 14px 16px; margin: 20px 0; font-size: 14px; }
+    .cta { margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="fcard">
+      <div class="check">✓</div>
+      <h1>Betalningen lyckades!</h1>
+      <p class="muted">Du har nu <strong>full tillgång</strong> till hela frågebanken och provsimulatorn — tills du klarat provet.</p>
+      <div class="mail">✉️ Vi har skickat en inloggningslänk till din e-post. Spara den — den loggar in dig på alla dina enheter. Ett kvitto är på väg.</div>
+      <a class="cta cta--block cta--lg" id="start" href="trainer.sv.html">Börja plugga nu →</a>
+    </div>
+  </div>
+  <script>
+    // The token arrives in the success redirect; hand it to the trainer and
+    // persist it so the login survives across visits/devices.
+    const token = new URL(location.href).searchParams.get('token');
+    if (token) {
+      try { localStorage.setItem('itt:token', JSON.stringify(token)); } catch (_) {}
+      document.getElementById('start').href = 'trainer.sv.html?token=' + encodeURIComponent(token);
+    }
+  </script>
+</body>
+</html>

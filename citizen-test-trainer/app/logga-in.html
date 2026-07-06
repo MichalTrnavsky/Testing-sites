@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logga in — CitizenPrep</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23005293%22/><text x=%2250%22 y=%2272%22 font-size=%2260%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22%23FECC02%22 text-anchor=%22middle%22>C</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ds.css">
+  <style>
+    body { background: var(--surface-tint); min-height: 100vh; }
+    .wrap { max-width: 440px; margin: 0 auto; padding: 40px 20px; }
+    .top { display: flex; justify-content: center; margin-bottom: 22px; }
+    .fcard { background: #fff; border: 1px solid var(--hairline); border-radius: 20px; padding: 30px 26px; box-shadow: var(--shadow-card); }
+    h1 { font-size: 24px; margin: 0 0 6px; }
+    .muted { color: var(--muted-1); font-size: 14px; line-height: 1.6; }
+    label { display: block; font-size: 14px; font-weight: 600; margin: 18px 0 6px; }
+    .err { color: #DC2626; font-size: 14px; margin-top: 10px; display: none; }
+    .sent { text-align: center; }
+    .sent .mail { width: 60px; height: 60px; border-radius: 50%; background: var(--blue-tint); display: grid; place-items: center; font-size: 28px; margin: 0 auto 16px; }
+    .hidden { display: none; }
+    .resend { background: none; border: none; color: var(--brand-blue); font: inherit; font-weight: 600; cursor: pointer; text-decoration: underline; }
+    .devlink { margin-top: 12px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top"><a href="index.sv.html" class="logo"><span class="logo-mark">C</span>CitizenPrep</a></div>
+
+    <div class="fcard" id="form-card">
+      <h1>Logga in</h1>
+      <p class="muted">Ingen lösenord behövs. Ange din e-post så skickar vi en inloggningslänk.</p>
+      <form id="login-form">
+        <label for="email">E-post</label>
+        <input class="field" type="email" id="email" required placeholder="din@email.se" autocomplete="email">
+        <button class="cta cta--block cta--lg" type="submit" id="send-btn" style="margin-top:16px">Skicka inloggningslänk</button>
+        <p class="err" id="err"></p>
+      </form>
+    </div>
+
+    <div class="fcard sent hidden" id="sent-card">
+      <div class="mail">✉️</div>
+      <h1>Kolla din inkorg</h1>
+      <p class="muted">Om <strong id="sent-email"></strong> har full tillgång har vi skickat en inloggningslänk dit. Länken är giltig i 30 minuter.</p>
+      <p class="muted" style="margin-top:14px">Fick du inget? <button class="resend" id="resend">Skicka igen</button></p>
+      <p class="devlink hidden" id="devlink"></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const btn = document.getElementById('send-btn');
+    const err = document.getElementById('err');
+    let lastEmail = '';
+    async function send(email) {
+      const res = await fetch('/api/login', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, market: 'SE' })
+      });
+      return res.ok ? res.json() : Promise.reject();
+    }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      lastEmail = document.getElementById('email').value.trim();
+      if (!lastEmail) return;
+      btn.disabled = true; btn.textContent = 'Vänta…'; err.style.display = 'none';
+      try {
+        const out = await send(lastEmail);
+        document.getElementById('sent-email').textContent = lastEmail;
+        document.getElementById('form-card').classList.add('hidden');
+        document.getElementById('sent-card').classList.remove('hidden');
+        // Dev mode returns the link directly so the flow is testable.
+        if (out.devLink) {
+          const d = document.getElementById('devlink');
+          d.innerHTML = '<a href="' + out.devLink + '">Dev: öppna länken →</a>';
+          d.classList.remove('hidden');
+        }
+      } catch (_) {
+        err.textContent = 'Något gick fel. Försök igen.';
+        err.style.display = 'block';
+        btn.disabled = false; btn.textContent = 'Skicka inloggningslänk';
+      }
+    });
+    document.getElementById('resend').addEventListener('click', () => { if (lastEmail) send(lastEmail); });
+  </script>
+</body>
+</html>
