@@ -49,6 +49,27 @@ Then point `citizenprep.se` at the app (`fly certs add citizenprep.se`).
 One CX22 runs the whole thing (app + SQLite). No separate box needed — you
 can even co-host it on an existing Hetzner server that has spare capacity.
 
+## Cost & traffic (no bill surprises)
+
+This app is tiny (small HTML/CSS/JS + question bank; PWA caches repeat
+visits), so costs stay low and predictable:
+
+- **Compute is flat.** We run a single machine (SQLite doesn't scale
+  horizontally), so there is no autoscaling bill-spike. Fly: ~€5/mo for one
+  always-on `shared-cpu-1x`. Hetzner CX22: ~€4/mo fixed.
+- **Egress is small.** ~a few hundred KB per session; even 100k
+  visits/month ≈ ~50 GB ≈ ~€1–2 on Fly, and **included free** on Hetzner
+  (20 TB/mo).
+- **If cost predictability is the priority, pick Hetzner** — fixed monthly
+  price, generous included traffic, no per-GB metering.
+- **Put Cloudflare (free) in front of either host.** It caches static
+  assets, absorbs traffic surges before they reach the origin, and adds
+  DDoS protection — this is what removes the "what if it goes viral" risk.
+- On Fly, also set a **spending limit / budget alert** in the dashboard.
+
+At real niche scale (tens of thousands of Swedish exam-takers per year), one
+small instance handles the load comfortably.
+
 ## After deploy
 
 - Add the Stripe webhook endpoint: `https://citizenprep.se/api/stripe-webhook`
