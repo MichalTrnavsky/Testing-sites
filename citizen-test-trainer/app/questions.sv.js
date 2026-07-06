@@ -627,5 +627,167 @@ window.QUESTION_BANK = [
       uk: "Вальпургієва ніч (Valborg) святкується 30 квітня, щоб зустріти весну, з великими багаттями й піснями.",
       ar: "تُحتفل ليلة فالبورغ (Valborg) في 30 أبريل للترحيب بالربيع، بنيران كبيرة وأغانٍ."
     }
-  }
+  },
+
+  // ============================================================
+  // Scaling batch — grounded in Sverige i fokus. Swedish question +
+  // options are complete; explanations are English for now (UK/AR/FA/TR
+  // added by the translation pass — see ingest/). No shortcuts on the
+  // question content or answer keys.
+  // ============================================================
+
+  // Kapitel 1 — Landet Sverige
+  { id: "sv052", theme: "Landet Sverige", chapter: 1,
+    q: "Vilket är det största landet i Norden?", opts: ["Danmark", "Norge", "Sverige", "Finland"], correct: 2,
+    expl: { en: "The Nordic region has five countries (Denmark, Finland, Iceland, Norway, Sweden); Sweden is the largest." } },
+  { id: "sv053", theme: "Landet Sverige", chapter: 1,
+    q: "Vilka tre stora landsdelar brukar Sverige delas in i?", opts: ["Götaland, Svealand och Norrland", "Skåne, Uppland och Lappland", "Öst, Väst och Syd", "Gotland, Öland och Åland"], correct: 0,
+    expl: { en: "Sweden is divided into three large parts: Götaland (south), Svealand (central) and Norrland (north)." } },
+  { id: "sv054", theme: "Landet Sverige", chapter: 1,
+    q: "Vad heter Sveriges högsta berg?", opts: ["Kebnekaise", "Kilimanjaro", "Galdhøpiggen", "Åreskutan"], correct: 0,
+    expl: { en: "Kebnekaise, in the mountains along the Norwegian border, is Sweden's highest peak at about 2,000 m." } },
+  { id: "sv055", theme: "Landet Sverige", chapter: 1,
+    q: "Vilken är en viktig förnybar energikälla i Sveriges älvar?", opts: ["Kolkraft", "Vattenkraft", "Kärnkraft", "Oljekraft"], correct: 1,
+    expl: { en: "Hydropower from running water in the rivers produces a large share of Sweden's electricity." } },
+
+  // Kapitel 2 — demokratiska systemet
+  { id: "sv056", theme: "Sveriges demokratiska system", chapter: 2,
+    q: "Vad innebär yttrandefrihet?", opts: ["Rätten att äga vapen", "Rätten att skriva och säga vad man tycker", "Rätten att inte betala skatt", "Rätten att rösta flera gånger"], correct: 1,
+    expl: { en: "Freedom of expression is the right to write and say what you think." } },
+  { id: "sv057", theme: "Sveriges demokratiska system", chapter: 2,
+    q: "Vilket av följande är ett sätt att påverka samhället i en demokrati?", opts: ["Att muta politiker", "Att demonstrera eller gå med i en förening", "Att hota journalister", "Att sprida falsk information"], correct: 1,
+    expl: { en: "You can influence society by voting, joining a party or association, contacting politicians, or demonstrating." } },
+
+  // Kapitel 3 — Så här styrs Sverige
+  { id: "sv058", theme: "Så här styrs Sverige", chapter: 3,
+    q: "Vad består 'staten' av i Sverige?", opts: ["Bara kungen", "Riksdag, regering, myndigheter och domstolar", "Bara kommunerna", "Bara regeringen"], correct: 1,
+    expl: { en: "The state consists of the Riksdag, the government, the public authorities and the courts." } },
+  { id: "sv059", theme: "Så här styrs Sverige", chapter: 3,
+    q: "Vad är oppositionens uppgift i riksdagen?", opts: ["Att styra landet", "Att granska regeringen och föreslå en annan politik", "Att utse kungen", "Att döma brottslingar"], correct: 1,
+    expl: { en: "The opposition is the parties that don't support the government; their job is to scrutinise it and propose alternatives." } },
+  { id: "sv060", theme: "Så här styrs Sverige", chapter: 3,
+    q: "Vilka kontrollerar att myndigheterna gör rätt?", opts: ["Kungen", "Justitieombudsmannen (JO) och Justitiekanslern (JK)", "Riksbanken", "Polisen"], correct: 1,
+    expl: { en: "Special watchdogs, the Parliamentary Ombudsman (JO) and the Chancellor of Justice (JK), check that authorities act correctly." } },
+  { id: "sv061", theme: "Så här styrs Sverige", chapter: 3,
+    q: "Vilket av följande ansvarar kommunen för?", opts: ["Försvaret", "Skola, äldreomsorg och vatten", "Utrikespolitiken", "Sjukhusvården"], correct: 1,
+    expl: { en: "Municipalities handle much everyday service: schools, elderly and child care, water and sewage, adult education." } },
+
+  // Kapitel 4 — Politiska val och partier
+  { id: "sv062", theme: "Politiska val och partier", chapter: 4,
+    q: "Vad betyder proportionella val?", opts: ["Att vinnaren tar allt", "Att partierna får platser efter sin andel av rösterna", "Att kungen väljer", "Att bara stora partier får platser"], correct: 1,
+    expl: { en: "Proportional elections give parties seats in proportion to their share of the vote (20% of votes ≈ 20% of seats)." } },
+  { id: "sv063", theme: "Politiska val och partier", chapter: 4,
+    q: "Måste man vara svensk medborgare för att rösta i kommunvalet?", opts: ["Ja, alltid", "Nej, men man ska ha varit folkbokförd i Sverige i minst tre år", "Ja, i minst fem år", "Nej, inga krav alls"], correct: 1,
+    expl: { en: "For municipal and regional elections you needn't be a citizen, but must have been registered in Sweden for three years (EU/Nordic citizens: just registered)." } },
+  { id: "sv064", theme: "Politiska val och partier", chapter: 4,
+    q: "Hur många partier satt i riksdagen fram till valet 2026?", opts: ["Fyra", "Sex", "Åtta", "Tolv"], correct: 2,
+    expl: { en: "Eight parties held seats: C, KD, L, MP, M, S, SD and V." } },
+
+  // Kapitel 5 — Lag och rätt
+  { id: "sv065", theme: "Lag och rätt", chapter: 5,
+    q: "Vilken grundlag säger att all offentlig makt utgår från folket?", opts: ["Tryckfrihetsförordningen", "Regeringsformen", "Successionsordningen", "Yttrandefrihetsgrundlagen"], correct: 1,
+    expl: { en: "The Instrument of Government (regeringsformen) states that all public power proceeds from the people." } },
+  { id: "sv066", theme: "Lag och rätt", chapter: 5,
+    q: "Vad skyddar tryckfrihetsförordningen?", opts: ["Rätten att bära vapen", "Det fria ordet i tryckt form", "Rätten till bostad", "Kungens makt"], correct: 1,
+    expl: { en: "The Freedom of the Press Act protects the free word in print — the right to publish books, newspapers and magazines." } },
+  { id: "sv067", theme: "Lag och rätt", chapter: 5,
+    q: "Vilken myndighet gör pass och nationella id-kort till svenska medborgare?", opts: ["Skatteverket", "Polisen", "Migrationsverket", "Försäkringskassan"], correct: 1,
+    expl: { en: "The police make passports and national ID cards, and decide on permits such as for a demonstration." } },
+  { id: "sv068", theme: "Lag och rätt", chapter: 5,
+    q: "Vad är nämndemän i en domstol?", opts: ["Poliser i rätten", "Lekmän som dömer tillsammans med domaren och representerar allmänheten", "Advokater", "Åklagare"], correct: 1,
+    expl: { en: "Lay judges (nämndemän) judge together with the judge in the district court and give the public insight into the process." } },
+  { id: "sv069", theme: "Lag och rätt", chapter: 5,
+    q: "Vilket av följande yttranden är förbjudet enligt lag?", opts: ["Att kritisera regeringen", "Hets mot folkgrupp", "Att demonstrera", "Att skriva en debattartikel"], correct: 1,
+    expl: { en: "Freedom of expression is protected, but incitement against a group (hets mot folkgrupp), defamation and hate crime are forbidden." } },
+
+  // Kapitel 6 — Medier
+  { id: "sv070", theme: "Mediernas roll", chapter: 6,
+    q: "Vad kännetecknar public service-medier i Sverige?", opts: ["De ägs av staten och styrs politiskt", "De har ett särskilt uppdrag och ska vara oberoende", "De finansieras bara av reklam", "De är förbjudna"], correct: 1,
+    expl: { en: "Three public-service companies have a special remit and must be independent of political and commercial interests." } },
+  { id: "sv071", theme: "Mediernas roll", chapter: 6,
+    q: "Vem är juridiskt ansvarig för vad som publiceras i en tidning eller i tv?", opts: ["Läsaren", "Den ansvariga utgivaren", "Regeringen", "Journalistförbundet"], correct: 1,
+    expl: { en: "A responsible publisher (ansvarig utgivare) is legally responsible for what is published." } },
+
+  // Kapitel 7 — Mänskliga rättigheter
+  { id: "sv072", theme: "Mänskliga rättigheter", chapter: 7,
+    q: "Vad förbjuder den svenska diskrimineringslagen?", opts: ["All reklam", "Att behandla människor sämre på grund av t.ex. kön, ålder, etnicitet eller religion", "Att starta företag", "Att resa utomlands"], correct: 1,
+    expl: { en: "The Discrimination Act forbids treating people worse because of sex, age, ethnicity, religion, disability or sexual orientation." } },
+  { id: "sv073", theme: "Mänskliga rättigheter", chapter: 7,
+    q: "Sedan vilket år är FN:s barnkonvention lag i Sverige?", opts: ["2000", "2009", "2020", "2024"], correct: 2,
+    expl: { en: "The UN Convention on the Rights of the Child has been Swedish law since 2020." } },
+  { id: "sv074", theme: "Mänskliga rättigheter", chapter: 7,
+    q: "Vem kan straffas enligt den svenska sexköpslagen?", opts: ["Den som säljer sex", "Den som köper sex", "Båda", "Ingen"], correct: 1,
+    expl: { en: "Buying sex is illegal in Sweden; the buyer can be punished, but not the person who sells." } },
+  { id: "sv075", theme: "Mänskliga rättigheter", chapter: 7,
+    q: "Vilken myndighet arbetar för allas lika rättigheter och att diskrimineringslagen följs?", opts: ["Diskrimineringsombudsmannen (DO)", "Skatteverket", "Polisen", "Migrationsverket"], correct: 0,
+    expl: { en: "The Equality Ombudsman (DO) works for equal rights and ensures the Discrimination Act is followed." } },
+  { id: "sv076", theme: "Mänskliga rättigheter", chapter: 7,
+    q: "Är det tillåtet att gifta sig med en person av samma kön i Sverige?", opts: ["Nej", "Ja", "Bara i vissa kommuner", "Bara utomlands"], correct: 1,
+    expl: { en: "Same-sex marriage is legal; the right to live with whom you want is protected by law." } },
+
+  // Kapitel 8 — Arbetsmarknad och privatekonomi
+  { id: "sv077", theme: "Arbetsmarknad och privatekonomi", chapter: 8,
+    q: "Ungefär hur stor andel av dem som arbetar i Sverige jobbar i privat sektor?", opts: ["Cirka 30 procent", "Cirka 50 procent", "Cirka 70 procent", "Cirka 90 procent"], correct: 2,
+    expl: { en: "About 70% work in the private sector and about 30% in the public sector (state, regions, municipalities)." } },
+  { id: "sv078", theme: "Arbetsmarknad och privatekonomi", chapter: 8,
+    q: "Vad gör Kronofogdemyndigheten?", opts: ["Delar ut pass", "Ser till att skulder blir betalda och kan hjälpa vid skuldsanering", "Bestämmer räntan", "Anställer poliser"], correct: 1,
+    expl: { en: "The Enforcement Authority ensures debts are paid and can help heavily indebted people through debt restructuring." } },
+  { id: "sv079", theme: "Arbetsmarknad och privatekonomi", chapter: 8,
+    q: "Till vem ska alla som haft en inkomst under året deklarera?", opts: ["Försäkringskassan", "Skatteverket", "Arbetsförmedlingen", "Kronofogden"], correct: 1,
+    expl: { en: "Everyone who has had an income must declare it to the Swedish Tax Agency (Skatteverket)." } },
+
+  // Kapitel 9 — Välfärdssamhället
+  { id: "sv080", theme: "Välfärdssamhället", chapter: 9,
+    q: "Vad är socialtjänsten i en kommun ansvarig för?", opts: ["Att bygga vägar", "Att ge stöd och skydd till personer som behöver det", "Att sköta försvaret", "Att driva sjukhus"], correct: 1,
+    expl: { en: "Each municipality's social services give support and protection — e.g. to families in need, homeless people, or those exposed to violence." } },
+  { id: "sv081", theme: "Välfärdssamhället", chapter: 9,
+    q: "Vart vänder man sig oftast först för icke-akut vård?", opts: ["Till akutsjukhuset", "Till en vårdcentral (primärvård)", "Till polisen", "Till kommunfullmäktige"], correct: 1,
+    expl: { en: "Primary care — the health centre (vårdcentral) — is usually the first point of contact for non-emergency care." } },
+  { id: "sv082", theme: "Välfärdssamhället", chapter: 9,
+    q: "Vad finansierar staten inom välfärden?", opts: ["Snöröjning", "Pension, sjukförsäkring, studiestöd och barnbidrag", "Biblioteken", "Kollektivtrafiken"], correct: 1,
+    expl: { en: "The state funds pensions, sickness and parental insurance, unemployment insurance, study support and child allowance." } },
+
+  // Kapitel 10 — Moderna historia
+  { id: "sv083", theme: "Sveriges moderna historia", chapter: 10,
+    q: "Vad innebär 'den svenska modellen' på arbetsmarknaden?", opts: ["Att staten bestämmer alla löner", "Att arbetsgivare och fackförbund själva kommer överens om villkoren i kollektivavtal", "Att ingen får strejka", "Att kungen bestämmer"], correct: 1,
+    expl: { en: "The 'Swedish model', rooted in the 1938 Saltsjöbaden agreement, means employers and unions — not politicians — agree labour terms." } },
+  { id: "sv084", theme: "Sveriges moderna historia", chapter: 10,
+    q: "Vem formulerade idén om 'folkhemmet' 1928?", opts: ["Raoul Wallenberg", "Per Albin Hansson", "Carl XVI Gustaf", "Alfred Nobel"], correct: 1,
+    expl: { en: "Social Democratic leader Per Albin Hansson described the 'people's home' — a society of security and community for all." } },
+  { id: "sv085", theme: "Sveriges moderna historia", chapter: 10,
+    q: "Vilken svensk diplomat gav judar skyddspass under andra världskriget?", opts: ["Dag Hammarskjöld", "Raoul Wallenberg", "Olof Palme", "Per Albin Hansson"], correct: 1,
+    expl: { en: "Diplomat Raoul Wallenberg issued protective passports that shielded Jews from being sent to concentration camps." } },
+  { id: "sv086", theme: "Sveriges moderna historia", chapter: 10,
+    q: "Vilket år fattades beslutet om allmän rösträtt i Sverige?", opts: ["1865", "1909", "1918", "1945"], correct: 2,
+    expl: { en: "The decision on universal suffrage came in 1918; the first election where both men and women voted was in 1921." } },
+
+  // Kapitel 11 — Sverige och omvärlden
+  { id: "sv087", theme: "Sverige och omvärlden", chapter: 11,
+    q: "Vad är ett av FN:s viktigaste syften?", opts: ["Att bestämma svenska skatter", "Att bevara fred och säkerhet i världen", "Att styra EU", "Att sätta räntan"], correct: 1,
+    expl: { en: "The UN works to keep peace and security, resolve conflicts, and promote human rights and the equal value of all peoples." } },
+  { id: "sv088", theme: "Sverige och omvärlden", chapter: 11,
+    q: "Vad gör den statliga myndigheten Sida?", opts: ["Sköter sjukvården", "Arbetar för att minska fattigdom och förtryck i världen", "Bygger vägar i Sverige", "Delar ut pass"], correct: 1,
+    expl: { en: "Sida runs Sweden's international development cooperation — reducing poverty and oppression and supporting democracy abroad." } },
+  { id: "sv089", theme: "Sverige och omvärlden", chapter: 11,
+    q: "Hur gammal ska man vara för att omfattas av den allmänna värnplikten?", opts: ["Ha fyllt 15 år", "Ha fyllt 18 år", "Ha fyllt 20 år", "Ha fyllt 25 år"], correct: 1,
+    expl: { en: "General conscription covers all men and women who have turned 18; only some are selected for military training." } },
+  { id: "sv090", theme: "Sverige och omvärlden", chapter: 11,
+    q: "Vilket år blev Norge på fredlig väg en självständig stat, skild från Sverige?", opts: ["1809", "1865", "1905", "1945"], correct: 2,
+    expl: { en: "Norway, forced into a union with Sweden after the Napoleonic wars, peacefully became independent in 1905." } },
+
+  // Kapitel 12 — Sekulär stat
+  { id: "sv091", theme: "En sekulär stat och religion", chapter: 12,
+    q: "Vilket år kom religionsfrihetslagen som gav alla rätt att fritt välja religion eller ingen alls?", opts: ["1860", "1951", "2000", "2020"], correct: 1,
+    expl: { en: "The 1951 Freedom of Religion Act let people freely choose their religion — or none at all." } },
+  { id: "sv092", theme: "En sekulär stat och religion", chapter: 12,
+    q: "Vilket är det största kristna samfundet i Sverige?", opts: ["Katolska kyrkan", "Svenska kyrkan", "Ortodoxa kyrkan", "Pingstkyrkan"], correct: 1,
+    expl: { en: "The Church of Sweden, Lutheran-Protestant, is the largest Christian community, with around five million members." } },
+
+  // Kapitel 13 — Traditioner och högtider
+  { id: "sv093", theme: "Traditioner och högtider", chapter: 13,
+    q: "Vilken högtid firas i mars eller april till minne av Jesus död och uppståndelse?", opts: ["Jul", "Påsk", "Midsommar", "Valborg"], correct: 1,
+    expl: { en: "Easter (påsk) is a Christian holiday in March or April remembering the death and resurrection of Jesus." } },
+  { id: "sv094", theme: "Traditioner och högtider", chapter: 13,
+    q: "När firas nyårsafton i Sverige?", opts: ["1 januari", "31 december", "6 juni", "24 december"], correct: 1,
+    expl: { en: "New Year's Eve is celebrated on 31 December, often with parties and fireworks at midnight." } }
 ];
