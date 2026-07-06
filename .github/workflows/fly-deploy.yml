@@ -1,0 +1,29 @@
+name: Fly Deploy
+
+# Auto-deploys the app to Fly.io on every push that touches it.
+# One-time setup (you do this once, locally):
+#   1. Install flyctl + `fly auth login`
+#   2. cd citizen-test-trainer && fly launch --no-deploy --copy-config --name citizenprep
+#   3. fly volumes create cp_data --region arn --size 1
+#   4. fly tokens create deploy -x 999999h    # copy the token
+#   5. GitHub repo → Settings → Secrets → Actions → new secret
+#      FLY_API_TOKEN = <the token>
+# After that, every push here deploys automatically.
+
+on:
+  push:
+    branches: ["claude/small-business-model-7r939s", "main"]
+    paths: ["citizen-test-trainer/**", ".github/workflows/fly-deploy.yml"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency: deploy-citizenprep
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only --config fly.toml
+        working-directory: citizen-test-trainer
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
