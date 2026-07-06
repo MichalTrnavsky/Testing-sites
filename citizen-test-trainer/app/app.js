@@ -165,7 +165,7 @@ const UI = {
     exam_sub_demo: (n, min) => `Demo: ${n} frågor · ${min} minuter. Hela provet kräver full tillgång.`,
     mistakes_sub: (n) => n ? `${n} frågor som du tidigare svarat fel på.` : "Inga fel att repetera — än.",
     free_info: (free, total) => `Gratisversion: ${free} av ${total} frågor.`,
-    bank_info: (n) => `Frågebank: ${n} frågor · prototyp (utökas med UHR:s exempelfrågor och Sverige i fokus).`,
+    bank_info: (n) => `Frågebank: ${n} frågor · byggd på Sverige i fokus (utökas med UHR:s exempelfrågor).`,
     q_progress: (i, n) => `Fråga ${i} av ${n}`,
     correct_fb: "✅ Rätt!",
     wrong_fb: (letter, text) => `❌ Fel. Rätt svar är <strong>${letter}: ${text}</strong>.`,
