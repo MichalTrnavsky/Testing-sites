@@ -1,0 +1,44 @@
+# Fly.io deployment for CitizenPrep. Deploy from this directory:
+#   fly launch --no-deploy        # first time (creates the app)
+#   fly volumes create cp_data --region arn --size 1
+#   fly secrets set STRIPE_SECRET_KEY=sk_live_... STRIPE_WEBHOOK_SECRET=whsec_... \
+#                   EMAIL_PROVIDER=postmark EMAIL_API_KEY=... EMAIL_FROM="CitizenPrep <no-reply@citizenprep.se>" \
+#                   METRICS_TOKEN=... NURTURE_ENABLED=1
+#   fly deploy
+#
+# SQLite is single-instance: keep exactly one machine running.
+
+app = "citizenprep"
+primary_region = "arn"   # Stockholm — closest to the Swedish audience
+
+[build]
+  dockerfile = "server/Dockerfile"
+
+[env]
+  PUBLIC_URL = "https://citizenprep.se"
+  PORT = "8080"
+  DB_PATH = "/data/data.sqlite"
+  PRICE_AMOUNT = "499"
+  PRICE_CURRENCY = "sek"
+  NODE_ENV = "production"
+
+[[mounts]]
+  source = "cp_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1   # SQLite → never scale past one machine
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "3s"
+    method = "GET"
+    path = "/api/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

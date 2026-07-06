@@ -1,0 +1,5 @@
+# Automatic HTTPS via Let's Encrypt. Replace the domain(s) as needed.
+citizenprep.se, www.citizenprep.se {
+	encode gzip
+	reverse_proxy app:8080
+}

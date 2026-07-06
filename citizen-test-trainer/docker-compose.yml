@@ -1,0 +1,45 @@
+# Hetzner (or any VPS) deployment: the app + Caddy for automatic HTTPS.
+#   1. Point citizenprep.se DNS A/AAAA records at the server.
+#   2. Put secrets in a .env file next to this (see server/.env.example).
+#   3. docker compose up -d --build
+# Caddy fetches a Let's Encrypt certificate automatically.
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    environment:
+      - PUBLIC_URL=https://citizenprep.se
+      - DB_PATH=/data/data.sqlite
+      - PRICE_AMOUNT=499
+      - PRICE_CURRENCY=sek
+      - NODE_ENV=production
+      - NURTURE_ENABLED=1
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - EMAIL_PROVIDER=${EMAIL_PROVIDER}
+      - EMAIL_API_KEY=${EMAIL_API_KEY}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - METRICS_TOKEN=${METRICS_TOKEN}
+    volumes:
+      - cp_data:/data
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    depends_on:
+      - app
+
+volumes:
+  cp_data:
+  caddy_data:
+  caddy_config:
