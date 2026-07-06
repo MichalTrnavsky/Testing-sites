@@ -206,7 +206,7 @@ app.get("/api/health", (_req, res) => res.json({ ok: true, stripe: !!stripe }));
 /* ---- technical SEO (driven by PUBLIC_URL, so no hard-coded domain) ------ */
 
 // Public, indexable pages. API and success/claim URLs stay out of the map.
-const PUBLIC_PAGES = ["/", "/trainer.html", "/trainer.sv.html"];
+const PUBLIC_PAGES = ["/", "/index.sv.html", "/trainer.html", "/trainer.sv.html"];
 
 app.get("/robots.txt", (_req, res) => {
   res.type("text/plain").send(

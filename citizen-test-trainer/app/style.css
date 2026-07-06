@@ -131,6 +131,29 @@ h1 { font-size: 1.7rem; line-height: 1.25; margin-bottom: 0.7rem; }
 .stat-num { font-size: 1.25rem; font-weight: 700; }
 .stat-label { font-size: 0.75rem; color: var(--muted); }
 
+.exam-date-box {
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+}
+.exam-date-box label { color: var(--muted); }
+.exam-date-box input[type="date"] {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+}
+.exam-date-box .note { margin: 0; }
+
 .pricing {
   margin-top: 1.6rem;
   background: var(--card);

@@ -73,6 +73,8 @@ const UI = {
     show_tr: "🌐 Vis oversættelse",
     hide_tr: "🌐 Skjul oversættelse",
     hard_words: "Svære ord:",
+    exam_date_label: "Hvornår er din prøve?",
+    exam_date_saved: "Gemt — vi minder dig, når prøven nærmer sig.",
   },
   en: {
     ui_lang: "Language:",
@@ -126,6 +128,8 @@ const UI = {
     show_tr: "🌐 Show translation",
     hide_tr: "🌐 Hide translation",
     hard_words: "Hard words:",
+    exam_date_label: "When is your exam?",
+    exam_date_saved: "Saved — we'll remind you as the exam approaches.",
   },
   sv: {
     ui_lang: "Språk:",
@@ -179,6 +183,8 @@ const UI = {
     show_tr: "🌐 Visa översättning",
     hide_tr: "🌐 Dölj översättning",
     hard_words: "Svåra ord:",
+    exam_date_label: "När är ditt prov?",
+    exam_date_saved: "Sparat — vi påminner dig när provet närmar sig.",
   },
 };
 
@@ -258,6 +264,7 @@ const els = {
   next: $("btn-next"), quit: $("btn-quit"),
   resultBadge: $("result-badge"), resultTitle: $("result-title"),
   resultDetail: $("result-detail"), resultReview: $("result-review"), resultUpsell: $("result-upsell"),
+  examDate: $("examDate"), examDateHint: $("exam-date-hint"),
   buyDialog: $("buy-dialog"), buyForm: $("buy-form"), buyEmail: $("buy-email"),
   buyError: $("buy-error"), buySubmit: $("buy-submit"),
   toast: $("toast"),
@@ -619,9 +626,31 @@ async function checkAccess() {
       const wasPaid = paid;
       paid = true;
       renderStart();
+      syncExamDate(); // push any locally-stored exam date now that we're paid
       if (!wasPaid && urlToken) toast(t("unlocked"));
     }
   } catch { /* backend absent or token invalid — stay in free mode */ }
+}
+
+/* ------------------------------------------------------ exam date */
+
+// Save the exam date locally, and sync to the backend once the user has a
+// token (i.e. after purchase) so the countdown nurture emails can fire.
+async function syncExamDate() {
+  const date = store.get("examDate", null);
+  if (!date || !accessToken) return;
+  try {
+    await api("/api/exam-date", { method: "POST", body: JSON.stringify({ token: accessToken, date }) });
+  } catch { /* offline or not yet paid — retried on next load */ }
+}
+
+function onExamDateChange() {
+  const date = els.examDate.value;
+  if (!date) return;
+  store.set("examDate", date);
+  els.examDateHint.textContent = t("exam_date_saved");
+  track("exam_date_set");
+  syncExamDate();
 }
 
 function openBuyDialog() {
@@ -652,6 +681,7 @@ async function submitBuy(e) {
       paid = true;
       els.buyDialog.close();
       renderStart();
+      syncExamDate();
       toast(t("unlocked"));
       return;
     }
@@ -695,6 +725,11 @@ $("btn-mistakes").addEventListener("click", startMistakes);
 els.next.addEventListener("click", advance);
 els.quit.addEventListener("click", () => { stopTimer(); state = null; renderStart(); show("start"); });
 $("btn-restart").addEventListener("click", () => { renderStart(); show("start"); });
+if (els.examDate) {
+  const stored = store.get("examDate", null);
+  if (stored) { els.examDate.value = stored; els.examDateHint.textContent = t("exam_date_saved"); }
+  els.examDate.addEventListener("change", onExamDateChange);
+}
 $("btn-buy").addEventListener("click", openBuyDialog);
 $("btn-buy-2").addEventListener("click", openBuyDialog);
 $("buy-cancel").addEventListener("click", () => els.buyDialog.close());
