@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Medborgarskapsprovet 2026 – öva på riktiga provfrågor | CitizenPrep</title>
+<meta name="description" content="Öva inför Sveriges medborgarskapsprov 2026 (samhällskunskap). Riktiga provfrågor med förklaring på ditt eget språk – arabiska, farsi, ukrainska m.fl. Provsimulator med timer. Börja gratis, inget kort.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Öva på riktiga provfrågor inför medborgarskapsprovet 2026">
+<meta property="og:description" content="Riktiga provfrågor med förklaring på ditt eget språk. Provsimulator med timer. Börja gratis.">
+<meta property="og:site_name" content="CitizenPrep">
+<link rel="alternate" hreflang="sv" href="https://citizenprep.se/">
+<link rel="alternate" hreflang="ar" href="https://citizenprep.se/ar/">
+<link rel="alternate" hreflang="uk" href="https://citizenprep.se/uk/">
+<link rel="alternate" hreflang="en" href="https://citizenprep.se/en/">
+<link rel="alternate" hreflang="x-default" href="https://citizenprep.se/">
+<link rel="canonical" href="https://citizenprep.se/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #fff; color: #0F1722; font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-plus { transform: rotate(45deg); }
+  /* SINGLE conversion color = YELLOW everywhere */
+  .cta { background:#FECC02; color:#005293; font-weight:700; transition: filter .15s, transform .05s; }
+  .cta:hover { filter: brightness(0.94); }
+  .cta:active { transform: translateY(1px); }
+  .cta-ghost { transition: background .15s; }
+  .cta-ghost:hover { background: rgba(255,255,255,0.12); }
+  .cta-ghost-light:hover { background:#EAF1F8; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Är CitizenPrep en officiell myndighet?","acceptedAnswer":{"@type":"Answer","text":"Nej. CitizenPrep är en oberoende studietjänst och är inte knuten till SIRI, UHR eller någon annan myndighet. Anmälan till provet gör du direkt hos ansvarig myndighet."}},
+    {"@type":"Question","name":"Garanterar ni att jag klarar medborgarskapsprovet?","acceptedAnswer":{"@type":"Answer","text":"Nej – ingen kan garantera det. Vi ger dig den bästa träningen med riktiga provfrågor och förklaringar på ditt eget språk. Resten är upp till dig."}},
+    {"@type":"Question","name":"Vilka språk stöds?","acceptedAnswer":{"@type":"Answer","text":"Frågan står alltid på svenska med översättning direkt under – bland annat arabiska, farsi, ukrainska, turkiska, engelska och polska. Arabiska och farsi visas i korrekt höger-till-vänster-layout (RTL)."}},
+    {"@type":"Question","name":"När hålls medborgarskapsprovet?","acceptedAnswer":{"@type":"Answer","text":"Sveriges medborgarskapsprov (samhällskunskap) hålls för första gången 15 augusti 2026. Provet har cirka 60 frågor på 90 minuter med fyra svarsalternativ."}},
+    {"@type":"Question","name":"Kostar det något att börja?","acceptedAnswer":{"@type":"Answer","text":"Nej. Du kan öva 20 frågor per dag helt gratis, utan kort. Full tillgång kostar 299 kr som en engångsbetalning."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"WebApplication","name":"CitizenPrep","applicationCategory":"EducationApplication","operatingSystem":"Web","description":"Träningsverktyg inför Sveriges medborgarskapsprov 2026 med riktiga provfrågor och översättning till ditt eget språk.","inLanguage":["sv","ar","uk","en"],"offers":[{"@type":"Offer","name":"Gratis","price":"0","priceCurrency":"SEK"},{"@type":"Offer","name":"Full tillgång","price":"299","priceCurrency":"SEK"}]
+}
+</script>
+</helmet>
+<div style="width:100%; overflow-x:hidden; padding-bottom:64px;">
+
+  <!-- ANNOUNCEMENT -->
+  <sc-if value="{{ showAnnouncement }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#0F1722; color:#F1F4F8; font-size:14px; font-weight:500; text-align:center; padding:10px 20px;">
+      Nytt: medborgarskapsprovet hålls för första gången <strong style="color:#FECC02;">15 aug 2026</strong> — börja plugga idag.
+    </div>
+  </sc-if>
+
+  <!-- NAV -->
+  <header style="position:{{ navPosition }}; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid #EAEDF1;">
+    <div style="max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between;">
+      <a href="#top" aria-label="CitizenPrep – till startsidan" style="display:flex; align-items:center; gap:9px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; letter-spacing:-0.02em; color:#0F1722; text-decoration:none;">
+        <span style="width:28px; height:28px; border-radius:8px; background:#005293; display:inline-flex; align-items:center; justify-content:center; color:#FECC02; font-size:15px; font-weight:700;">C</span>CitizenPrep
+      </a>
+      <nav aria-label="Huvudmeny" style="display:flex; align-items:center; gap:8px;">
+        <div style="display:flex; align-items:center; gap:26px; font-size:15px; color:#56616E; font-weight:500; margin-right:14px;">
+          <a href="#varfor" style="color:inherit; text-decoration:none;">Varför oss</a>
+          <a href="#fraga" style="color:inherit; text-decoration:none;">Så ser det ut</a>
+          <a href="#priser" style="color:inherit; text-decoration:none;">Priser</a>
+          <a href="#faq" style="color:inherit; text-decoration:none;">FAQ</a>
+        </div>
+        <a href="#lang" style="display:flex; align-items:center; gap:6px; padding:8px 11px; border:1px solid #E5E9EE; border-radius:9px; font-size:14px; color:#56616E; font-weight:500; text-decoration:none;">🌐 Språk ▾</a>
+        <a class="cta" href="#priser" style="padding:10px 18px; border-radius:10px; font-size:15px; text-decoration:none;">Börja gratis</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <!-- HERO -->
+  <section id="top" aria-labelledby="hero-h" style="background:#005293; color:#fff;">
+    <div style="max-width:1120px; margin:0 auto; padding:clamp(48px,7vw,84px) 24px clamp(56px,8vw,92px); display:flex; flex-wrap:wrap; gap:clamp(32px,5vw,56px); align-items:center;">
+      <div style="flex:1 1 380px; min-width:300px;">
+        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(254,204,2,0.16); color:#FECC02; font-weight:600; font-size:13px; padding:7px 14px; border-radius:999px; margin-bottom:22px;">● Medborgarskapsprovet · Sverige 2026</div>
+        <h1 id="hero-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(40px,6.2vw,62px); line-height:1.0; letter-spacing:-0.03em; margin:0 0 12px; font-weight:700;">Öva på riktiga <span style="color:#FECC02;">provfrågor.</span></h1>
+        <div style="font-size:clamp(16px,2.2vw,19px); color:#BFD5E6; font-style:italic; margin-bottom:22px;">Practice real citizenship-test questions.</div>
+        <p style="font-size:clamp(16px,2.2vw,19px); line-height:1.55; color:#DCE8F1; margin:0 0 30px; max-width:460px;">Med förklaring <strong style="color:#fff;">på ditt eget språk</strong> — arabiska, farsi, ukrainska m.fl. Byggt för mobilen. Inget krångel.</p>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
+          <a class="cta" href="#priser" style="padding:16px 32px; border-radius:12px; font-size:17px; text-decoration:none;">Börja gratis →</a>
+          <a class="cta-ghost" href="#fraga" style="padding:16px 24px; font-weight:600; font-size:17px; color:#fff; border:1.5px solid rgba(255,255,255,0.35); border-radius:12px; text-decoration:none;">Se en fråga</a>
+        </div>
+        <div style="margin-top:18px; font-size:14px; color:#9FBBD3;">✓ 20 frågor per dag gratis · inget kort krävs</div>
+      </div>
+      <sc-if value="{{ showHeroProduct }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1 1 320px; min-width:290px; display:flex; justify-content:center;">
+          <div style="width:100%; max-width:400px; background:#fff; border-radius:20px; padding:22px; box-shadow:0 40px 80px -30px rgba(0,0,0,0.55); color:#0F1722; transform:rotate(1.4deg);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span style="font-size:12px; color:#005293; font-weight:700;">Fråga 12 / 60</span>
+              <span style="font-size:12px; background:#EAF1F8; color:#005293; padding:4px 10px; border-radius:7px; font-weight:600;">🇸🇪 → عربى</span>
+            </div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; line-height:1.3; margin-bottom:10px;">Vilken är Sveriges viktigaste grundlag?</div>
+            <div dir="rtl" lang="ar" style="font-family:'Noto Naskh Arabic',serif; font-size:18px; color:#56616E; background:#F3F5F8; border-radius:10px; padding:11px 14px; margin-bottom:16px; line-height:1.7;">ما هو أهمّ قانون أساسي في السويد؟</div>
+            <div style="display:flex; flex-direction:column; gap:9px;">
+              <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #16A34A; background:#EFFAF3; border-radius:11px; padding:12px 14px;"><span style="width:28px;height:28px;border-radius:8px;background:#16A34A;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">A</span><span style="font-weight:600; font-size:16px;">Regeringsformen</span><span style="margin-left:auto; color:#16A34A; font-weight:700;">✓</span></div>
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E5E9EE; border-radius:11px; padding:12px 14px;"><span style="width:28px;height:28px;border-radius:8px;background:#F3F5F8;color:#56616E;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">B</span><span style="font-size:16px; color:#56616E;">Kommunallagen</span></div>
+              <div style="display:flex; align-items:center; gap:12px; border:1px solid #E5E9EE; border-radius:11px; padding:12px 14px;"><span style="width:28px;height:28px;border-radius:8px;background:#F3F5F8;color:#56616E;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">C</span><span style="font-size:16px; color:#56616E;">Strafflagen</span></div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section aria-label="Provet i siffror" style="background:#FECC02; color:#005293;">
+    <div style="max-width:1120px; margin:0 auto; padding:26px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:20px; text-align:center;">
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; letter-spacing:-0.02em;">60</div><div style="font-size:13px; font-weight:600; opacity:0.8;">frågor · questions</div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; letter-spacing:-0.02em;">90</div><div style="font-size:13px; font-weight:600; opacity:0.8;">minuter · minutes</div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; letter-spacing:-0.02em;">4</div><div style="font-size:13px; font-weight:600; opacity:0.8;">alternativ</div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; letter-spacing:-0.02em;">8+</div><div style="font-size:13px; font-weight:600; opacity:0.8;">språk &amp; RTL</div></div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section aria-labelledby="vad-h" style="max-width:820px; margin:0 auto; padding:clamp(52px,7vw,80px) 24px;">
+    <div style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#005293; font-weight:700; margin-bottom:12px;">Vad du behöver veta</div>
+    <h2 id="vad-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,4.4vw,40px); letter-spacing:-0.03em; margin:0 0 18px; font-weight:700;">Vad är medborgarskapsprovet 2026?</h2>
+    <p style="font-size:17px; line-height:1.7; color:#374151; margin:0 0 16px;">Från och med <strong>15 augusti 2026</strong> krävs ett godkänt <strong>medborgarskapsprov</strong> (prov i samhällskunskap) för att ansöka om svenskt medborgarskap. Provet består av cirka <strong>60 flervalsfrågor</strong> som du besvarar på <strong>90 minuter</strong>, med fyra svarsalternativ per fråga.</p>
+    <p style="font-size:17px; line-height:1.7; color:#374151; margin:0 0 16px;">Frågorna handlar om det svenska samhället: demokrati och grundlagar, hur riksdag och regering fungerar, rättigheter och skyldigheter, arbete, hälsa och vardagsliv. Provet skrivs på svenska — men du får plugga på det sätt som passar dig bäst.</p>
+    <p style="font-size:17px; line-height:1.7; color:#374151; margin:0;">CitizenPrep hjälper dig att träna med <strong>riktiga provliknande frågor</strong> och en <strong>översättning till ditt eget språk</strong> under varje fråga, så att du förstår exakt vad som efterfrågas — även om svenskan ännu är ny för dig.</p>
+  </section>
+
+  <!-- WHY US — comparison table -->
+  <section id="varfor" aria-labelledby="varfor-h" style="background:#F6F8FA; border-top:1px solid #EEF1F4;">
+    <div style="max-width:1000px; margin:0 auto; padding:clamp(52px,7vw,84px) 24px;">
+      <div style="max-width:640px; margin-bottom:40px;">
+        <div style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#005293; font-weight:700; margin-bottom:12px;">Varför CitizenPrep</div>
+        <h2 id="varfor-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(30px,4.6vw,42px); letter-spacing:-0.03em; margin:0 0 12px; font-weight:700;">Det andra appar inte gör</h2>
+        <p style="font-size:17px; color:#56616E; line-height:1.55; margin:0;">Nischen är full av gamla PDF-dumpar och prov bara på svenska. Se skillnaden rad för rad.</p>
+      </div>
+
+      <div style="background:#fff; border:1px solid #E5E9EE; border-radius:22px; overflow:hidden; box-shadow:0 30px 70px -40px rgba(15,23,34,0.4);">
+        <!-- header row -->
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr;">
+          <div style="padding:22px 26px;"></div>
+          <div style="padding:22px 18px; text-align:center; border-left:1px solid #EEF1F4;">
+            <div style="font-size:13px; color:#8A94A2; font-weight:600; line-height:1.3;">Andra<br>appar</div>
+          </div>
+          <div style="padding:18px 18px; text-align:center; background:#005293; color:#fff; position:relative;">
+            <div style="display:inline-flex; align-items:center; gap:7px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px;"><span style="width:22px; height:22px; border-radius:6px; background:#FECC02; color:#005293; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:800;">C</span>CitizenPrep</div>
+          </div>
+        </div>
+
+        <!-- rows -->
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr; border-top:1px solid #EEF1F4;">
+          <div style="padding:20px 26px;"><div style="font-weight:700; font-size:16px; margin-bottom:3px;">Frågan översatt till ditt språk</div><div style="font-size:13px; color:#7A8595; line-height:1.4;">Arabiska, farsi, ukrainska — med full RTL</div></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; border-left:1px solid #EEF1F4;"><span style="width:26px; height:26px; border-radius:50%; background:#F3F5F8; color:#B3BAC4; display:flex; align-items:center; justify-content:center; font-weight:700;">✕</span></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; background:#F7FAFD;"><span style="width:26px; height:26px; border-radius:50%; background:#005293; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">✓</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr; border-top:1px solid #EEF1F4;">
+          <div style="padding:20px 26px;"><div style="font-weight:700; font-size:16px; margin-bottom:3px;">Provsimulator med riktig tid</div><div style="font-size:13px; color:#7A8595; line-height:1.4;">90 min, 60 frågor, som provdagen</div></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; border-left:1px solid #EEF1F4;"><span style="width:26px; height:26px; border-radius:50%; background:#F3F5F8; color:#B3BAC4; display:flex; align-items:center; justify-content:center; font-weight:700;">✕</span></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; background:#F7FAFD;"><span style="width:26px; height:26px; border-radius:50%; background:#005293; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">✓</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr; border-top:1px solid #EEF1F4;">
+          <div style="padding:20px 26px;"><div style="font-weight:700; font-size:16px; margin-bottom:3px;">Statistik &amp; svagaste ämnen</div><div style="font-size:13px; color:#7A8595; line-height:1.4;">Se din readiness och lägg tiden rätt</div></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; border-left:1px solid #EEF1F4;"><span style="width:26px; height:26px; border-radius:50%; background:#F3F5F8; color:#B3BAC4; display:flex; align-items:center; justify-content:center; font-weight:700;">✕</span></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; background:#F7FAFD;"><span style="width:26px; height:26px; border-radius:50%; background:#005293; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">✓</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr; border-top:1px solid #EEF1F4;">
+          <div style="padding:20px 26px;"><div style="font-weight:700; font-size:16px; margin-bottom:3px;">Byggt för mobilen</div><div style="font-size:13px; color:#7A8595; line-height:1.4;">Snabbt, inget tungt att ladda ner</div></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; border-left:1px solid #EEF1F4;"><span style="font-size:12px; color:#B3BAC4; font-weight:600;">ibland</span></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; background:#F7FAFD;"><span style="width:26px; height:26px; border-radius:50%; background:#005293; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">✓</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr; border-top:1px solid #EEF1F4;">
+          <div style="padding:20px 26px;"><div style="font-weight:700; font-size:16px; margin-bottom:3px;">Ärligt om vad du får</div><div style="font-size:13px; color:#7A8595; line-height:1.4;">Inga tomma garantier, ingen myndighetsimitation</div></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; border-left:1px solid #EEF1F4;"><span style="width:26px; height:26px; border-radius:50%; background:#F3F5F8; color:#B3BAC4; display:flex; align-items:center; justify-content:center; font-weight:700;">✕</span></div>
+          <div style="padding:20px 18px; display:flex; align-items:center; justify-content:center; background:#F7FAFD;"><span style="width:26px; height:26px; border-radius:50%; background:#005293; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">✓</span></div>
+        </div>
+
+        <!-- footer cta row -->
+        <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr; border-top:1px solid #EEF1F4; align-items:center;">
+          <div style="padding:20px 26px; font-size:14px; color:#56616E;">Allt detta, från dag ett.</div>
+          <div style="border-left:1px solid #EEF1F4;"></div>
+          <div style="padding:14px 18px; background:#F7FAFD;"><a class="cta" href="#priser" style="display:block; text-align:center; padding:12px; border-radius:11px; font-size:15px; text-decoration:none;">Börja gratis</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BILINGUAL EXAMPLE -->
+  <section id="fraga" aria-labelledby="fraga-h" style="border-top:1px solid #EEF1F4;">
+    <div style="max-width:1120px; margin:0 auto; padding:clamp(52px,7vw,84px) 24px;">
+      <div style="text-align:center; max-width:640px; margin:0 auto 30px;">
+        <div style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#005293; font-weight:700; margin-bottom:12px;">Så ser en fråga ut</div>
+        <h2 id="fraga-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(30px,4.6vw,42px); letter-spacing:-0.03em; margin:0; font-weight:700;">Fråga på svenska, förklaring på ditt språk</h2>
+      </div>
+      <div id="lang" style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:26px;">
+        <span style="background:#005293; color:#fff; padding:7px 15px; border-radius:999px; font-size:14px; font-weight:600;">العربية</span>
+        <span style="background:#fff; border:1px solid #E5E9EE; color:#56616E; padding:7px 15px; border-radius:999px; font-size:14px; font-weight:500;">فارسی</span>
+        <span style="background:#fff; border:1px solid #E5E9EE; color:#56616E; padding:7px 15px; border-radius:999px; font-size:14px; font-weight:500;">Українська</span>
+        <span style="background:#fff; border:1px solid #E5E9EE; color:#56616E; padding:7px 15px; border-radius:999px; font-size:14px; font-weight:500;">Türkçe</span>
+        <span style="background:#fff; border:1px solid #E5E9EE; color:#56616E; padding:7px 15px; border-radius:999px; font-size:14px; font-weight:500;">English</span>
+      </div>
+      <div style="max-width:680px; margin:0 auto; background:#fff; border:1px solid #E5E9EE; border-radius:20px; overflow:hidden; box-shadow:0 24px 60px -36px rgba(15,23,34,0.35);">
+        <div style="padding:28px 30px 20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; font-size:13px;"><span style="font-weight:700; color:#005293;">Fråga 12 / 60</span><span style="background:#EAF1F8; color:#005293; padding:4px 11px; border-radius:7px; font-weight:600;">🇸🇪 → عربى (RTL)</span></div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:700; line-height:1.35; margin-bottom:10px;">Vilken är Sveriges viktigaste grundlag?</div>
+          <div dir="rtl" lang="ar" style="font-family:'Noto Naskh Arabic',serif; font-size:20px; color:#56616E; background:#F6F8FA; border-radius:11px; padding:13px 17px; line-height:1.75;">ما هو أهمّ قانون أساسي في السويد؟</div>
+        </div>
+        <div style="padding:4px 30px 26px; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:14px; border:1.5px solid #16A34A; background:#EFFAF3; border-radius:12px; padding:15px 17px;"><span style="width:32px;height:32px;border-radius:9px;background:#16A34A;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;">A</span><span style="font-weight:600; font-size:16px;">Regeringsformen</span><span style="margin-left:auto; color:#16A34A; font-weight:700;">✓ Rätt</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid #E5E9EE; border-radius:12px; padding:15px 17px;"><span style="width:32px;height:32px;border-radius:9px;background:#F3F5F8;color:#56616E;font-weight:700;display:flex;align-items:center;justify-content:center;">B</span><span style="font-size:16px; color:#56616E;">Kommunallagen</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid #E5E9EE; border-radius:12px; padding:15px 17px;"><span style="width:32px;height:32px;border-radius:9px;background:#F3F5F8;color:#56616E;font-weight:700;display:flex;align-items:center;justify-content:center;">C</span><span style="font-size:16px; color:#56616E;">Strafflagen</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid #E5E9EE; border-radius:12px; padding:15px 17px;"><span style="width:32px;height:32px;border-radius:9px;background:#F3F5F8;color:#56616E;font-weight:700;display:flex;align-items:center;justify-content:center;">D</span><span style="font-size:16px; color:#56616E;">Tryckfrihetsförordningen</span></div>
+        </div>
+        <div style="background:#EAF1F8; padding:18px 30px; display:flex; gap:12px; font-size:14px; color:#005293; line-height:1.55;"><span style="font-weight:700; white-space:nowrap;">Förklaring:</span><span>Regeringsformen är den mest grundläggande av Sveriges fyra grundlagar. <span dir="rtl" lang="ar" style="font-family:'Noto Naskh Arabic',serif;">هو أهمّ القوانين الأساسية الأربعة في السويد.</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section aria-labelledby="bevis-h" style="background:#F6F8FA; border-top:1px solid #EEF1F4;">
+    <div style="max-width:1120px; margin:0 auto; padding:clamp(52px,7vw,84px) 24px;">
+      <div style="display:flex; flex-wrap:wrap; gap:clamp(32px,5vw,52px); align-items:center;">
+        <div style="flex:1 1 340px; min-width:290px;">
+          <div style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#005293; font-weight:700; margin-bottom:12px;">Bevis, inte löften</div>
+          <h2 id="bevis-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,4.4vw,40px); letter-spacing:-0.03em; margin:0 0 14px; font-weight:700;">Vi hittar inte på siffror</h2>
+          <p style="font-size:16px; color:#56616E; line-height:1.6; margin:0 0 22px;">Sveriges prov hålls för första gången i augusti 2026, så det finns ingen godkännandegrad än. Istället visar vi det <strong style="color:#0F1722;">danska systerprovets</strong> riktiga siffror som referens — och uppdaterar öppet när svenska data finns.</p>
+          <div style="background:#fff; border:1px solid #E5E9EE; border-radius:14px; padding:18px 20px;">
+            <div style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#7A8595; font-weight:700; margin-bottom:12px;">Öppna källor</div>
+            <div style="display:flex; flex-direction:column; gap:9px; font-size:14px; color:#43617C;">
+              <span>📘 Skolverket — samhällskunskap (innehåll)</span>
+              <span>📋 UHR — provets struktur &amp; regler</span>
+              <span>📊 SIRI Danmark — referenssiffror (godkännandegrad)</span>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1 1 360px; min-width:300px;">
+          <div style="background:#fff; border:1px solid #E5E9EE; border-radius:18px; padding:30px;">
+            <div style="font-size:13px; color:#7A8595; margin-bottom:20px; font-weight:600;">🇩🇰 Godkännandegrad — danska medborgarskapsprovet</div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; height:200px; gap:26px; border-bottom:1px solid #E5E9EE; padding-bottom:12px;">
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:9px;"><span style="font-weight:700; font-size:15px;">47%</span><div style="width:100%; height:47%; background:#CBD6E2; border-radius:8px 8px 0 0;"></div></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:9px;"><span style="font-weight:700; font-size:15px;">55%</span><div style="width:100%; height:55%; background:#7FA6C9; border-radius:8px 8px 0 0;"></div></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:9px;"><span style="font-weight:700; font-size:15px;">62%</span><div style="width:100%; height:62%; background:#005293; border-radius:8px 8px 0 0;"></div></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:11px; font-size:12px; color:#7A8595; gap:26px; text-align:center;"><span style="flex:1;">2021</span><span style="flex:1;">2022</span><span style="flex:1;">2023</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONESTY BAND -->
+  <section aria-label="Vår ärlighet" style="background:#0F1722; color:#F1F4F8;">
+    <div style="max-width:900px; margin:0 auto; padding:clamp(48px,7vw,76px) 24px; text-align:center;">
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:52px; line-height:0.4; color:#FECC02; margin-bottom:22px;">”</div>
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:clamp(22px,3.4vw,30px); line-height:1.4; font-weight:500; margin:0 0 20px;">Ingen app kan garantera att du klarar provet. Den som lovar det ljuger. Vi ger dig den bästa träningen som finns — och säger som det är.</p>
+      <div style="display:flex; justify-content:center; gap:24px; flex-wrap:wrap; font-size:14px; color:#A6AEBA;">
+        <span>✓ Vi är <strong style="color:#F1F4F8;">inte</strong> en myndighet</span>
+        <span>✓ Inga falska godkännandesiffror</span>
+        <span>✓ Öppna källor</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 TIPS -->
+  <section aria-labelledby="tips-h" style="max-width:1120px; margin:0 auto; padding:clamp(52px,7vw,84px) 24px;">
+    <div style="max-width:640px; margin-bottom:40px;">
+      <div style="font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#005293; font-weight:700; margin-bottom:12px;">5 tips som funkar</div>
+      <h2 id="tips-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(30px,4.6vw,42px); letter-spacing:-0.03em; margin:0; font-weight:700;">Så pluggar du smart — inte länge</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
+      <div style="border:1px solid #E5E9EE; border-radius:16px; padding:24px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:#005293; margin-bottom:12px;">01</div><h3 style="font-weight:700; font-size:17px; margin:0 0 6px;">Lite varje dag</h3><p style="margin:0; color:#56616E; font-size:14px; line-height:1.55;">15 minuter dagligen slår långa maratonpass. Regelbundenhet fastnar.</p></div>
+      <div style="border:1px solid #E5E9EE; border-radius:16px; padding:24px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:#005293; margin-bottom:12px;">02</div><h3 style="font-weight:700; font-size:17px; margin:0 0 6px;">Öva på tid tidigt</h3><p style="margin:0; color:#56616E; font-size:14px; line-height:1.55;">Vänj dig vid 90-minutersgränsen långt före provdagen.</p></div>
+      <div style="border:1px solid #E5E9EE; border-radius:16px; padding:24px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:#005293; margin-bottom:12px;">03</div><h3 style="font-weight:700; font-size:17px; margin:0 0 6px;">Läs svenskan först</h3><p style="margin:0; color:#56616E; font-size:14px; line-height:1.55;">Använd översättningen för att bekräfta — inte ersätta. Provet är på svenska.</p></div>
+      <div style="border:1px solid #E5E9EE; border-radius:16px; padding:24px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:#005293; margin-bottom:12px;">04</div><h3 style="font-weight:700; font-size:17px; margin:0 0 6px;">Repetera dina fel</h3><p style="margin:0; color:#56616E; font-size:14px; line-height:1.55;">De flesta poäng finns i det du redan svarat fel på. Gå tillbaka.</p></div>
+      <div style="border:1px solid #E5E9EE; border-radius:16px; padding:24px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:#005293; margin-bottom:12px;">05</div><h3 style="font-weight:700; font-size:17px; margin:0 0 6px;">Jaga svaga ämnen</h3><p style="margin:0; color:#56616E; font-size:14px; line-height:1.55;">Statistiken visar var du tappar poäng. Lägg tiden där.</p></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="priser" aria-labelledby="priser-h" style="background:#F6F8FA; border-top:1px solid #EEF1F4;">
+    <div style="max-width:1120px; margin:0 auto; padding:clamp(52px,7vw,84px) 24px;">
+      <div style="text-align:center; max-width:560px; margin:0 auto 40px;">
+        <h2 id="priser-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(30px,4.6vw,42px); letter-spacing:-0.03em; margin:0 0 12px; font-weight:700;">Ett pris. Allt ingår.</h2>
+        <p style="margin:0; color:#56616E; font-size:16px; line-height:1.55;">Provavgiften kostar mycket mer om du måste göra om provet. Träning är den billiga försäkringen.</p>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:20px; max-width:760px; margin:0 auto; align-items:stretch;">
+        <div style="flex:1 1 300px; background:#fff; border:1px solid #E5E9EE; border-radius:20px; padding:32px;">
+          <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; margin-bottom:6px;">Gratis</div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:700; margin-bottom:4px;">0 kr</div>
+          <div style="font-size:13px; color:#7A8595; margin-bottom:24px;">för alltid</div>
+          <div style="display:flex; flex-direction:column; gap:12px; font-size:15px; color:#374151;">
+            <span>✓ 20 frågor per dag</span>
+            <span>✓ Översättning till ditt språk</span>
+            <span>✓ Direkt feedback med förklaring</span>
+            <span style="color:#B3BAC4;">— Provsimulator med timer</span>
+            <span style="color:#B3BAC4;">— Statistik &amp; svaga ämnen</span>
+          </div>
+          <a class="cta-ghost-light" href="#top" style="display:block; margin-top:26px; text-align:center; border:1.5px solid #CBD9E6; color:#005293; padding:14px; border-radius:12px; font-weight:600; text-decoration:none;">Börja gratis</a>
+        </div>
+        <div style="flex:1 1 300px; background:#fff; border:2px solid #005293; border-radius:20px; padding:32px; position:relative; box-shadow:0 30px 60px -34px rgba(0,82,147,0.5);">
+          <span style="position:absolute; top:-12px; right:26px; background:#005293; color:#fff; font-size:12px; font-weight:700; padding:5px 13px; border-radius:8px;">Rekommenderas</span>
+          <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; margin-bottom:6px;">Full tillgång</div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:700; margin-bottom:4px; color:#005293;">299 kr</div>
+          <div style="font-size:13px; color:#7A8595; margin-bottom:24px;">engångsbetalning · gäller tills du klarat provet</div>
+          <div style="display:flex; flex-direction:column; gap:12px; font-size:15px; color:#374151;">
+            <span style="font-weight:600; color:#005293;">✓ Alla frågor, obegränsat</span>
+            <span>✓ Provsimulator med 90-min timer</span>
+            <span>✓ Statistik &amp; svagaste ämnen</span>
+            <span>✓ Alla språk &amp; full RTL</span>
+            <span>✓ Repetera dina fel</span>
+          </div>
+          <a class="cta" href="#top" style="display:block; margin-top:26px; text-align:center; padding:14px; border-radius:12px; text-decoration:none;">Köp full tillgång</a>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:22px; font-size:13px; color:#7A8595;">🔒 Säker betalning · 14 dagars ångerrätt · ingen prenumeration som förnyas automatiskt</div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="faq-h" style="max-width:760px; margin:0 auto; padding:clamp(52px,7vw,84px) 24px;">
+    <h2 id="faq-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(30px,4.6vw,42px); letter-spacing:-0.03em; margin:0 0 30px; font-weight:700; text-align:center;">Vanliga frågor</h2>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <details style="border:1px solid #E5E9EE; border-radius:14px; padding:18px 22px;"><summary style="display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:16px;">Är ni en officiell myndighet?<span class="faq-plus" style="color:#005293; font-size:22px; transition:transform 0.2s; line-height:1;">+</span></summary><p style="margin:14px 0 0; color:#56616E; font-size:15px; line-height:1.6;">Nej. CitizenPrep är en oberoende studietjänst. Vi är inte knutna till SIRI, UHR eller någon annan myndighet, och du gör din anmälan till provet direkt hos ansvarig myndighet.</p></details>
+      <details style="border:1px solid #E5E9EE; border-radius:14px; padding:18px 22px;"><summary style="display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:16px;">Garanterar ni att jag klarar provet?<span class="faq-plus" style="color:#005293; font-size:22px; transition:transform 0.2s; line-height:1;">+</span></summary><p style="margin:14px 0 0; color:#56616E; font-size:15px; line-height:1.6;">Nej — ingen kan det. Vi ger dig den bästa träningen som finns med riktiga provfrågor och förklaringar på ditt språk. Resten är upp till dig. Den ärligheten är hela poängen.</p></details>
+      <details style="border:1px solid #E5E9EE; border-radius:14px; padding:18px 22px;"><summary style="display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:16px;">Vilka språk stöds?<span class="faq-plus" style="color:#005293; font-size:22px; transition:transform 0.2s; line-height:1;">+</span></summary><p style="margin:14px 0 0; color:#56616E; font-size:15px; line-height:1.6;">Frågan står alltid på svenska med översättning direkt under — bland annat arabiska, farsi, ukrainska, turkiska, engelska och polska. Arabiska och farsi visas i korrekt höger-till-vänster-layout (RTL).</p></details>
+      <details style="border:1px solid #E5E9EE; border-radius:14px; padding:18px 22px;"><summary style="display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:16px;">När hålls provet?<span class="faq-plus" style="color:#005293; font-size:22px; transition:transform 0.2s; line-height:1;">+</span></summary><p style="margin:14px 0 0; color:#56616E; font-size:15px; line-height:1.6;">Sveriges medborgarskapsprov (samhällskunskap) hålls för första gången 15 augusti 2026. Provet har cirka 60 frågor på 90 minuter med fyra svarsalternativ.</p></details>
+      <details style="border:1px solid #E5E9EE; border-radius:14px; padding:18px 22px;"><summary style="display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:16px;">Kostar det något att börja?<span class="faq-plus" style="color:#005293; font-size:22px; transition:transform 0.2s; line-height:1;">+</span></summary><p style="margin:14px 0 0; color:#56616E; font-size:15px; line-height:1.6;">Nej. Du kan öva 20 frågor per dag helt gratis, utan kort. Full tillgång (alla frågor + provsimulator + statistik) kostar 299 kr som en engångsbetalning.</p></details>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section aria-label="Kom igång" style="background:#005293; color:#fff;">
+    <div style="max-width:900px; margin:0 auto; padding:clamp(52px,8vw,84px) 24px; text-align:center;">
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(32px,5vw,46px); letter-spacing:-0.03em; margin:0 0 10px; font-weight:700;">Redo? Börja idag — gratis.</h2>
+      <p style="margin:0 0 28px; color:#BFD5E6; font-size:17px;">20 frågor per dag, inget kort. <span style="font-style:italic;">Ready? Start today, free.</span></p>
+      <a class="cta" href="#top" style="display:inline-block; padding:17px 38px; border-radius:12px; font-size:18px; text-decoration:none;">Börja gratis →</a>
+    </div>
+  </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background:#0B1119; color:#8A94A2;">
+    <div style="max-width:1120px; margin:0 auto; padding:44px 24px;">
+      <div style="display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; align-items:flex-start; margin-bottom:28px;">
+        <div style="display:flex; align-items:center; gap:9px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:18px; color:#fff;"><span style="width:26px; height:26px; border-radius:7px; background:#005293; display:inline-flex; align-items:center; justify-content:center; color:#FECC02; font-size:14px;">C</span>CitizenPrep</div>
+        <div style="display:flex; flex-wrap:wrap; gap:28px; font-size:14px;">
+          <a href="#varfor" style="color:#8A94A2; text-decoration:none;">Om oss</a>
+          <a href="#faq" style="color:#8A94A2; text-decoration:none;">Kontakt</a>
+          <a href="#priser" style="color:#8A94A2; text-decoration:none;">Priser</a>
+          <a href="#top" style="color:#8A94A2; text-decoration:none;">Integritetspolicy</a>
+          <a href="#top" style="color:#8A94A2; text-decoration:none;">Villkor</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid #1C2531; padding-top:22px; font-size:13px; line-height:1.6; max-width:720px;">
+        CitizenPrep är en oberoende studietjänst och är inte knuten till SIRI, UHR eller någon svensk eller dansk myndighet. Vi kan inte garantera provresultat. Innehållet bygger på öppna källor och uppdateras löpande. © 2026 CitizenPrep.
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CONVERSION BAR -->
+  <div style="position:fixed; left:0; right:0; bottom:0; z-index:60; background:rgba(255,255,255,0.94); backdrop-filter:blur(10px); border-top:1px solid #E5E9EE; padding:10px 16px; display:flex; align-items:center; gap:12px; box-shadow:0 -8px 24px -16px rgba(15,23,34,0.3);">
+    <div style="flex:1; min-width:0;">
+      <div style="font-weight:700; font-size:14px; line-height:1.2;">Börja plugga gratis</div>
+      <div style="font-size:12px; color:#7A8595;">20 frågor/dag · inget kort</div>
+    </div>
+    <a class="cta" href="#priser" style="padding:13px 24px; border-radius:11px; font-size:15px; text-decoration:none; white-space:nowrap;">Börja gratis →</a>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1200, &quot;height&quot;: 860 },
+  &quot;showAnnouncement&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot; },
+  &quot;showHeroProduct&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot; },
+  &quot;stickyNav&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot; }
+}">
+class Component extends DCLogic {
+  componentDidMount() {
+    try {
+      document.documentElement.lang = 'sv';
+      document.documentElement.dir = 'ltr';
+    } catch (e) {}
+  }
+  renderVals() {
+    return {
+      showAnnouncement: this.props.showAnnouncement ?? true,
+      showHeroProduct: this.props.showHeroProduct ?? true,
+      navPosition: (this.props.stickyNav ?? true) ? 'sticky' : 'static',
+    };
+  }
+}
+</script>
+</body>
+</html>

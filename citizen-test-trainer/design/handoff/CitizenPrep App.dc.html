@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #E7EAEE; color: #0F1722; font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+  .cta { background:#FECC02; color:#005293; font-weight:700; transition: filter .15s, transform .05s; cursor:pointer; border:none; }
+  .cta:hover { filter: brightness(0.94); }
+  .cta:active { transform: translateY(1px); }
+  .ghost { background:#fff; color:#005293; border:1.5px solid #CBD9E6; font-weight:600; cursor:pointer; transition:background .15s; }
+  .ghost:hover { background:#EAF1F8; }
+  .opt { cursor:pointer; transition: border-color .12s, background .12s; }
+  .navtab { cursor:pointer; border:none; background:none; font-family:'Hanken Grotesk',sans-serif; display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 4px; flex:1; }
+  .scr { animation: fade .22s ease; }
+  @keyframes fade { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform:none; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .barfill { transition: width .5s cubic-bezier(.4,0,.2,1); }
+</style>
+</helmet>
+<div style="min-height:100vh; padding:40px 24px 64px; display:flex; flex-direction:column; align-items:center; gap:24px;">
+
+  <div style="text-align:center; max-width:600px;">
+    <div style="display:inline-flex; align-items:center; gap:8px; background:#0F1722; color:#fff; font-size:12px; font-weight:600; padding:6px 13px; border-radius:999px; margin-bottom:14px;">📱 Inloggad produkt — efter köp</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:24px; letter-spacing:-0.02em; margin:0 0 6px; font-weight:700;">CitizenPrep — appen</h1>
+    <p style="margin:0; color:#56616E; font-size:14px; line-height:1.5;">Dashboard · träning · provsimulator · resultat · statistik · konto. Klicka runt — flikarna längst ner byter vy.</p>
+  </div>
+
+  <!-- jump chips -->
+  <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; max-width:640px;">
+    <button class="ghost" onClick="{{ goHome }}" style="padding:7px 13px; border-radius:999px; font-size:13px;">Dashboard</button>
+    <button class="ghost" onClick="{{ goPractice }}" style="padding:7px 13px; border-radius:999px; font-size:13px;">Träning (kviz)</button>
+    <button class="ghost" onClick="{{ goExamIntro }}" style="padding:7px 13px; border-radius:999px; font-size:13px;">Provsimulator</button>
+    <button class="ghost" onClick="{{ goResult }}" style="padding:7px 13px; border-radius:999px; font-size:13px;">Resultat</button>
+    <button class="ghost" onClick="{{ goStats }}" style="padding:7px 13px; border-radius:999px; font-size:13px;">Statistik</button>
+    <button class="ghost" onClick="{{ goAccount }}" style="padding:7px 13px; border-radius:999px; font-size:13px;">Mitt konto</button>
+  </div>
+
+  <!-- PHONE -->
+  <div style="width:400px; max-width:100%; background:#0F1722; border-radius:46px; padding:12px; box-shadow:0 40px 90px -40px rgba(15,23,34,0.6);">
+    <div style="background:#F6F8FA; border-radius:35px; overflow:hidden; position:relative; height:840px; display:flex; flex-direction:column;">
+      <!-- notch -->
+      <div style="height:36px; display:flex; align-items:center; justify-content:center; position:relative; background:#fff; flex-shrink:0;"><div style="width:130px; height:26px; background:#0F1722; border-radius:0 0 18px 18px; position:absolute; top:0;"></div></div>
+
+      <!-- top bar -->
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 20px; background:#fff; border-bottom:1px solid #EEF1F4; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:8px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px;"><span style="width:24px;height:24px;border-radius:7px;background:#005293;color:#FECC02;display:flex;align-items:center;justify-content:center;font-size:13px;">C</span>CitizenPrep</div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:#005293; background:#EAF1F8; padding:5px 10px; border-radius:999px;">🔥 {{ streak }}</span>
+          <span style="width:30px; height:30px; border-radius:50%; background:#005293; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;">A</span>
+        </div>
+      </div>
+
+      <!-- SCROLL AREA -->
+      <div style="flex:1; overflow-y:auto; position:relative;">
+
+        <!-- ===== DASHBOARD ===== -->
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div class="scr" style="padding:22px 20px 30px;">
+            <div style="font-size:14px; color:#7A8595; margin-bottom:2px;">Hej Amir 👋</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:700; letter-spacing:-0.02em; margin-bottom:18px;">Redo att plugga?</div>
+
+            <!-- readiness ring card -->
+            <div style="background:#005293; color:#fff; border-radius:20px; padding:22px; margin-bottom:16px; display:flex; align-items:center; gap:20px;">
+              <div style="width:96px; height:96px; border-radius:50%; flex-shrink:0; background:conic-gradient(#FECC02 0turn 0.68turn, rgba(255,255,255,0.16) 0.68turn 1turn); display:flex; align-items:center; justify-content:center;">
+                <div style="width:74px; height:74px; border-radius:50%; background:#005293; display:flex; flex-direction:column; align-items:center; justify-content:center;"><span style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700;">68%</span><span style="font-size:10px; color:#BFD5E6;">redo</span></div>
+              </div>
+              <div>
+                <div style="font-weight:700; font-size:17px; margin-bottom:4px;">Din readiness</div>
+                <p style="margin:0; font-size:13px; color:#BFD5E6; line-height:1.5;">Baserat på dina senaste svar. Sikta på 75%+ innan provdagen.</p>
+              </div>
+            </div>
+
+            <!-- exam countdown -->
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:16px 18px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:12px;"><span style="font-size:22px;">📅</span><div><div style="font-weight:700; font-size:15px;">Provdagen närmar sig</div><div style="font-size:12px; color:#7A8595;">15 aug 2026</div></div></div>
+              <div style="text-align:right;"><div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:#005293; line-height:1;">40</div><div style="font-size:11px; color:#7A8595;">dagar kvar</div></div>
+            </div>
+
+            <!-- primary CTA -->
+            <button class="cta" onClick="{{ goPractice }}" style="width:100%; padding:17px; border-radius:14px; font-size:16px; margin-bottom:12px; display:flex; align-items:center; justify-content:center; gap:8px;">Fortsätt träna →</button>
+
+            <div style="display:flex; gap:12px; margin-bottom:24px;">
+              <button class="ghost" onClick="{{ goExamIntro }}" style="flex:1; padding:14px; border-radius:13px; font-size:14px;">Provsimulator</button>
+              <button class="ghost" onClick="{{ goStats }}" style="flex:1; padding:14px; border-radius:13px; font-size:14px;">Min statistik</button>
+            </div>
+
+            <!-- topics -->
+            <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; margin-bottom:12px;">Ämnen</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div onClick="{{ goPractice }}" class="opt" style="background:#fff; border:1px solid #E5E9EE; border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:14px;">
+                <span style="font-size:20px;">🏛️</span>
+                <div style="flex:1;"><div style="font-weight:600; font-size:15px;">Demokrati &amp; grundlagar</div><div style="height:6px; background:#EEF1F4; border-radius:99px; margin-top:7px; overflow:hidden;"><div class="barfill" style="width:82%; height:100%; background:#16A34A; border-radius:99px;"></div></div></div>
+                <span style="font-size:13px; font-weight:700; color:#16A34A;">82%</span>
+              </div>
+              <div onClick="{{ goPractice }}" class="opt" style="background:#fff; border:1px solid #E5E9EE; border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:14px;">
+                <span style="font-size:20px;">⚖️</span>
+                <div style="flex:1;"><div style="font-weight:600; font-size:15px;">Rättigheter &amp; skyldigheter</div><div style="height:6px; background:#EEF1F4; border-radius:99px; margin-top:7px; overflow:hidden;"><div class="barfill" style="width:64%; height:100%; background:#005293; border-radius:99px;"></div></div></div>
+                <span style="font-size:13px; font-weight:700; color:#005293;">64%</span>
+              </div>
+              <div onClick="{{ goPractice }}" class="opt" style="background:#fff; border:1px solid #F0D8A8; border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:14px;">
+                <span style="font-size:20px;">💼</span>
+                <div style="flex:1;"><div style="font-weight:600; font-size:15px;">Arbete &amp; ekonomi <span style="font-size:11px; background:#FDF3E7; color:#B67A1E; padding:2px 7px; border-radius:6px; margin-left:4px; font-weight:600;">svag</span></div><div style="height:6px; background:#EEF1F4; border-radius:99px; margin-top:7px; overflow:hidden;"><div class="barfill" style="width:38%; height:100%; background:#E0A82E; border-radius:99px;"></div></div></div>
+                <span style="font-size:13px; font-weight:700; color:#B67A1E;">38%</span>
+              </div>
+              <div onClick="{{ goPractice }}" class="opt" style="background:#fff; border:1px solid #E5E9EE; border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:14px;">
+                <span style="font-size:20px;">🏥</span>
+                <div style="flex:1;"><div style="font-weight:600; font-size:15px;">Hälsa &amp; vardagsliv</div><div style="height:6px; background:#EEF1F4; border-radius:99px; margin-top:7px; overflow:hidden;"><div class="barfill" style="width:71%; height:100%; background:#005293; border-radius:99px;"></div></div></div>
+                <span style="font-size:13px; font-weight:700; color:#005293;">71%</span>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ===== PRACTICE / QUIZ ===== -->
+        <sc-if value="{{ isPractice }}" hint-placeholder-val="{{ false }}">
+          <div class="scr" style="padding:18px 20px 30px;">
+            <!-- progress -->
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+              <button class="ghost" onClick="{{ goHome }}" style="width:36px; height:36px; border-radius:10px; padding:0; font-size:16px; flex-shrink:0;">←</button>
+              <div style="flex:1; height:8px; background:#EEF1F4; border-radius:99px; overflow:hidden;"><div class="barfill" style="width:{{ qPct }}; height:100%; background:#005293; border-radius:99px;"></div></div>
+              <span style="font-size:13px; font-weight:700; color:#56616E; white-space:nowrap;">{{ qNum }}/10</span>
+            </div>
+
+            <!-- language toggle -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+              <span style="font-size:12px; color:#7A8595; font-weight:600;">Demokrati &amp; grundlagar</span>
+              <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; background:#EAF1F8; color:#005293; padding:5px 10px; border-radius:999px; font-weight:600;">🌐 عربى ▾</span>
+            </div>
+
+            <!-- question -->
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; line-height:1.35; margin-bottom:10px;">{{ qText }}</div>
+            <div dir="rtl" lang="ar" style="font-family:'Noto Naskh Arabic',serif; font-size:18px; color:#56616E; background:#EAF1F8; border-radius:12px; padding:12px 15px; margin-bottom:20px; line-height:1.7;">{{ qTextAr }}</div>
+
+            <!-- options -->
+            <div style="display:flex; flex-direction:column; gap:11px;">
+              <sc-for list="{{ options }}" as="opt" hint-placeholder-count="4">
+                <button class="opt" onClick="{{ opt.onClick }}" style="{{ opt.style }}">
+                  <span style="{{ opt.letterStyle }}">{{ opt.letter }}</span>
+                  <span style="flex:1; text-align:left; font-size:16px; font-weight:500;">{{ opt.label }}</span>
+                  <span style="{{ opt.markStyle }}">{{ opt.mark }}</span>
+                </button>
+              </sc-for>
+            </div>
+
+            <!-- explanation (after answer) -->
+            <sc-if value="{{ answered }}" hint-placeholder-val="{{ false }}">
+              <div class="scr" style="margin-top:18px; background:#EFFAF3; border:1px solid #BFE6CD; border-radius:14px; padding:16px;">
+                <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px; color:#16A34A; margin-bottom:8px;">{{ verdictIcon }} {{ verdictText }}</div>
+                <p style="margin:0 0 8px; font-size:14px; color:#374151; line-height:1.6;">{{ explain }}</p>
+                <p dir="rtl" lang="ar" style="margin:0; font-family:'Noto Naskh Arabic',serif; font-size:15px; color:#56616E; line-height:1.7;">{{ explainAr }}</p>
+              </div>
+              <button class="cta" onClick="{{ next }}" style="width:100%; padding:16px; border-radius:13px; font-size:16px; margin-top:14px;">{{ nextLabel }}</button>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- ===== EXAM INTRO ===== -->
+        <sc-if value="{{ isExamIntro }}" hint-placeholder-val="{{ false }}">
+          <div class="scr" style="padding:30px 22px;">
+            <button class="ghost" onClick="{{ goHome }}" style="width:36px; height:36px; border-radius:10px; padding:0; font-size:16px; margin-bottom:20px;">←</button>
+            <div style="width:64px; height:64px; border-radius:18px; background:#EAF1F8; display:flex; align-items:center; justify-content:center; font-size:30px; margin-bottom:18px;">⏱️</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px;">Provsimulator</div>
+            <p style="margin:0 0 22px; color:#56616E; font-size:15px; line-height:1.6;">Riktiga provförhållanden: 60 frågor, 90 minuter, ingen feedback förrän du är klar. Precis som på provdagen.</p>
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:6px 18px; margin-bottom:14px;">
+              <div style="display:flex; justify-content:space-between; padding:13px 0; border-bottom:1px solid #EEF1F4;"><span style="color:#56616E; font-size:14px;">Antal frågor</span><span style="font-weight:700; font-size:14px;">60</span></div>
+              <div style="display:flex; justify-content:space-between; padding:13px 0; border-bottom:1px solid #EEF1F4;"><span style="color:#56616E; font-size:14px;">Tidsgräns</span><span style="font-weight:700; font-size:14px;">90 minuter</span></div>
+              <div style="display:flex; justify-content:space-between; padding:13px 0; border-bottom:1px solid #EEF1F4;"><span style="color:#56616E; font-size:14px;">Godkänt (danska ref.)</span><span style="font-weight:700; font-size:14px;">~72%</span></div>
+              <div style="display:flex; justify-content:space-between; padding:13px 0;"><span style="color:#56616E; font-size:14px;">Översättning</span><span style="font-weight:700; font-size:14px; color:#005293;">På · عربى</span></div>
+            </div>
+            <div style="background:#FDF3E7; border-radius:12px; padding:13px 15px; font-size:13px; color:#8A6420; line-height:1.5; margin-bottom:20px;">⚠️ Du kan inte pausa. Se till att du har 90 minuter ostört.</div>
+            <button class="cta" onClick="{{ goResult }}" style="width:100%; padding:17px; border-radius:14px; font-size:16px;">Starta provet</button>
+          </div>
+        </sc-if>
+
+        <!-- ===== RESULT ===== -->
+        <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+          <div class="scr" style="padding:30px 22px;">
+            <div style="text-align:center; margin-bottom:24px;">
+              <div style="width:120px; height:120px; margin:0 auto 16px; border-radius:50%; background:conic-gradient(#16A34A 0turn 0.78turn, #EEF1F4 0.78turn 1turn); display:flex; align-items:center; justify-content:center;">
+                <div style="width:96px; height:96px; border-radius:50%; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center;"><span style="font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; color:#16A34A;">78%</span><span style="font-size:11px; color:#7A8595;">47/60 rätt</span></div>
+              </div>
+              <div style="display:inline-flex; align-items:center; gap:7px; background:#EFFAF3; color:#16A34A; font-weight:700; font-size:14px; padding:7px 16px; border-radius:999px;">✓ Godkänt-nivå</div>
+              <p style="margin:12px 0 0; color:#56616E; font-size:14px; line-height:1.5;">Snyggt! Du ligger över godkäntgränsen. Fortsätt så här fram till provdagen.</p>
+            </div>
+
+            <!-- breakdown -->
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:18px; margin-bottom:14px;">
+              <div style="font-weight:700; font-size:15px; margin-bottom:14px;">Per ämne</div>
+              <div style="display:flex; flex-direction:column; gap:13px;">
+                <div><div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px;"><span style="color:#374151;">Demokrati &amp; grundlagar</span><span style="font-weight:700; color:#16A34A;">90%</span></div><div style="height:6px; background:#EEF1F4; border-radius:99px; overflow:hidden;"><div class="barfill" style="width:90%; height:100%; background:#16A34A;"></div></div></div>
+                <div><div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px;"><span style="color:#374151;">Rättigheter &amp; skyldigheter</span><span style="font-weight:700; color:#005293;">75%</span></div><div style="height:6px; background:#EEF1F4; border-radius:99px; overflow:hidden;"><div class="barfill" style="width:75%; height:100%; background:#005293;"></div></div></div>
+                <div><div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px;"><span style="color:#374151;">Arbete &amp; ekonomi</span><span style="font-weight:700; color:#B67A1E;">52%</span></div><div style="height:6px; background:#EEF1F4; border-radius:99px; overflow:hidden;"><div class="barfill" style="width:52%; height:100%; background:#E0A82E;"></div></div></div>
+              </div>
+            </div>
+
+            <button class="cta" onClick="{{ goPractice }}" style="width:100%; padding:16px; border-radius:13px; font-size:15px; margin-bottom:10px;">Träna på dina svaga ämnen</button>
+            <button class="ghost" onClick="{{ goHome }}" style="width:100%; padding:15px; border-radius:13px; font-size:15px;">Till dashboard</button>
+          </div>
+        </sc-if>
+
+        <!-- ===== STATS ===== -->
+        <sc-if value="{{ isStats }}" hint-placeholder-val="{{ false }}">
+          <div class="scr" style="padding:24px 20px 30px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; letter-spacing:-0.02em; margin-bottom:18px;">Din statistik</div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px;">
+              <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:18px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#005293;">412</div><div style="font-size:12px; color:#7A8595;">besvarade frågor</div></div>
+              <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:18px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#16A34A;">73%</div><div style="font-size:12px; color:#7A8595;">rätt i snitt</div></div>
+              <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:18px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700;">12</div><div style="font-size:12px; color:#7A8595;">dagars streak 🔥</div></div>
+              <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:18px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700;">6</div><div style="font-size:12px; color:#7A8595;">provsimulatorer</div></div>
+            </div>
+
+            <!-- readiness trend -->
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:20px; margin-bottom:18px;">
+              <div style="font-weight:700; font-size:15px; margin-bottom:2px;">Readiness över tid</div>
+              <div style="font-size:12px; color:#7A8595; margin-bottom:18px;">Senaste 6 veckorna</div>
+              <div style="display:flex; align-items:flex-end; justify-content:space-between; height:120px; gap:10px;">
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;"><div style="width:100%; height:42%; background:#CBD6E2; border-radius:6px 6px 0 0;"></div><span style="font-size:10px; color:#9AA3AE;">v1</span></div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;"><div style="width:100%; height:50%; background:#9FBBD3; border-radius:6px 6px 0 0;"></div><span style="font-size:10px; color:#9AA3AE;">v2</span></div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;"><div style="width:100%; height:48%; background:#9FBBD3; border-radius:6px 6px 0 0;"></div><span style="font-size:10px; color:#9AA3AE;">v3</span></div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;"><div style="width:100%; height:62%; background:#7FA6C9; border-radius:6px 6px 0 0;"></div><span style="font-size:10px; color:#9AA3AE;">v4</span></div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;"><div style="width:100%; height:64%; background:#7FA6C9; border-radius:6px 6px 0 0;"></div><span style="font-size:10px; color:#9AA3AE;">v5</span></div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px;"><div style="width:100%; height:78%; background:#005293; border-radius:6px 6px 0 0; position:relative;"><span style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:#005293;">68%</span></div><span style="font-size:10px; color:#9AA3AE;">nu</span></div>
+              </div>
+            </div>
+
+            <!-- weakest -->
+            <div style="background:#FDF3E7; border:1px solid #F0D8A8; border-radius:16px; padding:18px;">
+              <div style="font-weight:700; font-size:15px; margin-bottom:6px; color:#8A6420;">Fokusera här 🎯</div>
+              <p style="margin:0 0 14px; font-size:13px; color:#8A6420; line-height:1.5;">Ditt svagaste ämne är <strong>Arbete &amp; ekonomi</strong> (38%). Störst poäng att hämta här.</p>
+              <button class="cta" onClick="{{ goPractice }}" style="width:100%; padding:13px; border-radius:11px; font-size:14px;">Träna Arbete &amp; ekonomi</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ===== ACCOUNT ===== -->
+        <sc-if value="{{ isAccount }}" hint-placeholder-val="{{ false }}">
+          <div class="scr" style="padding:24px 20px 30px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; letter-spacing:-0.02em; margin-bottom:18px;">Mitt konto</div>
+
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:20px; display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+              <span style="width:52px; height:52px; border-radius:50%; background:#005293; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:20px;">A</span>
+              <div style="flex:1;"><div style="font-weight:700; font-size:16px;">Amir Hassan</div><div style="font-size:13px; color:#7A8595; word-break:break-all;">amir.hassan@exempel.se</div></div>
+            </div>
+
+            <!-- plan -->
+            <div style="background:#005293; color:#fff; border-radius:16px; padding:18px 20px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between;">
+              <div><div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:15px;">Full tillgång <span style="background:#FECC02; color:#005293; font-size:11px; padding:2px 8px; border-radius:6px;">Aktiv</span></div><div style="font-size:12px; color:#BFD5E6; margin-top:3px;">Betald 6 jul 2026 · gäller tills du klarat provet</div></div>
+              <span style="font-size:24px;">✓</span>
+            </div>
+
+            <!-- settings list -->
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; overflow:hidden; margin-bottom:16px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:15px 18px; border-bottom:1px solid #EEF1F4;"><span style="display:flex; align-items:center; gap:12px; font-size:15px;">🌐 Översättningsspråk</span><span style="font-size:14px; color:#7A8595;">عربى ›</span></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:15px 18px; border-bottom:1px solid #EEF1F4;"><span style="display:flex; align-items:center; gap:12px; font-size:15px;">🔔 Påminnelser</span><span style="width:42px; height:24px; background:#16A34A; border-radius:99px; position:relative;"><span style="position:absolute; top:2px; right:2px; width:20px; height:20px; background:#fff; border-radius:50%;"></span></span></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:15px 18px; border-bottom:1px solid #EEF1F4;"><span style="display:flex; align-items:center; gap:12px; font-size:15px;">📅 Provdatum</span><span style="font-size:14px; color:#7A8595;">15 aug 2026 ›</span></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:15px 18px;"><span style="display:flex; align-items:center; gap:12px; font-size:15px;">🧾 Kvitto &amp; betalning</span><span style="font-size:14px; color:#7A8595;">›</span></div>
+            </div>
+
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; overflow:hidden; margin-bottom:20px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:15px 18px; border-bottom:1px solid #EEF1F4;"><span style="display:flex; align-items:center; gap:12px; font-size:15px;">❓ Hjälp &amp; FAQ</span><span style="font-size:14px; color:#7A8595;">›</span></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:15px 18px;"><span style="display:flex; align-items:center; gap:12px; font-size:15px; color:#C24A4A;">Logga ut</span><span style="font-size:14px; color:#C24A4A;">›</span></div>
+            </div>
+
+            <p style="font-size:11px; color:#9AA3AE; line-height:1.5; text-align:center; margin:0;">CitizenPrep är en oberoende studietjänst och inte en myndighet. Vi garanterar inte provresultat.</p>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <!-- BOTTOM TAB BAR -->
+      <div style="display:flex; background:#fff; border-top:1px solid #EEF1F4; padding:6px 8px 10px; flex-shrink:0;">
+        <button class="navtab" onClick="{{ goHome }}"><span style="font-size:20px; filter:{{ homeF }};">🏠</span><span style="font-size:10px; font-weight:600; color:{{ homeC }};">Hem</span></button>
+        <button class="navtab" onClick="{{ goPractice }}"><span style="font-size:20px; filter:{{ pracF }};">✏️</span><span style="font-size:10px; font-weight:600; color:{{ pracC }};">Träna</span></button>
+        <button class="navtab" onClick="{{ goExamIntro }}"><span style="font-size:20px; filter:{{ examF }};">⏱️</span><span style="font-size:10px; font-weight:600; color:{{ examC }};">Prov</span></button>
+        <button class="navtab" onClick="{{ goStats }}"><span style="font-size:20px; filter:{{ statF }};">📊</span><span style="font-size:10px; font-weight:600; color:{{ statC }};">Statistik</span></button>
+        <button class="navtab" onClick="{{ goAccount }}"><span style="font-size:20px; filter:{{ accF }};">👤</span><span style="font-size:10px; font-weight:600; color:{{ accC }};">Konto</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:13px; color:#7A8595; text-align:center; max-width:440px;">Träningskvizet är interaktivt — välj ett svar för att se rätt/fel + förklaring på svenska och arabiska.</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 640, &quot;height&quot;: 1120 } }">
+class Component extends DCLogic {
+  state = { screen: 'home', qIndex: 0, picked: null };
+
+  QUESTIONS = [
+    {
+      sv: 'Vilken är Sveriges viktigaste grundlag?',
+      ar: 'ما هو أهمّ قانون أساسي في السويد؟',
+      opts: ['Regeringsformen', 'Kommunallagen', 'Strafflagen', 'Tryckfrihetsförordningen'],
+      correct: 0,
+      explSv: 'Regeringsformen är den mest grundläggande av Sveriges fyra grundlagar.',
+      explAr: 'قانون الحُكم (Regeringsformen) هو أهمّ القوانين الأساسية الأربعة في السويد.'
+    },
+    {
+      sv: 'Hur ofta hålls det val till riksdagen i Sverige?',
+      ar: 'كم مرّة تُجرى انتخابات البرلمان في السويد؟',
+      opts: ['Vartannat år', 'Vart fjärde år', 'Vart femte år', 'Varje år'],
+      correct: 1,
+      explSv: 'Val till riksdagen hålls vart fjärde år, den andra söndagen i september.',
+      explAr: 'تُجرى انتخابات البرلمان كل أربع سنوات، في ثاني أحد من سبتمبر.'
+    },
+    {
+      sv: 'Vem är Sveriges statschef?',
+      ar: 'من هو رئيس الدولة في السويد؟',
+      opts: ['Statsministern', 'Kungen', 'Riksdagens talman', 'Justitiekanslern'],
+      correct: 1,
+      explSv: 'Sverige är en monarki — kungen är statschef, men har en ceremoniell roll utan politisk makt.',
+      explAr: 'السويد مملكة — الملك هو رئيس الدولة، لكن دوره رمزي بلا سلطة سياسية.'
+    }
+  ];
+
+  set(screen) { this.setState({ screen }); }
+
+  renderVals() {
+    const s = this.state.screen;
+    const total = this.QUESTIONS.length;
+    const q = this.QUESTIONS[this.state.qIndex];
+    const picked = this.state.picked;
+    const answered = picked !== null;
+
+    const options = q.opts.map((label, i) => {
+      const isCorrect = i === q.correct;
+      const isPicked = i === picked;
+      let border = '#E5E9EE', bg = '#fff', letterBg = '#F3F5F8', letterCol = '#56616E', mark = '', markCol = 'transparent';
+      if (answered) {
+        if (isCorrect) { border = '#16A34A'; bg = '#EFFAF3'; letterBg = '#16A34A'; letterCol = '#fff'; mark = '✓'; markCol = '#16A34A'; }
+        else if (isPicked) { border = '#DC6A6A'; bg = '#FDF0F0'; letterBg = '#DC6A6A'; letterCol = '#fff'; mark = '✕'; markCol = '#DC6A6A'; }
+      }
+      return {
+        letter: String.fromCharCode(65 + i),
+        label,
+        mark,
+        onClick: answered ? (() => {}) : (() => this.setState({ picked: i })),
+        style: 'display:flex; align-items:center; gap:13px; width:100%; border:1.5px solid ' + border + '; background:' + bg + '; border-radius:13px; padding:14px 16px; font-family:\'Hanken Grotesk\',sans-serif;',
+        letterStyle: 'width:30px; height:30px; flex-shrink:0; border-radius:9px; background:' + letterBg + '; color:' + letterCol + '; font-weight:700; display:flex; align-items:center; justify-content:center;',
+        markStyle: 'color:' + markCol + '; font-weight:700; font-size:16px;'
+      };
+    });
+
+    const correct = answered && picked === q.correct;
+    const last = this.state.qIndex >= total - 1;
+
+    const navC = (on) => on ? '#005293' : '#9AA3AE';
+    const navF = (on) => on ? 'none' : 'grayscale(1) opacity(0.5)';
+
+    return {
+      streak: '12 dagar',
+      isHome: s === 'home', isPractice: s === 'practice', isExamIntro: s === 'examintro',
+      isResult: s === 'result', isStats: s === 'stats', isAccount: s === 'account',
+
+      // quiz
+      qNum: this.state.qIndex + 1,
+      qPct: Math.round(((this.state.qIndex + (answered ? 1 : 0)) / 10) * 100) + '%',
+      qText: q.sv, qTextAr: q.ar,
+      options,
+      answered,
+      verdictIcon: correct ? '✓' : 'ℹ️',
+      verdictText: correct ? 'Rätt!' : 'Inte helt rätt',
+      explain: q.explSv, explainAr: q.explAr,
+      nextLabel: last ? 'Se resultat' : 'Nästa fråga →',
+      next: () => {
+        if (last) { this.setState({ screen: 'result', qIndex: 0, picked: null }); }
+        else { this.setState({ qIndex: this.state.qIndex + 1, picked: null }); }
+      },
+
+      // nav
+      goHome: () => this.set('home'),
+      goPractice: () => this.setState({ screen: 'practice', qIndex: 0, picked: null }),
+      goExamIntro: () => this.set('examintro'),
+      goResult: () => this.set('result'),
+      goStats: () => this.set('stats'),
+      goAccount: () => this.set('account'),
+
+      homeC: navC(s === 'home'), homeF: navF(s === 'home'),
+      pracC: navC(s === 'practice'), pracF: navF(s === 'practice'),
+      examC: navC(s === 'examintro' || s === 'result'), examF: navF(s === 'examintro' || s === 'result'),
+      statC: navC(s === 'stats'), statF: navF(s === 'stats'),
+      accC: navC(s === 'account'), accF: navF(s === 'account'),
+    };
+  }
+}
+</script>
+</body>
+</html>

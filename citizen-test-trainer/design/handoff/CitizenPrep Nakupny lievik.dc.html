@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #E7EAEE; color: #0F1722; font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+  .cta { background:#FECC02; color:#005293; font-weight:700; transition: filter .15s, transform .05s; cursor:pointer; border:none; }
+  .cta:hover { filter: brightness(0.94); }
+  .cta:active { transform: translateY(1px); }
+  .ghost { background:#fff; color:#005293; border:1.5px solid #CBD9E6; font-weight:600; cursor:pointer; transition:background .15s; }
+  .ghost:hover { background:#EAF1F8; }
+  .fld { width:100%; border:1.5px solid #D8DEE6; border-radius:11px; padding:13px 14px; font-size:15px; font-family:'Hanken Grotesk',sans-serif; color:#0F1722; outline:none; transition:border-color .15s; background:#fff; }
+  .fld:focus { border-color:#005293; }
+  .chip { cursor:pointer; border:1px solid #CBD3DC; background:#fff; color:#56616E; padding:8px 14px; border-radius:999px; font-size:13px; font-weight:600; font-family:'Hanken Grotesk',sans-serif; transition:all .12s; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</helmet>
+<div style="min-height:100vh; padding:40px 24px 64px; display:flex; flex-direction:column; align-items:center; gap:26px;">
+
+  <div style="text-align:center; max-width:560px;">
+    <div style="display:inline-flex; align-items:center; gap:8px; background:#0F1722; color:#fff; font-size:12px; font-weight:600; padding:6px 13px; border-radius:999px; margin-bottom:14px;">🎯 Hit landar den betalda annonsen (Full tillgång)</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-size:24px; letter-spacing:-0.02em; margin:0 0 6px; font-weight:700;">Nákupný lievik — C1–C4</h1>
+    <p style="margin:0; color:#56616E; font-size:14px; line-height:1.5;">Klikaj cez tok, alebo skoč na ľubovoľnú obrazovku dole. Jediná akčná farba = žltá.</p>
+  </div>
+
+  <!-- review chips -->
+  <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
+    <button class="chip" onClick="{{ goBuy }}">C1 · Kassa</button>
+    <button class="chip" onClick="{{ goSuccess }}">C2 · Klart</button>
+    <button class="chip" onClick="{{ goCancel }}">C3 · Avbrutet</button>
+    <button class="chip" onClick="{{ goLogin }}">C4 · Logga in</button>
+  </div>
+
+  <!-- PHONE -->
+  <div style="width:400px; max-width:100%; background:#0F1722; border-radius:46px; padding:12px; box-shadow:0 40px 90px -40px rgba(15,23,34,0.6);">
+    <div style="background:#F6F8FA; border-radius:35px; overflow:hidden; position:relative; height:820px; display:flex; flex-direction:column;">
+      <!-- status notch -->
+      <div style="height:36px; display:flex; align-items:center; justify-content:center; position:relative; background:#fff; flex-shrink:0;"><div style="width:130px; height:26px; background:#0F1722; border-radius:0 0 18px 18px; position:absolute; top:0;"></div></div>
+
+      <!-- app bar -->
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 20px; background:#fff; border-bottom:1px solid #EEF1F4; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:8px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px;"><span style="width:24px;height:24px;border-radius:7px;background:#005293;color:#FECC02;display:flex;align-items:center;justify-content:center;font-size:13px;">C</span>CitizenPrep</div>
+        <div style="font-size:13px; color:#7A8595; display:flex; align-items:center; gap:5px;">🔒 Säker betalning</div>
+      </div>
+
+      <!-- SCROLL AREA -->
+      <div style="flex:1; overflow-y:auto;">
+
+        <!-- C1 CHECKOUT -->
+        <sc-if value="{{ isBuy }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:22px 20px 28px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; letter-spacing:-0.02em; margin-bottom:4px;">Slutför ditt köp</div>
+            <p style="margin:0 0 20px; color:#56616E; font-size:14px;">Ett steg kvar till full tillgång.</p>
+
+            <!-- order summary -->
+            <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:18px; margin-bottom:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+                <div>
+                  <div style="font-weight:700; font-size:16px;">Full tillgång</div>
+                  <div style="font-size:12px; color:#7A8595;">Engångsbetalning · tills du klarat provet</div>
+                </div>
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:22px;">299 kr</div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:7px; font-size:13px; color:#43617C; border-top:1px solid #EEF1F4; padding-top:12px;">
+                <span>✓ Alla frågor + provsimulator med timer</span>
+                <span>✓ Statistik &amp; svagaste ämnen</span>
+                <span>✓ Alla språk &amp; full RTL</span>
+              </div>
+            </div>
+
+            <!-- email -->
+            <label style="display:block; font-size:13px; font-weight:600; color:#374151; margin-bottom:7px;">Din e-post</label>
+            <input class="fld" type="email" placeholder="namn@exempel.se" value="{{ email }}" onInput="{{ onEmail }}">
+            <div style="font-size:12px; color:#7A8595; margin:7px 0 20px;">Hit skickar vi kvitto och din inloggningslänk.</div>
+
+            <!-- payment method -->
+            <div style="font-size:13px; font-weight:600; color:#374151; margin-bottom:9px;">Betalsätt</div>
+            <div style="display:flex; gap:8px; margin-bottom:16px;">
+              <button onClick="{{ pickCard }}" style="{{ tabCard }}">💳 Kort</button>
+              <button onClick="{{ pickSwish }}" style="{{ tabSwish }}">📱 Swish</button>
+              <button onClick="{{ pickKlarna }}" style="{{ tabKlarna }}">Klarna</button>
+            </div>
+
+            <sc-if value="{{ isCard }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
+                <input class="fld" placeholder="Kortnummer" inputmode="numeric">
+                <div style="display:flex; gap:10px;"><input class="fld" placeholder="MM / ÅÅ" style="flex:1;"><input class="fld" placeholder="CVC" style="flex:1;"></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isSwish }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-bottom:20px;"><input class="fld" placeholder="Mobilnummer (Swish)" inputmode="tel"></div>
+            </sc-if>
+            <sc-if value="{{ isKlarna }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#FEF5F8; border:1px solid #F6D9E4; border-radius:12px; padding:14px; font-size:13px; color:#9B3B63; margin-bottom:20px; line-height:1.5;">Du slutför betalningen hos Klarna i nästa steg. Betala nu eller dela upp.</div>
+            </sc-if>
+
+            <button class="cta" onClick="{{ pay }}" style="width:100%; padding:16px; border-radius:13px; font-size:16px;">Betala 299 kr</button>
+
+            <div style="display:flex; align-items:center; justify-content:center; gap:14px; margin-top:16px; font-size:12px; color:#7A8595;">
+              <span>🔒 Krypterad</span><span>·</span><span>14 dagars ångerrätt</span><span>·</span><span>Ingen förnyelse</span>
+            </div>
+            <p style="font-size:11px; color:#9AA3AE; line-height:1.5; margin:16px 0 0; text-align:center;">CitizenPrep är en oberoende studietjänst och inte en myndighet. Genom att betala godkänner du våra villkor.</p>
+          </div>
+        </sc-if>
+
+        <!-- PROCESSING -->
+        <sc-if value="{{ isProcessing }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:120px 30px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+            <div style="width:52px; height:52px; border-radius:50%; border:4px solid #E5E9EE; border-top-color:#005293; animation:spin .8s linear infinite; margin-bottom:24px;"></div>
+            <div style="font-weight:700; font-size:18px; margin-bottom:6px;">Behandlar betalning…</div>
+            <div style="color:#7A8595; font-size:14px;">Stäng inte fönstret.</div>
+          </div>
+        </sc-if>
+
+        <!-- C2 SUCCESS -->
+        <sc-if value="{{ isSuccess }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:40px 24px 30px; text-align:center;">
+            <div style="width:76px; height:76px; border-radius:50%; background:#EFFAF3; display:flex; align-items:center; justify-content:center; margin:8px auto 22px; font-size:38px; color:#16A34A;">✓</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px;">Betalningen lyckades!</div>
+            <p style="margin:0 0 24px; color:#56616E; font-size:15px; line-height:1.55;">Du har nu <strong style="color:#0F1722;">full tillgång</strong> till alla frågor, provsimulatorn och statistiken.</p>
+
+            <div style="background:#EAF1F8; border-radius:16px; padding:18px 20px; text-align:left; margin-bottom:22px;">
+              <div style="display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; color:#005293; margin-bottom:8px;">✉️ Kolla din inkorg</div>
+              <p style="margin:0; font-size:14px; color:#43617C; line-height:1.55;">Vi har skickat en inloggningslänk till <strong style="color:#0F1722; word-break:break-all;">{{ emailDisplay }}</strong>. Klicka på länken för att logga in — inget lösenord behövs.</p>
+            </div>
+
+            <button class="cta" onClick="{{ goApp }}" style="width:100%; padding:16px; border-radius:13px; font-size:16px; margin-bottom:12px;">Börja plugga nu →</button>
+            <div style="font-size:13px; color:#7A8595;">Ett kvitto är på väg till din e-post.</div>
+          </div>
+        </sc-if>
+
+        <!-- app placeholder after success -->
+        <sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:30px 22px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; margin-bottom:4px;">Välkommen! 🎉</div>
+            <p style="margin:0 0 20px; color:#56616E; font-size:14px;">Full tillgång aktiv. Dags att öva.</p>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div style="background:#005293; color:#fff; border-radius:16px; padding:20px;"><div style="font-weight:700; font-size:17px; margin-bottom:4px;">Öva fritt</div><div style="font-size:13px; color:#BFD5E6;">Alla 60+ frågor med förklaring på ditt språk</div></div>
+              <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:20px;"><div style="font-weight:700; font-size:17px; margin-bottom:4px;">Provsimulator</div><div style="font-size:13px; color:#7A8595;">90 min · 60 frågor · som provdagen</div></div>
+              <div style="background:#fff; border:1px solid #E5E9EE; border-radius:16px; padding:20px;"><div style="font-weight:700; font-size:17px; margin-bottom:4px;">Din statistik</div><div style="font-size:13px; color:#7A8595;">Readiness &amp; svagaste ämnen</div></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- C3 CANCEL -->
+        <sc-if value="{{ isCancel }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:40px 24px 30px; text-align:center;">
+            <div style="width:76px; height:76px; border-radius:50%; background:#FDF3E7; display:flex; align-items:center; justify-content:center; margin:8px auto 22px; font-size:34px;">🤔</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px;">Betalningen avbröts</div>
+            <p style="margin:0 0 26px; color:#56616E; font-size:15px; line-height:1.55;">Ingen fara — inget har debiterats. Du kan fortsätta plugga gratis eller försöka igen när du vill.</p>
+            <button class="cta" onClick="{{ goBuy }}" style="width:100%; padding:16px; border-radius:13px; font-size:16px; margin-bottom:12px;">Försök igen</button>
+            <button class="ghost" onClick="{{ goApp }}" style="width:100%; padding:15px; border-radius:13px; font-size:15px;">Fortsätt gratis</button>
+            <p style="margin:22px 0 0; font-size:13px; color:#7A8595; line-height:1.5;">Osäker? Provet kostar mycket mer att göra om. Träning är den billiga försäkringen.</p>
+          </div>
+        </sc-if>
+
+        <!-- C4 LOGIN -->
+        <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:40px 24px 30px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:700; letter-spacing:-0.02em; margin-bottom:6px;">Logga in</div>
+            <p style="margin:0 0 24px; color:#56616E; font-size:15px; line-height:1.55;">Skriv din e-post så skickar vi en inloggningslänk. Inget lösenord att komma ihåg.</p>
+            <label style="display:block; font-size:13px; font-weight:600; color:#374151; margin-bottom:7px;">Din e-post</label>
+            <input class="fld" type="email" placeholder="namn@exempel.se" value="{{ email }}" onInput="{{ onEmail }}">
+            <button class="cta" onClick="{{ goLoginSent }}" style="width:100%; padding:16px; border-radius:13px; font-size:16px; margin-top:18px;">Skicka inloggningslänk</button>
+            <p style="margin:20px 0 0; font-size:13px; color:#7A8595; text-align:center;">Har du inte köpt än? <span style="color:#005293; font-weight:600;">Se priser</span></p>
+          </div>
+        </sc-if>
+
+        <!-- C4b LOGIN SENT -->
+        <sc-if value="{{ isLoginSent }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:48px 24px 30px; text-align:center;">
+            <div style="width:76px; height:76px; border-radius:50%; background:#EAF1F8; display:flex; align-items:center; justify-content:center; margin:8px auto 22px; font-size:34px;">✉️</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px;">Kolla din inkorg</div>
+            <p style="margin:0 0 24px; color:#56616E; font-size:15px; line-height:1.55;">Vi har skickat en inloggningslänk till <strong style="color:#0F1722; word-break:break-all;">{{ emailDisplay }}</strong>. Länken gäller i 30 minuter.</p>
+            <div style="background:#F6F8FA; border:1px solid #E5E9EE; border-radius:14px; padding:16px; font-size:13px; color:#7A8595; line-height:1.5; margin-bottom:20px;">Hittar du inget mejl? Kolla skräpposten eller skicka länken igen.</div>
+            <button class="ghost" onClick="{{ goLogin }}" style="width:100%; padding:15px; border-radius:13px; font-size:15px;">Skicka igen</button>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:13px; color:#7A8595; text-align:center; max-width:420px;">C1 kassa → betalning → C2 klart (magic-link) · C3 avbrutet (räddning) · C4 inloggning för återvändande kund.</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 640, &quot;height&quot;: 1080 } }">
+class Component extends DCLogic {
+  state = { screen: 'buy', method: 'card', email: '' };
+
+  set(screen) { this.setState({ screen }); }
+
+  renderVals() {
+    const s = this.state.screen;
+    const m = this.state.method;
+    const tab = (active) => 'flex:1; cursor:pointer; padding:11px 8px; border-radius:11px; font-size:14px; font-weight:600; font-family:\'Hanken Grotesk\',sans-serif; transition:all .12s; border:1.5px solid ' +
+      (active ? '#005293; background:#EAF1F8; color:#005293;' : '#E5E9EE; background:#fff; color:#56616E;');
+    return {
+      isBuy: s === 'buy',
+      isProcessing: s === 'processing',
+      isSuccess: s === 'success',
+      isApp: s === 'app',
+      isCancel: s === 'cancel',
+      isLogin: s === 'login',
+      isLoginSent: s === 'loginsent',
+      isCard: m === 'card',
+      isSwish: m === 'swish',
+      isKlarna: m === 'klarna',
+      tabCard: tab(m === 'card'),
+      tabSwish: tab(m === 'swish'),
+      tabKlarna: tab(m === 'klarna'),
+      email: this.state.email,
+      emailDisplay: this.state.email && this.state.email.trim() ? this.state.email.trim() : 'din e-post',
+      onEmail: (e) => this.setState({ email: e.target.value }),
+      pickCard: () => this.setState({ method: 'card' }),
+      pickSwish: () => this.setState({ method: 'swish' }),
+      pickKlarna: () => this.setState({ method: 'klarna' }),
+      pay: () => { this.setState({ screen: 'processing' }); setTimeout(() => this.set('success'), 1500); },
+      goBuy: () => this.set('buy'),
+      goSuccess: () => this.set('success'),
+      goApp: () => this.set('app'),
+      goCancel: () => this.set('cancel'),
+      goLogin: () => this.set('login'),
+      goLoginSent: () => this.set('loginsent'),
+    };
+  }
+}
+</script>
+</body>
+</html>
