@@ -21,11 +21,13 @@ exclude_categories:
   - moto
 
 # Rozsah crawlu
-max_pages_per_category: 5      # koľko stránok listingu na kategóriu (~100 inzerátov)
+max_pages_per_category: 25     # POISTNÝ strop (~500 inzerátov); crawl sa
+                               # zvyčajne zastaví skôr podľa horizontu nižšie
+crawl_lookback_days: 3         # sťahuj strany, kým sú inzeráty novšie než X dní
 per_page: 20                   # inzerátov na stránku (Bazoš default)
-# Keď má niektorá kategória vyšší pohyb, zvýš hĺbku len jej (odkomentuj):
+# Keď má niektorá kategória extrémny pohyb, zvýš strop len jej (odkomentuj):
 # pages_per_category:
-#   deti: 10                   # ~200 inzerátov len pre Detský bazár
+#   deti: 40
 
 # Slušné správanie voči serveru
 request_delay_seconds: 1.5     # pauza medzi requestami

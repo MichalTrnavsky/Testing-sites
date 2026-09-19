@@ -218,6 +218,49 @@ def test_summarize_kociky():
           "del/deň:", s.deleted_per_day, "top:", s.top_products[0], ")")
 
 
+def test_crawl_lookback_stops_at_horizon():
+    from bazos_monitor.fetch import FetchResult
+    from bazos_monitor.crawl import _crawl_category
+    from bazos_monitor.categories import ALL_CATEGORIES
+    from bazos_monitor.config import Config
+
+    now = datetime.utcnow()
+    fresh = now.strftime("%-d.%-m. %Y")
+    old = (now - timedelta(days=40)).strftime("%-d.%-m. %Y")
+
+    def card(ad_id, d):
+        return (f'<div class="inzeraty"><div class="inzeratynadpis">'
+                f'<a href="/inzerat/{ad_id}/vec.php">Vec {ad_id}</a>'
+                f'<span>Pridané {d}</span></div>'
+                f'<div class="inzeratycena">Cena 100 €</div></div>')
+
+    pages = {
+        0: "<html><body>" + "".join(card(1000 + i, fresh) for i in range(3)) + "</body></html>",
+        20: "<html><body>" + "".join(card(2000 + i, old) for i in range(3)) + "</body></html>",
+        40: "<html><body>" + "".join(card(3000 + i, old) for i in range(3)) + "</body></html>",
+    }
+
+    class FakeFetcher:
+        def __init__(self): self.fetched = []
+        def get(self, url):
+            off = 0
+            import re as _re
+            m = _re.search(r"/(\d+)/$", url)
+            if m: off = int(m.group(1))
+            self.fetched.append(off)
+            return FetchResult(url, 200, pages.get(off, "<html></html>"), ok=True)
+
+    store = Store(os.path.join(tempfile.mkdtemp(), "c.db"))
+    cfg = Config(crawl_lookback_days=3, max_pages_per_category=25)
+    ff = FakeFetcher()
+    _crawl_category(ALL_CATEGORIES["zahrada"], cfg, ff, store, log=lambda *a: None)
+    # malo by stiahnuť stranu 0 (fresh) a 1 (old -> za horizontom, stop), nie stranu 2
+    assert 0 in ff.fetched and 20 in ff.fetched, ff.fetched
+    assert 40 not in ff.fetched, f"nemalo ísť za horizont: {ff.fetched}"
+    store.close()
+    print("test_crawl_lookback_stops_at_horizon OK  (fetched offsets:", ff.fetched, ")")
+
+
 def test_prune():
     tmp = tempfile.mkdtemp()
     store = Store(os.path.join(tmp, "p.db"))
@@ -277,5 +320,6 @@ if __name__ == "__main__":
     test_arbitrage_ratan()
     test_summarize_kociky()
     test_freshness_filter()
+    test_crawl_lookback_stops_at_horizon()
     test_prune()
     print("\nVŠETKY TESTY PREŠLI")
