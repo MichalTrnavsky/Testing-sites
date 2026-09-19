@@ -92,6 +92,7 @@ def cmd_arbitrage(args) -> int:
             window_days=args.window,
             min_volume=args.min_volume,
             min_used_price=args.min_price,
+            max_used_price=(args.max_price if args.max_price and args.max_price > 0 else None),
             top=args.top,
         )
         print(format_arbitrage(stats, args.window))
@@ -147,6 +148,8 @@ def build_parser() -> argparse.ArgumentParser:
     pa.add_argument("--min-volume", type=int, default=5, help="min inzerátov na segment")
     pa.add_argument("--min-price", type=float, default=100.0,
                     help="min medián ceny použitého v € (default 100)")
+    pa.add_argument("--max-price", type=float, default=3000.0,
+                    help="max medián ceny použitého v € (default 3000; 0 = bez stropu)")
     pa.add_argument("--top", type=int, default=30, help="koľko riadkov vypísať")
     pa.add_argument("--csv", help="zapíš výsledok aj do CSV")
     pa.set_defaults(func=cmd_arbitrage)

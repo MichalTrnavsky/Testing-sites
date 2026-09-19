@@ -39,6 +39,11 @@ STOPWORDS = {
     "nepouzity", "nepouzite", "opotrebovany", "opotrebovane", "zachovaly",
     "zachovala", "funkcny", "funkcna", "bazar", "servis", "novucky", "novucka",
     "nerozbaleny", "zabaleny", "starsi", "poskodeny", "poskodena",
+    # generický šum / skratky / fragmenty (nie sú to produkty)
+    "rok", "roku", "rokov", "pro", "size", "stav", "priam", "priamo",
+    "dovoz", "cela", "cely", "cele", "spz", "cln", "kompletny", "komplet",
+    "lacno", "akcia", "zlava", "dohoda", "moznost", "kvalitny", "kvalita",
+    "znacka", "znackovy", "krasny", "krasna", "male", "velke", "velky", "vela",
 }
 
 
@@ -224,14 +229,14 @@ def format_report(stats: list[SegmentStat], window_days: int) -> str:
     lines = [
         f"TOP dopyt segmenty za posledných {window_days} dní",
         "=" * 64,
-        f"{'kategória':<12}{'segment (kľúč)':<26}{'nové':>5}{'zmaz.':>6}{'život.dní':>10}{'skóre':>8}",
-        "-" * 67,
+        f"{'kategória':<13}{'segment (kľúč)':<26}{'nové':>5}{'zmaz.':>6}{'život.dní':>10}{'skóre':>8}",
+        "-" * 68,
     ]
     for s in stats:
         cat_label = ALL_CATEGORIES[s.category].label if s.category in ALL_CATEGORIES else s.category
         life = "-" if s.median_lifespan_days is None else f"{s.median_lifespan_days:.1f}"
         lines.append(
-            f"{cat_label:<12}{s.keyword[:24]:<26}{s.new_count:>5}{s.deleted_count:>6}{life:>10}{s.demand_score:>8.1f}"
+            f"{cat_label[:12]:<13}{s.keyword[:24]:<26}{s.new_count:>5}{s.deleted_count:>6}{life:>10}{s.demand_score:>8.1f}"
         )
     lines.append("")
     lines.append(
@@ -267,12 +272,16 @@ def analyze_arbitrage(
     min_volume: int,
     min_used_price: float,
     top: int,
+    max_used_price: float | None = None,
 ) -> list[ArbitrageStat]:
     """Nájde segmenty s vysokým dopytom A vysokou cenou použitého tovaru.
 
     Skóre = dopyt (objem/životnosť) × hodnota (cena použitého) ÷ konkurencia
     (počet lacných nových ponúk). Vysoký dopyt + drahé použité + málo
     lacných nových = najlepší kandidát na dovoz nového tovaru.
+
+    ``max_used_price`` orezáva segmenty, kde je použité drahšie než rozumný
+    strop na dovoz (napr. traktory za 14000 € nie sú „dovoz z Číny").
     """
     now = datetime.utcnow()
     since = now - timedelta(days=window_days)
@@ -318,6 +327,8 @@ def analyze_arbitrage(
         used_med = median(used_prices[key]) if used_prices[key] else None
         if used_med is None or used_med < min_used_price:
             continue  # bez ceny alebo lacné => nezaujímavé na dovoz
+        if max_used_price is not None and used_med > max_used_price:
+            continue  # nad rozumný strop na dovoz (napr. stroje/traktory)
         new_med = median(new_prices[key]) if new_prices[key] else None
         life_list = lifespans[key]
         life_med = median(life_list) if life_list else None
@@ -360,16 +371,16 @@ def format_arbitrage(stats: list[ArbitrageStat], window_days: int) -> str:
         f"TOP arbitrážne segmenty za posledných {window_days} dní",
         "(dovoz nového tovaru → predaj za cenu použitého / pod miestne nové)",
         "=" * 78,
-        f"{'kategória':<11}{'segment':<22}{'ks':>4}{'život':>7}"
+        f"{'kategória':<13}{'segment':<22}{'ks':>4}{'život':>7}"
         f"{'použité€':>10}{'nové€':>8}{'lacná konk.':>12}{'skóre':>8}",
-        "-" * 82,
+        "-" * 84,
     ]
     for s in stats:
         cat_label = ALL_CATEGORIES[s.category].label if s.category in ALL_CATEGORIES else s.category
         life = "-" if s.median_lifespan_days is None else f"{s.median_lifespan_days:.1f}"
         newp = "-" if s.new_median_eur is None else f"{s.new_median_eur:.0f}"
         lines.append(
-            f"{cat_label[:10]:<11}{s.keyword[:20]:<22}{s.volume:>4}{life:>7}"
+            f"{cat_label[:12]:<13}{s.keyword[:20]:<22}{s.volume:>4}{life:>7}"
             f"{s.used_median_eur:>10.0f}{newp:>8}{s.cheap_new_competitors:>12}{s.arbitrage_score:>8.1f}"
         )
     lines += [

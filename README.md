@@ -130,8 +130,10 @@ zoznam kandidátov; posledný krok – „vyjde mi dovoz pod cenu použitého?" 
 tebe. Rovnako „retail nový" cena je iba aproximovaná z drahších nových
 inzerátov na Bazoši.
 
-Parametre: `--min-price` (min. cena použitého, default 100 €), `--min-volume`
-(min. počet inzerátov v segmente, default 5), `--window`, `--category`, `--csv`.
+Parametre: `--min-price` (min. cena použitého, default 100 €), `--max-price`
+(max. cena použitého, default 3000 €; nad ňou to už nie je „dovoz z Číny" –
+napr. traktory; `0` = bez stropu), `--min-volume` (min. počet inzerátov v
+segmente, default 5), `--window`, `--category`, `--csv`.
 
 Kategórie sa dajú prepnúť aj bez configu:
 
