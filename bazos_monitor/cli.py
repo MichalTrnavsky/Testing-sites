@@ -148,12 +148,12 @@ def cmd_export(args) -> int:
         summaries = []
         for c in cats:
             summaries.append(summarize(store, category=c.key, window_days=args.window,
-                                       top_products=12, max_age_days=age))
+                                       top_products=25, max_age_days=age))
             for sub, _cnt in subcats_with_data(store, c.key, args.window, age):
                 if sub == "(nezaradené)":
                     continue
                 summaries.append(summarize(store, category=c.key, window_days=args.window,
-                                           top_products=12, max_age_days=age,
+                                           top_products=25, max_age_days=age,
                                            subcategory=sub))
         # čerstvo zmazané (pravdepodobne predané) v rámci okna
         from datetime import timedelta
