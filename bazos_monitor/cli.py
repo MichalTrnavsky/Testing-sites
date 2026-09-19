@@ -74,6 +74,7 @@ def cmd_report(args) -> int:
             window_days=args.window,
             min_new=args.min_new,
             top=args.top,
+            max_age_days=(args.max_age if args.max_age and args.max_age > 0 else None),
         )
         print(format_report(stats, args.window))
         if args.csv:
@@ -95,6 +96,7 @@ def cmd_arbitrage(args) -> int:
             min_volume=args.min_volume,
             min_used_price=args.min_price,
             max_used_price=(args.max_price if args.max_price and args.max_price > 0 else None),
+            max_age_days=(args.max_age if args.max_age and args.max_age > 0 else None),
             top=args.top,
         )
         print(format_arbitrage(stats, args.window))
@@ -116,6 +118,7 @@ def cmd_zhrnutie(args) -> int:
             window_days=args.window,
             keyword=args.keyword,
             top_products=args.top,
+            max_age_days=(args.max_age if args.max_age and args.max_age > 0 else None),
         )
         print(format_summary(s))
     finally:
@@ -157,6 +160,8 @@ def build_parser() -> argparse.ArgumentParser:
     pr.add_argument("--category", help="obmedz na jednu kategóriu (napr. zahrada)")
     pr.add_argument("--window", type=int, default=30, help="okno v dňoch (default 30)")
     pr.add_argument("--min-new", type=int, default=3, help="min nových inzerátov na segment")
+    pr.add_argument("--max-age", type=float, default=21.0,
+                    help="ignoruj inzeráty staršie ako X dní (default 21; 0 = bez limitu)")
     pr.add_argument("--top", type=int, default=30, help="koľko riadkov vypísať")
     pr.add_argument("--csv", help="zapíš výsledok aj do CSV")
     pr.set_defaults(func=cmd_report)
@@ -169,6 +174,8 @@ def build_parser() -> argparse.ArgumentParser:
                     help="min medián ceny použitého v € (default 100)")
     pa.add_argument("--max-price", type=float, default=3000.0,
                     help="max medián ceny použitého v € (default 3000; 0 = bez stropu)")
+    pa.add_argument("--max-age", type=float, default=21.0,
+                    help="ignoruj inzeráty staršie ako X dní (default 21; 0 = bez limitu)")
     pa.add_argument("--top", type=int, default=30, help="koľko riadkov vypísať")
     pa.add_argument("--csv", help="zapíš výsledok aj do CSV")
     pa.set_defaults(func=cmd_arbitrage)
@@ -177,6 +184,8 @@ def build_parser() -> argparse.ArgumentParser:
     pz.add_argument("--category", required=True, help="kategória (napr. deti)")
     pz.add_argument("--keyword", help="segment v kategórii (napr. kocik)")
     pz.add_argument("--window", type=int, default=30, help="okno v dňoch (default 30)")
+    pz.add_argument("--max-age", type=float, default=21.0,
+                    help="ignoruj inzeráty staršie ako X dní (default 21; 0 = bez limitu)")
     pz.add_argument("--top", type=int, default=10, help="koľko top produktov vypísať")
     pz.set_defaults(func=cmd_zhrnutie)
 

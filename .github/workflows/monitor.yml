@@ -40,13 +40,13 @@ jobs:
       - name: Generuj reporty
         run: |
           mkdir -p reports
-          python -m bazos_monitor.cli --db data/bazos.db report --window 30 --top 50 > reports/dopyt.txt
-          python -m bazos_monitor.cli --db data/bazos.db report --window 30 --top 200 --csv reports/dopyt.csv > /dev/null
-          python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --max-price 3000 --top 50 > reports/arbitraz.txt
-          python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --max-price 3000 --top 200 --csv reports/arbitraz.csv > /dev/null
+          python -m bazos_monitor.cli --db data/bazos.db report --window 30 --max-age 21 --top 50 > reports/dopyt.txt
+          python -m bazos_monitor.cli --db data/bazos.db report --window 30 --max-age 21 --top 200 --csv reports/dopyt.csv > /dev/null
+          python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --max-price 3000 --max-age 21 --top 50 > reports/arbitraz.txt
+          python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --max-price 3000 --max-age 21 --top 200 --csv reports/arbitraz.csv > /dev/null
           : > reports/zhrnutie.txt
           for c in zahrada dom nabytok stroje elektro sport deti hudba; do
-            python -m bazos_monitor.cli --db data/bazos.db zhrnutie --category "$c" --window 30 --top 8 >> reports/zhrnutie.txt
+            python -m bazos_monitor.cli --db data/bazos.db zhrnutie --category "$c" --window 30 --max-age 21 --top 8 >> reports/zhrnutie.txt
             echo "" >> reports/zhrnutie.txt
           done
           echo "Posledný beh: $(date -u '+%Y-%m-%d %H:%M UTC')" > reports/_last_run.txt
