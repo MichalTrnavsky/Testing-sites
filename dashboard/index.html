@@ -139,7 +139,7 @@
 "use strict";
 const CATLABEL = {};
 let DATA = null, VIEW = "arbitraz";
-const F = { cat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15 };
+const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15 };
 
 const $ = (s,el=document)=>el.querySelector(s);
 const el = (t,a={},...kids)=>{const n=document.createElement(t);
@@ -171,15 +171,35 @@ async function fetchData(){
 }
 
 function resetFilters(){
-  F.cat="";F.q="";F.minVol=0;F.sort="";F.top=15;
+  F.cat="";F.subcat="";F.q="";F.minVol=0;F.sort="";F.top=15;
   F.minPrice=0;F.maxPrice=3000; /* rozumný strop dovozu; daj 0 pre bez limitu */
+}
+
+// zoznam podkategórií pre zvolenú kategóriu (z dát)
+function subcatsForCat(){
+  if(!F.cat) return [];
+  const set=new Set();
+  for(const r of (DATA.arbitrage||[])) if(r.category===F.cat && r.subcat) set.add(r.subcat);
+  for(const r of (DATA.demand||[])) if(r.category===F.cat && r.subcat) set.add(r.subcat);
+  for(const s of (DATA.summaries||[])) if(s.category===F.cat && s.subcategory) set.add(s.subcategory);
+  return [...set].sort();
+}
+function subcatOptions(){
+  const subs=subcatsForCat();
+  const s=el("select",{id:"f-subcat"});
+  s.append(el("option",{value:""},"Všetky podkategórie"));
+  subs.forEach(x=>s.append(el("option",{value:x},x)));
+  if(!subs.includes(F.subcat)) F.subcat="";
+  s.value=F.subcat; s.disabled=!F.cat;
+  s.onchange=()=>{F.subcat=s.value;render();};
+  return field("Podkategória",s);
 }
 
 function catOptions(){
   const s=el("select",{id:"f-cat"});
   s.append(el("option",{value:""},"Všetky kategórie"));
   (DATA.categories||[]).forEach(c=>s.append(el("option",{value:c.key},c.label)));
-  s.value=F.cat; s.onchange=()=>{F.cat=s.value;render();};
+  s.value=F.cat; s.onchange=()=>{F.cat=s.value;F.subcat="";render();};
   return field("Kategória",s);
 }
 function field(label,control){return el("div",{class:"field"},el("label",{},label),control);}
@@ -210,9 +230,9 @@ function topBox(){
 function render(){
   const c=$("#controls"); c.innerHTML="";
   const p=$("#panel"); p.innerHTML="";
-  if(VIEW==="zhrnutie"){ c.append(catOptions()); renderZhrnutie(p); return; }
+  if(VIEW==="zhrnutie"){ c.append(catOptions(), subcatOptions()); renderZhrnutie(p); return; }
 
-  c.append(catOptions(), searchBox());
+  c.append(catOptions(), subcatOptions(), searchBox());
   if(VIEW==="arbitraz"){
     c.append(
       numBox("f-min","cena od €",F.minPrice,v=>F.minPrice=v,"0"),
@@ -232,6 +252,7 @@ function render(){
 
 function applyCommon(rows,keyword){
   return rows.filter(r=>(!F.cat||r.category===F.cat)
+    && (!F.subcat||r.subcat===F.subcat)
     && (!F.q||r.keyword.includes(F.q)));
 }
 
@@ -255,7 +276,7 @@ function renderArbitraz(p){
   top.forEach(r=>{
     const cls=r.cheap_new_competitors>=3?"bad":r.cheap_new_competitors>0?"warn":"";
     chart.append(el("div",{class:"row"},
-      el("div",{class:"name"},r.keyword,el("small",{}," · "+lab(r.category))),
+      el("div",{class:"name"},r.keyword,el("small",{}," · "+(r.subcat||lab(r.category)))),
       el("div",{class:"track"},el("div",{class:"fill "+cls,style:`width:${r.arbitrage_score/max*100}%`})),
       el("div",{class:"val"},eur(r.used_median_eur))));
   });
@@ -266,6 +287,7 @@ function renderArbitraz(p){
   p.append(chart);
 
   const cols=[["l","kategória",r=>lab(r.category),null],
+    ["l","podkat.",r=>r.subcat||"–",null],
     ["l","segment",r=>r.keyword,null],
     ["","ks",r=>r.volume,"volume"],
     ["","život",r=>r.median_lifespan_days==null?"–":num(r.median_lifespan_days),"median_lifespan_days"],
@@ -289,11 +311,12 @@ function renderDopyt(p){
   const top=rows.slice(0,F.top),max=Math.max(...top.map(r=>r.demand_score),1);
   const chart=el("div",{class:"chart"},el("h2",{},`Najvyšší dopyt — top ${top.length}`));
   top.forEach(r=>chart.append(el("div",{class:"row"},
-    el("div",{class:"name"},r.keyword,el("small",{}," · "+lab(r.category))),
+    el("div",{class:"name"},r.keyword,el("small",{}," · "+(r.subcat||lab(r.category)))),
     el("div",{class:"track"},el("div",{class:"fill",style:`width:${r.demand_score/max*100}%`})),
     el("div",{class:"val"},num(r.demand_score)))));
   p.append(chart);
   const cols=[["l","kategória",r=>lab(r.category),null],
+    ["l","podkat.",r=>r.subcat||"–",null],
     ["l","segment",r=>r.keyword,null],
     ["","nové",r=>r.new_count,"new_count"],
     ["","zmazané",r=>r.deleted_count,"deleted_count"],
@@ -304,11 +327,23 @@ function renderDopyt(p){
 
 /* ---------- ZHRNUTIE ---------- */
 function renderZhrnutie(p){
-  let sums=(DATA.summaries||[]).filter(s=>!F.cat||s.category===F.cat);
+  let sums;
+  if(!F.cat){
+    // bez kategórie: celokategóriové zhrnutia (subcategory == null)
+    sums=(DATA.summaries||[]).filter(s=>!s.subcategory);
+  }else{
+    // s kategóriou: zhrnutia podkategórií (+ prípadný filter podkategórie)
+    sums=(DATA.summaries||[]).filter(s=>s.category===F.cat && s.subcategory
+      && (!F.subcat||s.subcategory===F.subcat));
+    if(!sums.length) // fallback: celá kategória, ak nemá podkat. zhrnutia
+      sums=(DATA.summaries||[]).filter(s=>s.category===F.cat && !s.subcategory);
+  }
   showCount(sums.length);
   const grid=el("div",{class:"cards"});
   sums.forEach(s=>{
-    const card=el("div",{class:"card"},el("h3",{},lab(s.category)));
+    const heading=s.subcategory?s.subcategory:lab(s.category);
+    const card=el("div",{class:"card"},el("h3",{},heading));
+    if(s.subcategory) card.append(el("div",{class:"sub",style:"color:var(--muted);font-size:.72rem;margin:-6px 0 8px"},lab(s.category)));
     const stats=el("div",{class:"stats"});
     stats.append(
       stat("nové / deň",num(s.new_per_day),

@@ -131,6 +131,7 @@ def condition_of(title: str) -> str:
 @dataclass
 class SegmentStat:
     category: str
+    subcat: str
     keyword: str
     new_count: int
     deleted_count: int
@@ -141,6 +142,7 @@ class SegmentStat:
 @dataclass
 class ArbitrageStat:
     category: str
+    subcat: str
     keyword: str
     volume: int                     # počet inzerátov v segmente (v okne)
     deleted_count: int
@@ -173,6 +175,15 @@ def _ad_age_days(row, now: datetime) -> float | None:
     return None
 
 
+def _subcat(row) -> str:
+    """Názov podkategórie inzerátu; ak chýba, '(nezaradené)'."""
+    try:
+        v = row["subcat"]
+    except (KeyError, IndexError):
+        v = None
+    return v if v else "(nezaradené)"
+
+
 def _too_old(row, now: datetime, max_age_days: float | None) -> bool:
     """True ak je inzerát starší než strop čerstvosti (irelevantná ležiačka)."""
     if not max_age_days:
@@ -193,10 +204,10 @@ def analyze(
     now = datetime.utcnow()
     since = now - timedelta(days=window_days)
 
-    # agregácia podľa (kategória, kľúčové slovo)
-    new_counts: dict[tuple[str, str], int] = defaultdict(int)
-    del_counts: dict[tuple[str, str], int] = defaultdict(int)
-    lifespans: dict[tuple[str, str], list[float]] = defaultdict(list)
+    # agregácia podľa (kategória, podkategória, kľúčové slovo)
+    new_counts: dict[tuple[str, str, str], int] = defaultdict(int)
+    del_counts: dict[tuple[str, str, str], int] = defaultdict(int)
+    lifespans: dict[tuple[str, str, str], list[float]] = defaultdict(list)
 
     rows = store.iter_ads(category)
     for r in rows:
@@ -206,6 +217,7 @@ def analyze(
         if _too_old(r, now, max_age_days):
             continue  # stará ležiačka -> irelevantná pre dopyt
         cat = r["category"]
+        sub = _subcat(r)
         phrases = set(keyphrases(r["title"]))
         is_deleted = r["status"] == "deleted"
         deleted_at = _parse_iso(r["deleted_at"])
@@ -214,7 +226,7 @@ def analyze(
             life_days = (deleted_at - first_seen).total_seconds() / 86400.0
 
         for kw in phrases:
-            key = (cat, kw)
+            key = (cat, sub, kw)
             new_counts[key] += 1
             if is_deleted:
                 del_counts[key] += 1
@@ -229,7 +241,7 @@ def analyze(
     for key, n_new in new_counts.items():
         if n_new < min_new:
             continue
-        cat, kw = key
+        cat, sub, kw = key
         med = median(lifespans[key]) if lifespans[key] else None
         # skóre: objem (0..1) delené (medián životnosti + 1 deň)
         volume_norm = n_new / max_new
@@ -241,6 +253,7 @@ def analyze(
         stats.append(
             SegmentStat(
                 category=cat,
+                subcat=sub,
                 keyword=kw,
                 new_count=n_new,
                 deleted_count=del_counts[key],
@@ -317,11 +330,11 @@ def analyze_arbitrage(
     now = datetime.utcnow()
     since = now - timedelta(days=window_days)
 
-    volume: dict[tuple[str, str], int] = defaultdict(int)
-    deleted: dict[tuple[str, str], int] = defaultdict(int)
-    lifespans: dict[tuple[str, str], list[float]] = defaultdict(list)
-    used_prices: dict[tuple[str, str], list[int]] = defaultdict(list)
-    new_prices: dict[tuple[str, str], list[int]] = defaultdict(list)
+    volume: dict[tuple[str, str, str], int] = defaultdict(int)
+    deleted: dict[tuple[str, str, str], int] = defaultdict(int)
+    lifespans: dict[tuple[str, str, str], list[float]] = defaultdict(list)
+    used_prices: dict[tuple[str, str, str], list[int]] = defaultdict(list)
+    new_prices: dict[tuple[str, str, str], list[int]] = defaultdict(list)
 
     for r in store.iter_ads(category):
         first_seen = _parse_iso(r["first_seen"])
@@ -330,6 +343,7 @@ def analyze_arbitrage(
         if _too_old(r, now, max_age_days):
             continue  # stará ležiačka -> nie je to živý dopyt
         cat = r["category"]
+        sub = _subcat(r)
         price = r["price_eur"]
         cond = condition_of(r["title"])
         is_deleted = r["status"] == "deleted"
@@ -339,7 +353,7 @@ def analyze_arbitrage(
             life = (deleted_at - first_seen).total_seconds() / 86400.0
 
         for kw in set(keyphrases(r["title"])):
-            key = (cat, kw)
+            key = (cat, sub, kw)
             volume[key] += 1
             if is_deleted:
                 deleted[key] += 1
@@ -356,7 +370,7 @@ def analyze_arbitrage(
     for key, vol in volume.items():
         if vol < min_volume:
             continue
-        cat, kw = key
+        cat, sub, kw = key
         used_med = median(used_prices[key]) if used_prices[key] else None
         if used_med is None or used_med < min_used_price:
             continue  # bez ceny alebo lacné => nezaujímavé na dovoz
@@ -380,6 +394,7 @@ def analyze_arbitrage(
         stats.append(
             ArbitrageStat(
                 category=cat,
+                subcat=sub,
                 keyword=kw,
                 volume=vol,
                 deleted_count=deleted[key],
@@ -436,7 +451,8 @@ def format_arbitrage(stats: list[ArbitrageStat], window_days: int) -> str:
 @dataclass
 class SegmentSummary:
     category: str
-    keyword: str | None       # None = celá kategória
+    subcategory: str | None   # None = celá kategória
+    keyword: str | None       # None = celá (pod)kategória
     window_days: int
     new_total: int
     new_per_day: float
@@ -457,6 +473,22 @@ def _pct(prices: list[int]):
     return (s[0], round(median(s), 1), s[-1])
 
 
+def subcats_with_data(store, category: str, window_days: int,
+                      max_age_days: float | None = None) -> list[tuple[str, int]]:
+    """Zoznam (podkategória, počet) s dátami v okne pre danú kategóriu."""
+    now = datetime.utcnow()
+    since = now - timedelta(days=window_days)
+    counts: dict[str, int] = defaultdict(int)
+    for r in store.iter_ads(category):
+        fs = _parse_iso(r["first_seen"])
+        if fs is None or fs < since:
+            continue
+        if _too_old(r, now, max_age_days):
+            continue
+        counts[_subcat(r)] += 1
+    return sorted(counts.items(), key=lambda kv: kv[1], reverse=True)
+
+
 def summarize(
     store,
     category: str,
@@ -464,14 +496,10 @@ def summarize(
     keyword: str | None = None,
     top_products: int = 10,
     max_age_days: float | None = None,
+    subcategory: str | None = None,
 ) -> SegmentSummary:
-    """Zhrnie kategóriu (alebo v nej segment podľa ``keyword``).
-
-    - denné prírastky = počet inzerátov s ``first_seen`` v okne / dni,
-    - denné úbytky = počet inzerátov s ``deleted_at`` v okne / dni,
-    - cena = min/medián/max spomedzi inzerátov v okne,
-    - top produkty = najčastejšie frázy (uni/bi/tri-gram) v nadpisoch.
-    """
+    """Zhrnie kategóriu (voliteľne len podkategóriu ``subcategory`` a/alebo
+    segment podľa ``keyword``): denné prírastky/úbytky, cena, top produkty."""
     now = datetime.utcnow()
     since = now - timedelta(days=window_days)
     kw_norm = keyword.lower().strip() if keyword else None
@@ -486,6 +514,8 @@ def summarize(
     since_date = since.date()
     for r in store.iter_ads(category):
         title = r["title"] or ""
+        if subcategory is not None and _subcat(r) != subcategory:
+            continue
         if kw_norm:
             # match na normalizované tokeny (bez diakritiky)
             toks = set(normalize_tokens(title))
@@ -541,6 +571,7 @@ def summarize(
 
     return SegmentSummary(
         category=category,
+        subcategory=subcategory,
         keyword=keyword,
         window_days=window_days,
         new_total=new_total,
@@ -558,7 +589,11 @@ def summarize(
 
 def format_summary(s: SegmentSummary) -> str:
     cat_label = ALL_CATEGORIES[s.category].label if s.category in ALL_CATEGORIES else s.category
-    head = f"{cat_label}" + (f' / „{s.keyword}“' if s.keyword else "")
+    head = f"{cat_label}"
+    if s.subcategory:
+        head += f" › {s.subcategory}"
+    if s.keyword:
+        head += f' / „{s.keyword}“'
     life = "-" if s.median_lifespan_days is None else f"{s.median_lifespan_days:.1f} dňa"
     if s.price_median is None:
         price = "bez cien"

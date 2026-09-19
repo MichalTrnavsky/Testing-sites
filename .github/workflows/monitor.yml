@@ -5,7 +5,7 @@ name: Bazoš dopyt monitor
 # Preto, aby to bežalo 3 dni samo, musí byť tento súbor na main.
 on:
   schedule:
-    - cron: "0 */3 * * *"   # každé 3 hodiny (UTC)
+    - cron: "0 */6 * * *"   # každých 6 hodín (UTC) – šetrnejšie pri crawle podkategórií
   workflow_dispatch:         # ručné spustenie z GitHub UI / API
 
 # Nech sa behy neprekrývajú (kvôli commitu stavu späť do repa).
