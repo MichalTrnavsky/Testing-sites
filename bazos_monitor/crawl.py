@@ -80,7 +80,11 @@ def _crawl_subcategory(cat, rubriky, cid, name, config, fetcher, store, log) -> 
     cutoff = _cutoff_date(config)
     seen_ids: set[str] = set()
     new_count = 0
-    max_pages = config.pages_per_category.get(cat.key, config.max_pages_per_category)
+    # tvrdý strop na podkategóriu (poistka aj keď sa horizont nespustí)
+    max_pages = min(
+        config.subcat_max_pages,
+        config.pages_per_category.get(cat.key, config.max_pages_per_category),
+    )
 
     for page in range(max_pages):
         url = subcat_listing_url(cat.subdomain, rubriky, cid, page, config.per_page)
