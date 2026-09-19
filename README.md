@@ -127,6 +127,21 @@ Dôvod: staré ponuky sú vytlačené novšími dozadu a väčšinou znamenajú
 Navyše crawler sťahuje len prvých pár strán (najnovšie inzeráty), takže staré
 ležiaky vzadu v listingu sa väčšinou ani nenačítajú.
 
+## Dlhodobý beh a retencia (`prune`)
+
+Workflow je určený na **trvalý beh (mesiace)** – cron nemá žiadny limit a beží,
+kým ho nevypneš. Aby DB (a tým aj repo) nenarastala donekonečna, po každom behu
+sa spúšťa retencia:
+
+```bash
+python -m bazos_monitor.cli --db data/bazos.db prune --keep-days 200
+```
+
+Zmaže inzeráty staršie ako 200 dní a zmenší DB (`VACUUM`). Analytické okná sú
+kratšie (default 30 dní), takže sa nič relevantné nestráca. Ak by repo časom
+aj tak narástlo priveľmi, dá sa DB presunúť do GitHub Actions cache alebo
+stlačiť históriu – povedz a nastavím to.
+
 ## Arbitráž – hlavný účel nástroja
 
 Cieľom nie je len „vysoký dopyt", ale **arbitrážna príležitosť**: segment, kde

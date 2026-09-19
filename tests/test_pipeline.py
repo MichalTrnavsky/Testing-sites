@@ -218,6 +218,25 @@ def test_summarize_kociky():
           "del/deň:", s.deleted_per_day, "top:", s.top_products[0], ")")
 
 
+def test_prune():
+    tmp = tempfile.mkdtemp()
+    store = Store(os.path.join(tmp, "p.db"))
+    now = datetime.utcnow()
+    store.upsert_listing_ad(ad_id="new1", category="deti", title="Nove",
+                            url="u", price_eur=1, posted_date=None,
+                            now_iso=(now - timedelta(days=5)).isoformat())
+    store.upsert_listing_ad(ad_id="old1", category="deti", title="Stare",
+                            url="u", price_eur=1, posted_date=None,
+                            now_iso=(now - timedelta(days=300)).isoformat())
+    store.conn.commit()
+    n = store.prune_older_than((now - timedelta(days=200)).isoformat())
+    assert n == 1
+    ids = {r["ad_id"] for r in store.iter_ads("deti")}
+    assert ids == {"new1"}, ids
+    store.close()
+    print("test_prune OK")
+
+
 def test_freshness_filter():
     tmp = tempfile.mkdtemp()
     store = Store(os.path.join(tmp, "f.db"))
@@ -258,4 +277,5 @@ if __name__ == "__main__":
     test_arbitrage_ratan()
     test_summarize_kociky()
     test_freshness_filter()
+    test_prune()
     print("\nVŠETKY TESTY PREŠLI")
