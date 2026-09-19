@@ -5,7 +5,7 @@ name: Bazoš dopyt monitor
 # Preto, aby to bežalo 3 dni samo, musí byť tento súbor na main.
 on:
   schedule:
-    - cron: "0 */6 * * *"   # každých 6 hodín (UTC) – šetrnejšie pri crawle podkategórií
+    - cron: "0 */2 * * *"   # každé 2 hodiny (UTC) – kratšie okno, menšia slepá diera
   workflow_dispatch:         # ručné spustenie z GitHub UI / API
 
 # Nech sa behy neprekrývajú (kvôli commitu stavu späť do repa).
@@ -53,7 +53,7 @@ jobs:
           python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --max-price 3000 --max-age 21 --top 50 > reports/arbitraz.txt
           python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --max-price 3000 --max-age 21 --top 200 --csv reports/arbitraz.csv > /dev/null
           : > reports/zhrnutie.txt
-          for c in zahrada dom nabytok stroje elektro sport deti hudba; do
+          for c in dom nabytok stroje elektro sport deti; do
             python -m bazos_monitor.cli --db data/bazos.db zhrnutie --category "$c" --window 30 --max-age 21 --top 8 >> reports/zhrnutie.txt
             echo "" >> reports/zhrnutie.txt
           done
