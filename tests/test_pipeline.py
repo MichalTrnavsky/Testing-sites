@@ -263,15 +263,20 @@ def test_crawl_lookback_stops_at_horizon():
 
 def test_parse_subcategories_and_url():
     from bazos_monitor.parse import parse_subcategories, subcat_listing_url
+    # Bazoš má podkategórie v <select name="category"> ako <option>
     html = """<html><body>
-      <a href="/?hledat=&rubriky=deti&category=120&kitx=ano">Kočíky</a>
-      <a href="/?hledat=&rubriky=deti&category=121&kitx=ano">Autosedačky</a>
-      <a href="/?rubriky=deti&category=0">Všetko</a>
+      <select name="category">
+        <option value="0">Všetky</option>
+        <option value="120">Kočíky</option>
+        <option value="121">Autosedačky</option>
+      </select>
+      <select name="okres"><option value="99">Bratislava</option></select>
       <a href="/inzerat/12345/nieco.php">Nejaký inzerát</a>
-      <a href="/?hledat=&rubriky=deti&category=120&kitx=ano">Kočíky (dup)</a>
     </body></html>"""
     subs = parse_subcategories(html)
     assert subs == [("120", "Kočíky"), ("121", "Autosedačky")], subs
+    # okresový select (nie je 'category') sa nemá chytiť
+    assert all(cid != "99" for cid, _ in subs)
     u0 = subcat_listing_url("deti.bazos.sk", "deti", "120", 0, 20)
     u1 = subcat_listing_url("deti.bazos.sk", "deti", "120", 1, 20)
     assert "category=120" in u0 and "rubriky=deti" in u0
