@@ -18,6 +18,7 @@ from .analyze import (
     format_arbitrage,
     format_report,
     format_summary,
+    keyphrases,
     summarize,
     subcats_with_data,
     write_csv,
@@ -163,6 +164,8 @@ def cmd_export(args) -> int:
             "title": r["title"], "url": r["url"], "price_eur": r["price_eur"],
             "first_seen": r["first_seen"], "deleted_at": r["deleted_at"],
             "lifespan_hours": round(r["lifespan_hours"], 1) if r["lifespan_hours"] is not None else None,
+            # kľúčové slová pre súhrn „za obdobie" na strane dashboardu
+            "keywords": sorted(set(keyphrases(r["title"] or "")))[:20],
         } for r in dels]
         data = {
             "generated_at": datetime.utcnow().isoformat() + "Z",
