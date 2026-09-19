@@ -53,29 +53,32 @@ def _cutoff_date(config: Config):
 
 
 def _crawl_with_subcategories(cat, config, fetcher, store, log) -> tuple[int, int]:
-    """Objaví podkategórie z hlavnej stránky a prejde každú zvlášť."""
+    """Prejde vybrané podkategórie (whitelist), inak crawl hlavnej kategórie."""
+    whitelist = (config.subcategories or {}).get(cat.key)
+    # objav podkategórie z menu (kvôli názvom); ak je whitelist, obmedz naň
     main = fetcher.get(f"https://{cat.subdomain}/")
-    subcats = parse_subcategories(main.text) if main.ok else []
-    if not subcats:
-        # fallback: podkategórie sa nenašli -> crawl hlavnej kategórie
-        log(f"[{cat.key}] podkategórie nenájdené -> crawl hlavnej")
+    discovered = dict(parse_subcategories(main.text)) if main.ok else {}
+
+    if whitelist:
+        subcats = [(slug, discovered.get(slug, slug)) for slug in whitelist]
+    else:
+        # bez whitelistu podkategórie NEcrawlujeme (šetríme) -> hlavná kategória
+        log(f"[{cat.key}] bez whitelistu podkategórií -> crawl hlavnej")
         return _crawl_category(cat, config, fetcher, store, log)
 
-    log(f"[{cat.key}] podkategórií: {len(subcats)}")
-    rubriky = cat.subdomain.split(".")[0]
+    log(f"[{cat.key}] podkategórií (whitelist): {len(subcats)}")
     total_new = 0
     all_seen: set[str] = set()
-    for cid, name in subcats:
-        new_c, seen_ids = _crawl_subcategory(cat, rubriky, cid, name, config, fetcher, store, log)
+    for slug, name in subcats:
+        new_c, seen_ids = _crawl_subcategory(cat, slug, name, config, fetcher, store, log)
         total_new += new_c
         all_seen |= seen_ids
-    # missing_run pre celú kategóriu naraz (podľa všetkých videných v podkat.)
     with store.tx():
         store.mark_missing_for_category(cat.key, all_seen)
     return total_new, len(all_seen)
 
 
-def _crawl_subcategory(cat, rubriky, cid, name, config, fetcher, store, log) -> tuple[int, set]:
+def _crawl_subcategory(cat, slug, name, config, fetcher, store, log) -> tuple[int, set]:
     now_iso = datetime.utcnow().isoformat()
     cutoff = _cutoff_date(config)
     seen_ids: set[str] = set()
@@ -87,7 +90,7 @@ def _crawl_subcategory(cat, rubriky, cid, name, config, fetcher, store, log) -> 
     )
 
     for page in range(max_pages):
-        url = subcat_listing_url(cat.subdomain, rubriky, cid, page, config.per_page)
+        url = subcat_listing_url(cat.subdomain, slug, page, config.per_page)
         res = fetcher.get(url)
         if not res.ok:
             break
@@ -105,7 +108,7 @@ def _crawl_subcategory(cat, rubriky, cid, name, config, fetcher, store, log) -> 
                     ad_id=ad.ad_id, category=cat.key, title=ad.title, url=ad.url,
                     price_eur=ad.price_eur,
                     posted_date=ad.posted_date.isoformat() if ad.posted_date else None,
-                    now_iso=now_iso, subcat=name, subcat_id=cid,
+                    now_iso=now_iso, subcat=name, subcat_id=slug,
                 )
                 if is_new:
                     new_count += 1

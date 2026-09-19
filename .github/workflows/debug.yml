@@ -15,12 +15,10 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Diagnostika
+      - name: Zoznam podkategórií
         run: |
           mkdir -p reports
-          python -m bazos_monitor.cli debugsub --category deti > reports/_debug_subcats.txt 2>&1 || true
-          echo "----- ELEKTRO -----" >> reports/_debug_subcats.txt
-          python -m bazos_monitor.cli debugsub --category elektro >> reports/_debug_subcats.txt 2>&1 || true
+          python -m bazos_monitor.cli --config config.example.yaml subcats > reports/_debug_subcats.txt 2>&1 || true
           cat reports/_debug_subcats.txt
       - name: Commit
         run: |

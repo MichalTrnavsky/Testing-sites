@@ -187,6 +187,23 @@ def cmd_prune(args) -> int:
     return 0
 
 
+def cmd_subcats(args) -> int:
+    """Vypíše dostupné podkategórie (slug = názov) pre sledované kategórie."""
+    from .categories import resolve_categories
+    from .parse import parse_subcategories
+    from .fetch import Fetcher
+    cfg = _load(args)
+    fetcher = Fetcher(cfg)
+    cats = resolve_categories(cfg.include_categories, cfg.exclude_categories)
+    for c in cats:
+        res = fetcher.get(f"https://{c.subdomain}/")
+        subs = parse_subcategories(res.text) if res.ok else []
+        print(f"\n## {c.label} ({c.key})  — {len(subs)} podkategórií")
+        for slug, name in subs:
+            print(f"   {slug:<22} {name}")
+    return 0
+
+
 def cmd_debugsub(args) -> int:
     """Diagnostika: vypíše reálnu štruktúru <select>/<option> a category= odkazov
     z hlavnej stránky subdomény, aby sa dal presne opraviť parser podkategórií."""
@@ -302,6 +319,9 @@ def build_parser() -> argparse.ArgumentParser:
     pp.add_argument("--keep-days", type=int, default=200,
                     help="koľko dní histórie ponechať (default 200)")
     pp.set_defaults(func=cmd_prune)
+
+    psc = sub.add_parser("subcats", help="vypíš dostupné podkategórie (slug=názov)")
+    psc.set_defaults(func=cmd_subcats)
 
     pd = sub.add_parser("debugsub", help="diagnostika štruktúry podkategórií")
     pd.add_argument("--category", default="deti")

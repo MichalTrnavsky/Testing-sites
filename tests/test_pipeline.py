@@ -263,24 +263,23 @@ def test_crawl_lookback_stops_at_horizon():
 
 def test_parse_subcategories_and_url():
     from bazos_monitor.parse import parse_subcategories, subcat_listing_url
-    # Bazoš má podkategórie v <select name="category"> ako <option>
+    # Bazoš má podkategórie ako odkazy so slugom v <div class="barvaleva">
     html = """<html><body>
-      <select name="category">
-        <option value="0">Všetky</option>
-        <option value="120">Kočíky</option>
-        <option value="121">Autosedačky</option>
-      </select>
-      <select name="okres"><option value="99">Bratislava</option></select>
+      <div class="menuleft"><div class="barvalmenu"><div class="barvaleva">
+        <a href="/autosedacky/">Autosedačky</a>
+        <a href="/kociky/">Kočíky</a>
+        <a href="https://knihy.bazos.sk/detska/">Detská literatúra</a>
+      </div></div></div>
       <a href="/inzerat/12345/nieco.php">Nejaký inzerát</a>
     </body></html>"""
     subs = parse_subcategories(html)
-    assert subs == [("120", "Kočíky"), ("121", "Autosedačky")], subs
-    # okresový select (nie je 'category') sa nemá chytiť
-    assert all(cid != "99" for cid, _ in subs)
-    u0 = subcat_listing_url("deti.bazos.sk", "deti", "120", 0, 20)
-    u1 = subcat_listing_url("deti.bazos.sk", "deti", "120", 1, 20)
-    assert "category=120" in u0 and "rubriky=deti" in u0
-    assert "/20/?" in u1, u1
+    assert subs == [("autosedacky", "Autosedačky"), ("kociky", "Kočíky")], subs
+    # cudzia subdoména (knihy) ani inzerát sa nechytia
+    assert all(s not in ("detska", "inzerat") for s, _ in subs)
+    u0 = subcat_listing_url("deti.bazos.sk", "kociky", 0, 20)
+    u1 = subcat_listing_url("deti.bazos.sk", "kociky", 1, 20)
+    assert u0 == "https://deti.bazos.sk/kociky/", u0
+    assert u1 == "https://deti.bazos.sk/kociky/20/", u1
     print("test_parse_subcategories_and_url OK")
 
 
@@ -299,24 +298,26 @@ def test_crawl_subcategories_tags_ads():
                 f'<span>Pridané {fresh}</span></div>'
                 f'<div class="inzeratycena">Cena 50 €</div></div>')
 
-    main_html = ('<a href="/?rubriky=deti&category=120&kitx=ano">Kočíky</a>'
-                 '<a href="/?rubriky=deti&category=121&kitx=ano">Autosedačky</a>')
+    main_html = ('<div class="barvaleva">'
+                 '<a href="/kociky/">Kočíky</a>'
+                 '<a href="/autosedacky/">Autosedačky</a></div>')
 
     class FakeFetcher:
         def get(self, url):
-            if "category=120" in url:
+            if "/kociky/" in url:
                 html = "<html><body>" + card(1001) + card(1002) + "</body></html>"
-            elif "category=121" in url:
+            elif "/autosedacky/" in url:
                 html = "<html><body>" + card(2001) + "</body></html>"
             else:
                 html = "<html><body>" + main_html + "</body></html>"
             return FetchResult(url, 200, html, ok=True)
 
     store = Store(os.path.join(tempfile.mkdtemp(), "sub.db"))
-    cfg = Config(crawl_subcategories=True, crawl_lookback_days=0, max_pages_per_category=1)
+    cfg = Config(crawl_subcategories=True, crawl_lookback_days=0, max_pages_per_category=1,
+                 subcategories={"deti": ["kociky", "autosedacky"]})
     new_c, seen = _crawl_with_subcategories(ALL_CATEGORIES["deti"], cfg, FakeFetcher(), store, log=lambda *a: None)
     rows = {r["ad_id"]: r for r in store.iter_ads("deti")}
-    assert rows["1001"]["subcat"] == "Kočíky" and rows["1001"]["subcat_id"] == "120"
+    assert rows["1001"]["subcat"] == "Kočíky" and rows["1001"]["subcat_id"] == "kociky"
     assert rows["2001"]["subcat"] == "Autosedačky"
     assert new_c == 3
     store.close()
