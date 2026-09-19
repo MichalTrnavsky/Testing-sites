@@ -15,10 +15,15 @@ concurrency:
 
 permissions:
   contents: write            # aby mohol commitnúť DB + reporty späť
+  pages: write               # deploy dashboardu na GitHub Pages
+  id-token: write            # OIDC pre deploy-pages
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -73,3 +78,24 @@ jobs:
           name: reporty
           path: reports/
           retention-days: 14
+
+      # ----- Dashboard na GitHub Pages (privátny repo, platený plán) -----
+      - name: Priprav stránku
+        run: |
+          mkdir -p site
+          cp dashboard/index.html site/index.html
+          cp reports/data.json site/data.json
+
+      - name: Nastav Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Nahraj Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy na Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
