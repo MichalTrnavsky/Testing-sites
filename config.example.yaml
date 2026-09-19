@@ -1,0 +1,38 @@
+# Príklad konfigurácie pre bazos-monitor.
+# Skopíruj na config.yaml a uprav podľa potreby.
+
+# Ktoré kategórie sledovať. Prázdne = všetky známe (okrem vylúčených nižšie).
+# Vybraný set (8 kategórií). Uprav podľa potreby – ostatné sa nesledujú.
+include_categories:
+  - zahrada       # Záhrada  (tvoj príklad: hojdačka)
+  - dom           # Dom a záhrada
+  - nabytok       # Nábytok
+  - stroje        # Stroje
+  - elektro       # Elektro
+  - sport         # Šport
+  - deti          # Detský bazár
+  - hudba         # Hudba
+
+# Ktoré kategórie vylúčiť. Ak necháš zakomentované, použije sa default
+# (reality, auto, moto) – teda presne to, čo ťa nezaujíma.
+exclude_categories:
+  - reality
+  - auto
+  - moto
+
+# Rozsah crawlu
+max_pages_per_category: 5      # koľko stránok listingu na kategóriu
+per_page: 20                   # inzerátov na stránku (Bazoš default)
+
+# Slušné správanie voči serveru
+request_delay_seconds: 1.5     # pauza medzi requestami
+request_timeout_seconds: 20
+max_retries: 4
+user_agent: "bazos-dopyt-monitor/1.0 (osobny research)"
+
+# Databáza
+db_path: "bazos.db"
+
+# Detekcia zmazania
+missing_runs_before_check: 1   # po koľkých behoch bez videnia overiť detail
+max_deletion_checks_per_run: 300
