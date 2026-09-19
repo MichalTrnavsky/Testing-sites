@@ -34,6 +34,11 @@ STOPWORDS = {
     "nove", "predam", "predaj", "kupim", "darujem", "hladam", "top", "ks",
     "cena", "dohodou", "novy", "povodna", "zn", "eur", "euro", "vymena",
     "super", "velmi", "viac", "info", "kus", "kusov", "set", "original",
+    # stav tovaru – nechceme ako "segment", segment má byť PRODUKT
+    "pouzity", "pouzita", "pouzite", "pouzivany", "pouzivana", "pouzivane",
+    "nepouzity", "nepouzite", "opotrebovany", "opotrebovane", "zachovaly",
+    "zachovala", "funkcny", "funkcna", "bazar", "servis", "novucky", "novucka",
+    "nerozbaleny", "zabaleny", "starsi", "poskodeny", "poskodena",
 }
 
 
@@ -69,6 +74,48 @@ def keyphrases(title: str) -> list[str]:
     return phrases
 
 
+# Markery stavu tovaru. Porovnávame po SLOVÁCH (nie substringom), aby
+# napr. "ratanový" (obsahuje "novy") nespustilo falošne "nový".
+_NEW_TOKENS = {"novy", "nove", "nova", "novej", "noveho", "novucky", "novy"}
+_NEW_PREFIXES = ("nepouzit", "nerozbalen", "zabalen", "nerozbaleny")
+_NEW_PHRASES = ("original balenie", "v krabici", "z krabice", "v originalnom")
+# "nová cena" / "nový rok" = nie stav tovaru -> vylúčime pred tokenizáciou
+_NEW_FALSE = ("nova cena", "novej cene", "novy rok", "novy model roku", "ako novy")
+_USED_PREFIXES = ("pouzit", "pouzivan", "opotrebovan", "znoseny", "znosene",
+                  "poskoden", "starsi")
+_USED_TOKENS = {"bazar", "servis"}
+_USED_PHRASES = ("zo starsej", "ako tak")
+
+_WORD_RE = re.compile(r"[a-z]+")
+
+
+def condition_of(title: str) -> str:
+    """Odhadne stav tovaru z nadpisu: 'new' | 'used' | 'unknown'."""
+    low = strip_diacritics((title or "").lower())
+    for fp in _NEW_FALSE:
+        low = low.replace(fp, " ")
+    tokens = _WORD_RE.findall(low)
+
+    is_new = (
+        any(t in _NEW_TOKENS for t in tokens)
+        or any(t.startswith(_NEW_PREFIXES) for t in tokens)
+        or any(p in low for p in _NEW_PHRASES)
+    )
+    is_used = (
+        any(t in _USED_TOKENS for t in tokens)
+        or any(t.startswith(_USED_PREFIXES) for t in tokens)
+        or any(p in low for p in _USED_PHRASES)
+    )
+    if is_new and not is_used:
+        return "new"
+    if is_used and not is_new:
+        return "used"
+    if is_new and is_used:
+        # obsahuje oboje (napr. "nový aj použitý") -> radšej neurčené
+        return "unknown"
+    return "unknown"
+
+
 @dataclass
 class SegmentStat:
     category: str
@@ -77,6 +124,20 @@ class SegmentStat:
     deleted_count: int
     median_lifespan_days: float | None
     demand_score: float
+
+
+@dataclass
+class ArbitrageStat:
+    category: str
+    keyword: str
+    volume: int                     # počet inzerátov v segmente (v okne)
+    deleted_count: int
+    median_lifespan_days: float | None
+    used_median_eur: float | None   # medián ceny použitých/neurčených
+    new_median_eur: float | None    # medián ceny NOVÝCH ponúk (konkurencia)
+    cheap_new_competitors: int      # počet lacných nových (už to niekto robí)
+    price_gap_eur: float | None     # new_median - used_median
+    arbitrage_score: float
 
 
 def _parse_iso(s: str | None) -> datetime | None:
@@ -180,11 +241,143 @@ def format_report(stats: list[SegmentStat], window_days: int) -> str:
     return "\n".join(lines)
 
 
-def write_csv(stats: list[SegmentStat], path: str) -> None:
+def write_csv(stats, path: str) -> None:
+    """Zapíše ľubovoľný zoznam dataclass štatistík do CSV."""
+    if not stats:
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write("")
+        return
+    fields = list(asdict(stats[0]).keys())
     with open(path, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(asdict(stats[0]).keys()) if stats else
-                           ["category", "keyword", "new_count", "deleted_count",
-                            "median_lifespan_days", "demand_score"])
+        w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
         for s in stats:
             w.writerow(asdict(s))
+
+
+# ----------------------------------------------------------------------
+# Arbitrážna analýza: kde sa oplatí doviezť NOVÝ tovar (napr. z Číny) a
+# predať za cenu použitého / pod cenu miestneho nového.
+# ----------------------------------------------------------------------
+
+def analyze_arbitrage(
+    store,
+    category: str | None,
+    window_days: int,
+    min_volume: int,
+    min_used_price: float,
+    top: int,
+) -> list[ArbitrageStat]:
+    """Nájde segmenty s vysokým dopytom A vysokou cenou použitého tovaru.
+
+    Skóre = dopyt (objem/životnosť) × hodnota (cena použitého) ÷ konkurencia
+    (počet lacných nových ponúk). Vysoký dopyt + drahé použité + málo
+    lacných nových = najlepší kandidát na dovoz nového tovaru.
+    """
+    now = datetime.utcnow()
+    since = now - timedelta(days=window_days)
+
+    volume: dict[tuple[str, str], int] = defaultdict(int)
+    deleted: dict[tuple[str, str], int] = defaultdict(int)
+    lifespans: dict[tuple[str, str], list[float]] = defaultdict(list)
+    used_prices: dict[tuple[str, str], list[int]] = defaultdict(list)
+    new_prices: dict[tuple[str, str], list[int]] = defaultdict(list)
+
+    for r in store.iter_ads(category):
+        first_seen = _parse_iso(r["first_seen"])
+        if first_seen is None or first_seen < since:
+            continue
+        cat = r["category"]
+        price = r["price_eur"]
+        cond = condition_of(r["title"])
+        is_deleted = r["status"] == "deleted"
+        deleted_at = _parse_iso(r["deleted_at"])
+        life = None
+        if is_deleted and deleted_at is not None:
+            life = (deleted_at - first_seen).total_seconds() / 86400.0
+
+        for kw in set(keyphrases(r["title"])):
+            key = (cat, kw)
+            volume[key] += 1
+            if is_deleted:
+                deleted[key] += 1
+                if life is not None:
+                    lifespans[key].append(life)
+            if price is not None and price > 0:
+                if cond == "new":
+                    new_prices[key].append(price)
+                else:  # used + unknown = "trhová" cena (väčšinou použité)
+                    used_prices[key].append(price)
+
+    max_vol = max(volume.values(), default=1)
+    stats: list[ArbitrageStat] = []
+    for key, vol in volume.items():
+        if vol < min_volume:
+            continue
+        cat, kw = key
+        used_med = median(used_prices[key]) if used_prices[key] else None
+        if used_med is None or used_med < min_used_price:
+            continue  # bez ceny alebo lacné => nezaujímavé na dovoz
+        new_med = median(new_prices[key]) if new_prices[key] else None
+        life_list = lifespans[key]
+        life_med = median(life_list) if life_list else None
+
+        # dopyt: objem (0..1) / (medián životnosti + 1); bez zmazaní tlmíme
+        vol_norm = vol / max_vol
+        demand = vol_norm * 0.1 if life_med is None else vol_norm / (life_med + 1.0)
+
+        # konkurencia: koľko NOVÝCH ponúk je lacných (<= 1.2× cena použitého)
+        cheap_new = sum(1 for p in new_prices[key] if p <= used_med * 1.2)
+
+        # skóre: dopyt × hodnota(€) ÷ (1 + lacná konkurencia)
+        score = demand * (used_med / 100.0) / (1.0 + cheap_new)
+
+        gap = (new_med - used_med) if new_med is not None else None
+        stats.append(
+            ArbitrageStat(
+                category=cat,
+                keyword=kw,
+                volume=vol,
+                deleted_count=deleted[key],
+                median_lifespan_days=round(life_med, 2) if life_med is not None else None,
+                used_median_eur=round(used_med, 1),
+                new_median_eur=round(new_med, 1) if new_med is not None else None,
+                cheap_new_competitors=cheap_new,
+                price_gap_eur=round(gap, 1) if gap is not None else None,
+                arbitrage_score=round(score * 100, 2),
+            )
+        )
+
+    stats.sort(key=lambda s: s.arbitrage_score, reverse=True)
+    return stats[:top]
+
+
+def format_arbitrage(stats: list[ArbitrageStat], window_days: int) -> str:
+    if not stats:
+        return ("Zatiaľ nie sú dáta / žiadny segment nespĺňa prah ceny. "
+                "Spusti crawl+sweep viackrát počas viacerých dní.")
+    lines = [
+        f"TOP arbitrážne segmenty za posledných {window_days} dní",
+        "(dovoz nového tovaru → predaj za cenu použitého / pod miestne nové)",
+        "=" * 78,
+        f"{'kategória':<11}{'segment':<22}{'ks':>4}{'život':>7}"
+        f"{'použité€':>10}{'nové€':>8}{'lacná konk.':>12}{'skóre':>8}",
+        "-" * 82,
+    ]
+    for s in stats:
+        cat_label = ALL_CATEGORIES[s.category].label if s.category in ALL_CATEGORIES else s.category
+        life = "-" if s.median_lifespan_days is None else f"{s.median_lifespan_days:.1f}"
+        newp = "-" if s.new_median_eur is None else f"{s.new_median_eur:.0f}"
+        lines.append(
+            f"{cat_label[:10]:<11}{s.keyword[:20]:<22}{s.volume:>4}{life:>7}"
+            f"{s.used_median_eur:>10.0f}{newp:>8}{s.cheap_new_competitors:>12}{s.arbitrage_score:>8.1f}"
+        )
+    lines += [
+        "",
+        "Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka",
+        "'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu",
+        "z Číny (Alibaba/1688) – ak dovoz + doprava < cena použitého, ideš do toho.",
+        "'lacná konk.' = počet nových ponúk už predávaných blízko ceny použitého",
+        "(vysoké číslo = niekto to už robí, marža bude tenšia).",
+    ]
+    return "\n".join(lines)

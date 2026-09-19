@@ -12,7 +12,13 @@ from __future__ import annotations
 import argparse
 import sys
 
-from .analyze import analyze, format_report, write_csv
+from .analyze import (
+    analyze,
+    analyze_arbitrage,
+    format_arbitrage,
+    format_report,
+    write_csv,
+)
 from .categories import ALL_CATEGORIES, DEFAULT_EXCLUDED, resolve_categories
 from .config import Config
 from .crawl import crawl
@@ -76,6 +82,27 @@ def cmd_report(args) -> int:
     return 0
 
 
+def cmd_arbitrage(args) -> int:
+    cfg = _load(args)
+    store = Store(cfg.db_path)
+    try:
+        stats = analyze_arbitrage(
+            store,
+            category=args.category,
+            window_days=args.window,
+            min_volume=args.min_volume,
+            min_used_price=args.min_price,
+            top=args.top,
+        )
+        print(format_arbitrage(stats, args.window))
+        if args.csv:
+            write_csv(stats, args.csv)
+            print(f"\nCSV zapísané: {args.csv}")
+    finally:
+        store.close()
+    return 0
+
+
 def cmd_cats(args) -> int:
     cfg = _load(args)
     active = {c.key for c in resolve_categories(cfg.include_categories, cfg.exclude_categories)}
@@ -113,6 +140,16 @@ def build_parser() -> argparse.ArgumentParser:
     pr.add_argument("--top", type=int, default=30, help="koľko riadkov vypísať")
     pr.add_argument("--csv", help="zapíš výsledok aj do CSV")
     pr.set_defaults(func=cmd_report)
+
+    pa = sub.add_parser("arbitraz", help="TOP kandidáti na dovoz nového tovaru")
+    pa.add_argument("--category", help="obmedz na jednu kategóriu")
+    pa.add_argument("--window", type=int, default=30, help="okno v dňoch (default 30)")
+    pa.add_argument("--min-volume", type=int, default=5, help="min inzerátov na segment")
+    pa.add_argument("--min-price", type=float, default=100.0,
+                    help="min medián ceny použitého v € (default 100)")
+    pa.add_argument("--top", type=int, default=30, help="koľko riadkov vypísať")
+    pa.add_argument("--csv", help="zapíš výsledok aj do CSV")
+    pa.set_defaults(func=cmd_arbitrage)
 
     pcat = sub.add_parser("cats", help="vypíš známe kategórie")
     pcat.set_defaults(func=cmd_cats)

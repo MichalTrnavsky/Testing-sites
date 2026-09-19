@@ -88,7 +88,50 @@ python -m bazos_monitor.cli --config config.yaml sweep
 
 # report dopytu za posledných 30 dní, len záhrada, do CSV
 python -m bazos_monitor.cli --config config.yaml report --category zahrada --window 30 --csv dopyt.csv
+
+# ARBITRÁŽ: kde sa oplatí doviezť nový tovar (napr. z Číny)
+python -m bazos_monitor.cli --config config.yaml arbitraz --window 30 --min-price 100 --csv arbitraz.csv
 ```
+
+## Arbitráž – hlavný účel nástroja
+
+Cieľom nie je len „vysoký dopyt", ale **arbitrážna príležitosť**: segment, kde
+vieš doviezť **nový** tovar (napr. z Číny) a predať ho **za cenu použitého /
+pod cenu miestneho nového** – a ľudia radšej kúpia nový lacný od teba.
+
+> Príklad: ratanový set stojí nový 1000 €, použitý 500 €. Ty dovezieš nový
+> z Číny a ponúkaš ho za 500 €. Ak veľkoobchod + doprava < 500 €, máš maržu.
+
+Príkaz `arbitraz` skóruje segmenty podľa troch vecí:
+
+1. **Dopyt** – veľa inzerátov + krátka životnosť (rýchlo sa predávajú).
+2. **Hodnota** – vysoká **absolútna cena použitého** (oplatí sa doviezť).
+3. **Konkurencia** – **málo lacných nových** ponúk (nikto to ešte masovo
+   nerobí → priestor pre teba). Stav (nový/použitý) sa odhaduje z nadpisu.
+
+Ukážkový výstup:
+
+```
+kategória  segment              ks  život  použité€  nové€  lacná konk.  skóre
+-----------------------------------------------------------------------------
+Záhrada    ratanovy zahradny     9    2.0      500      -            0   68.2   ← ideál
+Záhrada    infrasauna            9    4.0      900    820            3   18.4   ← už dovážajú
+Záhrada    trampolina           22    2.0      120    130           10    3.6   ← lacné, presýtené
+```
+
+**Čítanie:** ratanový set = vysoký dopyt, drahé použité (500 €) a nulová lacná
+konkurencia → top kandidát. Infrasauna je drahšia, ale už ju 3 predajcovia
+predávajú novú lacno → skóre padá. Trampolína sa rýchlo obracia, ale je lacná
+a trh je presýtený lacnými novými → nezaujímavé.
+
+**Čo nástroj NEvie a musíš overiť ty:** skutočnú **veľkoobchodnú cenu z Číny**
+(Alibaba / 1688 / AliExpress) vrátane dopravy a cla. Nástroj ti dá zoradený
+zoznam kandidátov; posledný krok – „vyjde mi dovoz pod cenu použitého?" – je na
+tebe. Rovnako „retail nový" cena je iba aproximovaná z drahších nových
+inzerátov na Bazoši.
+
+Parametre: `--min-price` (min. cena použitého, default 100 €), `--min-volume`
+(min. počet inzerátov v segmente, default 5), `--window`, `--category`, `--csv`.
 
 Kategórie sa dajú prepnúť aj bez configu:
 
