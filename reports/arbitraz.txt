@@ -30,8 +30,8 @@ Elektro      apple                    5      -       250       -           0    
 Nábytok      stolicky                 5      -       190       -           0     4.1
 Nábytok      sedacka                  5      -       499     440           2     3.6
 Detský bazár britax                   5      -       150       -           0     3.3
-Detský bazár britax romer             5      -       150       -           0     3.3
 Detský bazár romer                    5      -       150       -           0     3.3
+Detský bazár britax romer             5      -       150       -           0     3.3
 Šport        horsky bicykel           6      -       150     140           1     2.0
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka

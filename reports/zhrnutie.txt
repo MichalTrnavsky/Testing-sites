@@ -22,8 +22,8 @@ Zhrnutie: Dom a záhrada  —  posledných 30 dní
      4. vari                         3×
      5. panely                       3×
      6. virivka                      2×
-     7. vata                         2×
-     8. mineralna                    2×
+     7. mineralna                    2×
+     8. vata                         2×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
@@ -36,12 +36,12 @@ Zhrnutie: Nábytok  —  posledných 30 dní
   TOP produkty (podľa výskytu v nadpisoch):
      1. stol                         14×
      2. sedacia suprava              11×
-     3. sedacia                      11×
-     4. suprava                      11×
+     3. suprava                      11×
+     4. sedacia                      11×
      5. postel                       10×
      6. kuchynska                    8×
-     7. linka                        8×
-     8. kuchynska linka              8×
+     7. kuchynska linka              8×
+     8. linka                        8×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
@@ -65,12 +65,12 @@ Zhrnutie: Stroje  —  posledných 30 dní
 
 Zhrnutie: Elektro  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    102  (≈ 101.0/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    104  (≈ 103.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
-  Cena:             min 6 / medián 172 / max 555550 € (rozptyl 555544 €)
+  Cena:             min 6 / medián 168 / max 555550 € (rozptyl 555544 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. airpods                      8×
+     1. airpods                      9×
      2. led                          6×
      3. apple                        5×
      4. apple airpods                4×
@@ -95,13 +95,13 @@ Zhrnutie: Šport  —  posledných 30 dní
      5. kukirin                      3×
      6. glock                        3×
      7. motorovy                     3×
-     8. elektricku                   3×
+     8. kolobezku                    3×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Detský bazár  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    103  (≈ 103.0/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    104  (≈ 104.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 10 / medián 160 / max 210210 € (rozptyl 210200 €)

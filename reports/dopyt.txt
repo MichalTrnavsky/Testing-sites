@@ -7,15 +7,15 @@ Detský bazár cybex                        20     0         -     8.7
 Šport        bicykel                      15     0         -     6.5
 Nábytok      stol                         14     0         -     6.1
 Detský bazár detska                       13     0         -     5.7
+Nábytok      sedacia suprava              11     0         -     4.8
 Nábytok      suprava                      11     0         -     4.8
 Nábytok      sedacia                      11     0         -     4.8
-Nábytok      sedacia suprava              11     0         -     4.8
 Nábytok      postel                       10     0         -     4.3
+Elektro      airpods                       9     0         -     3.9
 Detský bazár autosedacka                   9     0         -     3.9
 Nábytok      kuchynska                     8     0         -     3.5
 Nábytok      kuchynska linka               8     0         -     3.5
 Nábytok      linka                         8     0         -     3.5
-Elektro      airpods                       8     0         -     3.5
 Detský bazár postielka                     8     0         -     3.5
 Hudba        yamaha                        8     0         -     3.5
 Nábytok      podnoze                       7     0         -     3.0
@@ -25,8 +25,8 @@ Stroje       jungheinrich                  7     0         -     3.0
 Šport        horsky                        7     0         -     3.0
 Nábytok      zahradne                      6     0         -     2.6
 Nábytok      kovove                        6     0         -     2.6
-Nábytok      kovove podnoze                6     0         -     2.6
 Nábytok      cierne                        6     0         -     2.6
+Nábytok      kovove podnoze                6     0         -     2.6
 Stroje       dempr                         6     0         -     2.6
 Stroje       vzv                           6     0         -     2.6
 Elektro      led                           6     0         -     2.6
@@ -38,9 +38,9 @@ Nábytok      gauc                          5     0         -     2.2
 Nábytok      kreslo                        5     0         -     2.2
 Nábytok      sedacka                       5     0         -     2.2
 Nábytok      stolove                       5     0         -     2.2
-Nábytok      zahradne sedenie              5     0         -     2.2
 Nábytok      teak zahradne                 5     0         -     2.2
 Nábytok      teak                          5     0         -     2.2
+Nábytok      zahradne sedenie              5     0         -     2.2
 Stroje       nakladac                      5     0         -     2.2
 Stroje       traktor                       5     0         -     2.2
 Stroje       nosnost                       5     0         -     2.2
@@ -49,8 +49,8 @@ Stroje       vzv jungheinrich              5     0         -     2.2
 Stroje       elektricky                    5     0         -     2.2
 Elektro      apple                         5     0         -     2.2
 Šport        ebike                         5     0         -     2.2
-Detský bazár romer                         5     0         -     2.2
 Detský bazár britax romer                  5     0         -     2.2
 Detský bazár britax                        5     0         -     2.2
+Detský bazár romer                         5     0         -     2.2
 
 Čítanie: vysoké 'nové' + nízka 'život.dní' = silný dopyt (inzeráty rýchlo miznú = predávajú sa).
