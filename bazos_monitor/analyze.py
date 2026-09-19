@@ -519,11 +519,15 @@ def summarize(
     pmin, pmed, pmax = _pct(prices)
     top = sorted(phrase_counts.items(), key=lambda kv: kv[1], reverse=True)[:top_products]
 
-    # Denný prírastok: ak máme dosť dátumov pridania z inzerátov, odhadneme ho
-    # z rozpätia týchto dátumov (funguje aj po prvom behu). Inak delíme oknom.
-    if len(posted_days) >= 5:
-        span = (max(posted_days) - min(posted_days)).days + 1
-        new_per_day = round(len(posted_days) / max(span, 1), 1)
+    # Denný prírastok: priemer za posledné 2 CELÉ dni (dnešok je čiastočný,
+    # staré ojedinelé dátumy ignorujeme). Odolné voči výnimkám v posted_date.
+    from collections import Counter
+    counts = Counter(posted_days)
+    today = now.date()
+    ref_days = [today - timedelta(days=1), today - timedelta(days=2)]
+    vals = [counts[d] for d in ref_days if counts.get(d, 0) > 0]
+    if vals:
+        new_per_day = round(sum(vals) / len(vals), 1)
         rate_basis = "posted_date"
     else:
         new_per_day = round(new_total / days, 1)
