@@ -139,7 +139,7 @@
 "use strict";
 const CATLABEL = {};
 let DATA = null, VIEW = "arbitraz";
-const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15 };
+const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15, groupBy:"subcat" };
 
 const $ = (s,el=document)=>el.querySelector(s);
 const el = (t,a={},...kids)=>{const n=document.createElement(t);
@@ -171,7 +171,7 @@ async function fetchData(){
 }
 
 function resetFilters(){
-  F.cat="";F.subcat="";F.q="";F.minVol=0;F.sort="";F.top=15;
+  F.cat="";F.subcat="";F.q="";F.minVol=0;F.sort="";F.top=15;F.groupBy="subcat";
   F.minPrice=0;F.maxPrice=3000; /* rozumný strop dovozu; daj 0 pre bez limitu */
 }
 
@@ -226,15 +226,22 @@ function topBox(){
   s.value=F.top; s.onchange=()=>{F.top=parseInt(s.value);render();};
   return field("Graf",s);
 }
+function groupBox(){
+  const s=el("select",{id:"f-group"});
+  [["subcat","Podkategórie (súčet)"],["keyword","Kľúčové slová"]].forEach(
+    ([v,t])=>s.append(el("option",{value:v},t)));
+  s.value=F.groupBy; s.onchange=()=>{F.groupBy=s.value;F.sort="";render();};
+  return field("Zobraziť",s);
+}
 
 function render(){
   const c=$("#controls"); c.innerHTML="";
   const p=$("#panel"); p.innerHTML="";
   if(VIEW==="zhrnutie"){ c.append(catOptions(), subcatOptions()); renderZhrnutie(p); return; }
 
-  c.append(catOptions(), subcatOptions(), searchBox());
+  c.append(catOptions(), subcatOptions());
   if(VIEW==="arbitraz"){
-    c.append(
+    c.append(searchBox(),
       numBox("f-min","cena od €",F.minPrice,v=>F.minPrice=v,"0"),
       numBox("f-max","cena do €",F.maxPrice,v=>F.maxPrice=v,"∞"),
       numBox("f-vol","min ks",F.minVol,v=>F.minVol=v),
@@ -242,10 +249,18 @@ function render(){
       topBox());
     renderArbitraz(p);
   } else {
-    c.append(
-      numBox("f-vol","min nových",F.minVol,v=>F.minVol=v),
-      sortBox([["score","skóre"],["vol","počet nových"],["life","najkratšia životnosť"]]),
-      topBox());
+    c.append(groupBox());
+    if(F.groupBy==="subcat"){
+      c.append(
+        numBox("f-vol","min nových",F.minVol,v=>F.minVol=v),
+        sortBox([["vol","počet nových"],["day","nové / deň"],["life","najkratšia životnosť"]]),
+        topBox());
+    } else {
+      c.append(searchBox(),
+        numBox("f-vol","min nových",F.minVol,v=>F.minVol=v),
+        sortBox([["score","skóre"],["vol","počet nových"],["life","najkratšia životnosť"]]),
+        topBox());
+    }
     renderDopyt(p);
   }
 }
@@ -301,6 +316,7 @@ function compPill(n){const c=n>=3?"b":n>0?"w":"g";return `<span class="pill ${c}
 
 /* ---------- DOPYT ---------- */
 function renderDopyt(p){
+  if(F.groupBy==="subcat"){ renderDopytSubcat(p); return; }
   let rows=applyCommon(DATA.demand).filter(r=>!F.minVol||r.new_count>=F.minVol);
   const cmp={score:(a,b)=>b.demand_score-a.demand_score,
     vol:(a,b)=>b.new_count-a.new_count,
@@ -323,6 +339,41 @@ function renderDopyt(p){
     ["","život",r=>r.median_lifespan_days==null?"–":num(r.median_lifespan_days),"median_lifespan_days"],
     ["","skóre",r=>num(r.demand_score),"demand_score"]];
   p.append(makeTable(cols,rows,"demand_score"));
+}
+
+/* Súčet za PODKATEGÓRIU (koľko nových inzerátov spolu, nie po kľúčových slovách).
+   Dáta berieme zo zhrnutí – tie už nesú new_total za každú podkategóriu. */
+function renderDopytSubcat(p){
+  let rows=(DATA.summaries||[]).filter(s=>s.subcategory).map(s=>({
+      category:s.category, subcat:s.subcategory,
+      new_count:s.new_total, new_per_day:s.new_per_day, rate_basis:s.rate_basis,
+      deleted_count:s.deleted_total, median_lifespan_days:s.median_lifespan_days}))
+    .filter(r=>(!F.cat||r.category===F.cat) && (!F.subcat||r.subcat===F.subcat)
+      && (!F.minVol||r.new_count>=F.minVol));
+  const cmp={vol:(a,b)=>b.new_count-a.new_count,
+    day:(a,b)=>(b.new_per_day||0)-(a.new_per_day||0),
+    life:(a,b)=>(a.median_lifespan_days??1e9)-(b.median_lifespan_days??1e9)};
+  rows.sort(cmp[F.sort]||cmp.vol);
+  showCount(rows.length,"podkategórií");
+  if(!rows.length){p.append(emptyNote());return;}
+  const top=rows.slice(0,F.top),max=Math.max(...top.map(r=>r.new_count),1);
+  const chart=el("div",{class:"chart"},el("h2",{},`Nové inzeráty podľa podkategórie — top ${top.length}`));
+  top.forEach(r=>chart.append(el("div",{class:"row"},
+    el("div",{class:"name"},r.subcat,el("small",{}," · "+lab(r.category))),
+    el("div",{class:"track"},el("div",{class:"fill",style:`width:${r.new_count/max*100}%`})),
+    el("div",{class:"val"},num(r.new_count)))));
+  p.append(chart);
+  const cols=[["l","kategória",r=>lab(r.category),null],
+    ["l","podkategória",r=>r.subcat,null],
+    ["","nové spolu",r=>r.new_count,"new_count"],
+    ["","nové / deň",r=>num(r.new_per_day),"new_per_day"],
+    ["","zmazané",r=>r.deleted_count,"deleted_count"],
+    ["","život",r=>r.median_lifespan_days==null?"–":num(r.median_lifespan_days),"median_lifespan_days"]];
+  p.append(makeTable(cols,rows,"new_count"));
+  p.append(el("div",{class:"note"},
+    "„Nové spolu“ = počet nových inzerátov zachytených v celej podkategórii za okno "
+    +"(toto číslo hľadáš, keď pozeráš napr. Kočíky). „Nové / deň“ = denná rýchlosť "
+    +"z dátumov na inzerátoch. Prepni na „Kľúčové slová“ pre rozpad na konkrétne produkty."));
 }
 
 /* ---------- ZHRNUTIE ---------- */
@@ -388,7 +439,7 @@ function makeTable(cols,rows,defSort){
   }
   draw();return wrap;
 }
-function showCount(n){const c=$("#count");c.hidden=false;c.textContent=n+" segmentov";}
+function showCount(n,noun){const c=$("#count");c.hidden=false;c.textContent=n+" "+(noun||"segmentov");}
 function emptyNote(){return el("div",{class:"note"},
   "Žiadny segment nevyhovuje filtrom. Skús uvoľniť cenu/počet, alebo počkaj na viac dát.");}
 function legItem(color,txt){return el("span",{},el("i",{style:`background:${color}`}),txt);}
