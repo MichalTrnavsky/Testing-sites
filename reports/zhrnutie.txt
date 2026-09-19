@@ -1,0 +1,137 @@
+Zhrnutie: Záhrada  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    0  (≈ 0.0/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             bez cien
+  TOP produkty (podľa výskytu v nadpisoch):
+    (zatiaľ málo dát)
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+
+Zhrnutie: Dom a záhrada  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    100  (≈ 3.3/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             min 1 / medián 202 / max 918949502650 € (rozptyl 918949502649 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. malotraktor                  5×
+     2. dvere                        3×
+     3. kosacka                      3×
+     4. vari                         3×
+     5. panely                       3×
+     6. virivka                      2×
+     7. mineralna                    2×
+     8. vata                         2×
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+
+Zhrnutie: Nábytok  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    100  (≈ 3.3/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             min 10 / medián 400 / max 5320926120 € (rozptyl 5320926110 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. stol                         14×
+     2. suprava                      12×
+     3. sedacia suprava              12×
+     4. sedacia                      12×
+     5. postel                       10×
+     6. kuchynska                    8×
+     7. linka                        8×
+     8. kuchynska linka              8×
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+
+Zhrnutie: Stroje  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    101  (≈ 3.4/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             min 25 / medián 5000 / max 74900 € (rozptyl 74875 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. zetor                        7×
+     2. dempr                        6×
+     3. nakladac                     5×
+     4. traktor                      5×
+     5. nosnost                      5×
+     6. vozik                        5×
+     7. elektricky                   5×
+     8. pasovy                       4×
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+
+Zhrnutie: Elektro  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    100  (≈ 3.3/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             min 6 / medián 172 / max 949820080270 € (rozptyl 949820080264 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. airpods                      8×
+     2. led                          6×
+     3. apple                        5×
+     4. apple airpods                4×
+     5. philips                      4×
+     6. profesionalny                4×
+     7. pracka                       4×
+     8. doska                        3×
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+
+Zhrnutie: Šport  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    100  (≈ 3.3/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             min 16 / medián 900 / max 75245511000 € (rozptyl 75245510984 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. bicykel                      14×
+     2. horsky                       6×
+     3. ebike                        5×
+     4. horsky bicykel               5×
+     5. kukirin                      3×
+     6. glock                        3×
+     7. motorovy                     3×
+     8. kolobezku                    3×
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+
+Zhrnutie: Detský bazár  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    100  (≈ 3.3/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             min 10 / medián 162 / max 911331114200 € (rozptyl 911331114190 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. kocik                        23×
+     2. cybex                        20×
+     3. detska                       12×
+     4. autosedacka                  9×
+     5. postielka                    7×
+     6. 2v1                          5×
+     7. detska postielka             5×
+     8. kocik cybex                  4×
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+
+Zhrnutie: Hudba  —  posledných 30 dní
+============================================================
+  Nové inzeráty:    100  (≈ 3.3/deň)
+  Zmazané:          0  (≈ 0.0/deň)
+  Medián životnosti:       -
+  Cena:             min 1 / medián 500 / max 905207899750 € (rozptyl 905207899749 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. yamaha                       8×
+     2. piano                        5×
+     3. kridlo                       4×
+     4. fender                       4×
+     5. klavir                       4×
+     6. bicie                        4×
+     7. gitaru                       4×
+     8. husle                        3×
+
+  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
+

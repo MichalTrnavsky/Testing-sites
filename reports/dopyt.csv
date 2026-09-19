@@ -3,9 +3,9 @@ deti,kocik,23,0,,10.0
 deti,cybex,20,0,,8.7
 nabytok,stol,14,0,,6.09
 sport,bicykel,14,0,,6.09
-nabytok,sedacia suprava,12,0,,5.22
 nabytok,sedacia,12,0,,5.22
 nabytok,suprava,12,0,,5.22
+nabytok,sedacia suprava,12,0,,5.22
 deti,detska,12,0,,5.22
 nabytok,postel,10,0,,4.35
 deti,autosedacka,9,0,,3.91
@@ -19,9 +19,9 @@ nabytok,sedenie,7,0,,3.04
 stroje,zetor,7,0,,3.04
 deti,postielka,7,0,,3.04
 nabytok,zahradne,6,0,,2.61
-nabytok,kovove podnoze,6,0,,2.61
 nabytok,cierne,6,0,,2.61
 nabytok,kovove,6,0,,2.61
+nabytok,kovove podnoze,6,0,,2.61
 stroje,dempr,6,0,,2.61
 elektro,led,6,0,,2.61
 sport,horsky,6,0,,2.61
@@ -31,8 +31,8 @@ nabytok,gauc,5,0,,2.17
 nabytok,kreslo,5,0,,2.17
 nabytok,stolove,5,0,,2.17
 nabytok,zahradne sedenie,5,0,,2.17
-nabytok,teak,5,0,,2.17
 nabytok,teak zahradne,5,0,,2.17
+nabytok,teak,5,0,,2.17
 stroje,nakladac,5,0,,2.17
 stroje,traktor,5,0,,2.17
 stroje,nosnost,5,0,,2.17
@@ -50,15 +50,15 @@ nabytok,suprava gauc,4,0,,1.74
 nabytok,kuchyna,4,0,,1.74
 nabytok,sedacka,4,0,,1.74
 nabytok,skladom,4,0,,1.74
-nabytok,stolove kovove,4,0,,1.74
 nabytok,tvar,4,0,,1.74
 nabytok,tvar cierne,4,0,,1.74
+nabytok,stolove kovove,4,0,,1.74
 stroje,pasovy,4,0,,1.74
 stroje,jcb,4,0,,1.74
 stroje,kubota,4,0,,1.74
 stroje,jungheinrich,4,0,,1.74
-stroje,paletovy,4,0,,1.74
 stroje,paletovy vozik,4,0,,1.74
+stroje,paletovy,4,0,,1.74
 elektro,apple airpods,4,0,,1.74
 elektro,philips,4,0,,1.74
 elektro,profesionalny,4,0,,1.74
@@ -86,8 +86,8 @@ nabytok,supravu,3,0,,1.3
 nabytok,sedaciu,3,0,,1.3
 nabytok,sedaciu supravu,3,0,,1.3
 nabytok,masiv,3,0,,1.3
-nabytok,poloh,3,0,,1.3
 nabytok,stol poloh,3,0,,1.3
+nabytok,poloh,3,0,,1.3
 stroje,smykovy nakladac,3,0,,1.3
 stroje,smykovy,3,0,,1.3
 stroje,bager,3,0,,1.3
@@ -98,8 +98,8 @@ stroje,john,3,0,,1.3
 stroje,john deere,3,0,,1.3
 stroje,deere,3,0,,1.3
 stroje,automat,3,0,,1.3
-stroje,predajny,3,0,,1.3
 stroje,predajny automat,3,0,,1.3
+stroje,predajny,3,0,,1.3
 stroje,vzv,3,0,,1.3
 stroje,elektricky paletovy,3,0,,1.3
 elektro,doska,3,0,,1.3
@@ -111,8 +111,8 @@ elektro,eta,3,0,,1.3
 sport,kukirin,3,0,,1.3
 sport,glock,3,0,,1.3
 sport,motorovy,3,0,,1.3
-sport,elektricku,3,0,,1.3
 sport,kolobezku,3,0,,1.3
+sport,elektricku,3,0,,1.3
 sport,puskohlad,3,0,,1.3
 sport,specialized,3,0,,1.3
 sport,celoodpruzeny,3,0,,1.3
@@ -134,10 +134,10 @@ hudba,gitara,3,0,,1.3
 hudba,pioneer,3,0,,1.3
 hudba,korg,3,0,,1.3
 hudba,telecaster,3,0,,1.3
-hudba,struny,3,0,,1.3
 hudba,zadarmo,3,0,,1.3
 hudba,gitaru struny,3,0,,1.3
+hudba,struny,3,0,,1.3
 hudba,akusticku,3,0,,1.3
+hudba,art,3,0,,1.3
 hudba,rcf,3,0,,1.3
 hudba,rcf art,3,0,,1.3
-hudba,art,3,0,,1.3

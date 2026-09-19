@@ -4,8 +4,8 @@ TOP arbitrážne segmenty za posledných 30 dní
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
 Nábytok      suprava                 12      -      1399       -           0    73.0
-Nábytok      sedacia suprava         12      -      1399       -           0    73.0
 Nábytok      sedacia                 12      -      1399       -           0    73.0
+Nábytok      sedacia suprava         12      -      1399       -           0    73.0
 Šport        ebike                    5      -      2300       -           0    50.0
 Hudba        piano                    5      -      2190       -           0    47.6
 Stroje       vozik                    5      -      1850       -           0    40.2
@@ -15,9 +15,9 @@ Nábytok      gauc                     5      -      1399       -           0   
 Nábytok      sedenie                  7      -       980       -           0    29.8
 Detský bazár cybex                   20      -       299       -           0    26.0
 Nábytok      zahradne                 6      -       985       -           0    25.7
+Nábytok      teak                     5      -       980       -           0    21.3
 Nábytok      teak zahradne            5      -       980       -           0    21.3
 Nábytok      zahradne sedenie         5      -       980       -           0    21.3
-Nábytok      teak                     5      -       980       -           0    21.3
 Nábytok      postel                  10      -       350     600           0    15.2
 Šport        bicykel                 14      -       490     420           1    14.9
 Hudba        yamaha                   8      -       422       -           0    14.7
