@@ -11,6 +11,7 @@ Model:
 
 from __future__ import annotations
 
+import os
 import sqlite3
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -64,6 +65,10 @@ class DeletedAd:
 
 class Store:
     def __init__(self, db_path: str):
+        # SQLite nevytvorí súbor v neexistujúcom adresári -> vytvoríme ho
+        parent = os.path.dirname(db_path)
+        if parent:
+            os.makedirs(parent, exist_ok=True)
         self.conn = sqlite3.connect(db_path)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
