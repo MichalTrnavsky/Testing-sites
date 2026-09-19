@@ -17,6 +17,8 @@ from .analyze import (
     analyze_arbitrage,
     format_arbitrage,
     format_report,
+    format_summary,
+    summarize,
     write_csv,
 )
 from .categories import ALL_CATEGORIES, DEFAULT_EXCLUDED, resolve_categories
@@ -104,6 +106,23 @@ def cmd_arbitrage(args) -> int:
     return 0
 
 
+def cmd_zhrnutie(args) -> int:
+    cfg = _load(args)
+    store = Store(cfg.db_path)
+    try:
+        s = summarize(
+            store,
+            category=args.category,
+            window_days=args.window,
+            keyword=args.keyword,
+            top_products=args.top,
+        )
+        print(format_summary(s))
+    finally:
+        store.close()
+    return 0
+
+
 def cmd_cats(args) -> int:
     cfg = _load(args)
     active = {c.key for c in resolve_categories(cfg.include_categories, cfg.exclude_categories)}
@@ -153,6 +172,13 @@ def build_parser() -> argparse.ArgumentParser:
     pa.add_argument("--top", type=int, default=30, help="koľko riadkov vypísať")
     pa.add_argument("--csv", help="zapíš výsledok aj do CSV")
     pa.set_defaults(func=cmd_arbitrage)
+
+    pz = sub.add_parser("zhrnutie", help="denné prírastky/úbytky, cena, top produkty")
+    pz.add_argument("--category", required=True, help="kategória (napr. deti)")
+    pz.add_argument("--keyword", help="segment v kategórii (napr. kocik)")
+    pz.add_argument("--window", type=int, default=30, help="okno v dňoch (default 30)")
+    pz.add_argument("--top", type=int, default=10, help="koľko top produktov vypísať")
+    pz.set_defaults(func=cmd_zhrnutie)
 
     pcat = sub.add_parser("cats", help="vypíš známe kategórie")
     pcat.set_defaults(func=cmd_cats)
