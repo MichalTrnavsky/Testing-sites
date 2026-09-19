@@ -245,7 +245,9 @@ function soldWinBox(){
 }
 function soldGroupBox(){
   const s=el("select",{id:"f-sgroup"});
-  [["subcat","Súhrn podľa podkat."],["keyword","Súhrn podľa slov"],["list","Zoznam inzerátov"]].forEach(
+  // „Súhrn podľa slov" zrušený – globálne bez kontextu podkategórie to bol
+  // zlepenec fragmentov; typy/modely sú v paneli po výbere podkategórie.
+  [["subcat","Súhrn podľa podkat."],["list","Zoznam inzerátov"]].forEach(
     ([v,t])=>s.append(el("option",{value:v},t)));
   s.value=F.soldGroup; s.onchange=()=>{F.soldGroup=s.value;F.sort="";render();};
   return field("Zobraziť",s);
