@@ -19,6 +19,8 @@ from bs4 import BeautifulSoup
 
 # /inzerat/171234567/nazov-inzeratu.php  -> id = 171234567
 AD_URL_RE = re.compile(r"/inzerat/(\d+)/")
+# podkategória: odkaz s parametrom ?...category=120...
+SUBCAT_RE = re.compile(r"[?&]category=(\d+)")
 # "Pridané 18.9. 2026" / "Pridané dňa: 18.9.2026" / "18. 9. 2026"
 DATE_RE = re.compile(r"(\d{1,2})\.\s?(\d{1,2})\.\s?(\d{4})")
 # "Cena 120 €" / "120 €" / "1 250 €". Za číslom hneď (voliteľné medzery) €.
@@ -161,6 +163,37 @@ def next_page_url(subdomain: str, page_index: int, per_page: int) -> str:
         return f"https://{subdomain}/"
     offset = page_index * per_page
     return f"https://{subdomain}/{offset}/"
+
+
+def parse_subcategories(html: str) -> list[tuple[str, str]]:
+    """Z hlavnej stránky subdomény vytiahne podkategórie.
+
+    Hľadá odkazy s parametrom ``category=<ID>`` (menu sekcií) a vráti
+    dvojice ``(id, názov)``. Deduplikuje podľa id, poradie zachováva.
+    """
+    soup = BeautifulSoup(html, "lxml")
+    out: dict[str, str] = {}
+    for a in soup.find_all("a", href=True):
+        m = SUBCAT_RE.search(a["href"])
+        if not m:
+            continue
+        cid = m.group(1)
+        if cid == "0":
+            continue  # "všetko"
+        name = a.get_text(strip=True)
+        if not name:
+            continue
+        out.setdefault(cid, name)
+    return list(out.items())
+
+
+def subcat_listing_url(subdomain: str, rubriky: str, category_id: str,
+                       page_index: int, per_page: int) -> str:
+    """URL listingu podkategórie (s offsetom v ceste ako pri hlavnom listingu)."""
+    path = "/" if page_index <= 0 else f"/{page_index * per_page}/"
+    q = (f"?hledat=&rubriky={rubriky}&category={category_id}"
+         f"&hlokalita=&humkreis=25&cenaod=&cenado=&order=&crp=&kitx=ano")
+    return f"https://{subdomain}{path}{q}"
 
 
 def _join(base_url: str, href: str) -> str:

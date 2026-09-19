@@ -261,6 +261,63 @@ def test_crawl_lookback_stops_at_horizon():
     print("test_crawl_lookback_stops_at_horizon OK  (fetched offsets:", ff.fetched, ")")
 
 
+def test_parse_subcategories_and_url():
+    from bazos_monitor.parse import parse_subcategories, subcat_listing_url
+    html = """<html><body>
+      <a href="/?hledat=&rubriky=deti&category=120&kitx=ano">Kočíky</a>
+      <a href="/?hledat=&rubriky=deti&category=121&kitx=ano">Autosedačky</a>
+      <a href="/?rubriky=deti&category=0">Všetko</a>
+      <a href="/inzerat/12345/nieco.php">Nejaký inzerát</a>
+      <a href="/?hledat=&rubriky=deti&category=120&kitx=ano">Kočíky (dup)</a>
+    </body></html>"""
+    subs = parse_subcategories(html)
+    assert subs == [("120", "Kočíky"), ("121", "Autosedačky")], subs
+    u0 = subcat_listing_url("deti.bazos.sk", "deti", "120", 0, 20)
+    u1 = subcat_listing_url("deti.bazos.sk", "deti", "120", 1, 20)
+    assert "category=120" in u0 and "rubriky=deti" in u0
+    assert "/20/?" in u1, u1
+    print("test_parse_subcategories_and_url OK")
+
+
+def test_crawl_subcategories_tags_ads():
+    from bazos_monitor.fetch import FetchResult
+    from bazos_monitor.crawl import _crawl_with_subcategories
+    from bazos_monitor.categories import ALL_CATEGORIES
+    from bazos_monitor.config import Config
+
+    now = datetime.utcnow()
+    fresh = now.strftime("%-d.%-m. %Y")
+
+    def card(ad_id):
+        return (f'<div class="inzeraty"><div class="inzeratynadpis">'
+                f'<a href="/inzerat/{ad_id}/x.php">Vec {ad_id}</a>'
+                f'<span>Pridané {fresh}</span></div>'
+                f'<div class="inzeratycena">Cena 50 €</div></div>')
+
+    main_html = ('<a href="/?rubriky=deti&category=120&kitx=ano">Kočíky</a>'
+                 '<a href="/?rubriky=deti&category=121&kitx=ano">Autosedačky</a>')
+
+    class FakeFetcher:
+        def get(self, url):
+            if "category=120" in url:
+                html = "<html><body>" + card(1001) + card(1002) + "</body></html>"
+            elif "category=121" in url:
+                html = "<html><body>" + card(2001) + "</body></html>"
+            else:
+                html = "<html><body>" + main_html + "</body></html>"
+            return FetchResult(url, 200, html, ok=True)
+
+    store = Store(os.path.join(tempfile.mkdtemp(), "sub.db"))
+    cfg = Config(crawl_subcategories=True, crawl_lookback_days=0, max_pages_per_category=1)
+    new_c, seen = _crawl_with_subcategories(ALL_CATEGORIES["deti"], cfg, FakeFetcher(), store, log=lambda *a: None)
+    rows = {r["ad_id"]: r for r in store.iter_ads("deti")}
+    assert rows["1001"]["subcat"] == "Kočíky" and rows["1001"]["subcat_id"] == "120"
+    assert rows["2001"]["subcat"] == "Autosedačky"
+    assert new_c == 3
+    store.close()
+    print("test_crawl_subcategories_tags_ads OK  (nové:", new_c, ")")
+
+
 def test_prune():
     tmp = tempfile.mkdtemp()
     store = Store(os.path.join(tmp, "p.db"))
@@ -321,5 +378,7 @@ if __name__ == "__main__":
     test_summarize_kociky()
     test_freshness_filter()
     test_crawl_lookback_stops_at_horizon()
+    test_parse_subcategories_and_url()
+    test_crawl_subcategories_tags_ads()
     test_prune()
     print("\nVŠETKY TESTY PREŠLI")

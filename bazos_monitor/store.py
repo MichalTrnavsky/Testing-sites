@@ -30,7 +30,9 @@ CREATE TABLE IF NOT EXISTS ads (
     last_seen     TEXT NOT NULL,      -- ISO čas posledného videnia v listingu
     status        TEXT NOT NULL DEFAULT 'active',  -- active | deleted
     deleted_at    TEXT,               -- ISO čas detekcie zmazania
-    missing_runs  INTEGER NOT NULL DEFAULT 0       -- koľko behov po sebe chýbal
+    missing_runs  INTEGER NOT NULL DEFAULT 0,      -- koľko behov po sebe chýbal
+    subcat        TEXT,               -- názov podkategórie (napr. "Kočíky")
+    subcat_id     TEXT                -- ID podkategórie z Bazoša (napr. "120")
 );
 CREATE INDEX IF NOT EXISTS idx_ads_category ON ads(category);
 CREATE INDEX IF NOT EXISTS idx_ads_status ON ads(status);
@@ -72,7 +74,15 @@ class Store:
         self.conn = sqlite3.connect(db_path)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
+        self._migrate()
         self.conn.commit()
+
+    def _migrate(self) -> None:
+        """Doplní nové stĺpce do existujúcich DB (bez straty dát)."""
+        cols = {r["name"] for r in self.conn.execute("PRAGMA table_info(ads)")}
+        for col in ("subcat", "subcat_id"):
+            if col not in cols:
+                self.conn.execute(f"ALTER TABLE ads ADD COLUMN {col} TEXT")
 
     def close(self) -> None:
         self.conn.close()
@@ -97,6 +107,8 @@ class Store:
         price_eur: int | None,
         posted_date: str | None,
         now_iso: str,
+        subcat: str | None = None,
+        subcat_id: str | None = None,
     ) -> bool:
         """Vloží nový alebo aktualizuje existujúci inzerát.
 
@@ -108,17 +120,19 @@ class Store:
             self.conn.execute(
                 """UPDATE ads
                    SET last_seen = ?, missing_runs = 0, status = 'active',
-                       deleted_at = NULL, price_eur = COALESCE(?, price_eur)
+                       deleted_at = NULL, price_eur = COALESCE(?, price_eur),
+                       subcat = COALESCE(?, subcat), subcat_id = COALESCE(?, subcat_id)
                    WHERE ad_id = ?""",
-                (now_iso, price_eur, ad_id),
+                (now_iso, price_eur, subcat, subcat_id, ad_id),
             )
             return False
         self.conn.execute(
             """INSERT INTO ads
                (ad_id, category, title, url, price_eur, posted_date,
-                first_seen, last_seen, status, missing_runs)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'active', 0)""",
-            (ad_id, category, title, url, price_eur, posted_date, now_iso, now_iso),
+                first_seen, last_seen, status, missing_runs, subcat, subcat_id)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'active', 0, ?, ?)""",
+            (ad_id, category, title, url, price_eur, posted_date, now_iso, now_iso,
+             subcat, subcat_id),
         )
         return True
 

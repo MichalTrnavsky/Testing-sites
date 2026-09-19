@@ -24,6 +24,8 @@ class Config:
     max_pages_per_category: int = 25
     # sťahuj strany, kým sú inzeráty novšie než X dní (0 = ignoruj, ber strop)
     crawl_lookback_days: float = 3.0
+    # crawl na úrovni podkategórií (objaví ich z hlavnej stránky a označí inzeráty)
+    crawl_subcategories: bool = True
     # per-kategóriové prepísanie stropu (napr. {"deti": 40}) – keď má kategória
     # extrémny pohyb, zvýšime strop len jej
     pages_per_category: dict = field(default_factory=dict)
