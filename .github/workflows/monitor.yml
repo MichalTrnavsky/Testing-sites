@@ -52,6 +52,7 @@ jobs:
             python -m bazos_monitor.cli --db data/bazos.db zhrnutie --category "$c" --window 30 --max-age 21 --top 8 >> reports/zhrnutie.txt
             echo "" >> reports/zhrnutie.txt
           done
+          python -m bazos_monitor.cli --db data/bazos.db export --out reports/data.json --window 30 --max-age 21
           echo "Posledný beh: $(date -u '+%Y-%m-%d %H:%M UTC')" > reports/_last_run.txt
 
       - name: Commit stavu a reportov
