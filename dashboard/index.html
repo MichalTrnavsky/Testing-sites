@@ -121,9 +121,10 @@
     <h1>Bazoš dopyt</h1>
     <span class="sub" id="meta">načítavam…</span>
     <div class="tabs" role="tablist" id="tabs">
-      <button class="tab" role="tab" data-view="arbitraz" aria-selected="true">Arbitráž</button>
+      <button class="tab" role="tab" data-view="prilezitosti" aria-selected="true">Príležitosti</button>
       <button class="tab" role="tab" data-view="dopyt" aria-selected="false">Dopyt</button>
       <button class="tab" role="tab" data-view="predane" aria-selected="false">Predané</button>
+      <button class="tab" role="tab" data-view="arbitraz" aria-selected="false">Arbitráž</button>
       <button class="tab" role="tab" data-view="zhrnutie" aria-selected="false">Zhrnutie</button>
     </div>
   </div>
@@ -139,7 +140,7 @@
 <script>
 "use strict";
 const CATLABEL = {};
-let DATA = null, VIEW = "arbitraz";
+let DATA = null, VIEW = "prilezitosti";
 const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15,
   groupBy:"subcat", soldWin:7, soldGroup:"subcat" };
 
@@ -257,6 +258,12 @@ function render(){
   const c=$("#controls"); c.innerHTML="";
   const p=$("#panel"); p.innerHTML="";
   if(VIEW==="zhrnutie"){ c.append(catOptions(), subcatOptions()); renderZhrnutie(p); return; }
+  if(VIEW==="prilezitosti"){
+    c.append(catOptions(), subcatOptions(), soldWinBox(),
+      sortBox([["sold","predané"],["st","sell-through"],["signal","signál (predané×cena)"],["price","cena medián"],["speed","najrýchlejšie"]]),
+      topBox());
+    renderPrilezitosti(p); return;
+  }
   if(VIEW==="predane"){
     c.append(catOptions(), subcatOptions(), soldWinBox(), soldGroupBox());
     if(F.soldGroup==="list")
@@ -574,6 +581,70 @@ function renderZhrnutie(p){
 }
 function stat(k,v,sub){return el("div",{class:"stat"},el("div",{class:"k"},k),
   el("div",{class:"v"},v,sub?el("small",{}," "+sub):""));}
+
+/* ---------- PRÍLEŽITOSTI (čo sa oplatí obstarať – na úrovni značky) ---------- */
+// značka inzerátu = prvé kľúčové slovo, ktoré je v zozname značiek (inak null)
+function brandOf(ad){ for(const k of (ad.keywords||[])) if(BRANDS.has(k)) return k; return null; }
+function supplyFor(cat,subcat,brand){   // koľko je v ponuke (z demand segmentov)
+  const row=(DATA.demand||[]).find(r=>r.category===cat && r.subcat===subcat && r.keyword===brand);
+  return row? row.new_count : null;
+}
+function renderPrilezitosti(p){
+  const winLabel=WINLABEL[F.soldWin]||(F.soldWin+" dní");
+  const del=(DATA.deletions||[]).filter(r=>(!F.cat||r.category===F.cat)
+    && (!F.subcat||r.subcat===F.subcat) && inWindow(r,F.soldWin));
+  // agregácia po (podkat, značka)
+  const map=new Map(); let brandedSold=0, genericSold=0;
+  for(const r of del){
+    const oc=ocOf(r), b=brandOf(r);
+    if(oc==="sold"){ (b?brandedSold++:genericSold++); }
+    if(!b) continue;                       // rebríček je značkový; komodita je nižšie ako podiel
+    const key=r.category+"|"+(r.subcat||"")+"|"+b;
+    let o=map.get(key); if(!o){o={cat:r.category,subcat:r.subcat||"",brand:b,sold:0,expired:0,relisted:0,prices:[],lives:[]};map.set(key,o);}
+    if(oc==="sold"){o.sold++; if(r.price_eur!=null)o.prices.push(r.price_eur); if(r.lifespan_hours!=null)o.lives.push(r.lifespan_hours);}
+    else if(oc==="expired")o.expired++; else if(oc==="relisted")o.relisted++;
+  }
+  let rows=[...map.values()].map(o=>{
+    const price=med(o.prices);
+    return {...o, price, supply:supplyFor(o.cat,o.subcat,o.brand),
+      sell_through:(o.sold+o.expired)>0?Math.round(100*o.sold/(o.sold+o.expired)):null,
+      speed:med(o.lives), signal:(price!=null?Math.round(o.sold*price):0)};
+  }).filter(o=>o.sold>0);
+  const cmp={signal:(a,b)=>b.signal-a.signal, sold:(a,b)=>b.sold-a.sold,
+    st:(a,b)=>(b.sell_through??-1)-(a.sell_through??-1),
+    price:(a,b)=>(b.price??-1)-(a.price??-1),
+    speed:(a,b)=>(a.speed??1e9)-(b.speed??1e9)};
+  rows.sort(cmp[F.sort]||cmp.signal);
+  rows.forEach((o,i)=>o._ord=-i);
+  showCount(rows.length,"značkových príležitostí");
+
+  const totSold=brandedSold+genericSold;
+  const genPct=totSold? Math.round(100*genericSold/totSold):0;
+  p.append(el("div",{class:"note"},
+    `Za „${winLabel}“ predané: `,el("b",{},String(brandedSold))," značkových · "
+    +`${genericSold} bez značky (${genPct} % = komoditný priestor pre nový import). `
+    +"Rebríček nižšie = značkový second-hand dopyt (kandidáti na obstaranie napr. z DE). "
+    +"„Signál“ = predané × cena = koľko € sa v segmente pretočilo. Cenu zdroja (DE/Čína) over ručne."));
+  if(!rows.length){ p.append(emptyNote()); return; }
+
+  const top=rows.slice(0,F.top||15), max=Math.max(...top.map(o=>o.sold),1);
+  const chart=el("div",{class:"chart"},el("h2",{},`Najsilnejší značkový dopyt za ${winLabel} — top ${top.length} (počet predaných)`));
+  top.forEach(o=>chart.append(el("div",{class:"row"},
+    el("div",{class:"name"},o.brand,el("small",{}," · "+(o.subcat||lab(o.cat)))),
+    el("div",{class:"track"},el("div",{class:"fill",style:`width:${o.sold/max*100}%`})),
+    el("div",{class:"val"},o.sold))));
+  p.append(chart);
+  const stPill=o=>o.sell_through==null?"–":`<span class="pill ${o.sell_through>=50?"g":o.sell_through>=25?"w":"b"}">${o.sell_through}%</span>`;
+  const cols=[["l","značka",o=>o.brand,null],
+    ["l","podkategória",o=>o.subcat||"–",null],
+    ["","v ponuke",o=>o.supply==null?"–":o.supply,"supply"],
+    ["","predané",o=>o.sold,"sold"],
+    ["","sell-through",stPill,"sell_through"],
+    ["","cena medián",o=>o.price==null?"–":eur(o.price),"price"],
+    ["","rýchlosť",o=>o.speed==null?"–":lifeTxt(o.speed),"speed"],
+    ["","signál €",o=>eur(o.signal),"signal"]];
+  p.append(makeTable(cols,rows,"_ord"));
+}
 
 /* ---------- shared table ---------- */
 function makeTable(cols,rows,defSort){
