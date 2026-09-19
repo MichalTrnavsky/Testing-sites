@@ -155,9 +155,23 @@ def test_arbitrage_ratan():
     assert not any("hadica" in k for k in kws), f"lacná hadica sa nemá zobraziť: {kws}"
     top = stats[0]
     assert top.used_median_eur >= 100
+
+    # cenový strop: pridaj drahý traktor (nad strop) -> nesmie sa zobraziť
+    for i in range(6):
+        fs = (now - timedelta(days=12 - i)).isoformat()
+        store.upsert_listing_ad(
+            ad_id=f"T{i}", category="stroje", title="Traktor Zetor",
+            url=f"https://x/inzerat/t{i}/", price_eur=14000, posted_date=None, now_iso=fs,
+        )
+    store.conn.commit()
+    capped = analyze_arbitrage(store, category=None, window_days=30,
+                               min_volume=5, min_used_price=100, top=50,
+                               max_used_price=3000)
+    assert not any("traktor" in s.keyword or "zetor" in s.keyword for s in capped), \
+        "traktor za 14000€ mal byť odfiltrovaný cenovým stropom"
     store.close()
     print("test_arbitrage_ratan OK  (top:", stats[0].keyword,
-          f"@ {stats[0].used_median_eur}€, skóre {stats[0].arbitrage_score})")
+          f"@ {stats[0].used_median_eur}€, skóre {stats[0].arbitrage_score}; strop OK)")
 
 
 if __name__ == "__main__":
