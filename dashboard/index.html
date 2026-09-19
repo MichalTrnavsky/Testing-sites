@@ -311,7 +311,8 @@ function renderZhrnutie(p){
     const card=el("div",{class:"card"},el("h3",{},lab(s.category)));
     const stats=el("div",{class:"stats"});
     stats.append(
-      stat("nové / deň",num(s.new_per_day),s.rate_basis==="posted_date"?"z inzerátov":"pozor: 1. deň"),
+      stat("nové / deň",num(s.new_per_day),
+        s.rate_basis==="posted_date"?"z inzerátov":(s.rate_basis==="today"?"dnes, zatiaľ":"treba viac dní")),
       stat("zmazané / deň",num(s.deleted_per_day),s.deleted_total?"":"čaká na dáta"),
       stat("cena medián",s.price_median==null?"–":eur(s.price_median),
         s.price_min==null?"":`${eur(s.price_min)}–${eur(s.price_max)}`),

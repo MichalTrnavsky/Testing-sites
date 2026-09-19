@@ -519,16 +519,22 @@ def summarize(
     pmin, pmed, pmax = _pct(prices)
     top = sorted(phrase_counts.items(), key=lambda kv: kv[1], reverse=True)[:top_products]
 
-    # Denný prírastok: priemer za posledné 2 CELÉ dni (dnešok je čiastočný,
-    # staré ojedinelé dátumy ignorujeme). Odolné voči výnimkám v posted_date.
+    # Denný prírastok:
+    #  1) ak máme aspoň jeden CELÝ predošlý deň → priemer za tie dni (reálna
+    #     denná rýchlosť, odolná voči ojedinelým starým dátumom),
+    #  2) inak (1. deň zberu) → počet za DNEŠOK (čiastočný, spodná hranica),
+    #  3) úplný fallback → objem/okno.
     from collections import Counter
     counts = Counter(posted_days)
     today = now.date()
-    ref_days = [today - timedelta(days=1), today - timedelta(days=2)]
-    vals = [counts[d] for d in ref_days if counts.get(d, 0) > 0]
-    if vals:
-        new_per_day = round(sum(vals) / len(vals), 1)
+    prior_days = [today - timedelta(days=i) for i in range(1, 8)]
+    prior_vals = [counts[d] for d in prior_days if counts.get(d, 0) > 0]
+    if prior_vals:
+        new_per_day = round(sum(prior_vals) / len(prior_vals), 1)
         rate_basis = "posted_date"
+    elif counts.get(today, 0) > 0:
+        new_per_day = float(counts[today])
+        rate_basis = "today"
     else:
         new_per_day = round(new_total / days, 1)
         rate_basis = "first_seen"
@@ -559,7 +565,10 @@ def format_summary(s: SegmentSummary) -> str:
     else:
         price = (f"min {s.price_min} / medián {s.price_median:.0f} / max {s.price_max} € "
                  f"(rozptyl {s.price_max - s.price_min} €)")
-    basis = "z dátumov na inzerátoch" if s.rate_basis == "posted_date" else "za sledované obdobie"
+    basis = {
+        "posted_date": "z dátumov na inzerátoch",
+        "today": "za dnešok, zatiaľ (treba viac dní)",
+    }.get(s.rate_basis, "za sledované obdobie")
     lines = [
         f"Zhrnutie: {head}  —  posledných {s.window_days} dní",
         "=" * 60,
