@@ -3,21 +3,21 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
+Nábytok      sedacia suprava         11      -      1399       -           0    66.9
 Nábytok      sedacia                 11      -      1399       -           0    66.9
 Nábytok      suprava                 11      -      1399       -           0    66.9
-Nábytok      sedacia suprava         11      -      1399       -           0    66.9
 Šport        ebike                    5      -      2300       -           0    50.0
 Hudba        piano                    5      -      2190       -           0    47.6
 Stroje       vozik                    5      -      1850       -           0    40.2
 Stroje       elektricky               5      -      1850       -           0    40.2
-Dom a záhrad malotraktor              5      -      1500       -           0    32.6
+Dom a záhrad malotraktor              5      -      1450       -           0    31.5
 Nábytok      gauc                     5      -      1399       -           0    30.4
 Nábytok      sedenie                  7      -       980       -           0    29.8
 Detský bazár cybex                   20      -       299       -           0    26.0
 Nábytok      zahradne                 6      -       985       -           0    25.7
 Nábytok      teak                     5      -       980       -           0    21.3
-Nábytok      zahradne sedenie         5      -       980       -           0    21.3
 Nábytok      teak zahradne            5      -       980       -           0    21.3
+Nábytok      zahradne sedenie         5      -       980       -           0    21.3
 Šport        bicykel                 14      -       490     420           1    14.9
 Hudba        yamaha                   8      -       399       -           0    13.9
 Nábytok      postel                  10      -       290     600           0    12.6
@@ -28,7 +28,6 @@ Nábytok      kreslo                   5      -       250       -           0   
 Elektro      apple                    5      -       250       -           0     5.4
 Nábytok      stolicky                 5      -       190       -           0     4.1
 Nábytok      sedacka                  5      -       499     440           2     3.6
-Detský bazár postielka                7      -       100       -           0     3.0
 Šport        horsky                   6      -       150     140           1     2.0
 Šport        horsky bicykel           5      -       145     140           1     1.6
 

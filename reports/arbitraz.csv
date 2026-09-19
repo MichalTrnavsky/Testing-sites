@@ -1,12 +1,12 @@
 category,keyword,volume,deleted_count,median_lifespan_days,used_median_eur,new_median_eur,cheap_new_competitors,price_gap_eur,arbitrage_score
-nabytok,suprava,11,0,,1399,,0,,66.91
-nabytok,sedacia suprava,11,0,,1399,,0,,66.91
 nabytok,sedacia,11,0,,1399,,0,,66.91
+nabytok,sedacia suprava,11,0,,1399,,0,,66.91
+nabytok,suprava,11,0,,1399,,0,,66.91
 sport,ebike,5,0,,2300,,0,,50.0
 hudba,piano,5,0,,2190,,0,,47.61
 stroje,vozik,5,0,,1850,,0,,40.22
 stroje,elektricky,5,0,,1850,,0,,40.22
-dom,malotraktor,5,0,,1500,,0,,32.61
+dom,malotraktor,5,0,,1450,,0,,31.52
 nabytok,gauc,5,0,,1399,,0,,30.41
 nabytok,sedenie,7,0,,980,,0,,29.83
 deti,cybex,20,0,,299.0,,0,,26.0
@@ -24,6 +24,5 @@ nabytok,kreslo,5,0,,250,,0,,5.43
 elektro,apple,5,0,,250,,0,,5.43
 nabytok,stolicky,5,0,,190,,0,,4.13
 nabytok,sedacka,5,0,,499,440.0,2,-59.0,3.62
-deti,postielka,7,0,,100,,0,,3.04
 sport,horsky,6,0,,150,140,1,-10,1.96
 sport,horsky bicykel,5,0,,145.0,140,1,-5.0,1.58
