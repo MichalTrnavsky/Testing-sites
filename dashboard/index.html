@@ -140,7 +140,8 @@
 "use strict";
 const CATLABEL = {};
 let DATA = null, VIEW = "arbitraz";
-const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15, groupBy:"subcat" };
+const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15,
+  groupBy:"subcat", soldWin:7, soldGroup:"keyword" };
 
 const $ = (s,el=document)=>el.querySelector(s);
 const el = (t,a={},...kids)=>{const n=document.createElement(t);
@@ -173,6 +174,7 @@ async function fetchData(){
 
 function resetFilters(){
   F.cat="";F.subcat="";F.q="";F.minVol=0;F.sort="";F.top=15;F.groupBy="subcat";
+  F.soldWin=7;F.soldGroup="keyword";
   F.minPrice=0;F.maxPrice=3000; /* rozumný strop dovozu; daj 0 pre bez limitu */
 }
 
@@ -234,14 +236,31 @@ function groupBox(){
   s.value=F.groupBy; s.onchange=()=>{F.groupBy=s.value;F.sort="";render();};
   return field("Zobraziť",s);
 }
+function soldWinBox(){
+  const s=el("select",{id:"f-swin"});
+  [["1","24 hodín"],["7","7 dní"],["30","30 dní"],["0","celé okno"]].forEach(
+    ([v,t])=>s.append(el("option",{value:v},t)));
+  s.value=String(F.soldWin); s.onchange=()=>{F.soldWin=parseInt(s.value);render();};
+  return field("Za obdobie",s);
+}
+function soldGroupBox(){
+  const s=el("select",{id:"f-sgroup"});
+  [["keyword","Súhrn podľa slov"],["subcat","Súhrn podľa podkat."],["list","Zoznam inzerátov"]].forEach(
+    ([v,t])=>s.append(el("option",{value:v},t)));
+  s.value=F.soldGroup; s.onchange=()=>{F.soldGroup=s.value;F.sort="";render();};
+  return field("Zobraziť",s);
+}
 
 function render(){
   const c=$("#controls"); c.innerHTML="";
   const p=$("#panel"); p.innerHTML="";
   if(VIEW==="zhrnutie"){ c.append(catOptions(), subcatOptions()); renderZhrnutie(p); return; }
   if(VIEW==="predane"){
-    c.append(catOptions(), subcatOptions(),
-      sortBox([["recent","najnovšie"],["life","najkratšia životnosť"],["price","najdrahšie"]]));
+    c.append(catOptions(), subcatOptions(), soldWinBox(), soldGroupBox());
+    if(F.soldGroup==="list")
+      c.append(sortBox([["recent","najnovšie"],["life","najkratšia životnosť"],["price","najdrahšie"]]));
+    else
+      c.append(sortBox([["count","počet predaných"],["price","cena medián"],["life","najkratšia životnosť"]]), topBox());
     renderPredane(p); return;
   }
 
@@ -386,9 +405,62 @@ function renderDopytSubcat(p){
 const lifeTxt = h => h==null? "–" : (h<48? Math.round(h)+" h" : (Math.round(h/24*10)/10)+" d");
 function whenTxt(iso){ const d=new Date(iso); if(isNaN(d)) return iso||"–";
   return d.toLocaleString("sk-SK",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}); }
+const WINLABEL={1:"24 h",7:"7 dní",30:"30 dní",0:"celé okno"};
+function inWindow(r,winDays){ if(!winDays) return true;
+  const t=Date.parse(r.deleted_at); return !isNaN(t) && t>=Date.now()-winDays*86400000; }
+function med(a){ if(!a||!a.length) return null;
+  const s=[...a].sort((x,y)=>x-y),m=Math.floor(s.length/2);
+  return s.length%2? s[m] : (s[m-1]+s[m])/2; }
+function aggSold(rows,keyFn){
+  const map=new Map();
+  for(const r of rows){ let ks=keyFn(r); if(!Array.isArray(ks)) ks=[ks];
+    for(const k of ks){ if(!k) continue;
+      let o=map.get(k); if(!o){o={key:k,count:0,prices:[],lives:[],cat:r.category,subcat:r.subcat};map.set(k,o);}
+      o.count++; if(r.price_eur!=null)o.prices.push(r.price_eur);
+      if(r.lifespan_hours!=null)o.lives.push(r.lifespan_hours); } }
+  return [...map.values()];
+}
 function renderPredane(p){
+  const winLabel=WINLABEL[F.soldWin]||(F.soldWin+" dní");
   let rows=(DATA.deletions||[]).filter(r=>(!F.cat||r.category===F.cat)
-    && (!F.subcat||r.subcat===F.subcat));
+    && (!F.subcat||r.subcat===F.subcat) && inWindow(r,F.soldWin));
+  if(F.soldGroup==="list"){ renderPredaneList(p,rows,winLabel); return; }
+
+  const keyFn = F.soldGroup==="keyword" ? (r=>r.keywords||[]) : (r=>r.subcat);
+  let agg=aggSold(rows,keyFn);
+  const cmp={count:(a,b)=>b.count-a.count,
+    price:(a,b)=>(med(b.prices)??-1)-(med(a.prices)??-1),
+    life:(a,b)=>(med(a.lives)??1e9)-(med(b.lives)??1e9)};
+  agg.sort(cmp[F.sort]||cmp.count);
+  agg.forEach((o,i)=>o._ord=-i);
+  showCount(agg.length, F.soldGroup==="keyword"?"kľúčových slov":"podkategórií");
+  p.append(el("div",{class:"note"},
+    `Za „${winLabel}“: ${rows.length} predaných (zmazaných) inzerátov spolu. `
+    +"Číslo pri segmente = koľko sa ich za toto obdobie predalo (zmizlo). "
+    +"Pozn.: história je zatiaľ krátka (DB má pár hodín) – okná 7/30 dní sa naplnia časom."));
+  if(!agg.length){ p.append(emptyNote()); return; }
+  const top=agg.slice(0,F.top||15), max=Math.max(...top.map(o=>o.count),1);
+  const chart=el("div",{class:"chart"},el("h2",{},`Najviac predané za ${winLabel} — top ${top.length}`));
+  top.forEach(o=>{
+    const sub = F.soldGroup==="keyword" ? (o.subcat?" · "+o.subcat:"") : " · "+lab(o.cat);
+    chart.append(el("div",{class:"row"},
+      el("div",{class:"name"},o.key,el("small",{},sub)),
+      el("div",{class:"track"},el("div",{class:"fill",style:`width:${o.count/max*100}%`})),
+      el("div",{class:"val"},o.count))); });
+  p.append(chart);
+  const cols = F.soldGroup==="keyword"
+    ? [["l","kľúčové slovo",o=>o.key,null],
+       ["","predané",o=>o.count,"count"],
+       ["","cena medián",o=>med(o.prices)==null?"–":eur(med(o.prices)),null],
+       ["","žil medián",o=>o.lives.length?lifeTxt(med(o.lives)):"–",null]]
+    : [["l","kategória",o=>lab(o.cat),null],
+       ["l","podkategória",o=>o.key,null],
+       ["","predané",o=>o.count,"count"],
+       ["","cena medián",o=>med(o.prices)==null?"–":eur(med(o.prices)),null],
+       ["","žil medián",o=>o.lives.length?lifeTxt(med(o.lives)):"–",null]];
+  p.append(makeTable(cols,agg,"_ord"));
+}
+function renderPredaneList(p,rows,winLabel){
   const cmp={recent:(a,b)=>(b.deleted_at>a.deleted_at?1:-1),
     life:(a,b)=>(a.lifespan_hours??1e9)-(b.lifespan_hours??1e9),
     price:(a,b)=>(b.price_eur??-1)-(a.price_eur??-1)};
@@ -396,8 +468,7 @@ function renderPredane(p){
   rows.forEach((r,i)=>r._ord=-i);   // zachovaj poradie zvolené v „Zoradiť"
   showCount(rows.length,"predaných / zmazaných");
   if(!rows.length){ p.append(el("div",{class:"note"},
-    "Zatiaľ žiadne zachytené zmazania v okne. Napĺňa sa priebežne, ako inzeráty miznú "
-    +"(potrebné aspoň dva behy za sebou).")); return; }
+    `Za „${winLabel}“ zatiaľ žiadne zachytené zmazania. Napĺňa sa priebežne, ako inzeráty miznú.`)); return; }
   p.append(el("div",{class:"note"},
     "„Predané“ = inzerát, ktorý sme videli a potom zmizol (overené na detaile, že bol zmazaný, "
     +"nie len odsunutý). Toto je najpriamejší signál dopytu. Pozn.: „žil“ je zatiaľ obmedzené "
