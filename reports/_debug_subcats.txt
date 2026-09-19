@@ -24,7 +24,37 @@ URL https://deti.bazos.sk/  HTTP 200 ok=True bytes=43078
     https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C
 === okolie prvého výskytu 'category' v HTML ===
     slatakci('spam','195477737');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195477737');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','7675636','13338333','Rossy85');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195477737');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span> </div> </div>  <div class="inzeraty inzeratyflex"> <div class="inzer
-=== kandidáti na JS zoznam podkat. (číslo:reťazec) ===
+=== OKOLIE 'Kočíky' a 'Baby monitory' (surové HTML) ===
+--- Kočíky @ 8141 ---
+div class="barvaleva">
+<a href="/autosedacky/" >Autosedačky</a>
+<a href="/baby/" >Baby monitory</a>
+<a href="/bicykle/" >Bicykle</a>
+<a href="https://knihy.bazos.sk/detska/">Detská literatúra</a>
+<a href="/hracky/" >Hračky</a>
+<a href="/choditka/" >Chodítka a hopsadlá</a>
+<a href="/kociky/" >Kočíky</a>
+<a href="/kojenecke/" >Kojenecké potreby</a>
+<a href="/lego/" >Lego</a>
+<a href="/nabytok/" >Nábytok pre deti</a>
+<a href="/nositka/" >Nosiče</a>
+<a href="/odrazadla/" >Odrážadlá</a>
+
+--- Baby monitory @ 7925 ---
+href=https://www.bazos.sk/>Hlavná stránka</a>  > <h1 class="nadpiskategorie">Deti</h1></div>
+<br>
+
+
+<div class="flexmain"><div class="menuleft"><div class="nadpismenu">Kategórie</div>
+<div class="barvalmenu">
+<div class="barvaleva">
+<a href="/autosedacky/" >Autosedačky</a>
+<a href="/baby/" >Baby monitory</a>
+<a href="/bicykle/" >Bicykle</a>
+<a href="https://knihy.bazos.sk/detska/">Detská literatúra</a>
+<a href="/hracky/" >Hračky</a>
+<a href="/choditka/" >Chodítka a hopsadlá</a>
+<a h
 ----- ELEKTRO -----
 URL https://elektro.bazos.sk/  HTTP 200 ok=True bytes=42073
 === SELECTY ===
@@ -52,4 +82,4 @@ URL https://elektro.bazos.sk/  HTTP 200 ok=True bytes=42073
     https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C
 === okolie prvého výskytu 'category' v HTML ===
     slatakci('spam','195531247');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195531247');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5994834','4896187','Peter');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195531247');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span> </div> </div>  <div class="inzeraty inzeratyflex"> <div class="inzeraty
-=== kandidáti na JS zoznam podkat. (číslo:reťazec) ===
+=== OKOLIE 'Kočíky' a 'Baby monitory' (surové HTML) ===
