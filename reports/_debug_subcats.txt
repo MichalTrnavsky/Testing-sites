@@ -1,0 +1,35 @@
+URL https://deti.bazos.sk/  HTTP 200 ok=True bytes=43078
+=== SELECTY ===
+- <select name='rubriky' id=None> opcií=21
+    value='www' text='Všetky rubriky'
+    value='auto' text='Auto'
+    value='deti' text='Deti'
+    value='dom' text='Dom a záhrada'
+    value='elektro' text='Elektro'
+    value='foto' text='Foto'
+    value='hudba' text='Hudba'
+    value='knihy' text='Knihy'
+    value='mobil' text='Mobily'
+    value='motocykle' text='Motocykle'
+    value='nabytok' text='Nábytok'
+    value='oblecenie' text='Oblečenie'
+=== ODKAZY s category= (prvých 12) ===
+    (žiadne)
+----- ELEKTRO -----
+URL https://elektro.bazos.sk/  HTTP 200 ok=True bytes=42073
+=== SELECTY ===
+- <select name='rubriky' id=None> opcií=21
+    value='www' text='Všetky rubriky'
+    value='auto' text='Auto'
+    value='deti' text='Deti'
+    value='dom' text='Dom a záhrada'
+    value='elektro' text='Elektro'
+    value='foto' text='Foto'
+    value='hudba' text='Hudba'
+    value='knihy' text='Knihy'
+    value='mobil' text='Mobily'
+    value='motocykle' text='Motocykle'
+    value='nabytok' text='Nábytok'
+    value='oblecenie' text='Oblečenie'
+=== ODKAZY s category= (prvých 12) ===
+    (žiadne)
