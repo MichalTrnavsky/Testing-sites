@@ -23,7 +23,10 @@ max_pages_per_category: 25     # POISTNÝ strop (~500 inzerátov); crawl sa
                                # zvyčajne zastaví skôr podľa horizontu nižšie
 crawl_lookback_days: 1         # pri častom behu stačí 1 deň spätne (šetrí)
 crawl_subcategories: true      # crawl len whitelistovaných podkategórií nižšie
-subcat_max_pages: 6            # strop strán na podkategóriu
+subcat_max_pages: 30           # strop strán na podkategóriu (~600 inzerátov);
+                               # vyšší strop, aby sme neorezávali rušné segmenty
+                               # (napr. Kočíky/Lego mali >120/deň). Crawl sa aj
+                               # tak zastaví skôr podľa horizontu (lookback).
 per_page: 20                   # inzerátov na stránku (Bazoš default)
 
 # WHITELIST podkategórií na crawl (slug = časť URL, napr. .../kociky/).
