@@ -80,7 +80,7 @@ class Store:
     def _migrate(self) -> None:
         """Doplní nové stĺpce do existujúcich DB (bez straty dát)."""
         cols = {r["name"] for r in self.conn.execute("PRAGMA table_info(ads)")}
-        for col in ("subcat", "subcat_id"):
+        for col in ("subcat", "subcat_id", "outcome"):
             if col not in cols:
                 self.conn.execute(f"ALTER TABLE ads ADD COLUMN {col} TEXT")
 
@@ -170,6 +170,17 @@ class Store:
             "UPDATE ads SET missing_runs = 0 WHERE ad_id = ?", (ad_id,)
         )
 
+    # ---- klasifikácia výsledku (predané / preposted / expirované) ------
+    def set_outcomes(self, pairs) -> int:
+        """Hromadne nastaví ``outcome`` pre zoznam (ad_id, outcome)."""
+        pairs = list(pairs)
+        self.conn.executemany(
+            "UPDATE ads SET outcome = ? WHERE ad_id = ?",
+            [(o, i) for (i, o) in pairs],
+        )
+        self.conn.commit()
+        return len(pairs)
+
     # ---- čítanie pre analýzu ------------------------------------------
     def iter_ads(self, category: str | None = None):
         if category:
@@ -184,7 +195,7 @@ class Store:
         ``since_iso`` orezáva na zmazania od daného času (napr. začiatok okna);
         ``lifespan_hours`` = koľko hodín inzerát žil (deleted_at − first_seen)."""
         sql = ("""SELECT ad_id, category, subcat, subcat_id, title, url, price_eur,
-                         first_seen, deleted_at,
+                         first_seen, deleted_at, outcome,
                          (julianday(deleted_at) - julianday(first_seen)) * 24.0 AS lifespan_hours
                   FROM ads
                   WHERE status = 'deleted' AND deleted_at IS NOT NULL""")

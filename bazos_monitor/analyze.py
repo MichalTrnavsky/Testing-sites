@@ -184,6 +184,14 @@ def _subcat(row) -> str:
     return v if v else "(nezaradené)"
 
 
+def _row_outcome(row):
+    """Výsledok zmazania: 'sold' | 'relisted' | 'expired' | None (neklasifikované)."""
+    try:
+        return row["outcome"]
+    except (KeyError, IndexError):
+        return None
+
+
 def _too_old(row, now: datetime, max_age_days: float | None) -> bool:
     """True ak je inzerát starší než strop čerstvosti (irelevantná ležiačka)."""
     if not max_age_days:
@@ -465,6 +473,11 @@ class SegmentSummary:
     top_products: list[tuple[str, int]]  # (fráza, počet) – v ponuke (nové)
     rate_basis: str = "first_seen"  # "posted_date" = odhad z dátumov na inzerátoch
     top_products_sold: list[tuple[str, int]] = field(default_factory=list)  # predané typy
+    # výsledok zmazaní v okne (zmazanie != predaj)
+    sold_total: int = 0        # pravdepodobne predané
+    relisted_total: int = 0    # len obnovené (nepredané)
+    expired_total: int = 0     # vypršané (nepredané)
+    sell_through: float | None = None  # sold / (sold + expired), %; None = málo dát
 
 
 def _pct(prices: list[int]):
@@ -507,6 +520,9 @@ def summarize(
 
     new_total = 0
     deleted_total = 0
+    sold_total = 0
+    relisted_total = 0
+    expired_total = 0
     lifespans: list[float] = []
     prices: list[int] = []
     phrase_counts: dict[str, int] = defaultdict(int)
@@ -544,12 +560,21 @@ def summarize(
 
         if r["status"] == "deleted" and deleted_at is not None and deleted_at >= since:
             deleted_total += 1
+            outcome = _row_outcome(r)
+            if outcome == "sold":
+                sold_total += 1
+            elif outcome == "relisted":
+                relisted_total += 1
+            elif outcome == "expired":
+                expired_total += 1
             if first_seen is not None:
                 lifespans.append((deleted_at - first_seen).total_seconds() / 86400.0)
-            for ph in set(keyphrases(title, max_n=3)):
-                if kw_norm and ph == kw_norm:
-                    continue
-                sold_phrase_counts[ph] += 1
+            # „predané typy" počítame len z pravdepodobne PREDANÝCH
+            if outcome in ("sold", None):
+                for ph in set(keyphrases(title, max_n=3)):
+                    if kw_norm and ph == kw_norm:
+                        continue
+                    sold_phrase_counts[ph] += 1
 
     days = max(window_days, 1)
     pmin, pmed, pmax = _pct(prices)
@@ -592,6 +617,11 @@ def summarize(
         top_products=top,
         rate_basis=rate_basis,
         top_products_sold=top_sold,
+        sold_total=sold_total,
+        relisted_total=relisted_total,
+        expired_total=expired_total,
+        sell_through=(round(100.0 * sold_total / (sold_total + expired_total), 1)
+                      if (sold_total + expired_total) > 0 else None),
     )
 
 
