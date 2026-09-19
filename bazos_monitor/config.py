@@ -26,6 +26,8 @@ class Config:
     crawl_lookback_days: float = 3.0
     # crawl na úrovni podkategórií (objaví ich z hlavnej stránky a označí inzeráty)
     crawl_subcategories: bool = True
+    # tvrdý strop strán NA PODKATEGÓRIU (poistka voči záťaži, nezávislá od horizontu)
+    subcat_max_pages: int = 6
     # per-kategóriové prepísanie stropu (napr. {"deti": 40}) – keď má kategória
     # extrémny pohyb, zvýšime strop len jej
     pages_per_category: dict = field(default_factory=dict)
