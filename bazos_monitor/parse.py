@@ -21,8 +21,11 @@ from bs4 import BeautifulSoup
 AD_URL_RE = re.compile(r"/inzerat/(\d+)/")
 # "Pridané 18.9. 2026" / "Pridané dňa: 18.9.2026" / "18. 9. 2026"
 DATE_RE = re.compile(r"(\d{1,2})\.\s?(\d{1,2})\.\s?(\d{4})")
-# "Cena 120 €" / "120 €" / "1 250 €"
-PRICE_RE = re.compile(r"(\d[\d\s]{0,12})\s*€")
+# "Cena 120 €" / "120 €" / "1 250 €". Za číslom hneď (voliteľné medzery) €.
+PRICE_RE = re.compile(r"(\d[\d\s]{0,9})\s*€")
+# Realistický strop ceny na Bazoši (nad tým je to skoro isto zle zosnímané
+# telefónne číslo/PSČ zlepené do "ceny").
+MAX_SANE_PRICE = 5_000_000
 
 # Markery, že detail inzerátu bol zmazaný / už neexistuje.
 DELETED_MARKERS = (
@@ -57,13 +60,18 @@ def _parse_date(text: str) -> date | None:
 
 
 def _parse_price(text: str) -> int | None:
-    m = PRICE_RE.search(text)
-    if not m:
-        return None
-    digits = re.sub(r"\s", "", m.group(1))
-    if not digits.isdigit():
-        return None
-    return int(digits)
+    # môže byť viac výskytov "... €"; vezmeme prvú rozumnú hodnotu
+    for m in PRICE_RE.finditer(text):
+        digits = re.sub(r"\s", "", m.group(1))
+        if not digits.isdigit():
+            continue
+        # príliš veľa číslic = zlepené tel. číslo/PSČ, nie cena
+        if len(digits) > 7:
+            continue
+        value = int(digits)
+        if 0 < value <= MAX_SANE_PRICE:
+            return value
+    return None
 
 
 def parse_listing(html: str, base_url: str) -> list[ListingAd]:

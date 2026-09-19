@@ -421,6 +421,7 @@ class SegmentSummary:
     price_median: float | None
     price_max: int | None
     top_products: list[tuple[str, int]]  # (fráza, počet)
+    rate_basis: str = "first_seen"  # "posted_date" = odhad z dátumov na inzerátoch
 
 
 def _pct(prices: list[int]):
@@ -453,7 +454,9 @@ def summarize(
     lifespans: list[float] = []
     prices: list[int] = []
     phrase_counts: dict[str, int] = defaultdict(int)
+    posted_days: list = []  # dátumy pridania (z inzerátov) v okne
 
+    since_date = since.date()
     for r in store.iter_ads(category):
         title = r["title"] or ""
         if kw_norm:
@@ -474,6 +477,9 @@ def summarize(
                 if kw_norm and ph == kw_norm:
                     continue  # samotné hľadané slovo nechceme ako "produkt"
                 phrase_counts[ph] += 1
+            pd = _parse_iso(r["posted_date"])
+            if pd is not None and pd.date() >= since_date:
+                posted_days.append(pd.date())
 
         if r["status"] == "deleted" and deleted_at is not None and deleted_at >= since:
             deleted_total += 1
@@ -484,12 +490,22 @@ def summarize(
     pmin, pmed, pmax = _pct(prices)
     top = sorted(phrase_counts.items(), key=lambda kv: kv[1], reverse=True)[:top_products]
 
+    # Denný prírastok: ak máme dosť dátumov pridania z inzerátov, odhadneme ho
+    # z rozpätia týchto dátumov (funguje aj po prvom behu). Inak delíme oknom.
+    if len(posted_days) >= 5:
+        span = (max(posted_days) - min(posted_days)).days + 1
+        new_per_day = round(len(posted_days) / max(span, 1), 1)
+        rate_basis = "posted_date"
+    else:
+        new_per_day = round(new_total / days, 1)
+        rate_basis = "first_seen"
+
     return SegmentSummary(
         category=category,
         keyword=keyword,
         window_days=window_days,
         new_total=new_total,
-        new_per_day=round(new_total / days, 1),
+        new_per_day=new_per_day,
         deleted_total=deleted_total,
         deleted_per_day=round(deleted_total / days, 1),
         median_lifespan_days=round(median(lifespans), 2) if lifespans else None,
@@ -497,6 +513,7 @@ def summarize(
         price_median=pmed,
         price_max=pmax,
         top_products=top,
+        rate_basis=rate_basis,
     )
 
 
@@ -509,10 +526,11 @@ def format_summary(s: SegmentSummary) -> str:
     else:
         price = (f"min {s.price_min} / medián {s.price_median:.0f} / max {s.price_max} € "
                  f"(rozptyl {s.price_max - s.price_min} €)")
+    basis = "z dátumov na inzerátoch" if s.rate_basis == "posted_date" else "za sledované obdobie"
     lines = [
         f"Zhrnutie: {head}  —  posledných {s.window_days} dní",
         "=" * 60,
-        f"  Nové inzeráty:    {s.new_total}  (≈ {s.new_per_day}/deň)",
+        f"  Nové inzeráty:    {s.new_total}  (≈ {s.new_per_day}/deň, {basis})",
         f"  Zmazané:          {s.deleted_total}  (≈ {s.deleted_per_day}/deň)",
         f"  Medián životnosti:{life:>8}",
         f"  Cena:             {price}",
