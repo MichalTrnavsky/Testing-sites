@@ -123,6 +123,7 @@
     <div class="tabs" role="tablist" id="tabs">
       <button class="tab" role="tab" data-view="arbitraz" aria-selected="true">Arbitráž</button>
       <button class="tab" role="tab" data-view="dopyt" aria-selected="false">Dopyt</button>
+      <button class="tab" role="tab" data-view="predane" aria-selected="false">Predané</button>
       <button class="tab" role="tab" data-view="zhrnutie" aria-selected="false">Zhrnutie</button>
     </div>
   </div>
@@ -238,6 +239,11 @@ function render(){
   const c=$("#controls"); c.innerHTML="";
   const p=$("#panel"); p.innerHTML="";
   if(VIEW==="zhrnutie"){ c.append(catOptions(), subcatOptions()); renderZhrnutie(p); return; }
+  if(VIEW==="predane"){
+    c.append(catOptions(), subcatOptions(),
+      sortBox([["recent","najnovšie"],["life","najkratšia životnosť"],["price","najdrahšie"]]));
+    renderPredane(p); return;
+  }
 
   c.append(catOptions(), subcatOptions());
   if(VIEW==="arbitraz"){
@@ -374,6 +380,35 @@ function renderDopytSubcat(p){
     "„Nové spolu“ = počet nových inzerátov zachytených v celej podkategórii za okno "
     +"(toto číslo hľadáš, keď pozeráš napr. Kočíky). „Nové / deň“ = denná rýchlosť "
     +"z dátumov na inzerátoch. Prepni na „Kľúčové slová“ pre rozpad na konkrétne produkty."));
+}
+
+/* ---------- PREDANÉ (zmazané = pravdepodobne predané) ---------- */
+const lifeTxt = h => h==null? "–" : (h<48? Math.round(h)+" h" : (Math.round(h/24*10)/10)+" d");
+function whenTxt(iso){ const d=new Date(iso); if(isNaN(d)) return iso||"–";
+  return d.toLocaleString("sk-SK",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}); }
+function renderPredane(p){
+  let rows=(DATA.deletions||[]).filter(r=>(!F.cat||r.category===F.cat)
+    && (!F.subcat||r.subcat===F.subcat));
+  const cmp={recent:(a,b)=>(b.deleted_at>a.deleted_at?1:-1),
+    life:(a,b)=>(a.lifespan_hours??1e9)-(b.lifespan_hours??1e9),
+    price:(a,b)=>(b.price_eur??-1)-(a.price_eur??-1)};
+  rows.sort(cmp[F.sort]||cmp.recent);
+  rows.forEach((r,i)=>r._ord=-i);   // zachovaj poradie zvolené v „Zoradiť"
+  showCount(rows.length,"predaných / zmazaných");
+  if(!rows.length){ p.append(el("div",{class:"note"},
+    "Zatiaľ žiadne zachytené zmazania v okne. Napĺňa sa priebežne, ako inzeráty miznú "
+    +"(potrebné aspoň dva behy za sebou).")); return; }
+  p.append(el("div",{class:"note"},
+    "„Predané“ = inzerát, ktorý sme videli a potom zmizol (overené na detaile, že bol zmazaný, "
+    +"nie len odsunutý). Toto je najpriamejší signál dopytu. Pozn.: „žil“ je zatiaľ obmedzené "
+    +"vekom databázy – reálny rozptyl (hodiny vs. dni) uvidíš po pár dňoch zberu."));
+  const cols=[["l","kategória",r=>lab(r.category),null],
+    ["l","podkategória",r=>r.subcat||"–",null],
+    ["l","inzerát",r=>r.title||"–",null],
+    ["","cena",r=>r.price_eur==null?"–":eur(r.price_eur),"price_eur"],
+    ["","žil",r=>lifeTxt(r.lifespan_hours),"lifespan_hours"],
+    ["l","zmazané",r=>whenTxt(r.deleted_at),null]];
+  p.append(makeTable(cols,rows,"_ord"));
 }
 
 /* ---------- ZHRNUTIE ---------- */

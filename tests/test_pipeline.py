@@ -125,6 +125,35 @@ def test_end_to_end_demand():
     print("test_end_to_end_demand OK  (top3:", sorted(top3), ")")
 
 
+def test_recent_deletions():
+    tmp = tempfile.mkdtemp()
+    store = Store(os.path.join(tmp, "d.db"))
+    now = datetime.utcnow()
+    # 3 zmazané (rôzne časy), 1 aktívny
+    for i in range(3):
+        fs = (now - timedelta(hours=6 - i)).isoformat()
+        store.upsert_listing_ad(ad_id=f"D{i}", category="deti", title=f"Kočík {i}",
+                                url=f"https://x/inzerat/{i}/", price_eur=100 + i,
+                                posted_date=None, now_iso=fs, subcat="Kočíky", subcat_id="kociky")
+        store.mark_deleted(f"D{i}", (now - timedelta(hours=3 - i)).isoformat())
+    store.upsert_listing_ad(ad_id="A1", category="deti", title="Živý kočík",
+                            url="https://x/inzerat/a1/", price_eur=200,
+                            posted_date=None, now_iso=now.isoformat(),
+                            subcat="Kočíky", subcat_id="kociky")
+    store.conn.commit()
+
+    dels = store.recent_deletions(limit=10)
+    assert len(dels) == 3, "iba zmazané, nie aktívne"
+    # najnovšie zmazané prvé (deleted_at DESC): D2 sa mazal naposledy
+    assert dels[0]["ad_id"] == "D2"
+    assert dels[0]["lifespan_hours"] is not None and dels[0]["lifespan_hours"] > 0
+    # okno oreže staré zmazania
+    future = (now + timedelta(hours=1)).isoformat()
+    assert store.recent_deletions(since_iso=future) == []
+    store.close()
+    print("test_recent_deletions OK")
+
+
 def test_condition_of():
     assert condition_of("Ratanový set NOVÝ nepoužitý") == "new"
     assert condition_of("Ratanový set použitý") == "used"

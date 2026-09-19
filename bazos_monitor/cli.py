@@ -154,6 +154,16 @@ def cmd_export(args) -> int:
                 summaries.append(summarize(store, category=c.key, window_days=args.window,
                                            top_products=12, max_age_days=age,
                                            subcategory=sub))
+        # čerstvo zmazané (pravdepodobne predané) v rámci okna
+        from datetime import timedelta
+        since_iso = (datetime.utcnow() - timedelta(days=args.window)).isoformat()
+        dels = store.recent_deletions(since_iso=since_iso, limit=1500)
+        deletions = [{
+            "category": r["category"], "subcat": r["subcat"],
+            "title": r["title"], "url": r["url"], "price_eur": r["price_eur"],
+            "first_seen": r["first_seen"], "deleted_at": r["deleted_at"],
+            "lifespan_hours": round(r["lifespan_hours"], 1) if r["lifespan_hours"] is not None else None,
+        } for r in dels]
         data = {
             "generated_at": datetime.utcnow().isoformat() + "Z",
             "window_days": args.window,
@@ -162,11 +172,13 @@ def cmd_export(args) -> int:
             "demand": [asdict(s) for s in demand],
             "arbitrage": [asdict(s) for s in arb],
             "summaries": [asdict(s) for s in summaries],
+            "deletions": deletions,
         }
         with open(args.out, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
         print(f"JSON zapísané: {args.out} "
-              f"(dopyt={len(demand)}, arbitráž={len(arb)}, kategórie={len(cats)})")
+              f"(dopyt={len(demand)}, arbitráž={len(arb)}, "
+              f"predané={len(deletions)}, kategórie={len(cats)})")
     finally:
         store.close()
     return 0
