@@ -1,17 +1,15 @@
 # Príklad konfigurácie pre bazos-monitor.
 # Skopíruj na config.yaml a uprav podľa potreby.
 
-# Ktoré kategórie sledovať. Prázdne = všetky známe (okrem vylúčených nižšie).
-# Vybraný set (8 kategórií). Uprav podľa potreby – ostatné sa nesledujú.
+# Ktoré kategórie sledovať. (Záhrada subdoména je prázdna – záhradné veci sú
+# pod Dom a záhrada / Nábytok. Hudba na želanie vypustená.)
 include_categories:
-  - zahrada       # Záhrada  (tvoj príklad: hojdačka)
   - dom           # Dom a záhrada
   - nabytok       # Nábytok
   - stroje        # Stroje
   - elektro       # Elektro
   - sport         # Šport
   - deti          # Detský bazár
-  - hudba         # Hudba
 
 # Ktoré kategórie vylúčiť. Ak necháš zakomentované, použije sa default
 # (reality, auto, moto) – teda presne to, čo ťa nezaujíma.
@@ -23,9 +21,35 @@ exclude_categories:
 # Rozsah crawlu
 max_pages_per_category: 25     # POISTNÝ strop (~500 inzerátov); crawl sa
                                # zvyčajne zastaví skôr podľa horizontu nižšie
-crawl_lookback_days: 3         # sťahuj strany, kým sú inzeráty novšie než X dní
-crawl_subcategories: true      # crawl na úrovni podkategórií (objaví ich sám)
+crawl_lookback_days: 1         # pri častom behu stačí 1 deň spätne (šetrí)
+crawl_subcategories: true      # crawl len whitelistovaných podkategórií nižšie
+subcat_max_pages: 6            # strop strán na podkategóriu
 per_page: 20                   # inzerátov na stránku (Bazoš default)
+
+# WHITELIST podkategórií na crawl (slug = časť URL, napr. .../kociky/).
+# Kategória bez záznamu tu sa crawluje ako celok (hlavná kategória).
+subcategories:
+  deti: [autosedacky, baby, bicykle, hracky, choditka, kociky, kojenecke,
+         lego, nabytok, nositka, odrazadla, sedacky, sportove]
+  sport: [fitness, golf, futbal, korcule, kemping, letectvo, loptove, lov,
+          paintball, rybareni, hry, tenis, turistika, vodni, ostatni,
+          kolobezky, horska, cestne, elektrobicykle, soucastky]
+  elektro: [digestory, chladnicky, mikrovlnky, mraznicky, pracky, sporaky,
+            susicky, umyvacky, ostatnebila, autoradia, kina, hifi, projektory,
+            repro, sluchadla, televizory, dvd, zosilnovace, ostatneav,
+            depilatory, feny, holiace, kavovary, nabijacky, mixery, lampy,
+            sijacie, vysavace, vysielacky, zvlhcovace, zehlicky, ostatne]
+  nabytok: [jedalenske, kniznice, koberce, kresla, kuchyne, kupelne, lampy,
+            matrace, obyvacie, postele, sedacie, skrine, spalne, stolicky,
+            stoly, zahradny, doplnky, nabytok]
+  dom: [bazeny, cerpadla, dvere, klimatizacie, kosacky, kotle, malotraktory,
+        miesacky, naradie, okna, pily, snezna, stavebny, radiatory, rastliny,
+        vybavenie, vysavace, grily, technika, ostatne]
+  stroje: [cerpadla, cistiace, drevoobrabacie, generatory, historicke, motory,
+           komunalna, kovoobrabacie, lesna, polnohospodarska, potravinarske,
+           skladova, stavebne, textilne, tlaciarenske, prevadzkarne, linka,
+           diely, ostatne]
+
 # Keď má niektorá kategória extrémny pohyb, zvýš strop len jej (odkomentuj):
 # pages_per_category:
 #   deti: 40
