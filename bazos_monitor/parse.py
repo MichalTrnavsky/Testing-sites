@@ -165,50 +165,41 @@ def next_page_url(subdomain: str, page_index: int, per_page: int) -> str:
     return f"https://{subdomain}/{offset}/"
 
 
-def parse_subcategories(html: str) -> list[tuple[str, str]]:
-    """Z hlavnej stránky subdomény vytiahne podkategórie ``(id, názov)``.
+# slug podkategórie v ľavom menu: <a href="/kociky/">Kočíky</a>
+SUBCAT_SLUG_RE = re.compile(r"^/([a-z0-9][a-z0-9-]*)/$")
 
-    Bazoš má výber podkategórie ako rozbaľovací ``<select name="category">``
-    s ``<option value="120">Kočíky</option>`` – ID je vo value, názov v texte.
-    Pre istotu čítame aj prípadné odkazy s ``?category=<ID>``. Ak sa názov
-    nenájde, označíme podkategóriu ako ``kat. <ID>``. Dedup podľa id.
+
+def parse_subcategories(html: str) -> list[tuple[str, str]]:
+    """Z hlavnej stránky subdomény vytiahne podkategórie ``(slug, názov)``.
+
+    Bazoš má podkategórie ako odkazy v ľavom menu ``<div class="barvaleva">``
+    s relatívnymi slugmi, napr. ``<a href="/kociky/">Kočíky</a>``. Slug slúži
+    ako id aj ako cesta listingu (``https://deti.bazos.sk/kociky/``).
+    Cudzie subdomény (napr. knihy.bazos.sk/...) preskočíme.
     """
     soup = BeautifulSoup(html, "lxml")
+    menus = soup.find_all("div", class_="barvaleva")
+    if not menus:
+        return []
     out: dict[str, str] = {}
-
-    # 1) <select name~=category> -> <option value=ID>Názov</option>
-    for sel in soup.find_all("select"):
-        nm = (sel.get("name") or sel.get("id") or "").lower()
-        if "categ" not in nm:
-            continue
-        for opt in sel.find_all("option"):
-            val = (opt.get("value") or "").strip()
-            if not val.isdigit() or val == "0":
-                continue
-            name = opt.get_text(strip=True)
-            out.setdefault(val, name or f"kat. {val}")
-
-    # 2) odkazy s ?category=<ID> (názov = text odkazu)
-    for a in soup.find_all("a", href=True):
-        m = SUBCAT_RE.search(a["href"])
-        if not m:
-            continue
-        cid = m.group(1)
-        if cid == "0":
-            continue
-        name = a.get_text(strip=True)
-        out.setdefault(cid, name or f"kat. {cid}")
-
+    for menu in menus:
+        for a in menu.find_all("a", href=True):
+            m = SUBCAT_SLUG_RE.match(a["href"])
+            if not m:
+                continue  # absolútny odkaz (iná subdoména) alebo nie slug
+            slug = m.group(1)
+            name = a.get_text(strip=True)
+            if name:
+                out.setdefault(slug, name)
     return list(out.items())
 
 
-def subcat_listing_url(subdomain: str, rubriky: str, category_id: str,
+def subcat_listing_url(subdomain: str, slug: str,
                        page_index: int, per_page: int) -> str:
-    """URL listingu podkategórie (s offsetom v ceste ako pri hlavnom listingu)."""
-    path = "/" if page_index <= 0 else f"/{page_index * per_page}/"
-    q = (f"?hledat=&rubriky={rubriky}&category={category_id}"
-         f"&hlokalita=&humkreis=25&cenaod=&cenado=&order=&crp=&kitx=ano")
-    return f"https://{subdomain}{path}{q}"
+    """URL listingu podkategórie: ``https://sub/slug/`` (+ offset v ceste)."""
+    if page_index <= 0:
+        return f"https://{subdomain}/{slug}/"
+    return f"https://{subdomain}/{slug}/{page_index * per_page}/"
 
 
 def _join(base_url: str, href: str) -> str:

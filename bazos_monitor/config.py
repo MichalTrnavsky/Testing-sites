@@ -24,8 +24,11 @@ class Config:
     max_pages_per_category: int = 25
     # sťahuj strany, kým sú inzeráty novšie než X dní (0 = ignoruj, ber strop)
     crawl_lookback_days: float = 3.0
-    # crawl na úrovni podkategórií (objaví ich z hlavnej stránky a označí inzeráty)
+    # crawl na úrovni podkategórií (len whitelist nižšie; inak hlavná kategória)
     crawl_subcategories: bool = True
+    # whitelist podkategórií na crawl: {"deti": ["kociky","autosedacky"], ...}
+    # (slug = časť URL, napr. https://deti.bazos.sk/kociky/)
+    subcategories: dict = field(default_factory=dict)
     # tvrdý strop strán NA PODKATEGÓRIU (poistka voči záťaži, nezávislá od horizontu)
     subcat_max_pages: int = 6
     # per-kategóriové prepísanie stropu (napr. {"deti": 40}) – keď má kategória
