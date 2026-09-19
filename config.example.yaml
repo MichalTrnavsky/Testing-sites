@@ -2,10 +2,21 @@
 # Skopíruj na config.yaml a uprav podľa potreby.
 
 # Ktoré kategórie sledovať. Prázdne = všetky známe (okrem vylúčených nižšie).
-# Príklad: sleduj len záhradu a dom a záhradu.
+# Vybraný set (Dom & záhrada + Voľný čas & rodina + Stroje & ostatné).
+# Elektronika (elektro/pc/mobil/foto), Práca a Služby sa NEsledujú.
 include_categories:
-  - zahrada
-  - dom
+  - zahrada       # Záhrada  (tvoj príklad: hojdačka)
+  - dom           # Dom a záhrada
+  - nabytok       # Nábytok
+  - sport         # Šport
+  - deti          # Detský bazár
+  - oblecenie     # Oblečenie
+  - zvierata      # Zvieratá
+  - hudba         # Hudba
+  - knihy         # Knihy
+  - vstupenky     # Lístky
+  - stroje        # Stroje
+  - ostatne       # Ostatné
 
 # Ktoré kategórie vylúčiť. Ak necháš zakomentované, použije sa default
 # (reality, auto, moto) – teda presne to, čo ťa nezaujíma.
