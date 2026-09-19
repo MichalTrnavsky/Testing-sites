@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from bazos_monitor.parse import parse_listing, is_detail_deleted  # noqa: E402
 from bazos_monitor.store import Store  # noqa: E402
 from bazos_monitor.analyze import (  # noqa: E402
-    analyze, keyphrases, condition_of, analyze_arbitrage,
+    analyze, keyphrases, condition_of, analyze_arbitrage, summarize,
 )
 
 LISTING_HTML = """
@@ -174,6 +174,40 @@ def test_arbitrage_ratan():
           f"@ {stats[0].used_median_eur}€, skóre {stats[0].arbitrage_score}; strop OK)")
 
 
+def test_summarize_kociky():
+    tmp = tempfile.mkdtemp()
+    store = Store(os.path.join(tmp, "s.db"))
+    now = datetime.utcnow()
+    window = 10
+    # 30/deň x 10 dní = 300 nových kočíkov; 10/deň zmazaných = 100
+    idx = 0
+    for day in range(window):
+        # deň jasne vnútri okna (day dní + 1h dozadu)
+        base = now - timedelta(days=day, hours=1)
+        for k in range(30):
+            fs = base.isoformat()
+            title = "Detsky kocik Cybex Priam kombinacia" if k % 2 == 0 else "Kocik Bugaboo"
+            store.upsert_listing_ad(
+                ad_id=f"K{idx}", category="deti", title=title,
+                url=f"https://x/inzerat/{idx}/", price_eur=400 + (k % 5) * 100,
+                posted_date=None, now_iso=fs,
+            )
+            if k < 10:  # 10 z 30 zmaž (krátko po pridaní, stále v okne)
+                store.mark_deleted(f"K{idx}", (base + timedelta(minutes=30)).isoformat())
+            idx += 1
+    store.conn.commit()
+
+    s = summarize(store, category="deti", window_days=window, keyword="kocik", top_products=10)
+    assert abs(s.new_per_day - 30.0) < 0.1, s.new_per_day
+    assert abs(s.deleted_per_day - 10.0) < 0.1, s.deleted_per_day
+    assert s.price_min == 400 and s.price_max == 800
+    prods = [p for p, _ in s.top_products]
+    assert any("cybex" in p for p in prods), prods
+    store.close()
+    print("test_summarize_kociky OK  (new/deň:", s.new_per_day,
+          "del/deň:", s.deleted_per_day, "top:", s.top_products[0], ")")
+
+
 if __name__ == "__main__":
     test_parse_listing()
     test_deletion_marker()
@@ -181,4 +215,5 @@ if __name__ == "__main__":
     test_end_to_end_demand()
     test_condition_of()
     test_arbitrage_ratan()
+    test_summarize_kociky()
     print("\nVŠETKY TESTY PREŠLI")

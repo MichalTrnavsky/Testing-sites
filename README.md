@@ -91,7 +91,30 @@ python -m bazos_monitor.cli --config config.yaml report --category zahrada --win
 
 # ARBITRÁŽ: kde sa oplatí doviezť nový tovar (napr. z Číny)
 python -m bazos_monitor.cli --config config.yaml arbitraz --window 30 --min-price 100 --csv arbitraz.csv
+
+# ZHRNUTIE segmentu: denné prírastky/úbytky, cenové rozpätie, top produkty
+python -m bazos_monitor.cli --db bazos.db zhrnutie --category deti --keyword kocik --window 30
 ```
+
+## Zhrnutie segmentu (`zhrnutie`)
+
+Odpovedá na otázku typu *„koľko pribudne/ubudne denne, aká je cena a čo je top produkt"*:
+
+```
+Zhrnutie: Detský bazár / „kocik"  —  posledných 10 dní
+============================================================
+  Nové inzeráty:    300  (≈ 30.0/deň)
+  Zmazané:          100  (≈ 10.0/deň)
+  Medián životnosti: 3.0 dňa
+  Cena:             min 300 / medián 500 / max 900 € (rozptyl 600 €)
+  TOP produkty (podľa výskytu v nadpisoch):
+     1. detsky kocik            200×
+     2. kocik cybex kombinacia  100×
+     ...
+```
+
+Bez `--keyword` zhrnie celú kategóriu. Workflow generuje `reports/zhrnutie.txt`
+pre všetky sledované kategórie pri každom behu.
 
 ## Arbitráž – hlavný účel nástroja
 

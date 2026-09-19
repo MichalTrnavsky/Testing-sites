@@ -70,12 +70,19 @@ def normalize_tokens(title: str) -> list[str]:
     return out
 
 
-def keyphrases(title: str) -> list[str]:
-    """Unigramy + susedné bigramy z nadpisu."""
+def keyphrases(title: str, max_n: int = 2) -> list[str]:
+    """N-gramy z nadpisu: unigramy + bigramy (default), voliteľne trigramy.
+
+    ``max_n=3`` pridá aj trojslovné frázy – užitočné pri drill-downe na
+    konkrétny model (napr. „cybex priam kombinacia")."""
     toks = normalize_tokens(title)
     phrases = list(toks)
-    for i in range(len(toks) - 1):
-        phrases.append(f"{toks[i]} {toks[i + 1]}")
+    if max_n >= 2:
+        for i in range(len(toks) - 1):
+            phrases.append(f"{toks[i]} {toks[i + 1]}")
+    if max_n >= 3:
+        for i in range(len(toks) - 2):
+            phrases.append(f"{toks[i]} {toks[i + 1]} {toks[i + 2]}")
     return phrases
 
 
@@ -391,4 +398,132 @@ def format_arbitrage(stats: list[ArbitrageStat], window_days: int) -> str:
         "'lacná konk.' = počet nových ponúk už predávaných blízko ceny použitého",
         "(vysoké číslo = niekto to už robí, marža bude tenšia).",
     ]
+    return "\n".join(lines)
+
+
+# ----------------------------------------------------------------------
+# Zhrnutie segmentu/kategórie: denné prírastky/úbytky, cenové rozpätie,
+# top produkty. Odpovedá na otázku typu: "v kočíkoch pribudlo ~30/deň,
+# ubudlo ~10/deň, cena ~500 €, top produkt cybex 3 kombinácia".
+# ----------------------------------------------------------------------
+
+@dataclass
+class SegmentSummary:
+    category: str
+    keyword: str | None       # None = celá kategória
+    window_days: int
+    new_total: int
+    new_per_day: float
+    deleted_total: int
+    deleted_per_day: float
+    median_lifespan_days: float | None
+    price_min: int | None
+    price_median: float | None
+    price_max: int | None
+    top_products: list[tuple[str, int]]  # (fráza, počet)
+
+
+def _pct(prices: list[int]):
+    if not prices:
+        return (None, None, None)
+    s = sorted(prices)
+    return (s[0], round(median(s), 1), s[-1])
+
+
+def summarize(
+    store,
+    category: str,
+    window_days: int,
+    keyword: str | None = None,
+    top_products: int = 10,
+) -> SegmentSummary:
+    """Zhrnie kategóriu (alebo v nej segment podľa ``keyword``).
+
+    - denné prírastky = počet inzerátov s ``first_seen`` v okne / dni,
+    - denné úbytky = počet inzerátov s ``deleted_at`` v okne / dni,
+    - cena = min/medián/max spomedzi inzerátov v okne,
+    - top produkty = najčastejšie frázy (uni/bi/tri-gram) v nadpisoch.
+    """
+    now = datetime.utcnow()
+    since = now - timedelta(days=window_days)
+    kw_norm = keyword.lower().strip() if keyword else None
+
+    new_total = 0
+    deleted_total = 0
+    lifespans: list[float] = []
+    prices: list[int] = []
+    phrase_counts: dict[str, int] = defaultdict(int)
+
+    for r in store.iter_ads(category):
+        title = r["title"] or ""
+        if kw_norm:
+            # match na normalizované tokeny (bez diakritiky)
+            toks = set(normalize_tokens(title))
+            if kw_norm not in toks and kw_norm not in strip_diacritics(title.lower()):
+                continue
+
+        first_seen = _parse_iso(r["first_seen"])
+        deleted_at = _parse_iso(r["deleted_at"])
+
+        counted_in_window = first_seen is not None and first_seen >= since
+        if counted_in_window:
+            new_total += 1
+            if r["price_eur"] and r["price_eur"] > 0:
+                prices.append(r["price_eur"])
+            for ph in set(keyphrases(title, max_n=3)):
+                if kw_norm and ph == kw_norm:
+                    continue  # samotné hľadané slovo nechceme ako "produkt"
+                phrase_counts[ph] += 1
+
+        if r["status"] == "deleted" and deleted_at is not None and deleted_at >= since:
+            deleted_total += 1
+            if first_seen is not None:
+                lifespans.append((deleted_at - first_seen).total_seconds() / 86400.0)
+
+    days = max(window_days, 1)
+    pmin, pmed, pmax = _pct(prices)
+    top = sorted(phrase_counts.items(), key=lambda kv: kv[1], reverse=True)[:top_products]
+
+    return SegmentSummary(
+        category=category,
+        keyword=keyword,
+        window_days=window_days,
+        new_total=new_total,
+        new_per_day=round(new_total / days, 1),
+        deleted_total=deleted_total,
+        deleted_per_day=round(deleted_total / days, 1),
+        median_lifespan_days=round(median(lifespans), 2) if lifespans else None,
+        price_min=pmin,
+        price_median=pmed,
+        price_max=pmax,
+        top_products=top,
+    )
+
+
+def format_summary(s: SegmentSummary) -> str:
+    cat_label = ALL_CATEGORIES[s.category].label if s.category in ALL_CATEGORIES else s.category
+    head = f"{cat_label}" + (f' / „{s.keyword}“' if s.keyword else "")
+    life = "-" if s.median_lifespan_days is None else f"{s.median_lifespan_days:.1f} dňa"
+    if s.price_median is None:
+        price = "bez cien"
+    else:
+        price = (f"min {s.price_min} / medián {s.price_median:.0f} / max {s.price_max} € "
+                 f"(rozptyl {s.price_max - s.price_min} €)")
+    lines = [
+        f"Zhrnutie: {head}  —  posledných {s.window_days} dní",
+        "=" * 60,
+        f"  Nové inzeráty:    {s.new_total}  (≈ {s.new_per_day}/deň)",
+        f"  Zmazané:          {s.deleted_total}  (≈ {s.deleted_per_day}/deň)",
+        f"  Medián životnosti:{life:>8}",
+        f"  Cena:             {price}",
+        "  TOP produkty (podľa výskytu v nadpisoch):",
+    ]
+    if s.top_products:
+        for i, (ph, cnt) in enumerate(s.top_products, 1):
+            lines.append(f"    {i:>2}. {ph:<28} {cnt}×")
+    else:
+        lines.append("    (zatiaľ málo dát)")
+    if s.deleted_total == 0:
+        lines.append("")
+        lines.append("  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).")
     return "\n".join(lines)
