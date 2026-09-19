@@ -164,6 +164,23 @@ class Store:
             ).fetchall()
         return self.conn.execute("SELECT * FROM ads").fetchall()
 
+    # ---- retencia (orezanie starých dát) ------------------------------
+    def prune_older_than(self, cutoff_iso: str) -> int:
+        """Zmaže inzeráty prvýkrát videné pred ``cutoff_iso``.
+
+        Drží DB (a tým aj veľkosť commitov v repe) ohraničenú pri dlhodobom
+        behu. Analytické okná sú aj tak krátke (default 30 dní), takže sa
+        nič relevantné nestráca. Po zmazaní spustí VACUUM na zmenšenie súboru.
+        Vracia počet zmazaných riadkov.
+        """
+        cur = self.conn.execute("DELETE FROM ads WHERE first_seen < ?", (cutoff_iso,))
+        deleted = cur.rowcount
+        self.conn.execute("DELETE FROM runs WHERE started_at < ?", (cutoff_iso,))
+        self.conn.commit()
+        if deleted:
+            self.conn.execute("VACUUM")
+        return deleted
+
     # ---- runs ----------------------------------------------------------
     def log_run(self, kind: str, categories: str, new_ads: int, seen_ads: int,
                 deleted_ads: int, started_at_iso: str) -> None:

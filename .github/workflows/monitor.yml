@@ -37,6 +37,9 @@ jobs:
       - name: Sweep (detekcia zmazaní = životnosť)
         run: python -m bazos_monitor.cli --config config.example.yaml --db data/bazos.db sweep
 
+      - name: Retencia (orež staré dáta, drž DB malú)
+        run: python -m bazos_monitor.cli --db data/bazos.db prune --keep-days 200
+
       - name: Generuj reporty
         run: |
           mkdir -p reports

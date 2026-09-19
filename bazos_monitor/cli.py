@@ -126,6 +126,19 @@ def cmd_zhrnutie(args) -> int:
     return 0
 
 
+def cmd_prune(args) -> int:
+    from datetime import datetime, timedelta
+    cfg = _load(args)
+    store = Store(cfg.db_path)
+    try:
+        cutoff = (datetime.utcnow() - timedelta(days=args.keep_days)).isoformat()
+        n = store.prune_older_than(cutoff)
+        print(f"Zmazaných {n} inzerátov starších ako {args.keep_days} dní.")
+    finally:
+        store.close()
+    return 0
+
+
 def cmd_cats(args) -> int:
     cfg = _load(args)
     active = {c.key for c in resolve_categories(cfg.include_categories, cfg.exclude_categories)}
@@ -188,6 +201,11 @@ def build_parser() -> argparse.ArgumentParser:
                     help="ignoruj inzeráty staršie ako X dní (default 21; 0 = bez limitu)")
     pz.add_argument("--top", type=int, default=10, help="koľko top produktov vypísať")
     pz.set_defaults(func=cmd_zhrnutie)
+
+    pp = sub.add_parser("prune", help="zmaž staré inzeráty (retencia DB)")
+    pp.add_argument("--keep-days", type=int, default=200,
+                    help="koľko dní histórie ponechať (default 200)")
+    pp.set_defaults(func=cmd_prune)
 
     pcat = sub.add_parser("cats", help="vypíš známe kategórie")
     pcat.set_defaults(func=cmd_cats)
