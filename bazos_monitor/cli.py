@@ -204,17 +204,24 @@ def cmd_debugsub(args) -> int:
         print(f"- <select name={sel.get('name')!r} id={sel.get('id')!r}> opcií={len(opts)}")
         for o in opts[:12]:
             print(f"    value={o.get('value')!r} text={o.get_text(strip=True)!r}")
-    print("=== ODKAZY s category= (prvých 12) ===")
     import re as _re
-    n = 0
-    for a in soup.find_all("a", href=True):
-        if _re.search(r"category=\d+", a["href"]):
-            print(f"    href={a['href']!r} text={a.get_text(strip=True)!r}")
-            n += 1
-            if n >= 12:
-                break
-    if n == 0:
-        print("    (žiadne)")
+    txt = res.text
+    print("=== NÁZVY podkat. v surovom HTML ===")
+    for probe in ("Kočíky", "Kocíky", "Baby monitory", "Autosedačky", "Autosedacky"):
+        print(f"    {probe!r} -> {probe in txt}")
+    print("=== <script src> ===")
+    for sc in soup.find_all("script", src=True):
+        print(f"    {sc['src']}")
+    print("=== okolie prvého výskytu 'category' v HTML ===")
+    i = txt.find("category")
+    if i >= 0:
+        print("    " + txt[max(0, i - 120):i + 400].replace("\n", " "))
+    else:
+        print("    (slovo 'category' sa v HTML nenachádza)")
+    # skús nájsť JS objekt s podkategóriami: hľadaj kúsky ako {id:120,...}
+    print("=== kandidáti na JS zoznam podkat. (číslo:reťazec) ===")
+    for m in list(_re.finditer(r'(\d{2,4})\s*[:,]\s*["\']([^"\']{3,40})["\']', txt))[:20]:
+        print(f"    {m.group(1)} = {m.group(2)!r}")
     return 0
 
 
