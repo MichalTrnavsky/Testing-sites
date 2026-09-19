@@ -3,54 +3,54 @@ TOP dopyt segmenty za posledných 30 dní
 kategória    segment (kľúč)             nové zmaz. život.dní   skóre
 --------------------------------------------------------------------
 Šport        bicykel                      67     0         -    10.0
+Nábytok      stol                         57     0         -     8.5
 Nábytok      postel                       57     0         -     8.5
-Nábytok      stol                         56     0         -     8.4
-Detský bazár kocik                        51     0         -     7.6
-Detský bazár detska                       50     0         -     7.5
+Detský bazár kocik                        52     0         -     7.8
+Detský bazár detska                       51     0         -     7.6
 Stroje       vozik                        43     0         -     6.4
 Nábytok      suprava                      41     0         -     6.1
 Nábytok      sedacia suprava              40     0         -     6.0
 Nábytok      sedacia                      40     0         -     6.0
+Hudba        best                          4     1       0.0     5.9
 Detský bazár cybex                        37     0         -     5.5
-Stroje       vysokozdvizny                36     0         -     5.4
 Stroje       vysokozdvizny vozik          36     0         -     5.4
+Stroje       vysokozdvizny                36     0         -     5.4
 Stroje       zetor                        33     0         -     4.9
 Detský bazár postielka                    28     0         -     4.2
 Hudba        yamaha                       28     0         -     4.2
-Detský bazár detsky                       26     0         -     3.9
-Elektro      airpods                      25     0         -     3.7
-Elektro      samsung                      24     0         -     3.6
+Detský bazár detsky                       27     0         -     4.0
+Nábytok      stolik                       26     0         -     3.9
+Elektro      airpods                      26     0         -     3.9
+Elektro      samsung                      25     0         -     3.7
+Detský bazár lego                         25     0         -     3.7
 Nábytok      gauc                         23     0         -     3.4
 Šport        horsky                       23     0         -     3.4
 Šport        cube                         23     0         -     3.4
-Nábytok      stolik                       22     0         -     3.3
 Stroje       traktor                      22     0         -     3.3
+Detský bazár bicykel                      22     0         -     3.3
 Nábytok      stolicky                     21     0         -     3.1
 Stroje       nakladac                     21     0         -     3.1
 Šport        horsky bicykel               21     0         -     3.1
-Detský bazár bicykel                      21     0         -     3.1
+Detský bazár autosedacka                  21     0         -     3.1
 Hudba        gitaru                       21     0         -     3.1
+Nábytok      kreslo                       19     0         -     2.8
+Nábytok      sedacka                      19     0         -     2.8
 Stroje       pila                         19     0         -     2.8
-Detský bazár autosedacka                  19     0         -     2.8
-Nábytok      kreslo                       18     0         -     2.7
-Nábytok      sedacka                      18     0         -     2.7
+Elektro      pracka                       19     0         -     2.8
+Detský bazár detske                       19     0         -     2.8
 Elektro      led                          18     0         -     2.7
+Nábytok      jedalensky                   17     0         -     2.5
+Nábytok      konferencny                  17     0         -     2.5
 Stroje       jcb                          17     0         -     2.5
 Šport        ebike                        17     0         -     2.5
 Šport        velkost                      17     0         -     2.5
-Detský bazár lego                         17     0         -     2.5
 Hudba        akordeon                     17     0         -     2.5
-Detský bazár detske                       17     0         -     2.5
 Hudba        platne                       17     0         -     2.5
 Dom a záhrad hrozno                       16     0         -     2.4
-Nábytok      jedalensky                   16     0         -     2.4
 Nábytok      kuchynska                    16     0         -     2.4
-Nábytok      konferencny                  16     0         -     2.4
-Elektro      pracka                       16     0         -     2.4
-Stroje       lpg                          16     0         -     2.4
-Dom a záhrad plastove                     15     0         -     2.2
-Elektro      smart                        15     0         -     2.2
-Detský bazár romer                        15     0         -     2.2
-Detský bazár postel                       15     0         -     2.2
+Elektro      smart                        16     0         -     2.4
+Elektro      whirlpool                    16     0         -     2.4
+Šport        ctm                          16     0         -     2.4
+Detský bazár detsky bicykel               16     0         -     2.4
 
 Čítanie: vysoké 'nové' + nízka 'život.dní' = silný dopyt (inzeráty rýchlo miznú = predávajú sa).
