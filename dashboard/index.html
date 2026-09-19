@@ -1,0 +1,361 @@
+<title>Bazoš dopyt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#f4f2ee; --surface:#ffffff; --surface2:#faf9f6;
+    --text:#1c1b19; --muted:#6d6a63; --border:#e2ded6;
+    --accent:#0d7a6b;         /* teal – dopyt */
+    --accent-soft:#d6ece8;
+    --amber:#b26a00;          /* arbitráž hodnota */
+    --good:#0d7a6b; --warn:#b26a00; --bad:#b3261e;
+    --bar:#0d7a6b; --bar-track:#eceae4;
+    --shadow:0 1px 2px rgba(0,0,0,.05),0 2px 8px rgba(0,0,0,.04);
+    --r:12px;
+    --fh:"IBM Plex Sans",system-ui,sans-serif;
+    --fm:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#16181a; --surface:#1e2124; --surface2:#23272b;
+      --text:#e9e7e2; --muted:#9a968d; --border:#313640;
+      --accent:#39c6b0; --accent-soft:#123832;
+      --amber:#e0a54a; --good:#39c6b0; --warn:#e0a54a; --bad:#f2685e;
+      --bar:#39c6b0; --bar-track:#2a2e33;
+      --shadow:0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#16181a; --surface:#1e2124; --surface2:#23272b;
+    --text:#e9e7e2; --muted:#9a968d; --border:#313640;
+    --accent:#39c6b0; --accent-soft:#123832;
+    --amber:#e0a54a; --good:#39c6b0; --warn:#e0a54a; --bad:#f2685e;
+    --bar:#39c6b0; --bar-track:#2a2e33;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:var(--fh);line-height:1.45;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:0}
+  header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .head-in{max-width:1100px;margin:0 auto;padding:12px 16px;
+    display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{font-size:1.15rem;font-weight:700;margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:.8rem}
+  .tabs{display:flex;gap:4px;margin-left:auto;background:var(--surface2);
+    border:1px solid var(--border);border-radius:999px;padding:3px}
+  .tab{appearance:none;border:0;background:transparent;color:var(--muted);
+    font:600 .82rem var(--fh);padding:6px 14px;border-radius:999px;cursor:pointer}
+  .tab[aria-selected="true"]{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:end;
+    padding:14px 0 4px}
+  .field{display:flex;flex-direction:column;gap:4px}
+  .field label{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--muted);font-weight:600}
+  select,input{font:500 .85rem var(--fh);color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:9px;padding:7px 10px;min-height:36px}
+  input[type=number]{width:104px;font-family:var(--fm)}
+  input[type=search]{width:180px}
+  .count{color:var(--muted);font-size:.78rem;margin-left:auto;align-self:center}
+  section.panel{margin:10px 0 28px}
+  .chart{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+    box-shadow:var(--shadow);padding:14px 16px;margin-bottom:16px}
+  .chart h2{font-size:.9rem;margin:0 0 12px;font-weight:600}
+  .row{display:grid;grid-template-columns:minmax(120px,220px) 1fr auto;gap:10px;
+    align-items:center;padding:5px 0}
+  .row .name{font-size:.82rem;font-weight:600;white-space:nowrap;overflow:hidden;
+    text-overflow:ellipsis}
+  .row .name small{color:var(--muted);font-weight:500}
+  .track{background:var(--bar-track);border-radius:6px;height:22px;overflow:hidden;position:relative}
+  .fill{height:100%;background:var(--bar);border-radius:6px;min-width:2px;
+    transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .fill.warn{background:var(--warn)} .fill.bad{background:var(--bad)}
+  .val{font-family:var(--fm);font-size:.82rem;font-weight:600;text-align:right;
+    min-width:66px;font-variant-numeric:tabular-nums}
+  .tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--r);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;font-size:.83rem}
+  th,td{padding:9px 12px;text-align:right;white-space:nowrap;
+    border-bottom:1px solid var(--border)}
+  th:first-child,td:first-child,th.l,td.l{text-align:left}
+  thead th{position:sticky;top:0;background:var(--surface2);cursor:pointer;
+    font-weight:600;color:var(--muted);font-size:.72rem;text-transform:uppercase;
+    letter-spacing:.04em;user-select:none}
+  thead th.sorted{color:var(--accent)}
+  tbody tr:hover{background:var(--surface2)}
+  td.num{font-family:var(--fm);font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:.72rem;
+    font-weight:600;font-family:var(--fm)}
+  .pill.g{background:var(--accent-soft);color:var(--accent)}
+  .pill.w{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+  .pill.b{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+    box-shadow:var(--shadow);padding:16px}
+  .card h3{margin:0 0 10px;font-size:.98rem;font-weight:700}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-bottom:12px}
+  .stat .k{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+  .stat .v{font-family:var(--fm);font-size:1.05rem;font-weight:600;font-variant-numeric:tabular-nums}
+  .stat .v small{font-size:.72rem;color:var(--muted);font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+    padding:3px 9px;font-size:.76rem}
+  .chip b{font-family:var(--fm);color:var(--accent)}
+  .note{color:var(--muted);font-size:.8rem;background:var(--surface2);
+    border:1px dashed var(--border);border-radius:10px;padding:10px 12px;margin:8px 0}
+  footer{color:var(--muted);font-size:.75rem;padding:18px 0 30px;border-top:1px solid var(--border);margin-top:10px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.74rem;color:var(--muted);margin-top:4px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:middle}
+  @media (max-width:560px){
+    .row{grid-template-columns:120px 1fr auto}
+    .tabs{width:100%;margin-left:0;order:3}
+    input[type=search]{width:100%}
+  }
+</style>
+
+<header class="top">
+  <div class="head-in">
+    <h1>Bazoš dopyt</h1>
+    <span class="sub" id="meta">načítavam…</span>
+    <div class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" data-view="arbitraz" aria-selected="true">Arbitráž</button>
+      <button class="tab" role="tab" data-view="dopyt" aria-selected="false">Dopyt</button>
+      <button class="tab" role="tab" data-view="zhrnutie" aria-selected="false">Zhrnutie</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls" id="controls"></div>
+  <div class="count" id="count" hidden></div>
+  <section class="panel" id="panel"></section>
+  <footer id="foot"></footer>
+</main>
+
+<script>
+"use strict";
+const CATLABEL = {};
+let DATA = null, VIEW = "arbitraz";
+const F = { cat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15 };
+
+const $ = (s,el=document)=>el.querySelector(s);
+const el = (t,a={},...kids)=>{const n=document.createElement(t);
+  for(const[k,v]of Object.entries(a)){ if(k==="class")n.className=v;
+    else if(k==="html")n.innerHTML=v; else n.setAttribute(k,v);}
+  for(const c of kids) n.append(c.nodeType?c:document.createTextNode(c)); return n;};
+const eur = n => n==null? "–" : Math.round(n).toLocaleString("sk-SK")+" €";
+const num = n => n==null? "–" : (Math.round(n*10)/10).toLocaleString("sk-SK");
+const lab = k => CATLABEL[k]||k;
+
+async function boot(){
+  DATA = (window.__DATA__) || await fetchData();
+  if(!DATA){ $("#panel").append(el("div",{class:"note"},
+    "Dáta sa nepodarilo načítať. Skontroluj, že vedľa stránky je súbor data.json.")); return; }
+  (DATA.categories||[]).forEach(c=>CATLABEL[c.key]=c.label);
+  const d = new Date(DATA.generated_at);
+  $("#meta").textContent = `okno ${DATA.window_days} dní · ≤${DATA.max_age_days??"∞"} dní staré · dáta ${isNaN(d)?DATA.generated_at:d.toLocaleString("sk-SK")}`;
+  $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;
+    VIEW=b.dataset.view;[...$("#tabs").children].forEach(t=>t.setAttribute("aria-selected",t===b));
+    resetFilters();render();});
+  $("#foot").innerHTML = "Zdroj: vlastný crawl Bazoš.sk · dopyt = objem × krátka životnosť · "
+    + "arbitráž = dopyt × cena použitého ÷ lacná konkurencia. Ceny z Číny over ručne (Alibaba/1688).";
+  resetFilters(); render();
+}
+async function fetchData(){
+  for(const u of ["data.json","reports/data.json","../reports/data.json"]){
+    try{const r=await fetch(u,{cache:"no-store"});if(r.ok)return await r.json();}catch(e){}
+  } return null;
+}
+
+function resetFilters(){
+  F.cat="";F.q="";F.minVol=0;F.sort="";F.top=15;
+  F.minPrice=0;F.maxPrice=3000; /* rozumný strop dovozu; daj 0 pre bez limitu */
+}
+
+function catOptions(){
+  const s=el("select",{id:"f-cat"});
+  s.append(el("option",{value:""},"Všetky kategórie"));
+  (DATA.categories||[]).forEach(c=>s.append(el("option",{value:c.key},c.label)));
+  s.value=F.cat; s.onchange=()=>{F.cat=s.value;render();};
+  return field("Kategória",s);
+}
+function field(label,control){return el("div",{class:"field"},el("label",{},label),control);}
+function searchBox(){
+  const i=el("input",{type:"search",placeholder:"hľadaj segment…",id:"f-q"});
+  i.value=F.q; i.oninput=()=>{F.q=i.value.trim().toLowerCase();render();};
+  return field("Segment",i);
+}
+function numBox(id,label,val,on,ph){
+  const i=el("input",{type:"number",id,min:"0",placeholder:ph||"0"});
+  if(val)i.value=val; i.oninput=()=>{on(parseFloat(i.value)||0);render();};
+  return field(label,i);
+}
+function sortBox(opts){
+  const s=el("select",{id:"f-sort"});
+  opts.forEach(([v,t])=>s.append(el("option",{value:v},t)));
+  s.value=F.sort||opts[0][0]; F.sort=s.value;
+  s.onchange=()=>{F.sort=s.value;render();};
+  return field("Zoradiť",s);
+}
+function topBox(){
+  const s=el("select",{id:"f-top"});
+  [10,15,25,40].forEach(n=>s.append(el("option",{value:n},"top "+n)));
+  s.value=F.top; s.onchange=()=>{F.top=parseInt(s.value);render();};
+  return field("Graf",s);
+}
+
+function render(){
+  const c=$("#controls"); c.innerHTML="";
+  const p=$("#panel"); p.innerHTML="";
+  if(VIEW==="zhrnutie"){ c.append(catOptions()); renderZhrnutie(p); return; }
+
+  c.append(catOptions(), searchBox());
+  if(VIEW==="arbitraz"){
+    c.append(
+      numBox("f-min","cena od €",F.minPrice,v=>F.minPrice=v,"0"),
+      numBox("f-max","cena do €",F.maxPrice,v=>F.maxPrice=v,"∞"),
+      numBox("f-vol","min ks",F.minVol,v=>F.minVol=v),
+      sortBox([["score","skóre"],["used","cena použitého"],["vol","počet ks"],["life","najkratšia životnosť"]]),
+      topBox());
+    renderArbitraz(p);
+  } else {
+    c.append(
+      numBox("f-vol","min nových",F.minVol,v=>F.minVol=v),
+      sortBox([["score","skóre"],["vol","počet nových"],["life","najkratšia životnosť"]]),
+      topBox());
+    renderDopyt(p);
+  }
+}
+
+function applyCommon(rows,keyword){
+  return rows.filter(r=>(!F.cat||r.category===F.cat)
+    && (!F.q||r.keyword.includes(F.q)));
+}
+
+/* ---------- ARBITRÁŽ ---------- */
+function renderArbitraz(p){
+  let rows = applyCommon(DATA.arbitrage);
+  rows = rows.filter(r=> r.used_median_eur!=null
+    && (!F.minPrice||r.used_median_eur>=F.minPrice)
+    && (!F.maxPrice||r.used_median_eur<=F.maxPrice)
+    && (!F.minVol||r.volume>=F.minVol));
+  const cmp={score:(a,b)=>b.arbitrage_score-a.arbitrage_score,
+    used:(a,b)=>b.used_median_eur-a.used_median_eur,
+    vol:(a,b)=>b.volume-a.volume,
+    life:(a,b)=>(a.median_lifespan_days??1e9)-(b.median_lifespan_days??1e9)};
+  rows.sort(cmp[F.sort]||cmp.score);
+  showCount(rows.length);
+  if(!rows.length){ p.append(emptyNote()); return; }
+
+  const top=rows.slice(0,F.top), max=Math.max(...top.map(r=>r.arbitrage_score),1);
+  const chart=el("div",{class:"chart"},el("h2",{},`Najlepší kandidáti na dovoz — top ${top.length}`));
+  top.forEach(r=>{
+    const cls=r.cheap_new_competitors>=3?"bad":r.cheap_new_competitors>0?"warn":"";
+    chart.append(el("div",{class:"row"},
+      el("div",{class:"name"},r.keyword,el("small",{}," · "+lab(r.category))),
+      el("div",{class:"track"},el("div",{class:"fill "+cls,style:`width:${r.arbitrage_score/max*100}%`})),
+      el("div",{class:"val"},eur(r.used_median_eur))));
+  });
+  chart.append(el("div",{class:"legend"},
+    legItem("var(--bar)","žiadna lacná konkurencia"),
+    legItem("var(--warn)","1–2 lacní noví"),
+    legItem("var(--bad)","3+ lacní noví (presýtené)")));
+  p.append(chart);
+
+  const cols=[["l","kategória",r=>lab(r.category),null],
+    ["l","segment",r=>r.keyword,null],
+    ["","ks",r=>r.volume,"volume"],
+    ["","život",r=>r.median_lifespan_days==null?"–":num(r.median_lifespan_days),"median_lifespan_days"],
+    ["","použité €",r=>eur(r.used_median_eur),"used_median_eur"],
+    ["","nové €",r=>r.new_median_eur==null?"–":eur(r.new_median_eur),"new_median_eur"],
+    ["","lacná konk.",r=>compPill(r.cheap_new_competitors),"cheap_new_competitors"],
+    ["","skóre",r=>num(r.arbitrage_score),"arbitrage_score"]];
+  p.append(makeTable(cols,rows,"arbitrage_score"));
+}
+function compPill(n){const c=n>=3?"b":n>0?"w":"g";return `<span class="pill ${c}">${n}</span>`;}
+
+/* ---------- DOPYT ---------- */
+function renderDopyt(p){
+  let rows=applyCommon(DATA.demand).filter(r=>!F.minVol||r.new_count>=F.minVol);
+  const cmp={score:(a,b)=>b.demand_score-a.demand_score,
+    vol:(a,b)=>b.new_count-a.new_count,
+    life:(a,b)=>(a.median_lifespan_days??1e9)-(b.median_lifespan_days??1e9)};
+  rows.sort(cmp[F.sort]||cmp.score);
+  showCount(rows.length);
+  if(!rows.length){p.append(emptyNote());return;}
+  const top=rows.slice(0,F.top),max=Math.max(...top.map(r=>r.demand_score),1);
+  const chart=el("div",{class:"chart"},el("h2",{},`Najvyšší dopyt — top ${top.length}`));
+  top.forEach(r=>chart.append(el("div",{class:"row"},
+    el("div",{class:"name"},r.keyword,el("small",{}," · "+lab(r.category))),
+    el("div",{class:"track"},el("div",{class:"fill",style:`width:${r.demand_score/max*100}%`})),
+    el("div",{class:"val"},num(r.demand_score)))));
+  p.append(chart);
+  const cols=[["l","kategória",r=>lab(r.category),null],
+    ["l","segment",r=>r.keyword,null],
+    ["","nové",r=>r.new_count,"new_count"],
+    ["","zmazané",r=>r.deleted_count,"deleted_count"],
+    ["","život",r=>r.median_lifespan_days==null?"–":num(r.median_lifespan_days),"median_lifespan_days"],
+    ["","skóre",r=>num(r.demand_score),"demand_score"]];
+  p.append(makeTable(cols,rows,"demand_score"));
+}
+
+/* ---------- ZHRNUTIE ---------- */
+function renderZhrnutie(p){
+  let sums=(DATA.summaries||[]).filter(s=>!F.cat||s.category===F.cat);
+  showCount(sums.length);
+  const grid=el("div",{class:"cards"});
+  sums.forEach(s=>{
+    const card=el("div",{class:"card"},el("h3",{},lab(s.category)));
+    const stats=el("div",{class:"stats"});
+    stats.append(
+      stat("nové / deň",num(s.new_per_day),s.rate_basis==="posted_date"?"z inzerátov":"pozor: 1. deň"),
+      stat("zmazané / deň",num(s.deleted_per_day),s.deleted_total?"":"čaká na dáta"),
+      stat("cena medián",s.price_median==null?"–":eur(s.price_median),
+        s.price_min==null?"":`${eur(s.price_min)}–${eur(s.price_max)}`),
+      stat("životnosť",s.median_lifespan_days==null?"–":num(s.median_lifespan_days)+" d",""));
+    card.append(stats);
+    const chips=el("div",{class:"chips"});
+    (s.top_products||[]).slice(0,8).forEach(([ph,c])=>
+      chips.append(el("span",{class:"chip"},ph+" ",el("b",{},"×"+c))));
+    if(!s.top_products||!s.top_products.length) chips.append(el("span",{class:"chip"},"zatiaľ málo dát"));
+    card.append(el("div",{class:"stat"},el("div",{class:"k",style:"margin-bottom:6px"},"Top produkty")),chips);
+    grid.append(card);
+  });
+  p.append(grid);
+}
+function stat(k,v,sub){return el("div",{class:"stat"},el("div",{class:"k"},k),
+  el("div",{class:"v"},v,sub?el("small",{}," "+sub):""));}
+
+/* ---------- shared table ---------- */
+function makeTable(cols,rows,defSort){
+  let sortKey=defSort,asc=false;
+  const wrap=el("div",{class:"tbl-wrap"}),t=el("table"),thead=el("thead"),tr=el("tr");
+  cols.forEach(c=>{const th=el("th",{class:c[0]},c[1]);
+    if(c[3]){th.dataset.k=c[3];th.onclick=()=>{ if(sortKey===c[3])asc=!asc;else{sortKey=c[3];asc=false;}
+      draw();};}
+    tr.append(th);});
+  thead.append(tr);t.append(thead);
+  const tb=el("tbody");t.append(tb);wrap.append(t);
+  function draw(){
+    rows.sort((a,b)=>{const x=a[sortKey],y=b[sortKey];
+      const xv=x==null?-1e9:x,yv=y==null?-1e9:y;return asc?xv-yv:yv-xv;});
+    tb.innerHTML="";
+    rows.forEach(r=>{const row=el("tr");
+      cols.forEach(c=>{const v=c[2](r);const td=el("td",{class:(c[0]||"")+(c[0]==="l"?"":" num")});
+        if(typeof v==="string"&&v.startsWith("<"))td.innerHTML=v;else td.append(String(v));
+        row.append(td);});
+      tb.append(row);});
+    [...tr.children].forEach(th=>th.classList.toggle("sorted",th.dataset.k===sortKey));
+  }
+  draw();return wrap;
+}
+function showCount(n){const c=$("#count");c.hidden=false;c.textContent=n+" segmentov";}
+function emptyNote(){return el("div",{class:"note"},
+  "Žiadny segment nevyhovuje filtrom. Skús uvoľniť cenu/počet, alebo počkaj na viac dát.");}
+function legItem(color,txt){return el("span",{},el("i",{style:`background:${color}`}),txt);}
+
+boot();
+</script>
