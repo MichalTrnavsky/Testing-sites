@@ -91,6 +91,8 @@ jobs:
       - name: Nastav Pages
         continue-on-error: true
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Nahraj Pages artifact
         continue-on-error: true

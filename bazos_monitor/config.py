@@ -31,9 +31,7 @@ class Config:
     request_delay_seconds: float = 1.5
     request_timeout_seconds: float = 20.0
     max_retries: int = 4
-    user_agent: str = (
-        "bazos-dopyt-monitor/1.0 (osobny research; kontakt: trnavsky@44enterprise.sk)"
-    )
+    user_agent: str = "bazos-dopyt-monitor/1.0 (osobny research)"
 
     # cesta k SQLite databáze
     db_path: str = "bazos.db"
