@@ -218,10 +218,12 @@ def cmd_debugsub(args) -> int:
         print("    " + txt[max(0, i - 120):i + 400].replace("\n", " "))
     else:
         print("    (slovo 'category' sa v HTML nenachádza)")
-    # skús nájsť JS objekt s podkategóriami: hľadaj kúsky ako {id:120,...}
-    print("=== kandidáti na JS zoznam podkat. (číslo:reťazec) ===")
-    for m in list(_re.finditer(r'(\d{2,4})\s*[:,]\s*["\']([^"\']{3,40})["\']', txt))[:20]:
-        print(f"    {m.group(1)} = {m.group(2)!r}")
+    print("=== OKOLIE 'Kočíky' a 'Baby monitory' (surové HTML) ===")
+    for probe in ("Kočíky", "Baby monitory"):
+        j = txt.find(probe)
+        if j >= 0:
+            print(f"--- {probe} @ {j} ---")
+            print(txt[max(0, j - 300):j + 200])
     return 0
 
 
