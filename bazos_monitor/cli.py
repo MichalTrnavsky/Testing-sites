@@ -187,6 +187,37 @@ def cmd_prune(args) -> int:
     return 0
 
 
+def cmd_debugsub(args) -> int:
+    """Diagnostika: vypíše reálnu štruktúru <select>/<option> a category= odkazov
+    z hlavnej stránky subdomény, aby sa dal presne opraviť parser podkategórií."""
+    from bs4 import BeautifulSoup
+    from .categories import ALL_CATEGORIES
+    from .fetch import Fetcher
+    cfg = _load(args)
+    cat = ALL_CATEGORIES[args.category]
+    res = Fetcher(cfg).get(f"https://{cat.subdomain}/")
+    print(f"URL https://{cat.subdomain}/  HTTP {res.status} ok={res.ok} bytes={len(res.text)}")
+    soup = BeautifulSoup(res.text, "lxml")
+    print("=== SELECTY ===")
+    for sel in soup.find_all("select"):
+        opts = sel.find_all("option")
+        print(f"- <select name={sel.get('name')!r} id={sel.get('id')!r}> opcií={len(opts)}")
+        for o in opts[:12]:
+            print(f"    value={o.get('value')!r} text={o.get_text(strip=True)!r}")
+    print("=== ODKAZY s category= (prvých 12) ===")
+    import re as _re
+    n = 0
+    for a in soup.find_all("a", href=True):
+        if _re.search(r"category=\d+", a["href"]):
+            print(f"    href={a['href']!r} text={a.get_text(strip=True)!r}")
+            n += 1
+            if n >= 12:
+                break
+    if n == 0:
+        print("    (žiadne)")
+    return 0
+
+
 def cmd_cats(args) -> int:
     cfg = _load(args)
     active = {c.key for c in resolve_categories(cfg.include_categories, cfg.exclude_categories)}
@@ -262,6 +293,10 @@ def build_parser() -> argparse.ArgumentParser:
     pp.add_argument("--keep-days", type=int, default=200,
                     help="koľko dní histórie ponechať (default 200)")
     pp.set_defaults(func=cmd_prune)
+
+    pd = sub.add_parser("debugsub", help="diagnostika štruktúry podkategórií")
+    pd.add_argument("--category", default="deti")
+    pd.set_defaults(func=cmd_debugsub)
 
     pcat = sub.add_parser("cats", help="vypíš známe kategórie")
     pcat.set_defaults(func=cmd_cats)
