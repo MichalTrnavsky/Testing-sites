@@ -24,6 +24,7 @@ exclude_categories:
 max_pages_per_category: 25     # POISTNÝ strop (~500 inzerátov); crawl sa
                                # zvyčajne zastaví skôr podľa horizontu nižšie
 crawl_lookback_days: 3         # sťahuj strany, kým sú inzeráty novšie než X dní
+crawl_subcategories: true      # crawl na úrovni podkategórií (objaví ich sám)
 per_page: 20                   # inzerátov na stránku (Bazoš default)
 # Keď má niektorá kategória extrémny pohyb, zvýš strop len jej (odkomentuj):
 # pages_per_category:
