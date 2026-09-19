@@ -126,6 +126,41 @@ def cmd_zhrnutie(args) -> int:
     return 0
 
 
+def cmd_export(args) -> int:
+    """Vyexportuje všetky analýzy do jedného JSON pre HTML dashboard."""
+    import json
+    from dataclasses import asdict
+    from datetime import datetime
+    cfg = _load(args)
+    store = Store(cfg.db_path)
+    age = args.max_age if args.max_age and args.max_age > 0 else None
+    try:
+        cats = resolve_categories(cfg.include_categories, cfg.exclude_categories)
+        demand = analyze(store, category=None, window_days=args.window,
+                         min_new=1, top=3000, max_age_days=age)
+        arb = analyze_arbitrage(store, category=None, window_days=args.window,
+                                min_volume=2, min_used_price=1.0,
+                                max_used_price=None, max_age_days=age, top=3000)
+        summaries = [summarize(store, category=c.key, window_days=args.window,
+                               top_products=12, max_age_days=age) for c in cats]
+        data = {
+            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "window_days": args.window,
+            "max_age_days": age,
+            "categories": [{"key": c.key, "label": c.label} for c in cats],
+            "demand": [asdict(s) for s in demand],
+            "arbitrage": [asdict(s) for s in arb],
+            "summaries": [asdict(s) for s in summaries],
+        }
+        with open(args.out, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+        print(f"JSON zapísané: {args.out} "
+              f"(dopyt={len(demand)}, arbitráž={len(arb)}, kategórie={len(cats)})")
+    finally:
+        store.close()
+    return 0
+
+
 def cmd_prune(args) -> int:
     from datetime import datetime, timedelta
     cfg = _load(args)
@@ -201,6 +236,13 @@ def build_parser() -> argparse.ArgumentParser:
                     help="ignoruj inzeráty staršie ako X dní (default 21; 0 = bez limitu)")
     pz.add_argument("--top", type=int, default=10, help="koľko top produktov vypísať")
     pz.set_defaults(func=cmd_zhrnutie)
+
+    pe = sub.add_parser("export", help="exportuj dáta do JSON pre HTML dashboard")
+    pe.add_argument("--out", default="reports/data.json", help="cesta k výstupnému JSON")
+    pe.add_argument("--window", type=int, default=30, help="okno v dňoch (default 30)")
+    pe.add_argument("--max-age", type=float, default=21.0,
+                    help="ignoruj inzeráty staršie ako X dní (default 21; 0 = bez limitu)")
+    pe.set_defaults(func=cmd_export)
 
     pp = sub.add_parser("prune", help="zmaž staré inzeráty (retencia DB)")
     pp.add_argument("--keep-days", type=int, default=200,
