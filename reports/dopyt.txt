@@ -2,10 +2,10 @@ TOP dopyt segmenty za posledných 30 dní
 ================================================================
 kategória    segment (kľúč)             nové zmaz. život.dní   skóre
 --------------------------------------------------------------------
-Nábytok      postel                      263     4       0.1    88.2
+Nábytok      postel                      264     4       0.1    88.6
 Šport        bicykel                     267     6       0.3    78.7
-Detský bazár kocik                       229     2       0.1    75.3
-Nábytok      stol                        220     6       0.1    73.6
+Nábytok      stol                        221     6       0.1    73.9
+Detský bazár kocik                       231     3       0.2    72.3
 Stroje       zetor                       159     1       0.1    55.2
 Detský bazár lego                        189     1       0.3    53.9
 Šport        bicykel                     162     6       0.1    53.3
@@ -15,42 +15,42 @@ Nábytok      stolik                      129     4       0.2    39.2
 Šport        horsky bicykel              117     1       0.2    35.4
 Elektro      pracka                      102     5       0.1    35.2
 Detský bazár detsky                      105     2       0.1    34.5
-Elektro      samsung                      98     3       0.1    32.8
+Detský bazár detska                      126     1       0.4    34.2
+Elektro      samsung                     100     3       0.1    33.4
 Dom a záhrad kosacka                     105     2       0.2    32.6
 Detský bazár detsky bicykel               91     2       0.1    29.9
 Dom a záhrad vari                         85     2       0.1    29.4
-Elektro      vysavac                      84     1       0.1    29.1
+Elektro      vysavac                      85     1       0.1    29.4
 Elektro      kavovar                      93     2       0.2    28.6
+Nábytok      sedacia                      93     3       0.3    25.8
 Nábytok      konferencny                  81     2       0.2    25.8
-Nábytok      sedacia                      92     3       0.3    25.5
-Nábytok      suprava                      90     3       0.3    24.9
-Nábytok      sedacia suprava              89     3       0.3    24.7
-Nábytok      stolicka                     80     1       0.3    23.7
+Nábytok      suprava                      91     3       0.3    25.2
+Nábytok      sedacia suprava              90     3       0.3    24.9
+Nábytok      stolicka                     81     1       0.3    24.0
+Detský bazár postielka                    88     1       0.4    23.9
 Detský bazár cybex                        75     1       0.2    23.5
+Elektro      led                          69     1       0.2    21.6
 Elektro      sluchadla                    62     1       0.1    21.4
-Elektro      led                          68     1       0.2    21.3
-Elektro      chladnicka                   66     1       0.2    20.6
-Elektro      televizor                    65     5       0.2    20.3
+Elektro      televizor                    67     5       0.2    21.0
+Elektro      chladnicka                   67     1       0.2    21.0
 Dom a záhrad malotraktor                  58     1       0.1    20.1
-Nábytok      matrac                       59     1       0.1    19.2
+Nábytok      matrac                       60     1       0.1    19.5
 Nábytok      konferencny stolik           65     1       0.3    19.1
 Dom a záhrad agzat                        55     1       0.1    19.1
 Dom a záhrad kotol                        60     1       0.2    18.9
-Dom a záhrad pila                         52     1       0.1    17.9
 Nábytok      komoda                       50     1       0.1    16.2
 Šport        detsky                       53     2       0.2    16.0
-Nábytok      jedalensky                   52     2       0.3    15.3
+Dom a záhrad pila                         52     2       0.2    15.7
+Nábytok      jedalensky                   53     2       0.3    15.6
+Nábytok      obyvacia                     46     1       0.1    14.9
 Nábytok      jedalensky stol              50     2       0.3    14.8
-Nábytok      obyvacia                     45     1       0.1    14.6
 Nábytok      pisaci                       42     1       0.1    14.6
 Nábytok      stena                        48     2       0.2    14.4
 Stroje       pila                         44     1       0.1    14.3
 Elektro      smart                        42     1       0.1    14.0
 Dom a záhrad aku                          40     1       0.1    13.8
+Elektro      umyvacka                     40     3       0.1    13.4
 Nábytok      skrinka                      41     1       0.1    13.3
-Elektro      umyvacka                     39     3       0.1    13.0
 Elektro      autoradio                    44     1       0.3    12.9
-Elektro      riadu                        38     3       0.1    12.7
-Šport        detsky bicykel               41     2       0.2    12.4
 
 Čítanie: vysoké 'nové' + nízka 'život.dní' = silný dopyt (inzeráty rýchlo miznú = predávajú sa).
