@@ -168,7 +168,9 @@ def cmd_prune(args) -> int:
     try:
         cutoff = (datetime.utcnow() - timedelta(days=args.keep_days)).isoformat()
         n = store.prune_older_than(cutoff)
-        print(f"Zmazaných {n} inzerátov starších ako {args.keep_days} dní.")
+        from .parse import MAX_SANE_PRICE
+        fixed = store.sanitize_prices(MAX_SANE_PRICE)
+        print(f"Zmazaných {n} starých inzerátov; opravených {fixed} nezmyselných cien.")
     finally:
         store.close()
     return 0

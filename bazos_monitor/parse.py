@@ -23,9 +23,9 @@ AD_URL_RE = re.compile(r"/inzerat/(\d+)/")
 DATE_RE = re.compile(r"(\d{1,2})\.\s?(\d{1,2})\.\s?(\d{4})")
 # "Cena 120 €" / "120 €" / "1 250 €". Za číslom hneď (voliteľné medzery) €.
 PRICE_RE = re.compile(r"(\d[\d\s]{0,9})\s*€")
-# Realistický strop ceny na Bazoši (nad tým je to skoro isto zle zosnímané
-# telefónne číslo/PSČ zlepené do "ceny").
-MAX_SANE_PRICE = 5_000_000
+# Realistický strop ceny (bez reality/auto) – nad tým je to skoro isto zle
+# zosnímané telefónne číslo/PSČ zlepené do "ceny".
+MAX_SANE_PRICE = 500_000
 
 # Markery, že detail inzerátu bol zmazaný / už neexistuje.
 DELETED_MARKERS = (

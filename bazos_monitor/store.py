@@ -181,6 +181,16 @@ class Store:
             self.conn.execute("VACUUM")
         return deleted
 
+    def sanitize_prices(self, max_price: int) -> int:
+        """Vynuluje nezmyselné ceny (zlepené tel. čísla) uložené pred opravou
+        parsera. Samoliečba – beží pravidelne. Vracia počet opravených."""
+        cur = self.conn.execute(
+            "UPDATE ads SET price_eur = NULL WHERE price_eur IS NOT NULL AND price_eur > ?",
+            (max_price,),
+        )
+        self.conn.commit()
+        return cur.rowcount
+
     # ---- runs ----------------------------------------------------------
     def log_run(self, kind: str, categories: str, new_ads: int, seen_ads: int,
                 deleted_ads: int, started_at_iso: str) -> None:
