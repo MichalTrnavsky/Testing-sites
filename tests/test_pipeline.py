@@ -56,6 +56,16 @@ def test_parse_listing():
     print("test_parse_listing OK")
 
 
+def test_price_sanity():
+    from bazos_monitor.parse import _parse_price
+    assert _parse_price("Cena 120 €") == 120
+    assert _parse_price("1 250 €") == 1250
+    assert _parse_price("74 900 €") == 74900
+    # zlepené telefónne číslo/PSČ sa nesmie brať ako cena
+    assert _parse_price("Cena 918 949 502 650 €") is None
+    print("test_price_sanity OK")
+
+
 def test_deletion_marker():
     assert is_detail_deleted(200, "... Inzerát bol vymazaný ...") is True
     assert is_detail_deleted(404, "") is True
@@ -210,6 +220,7 @@ def test_summarize_kociky():
 
 if __name__ == "__main__":
     test_parse_listing()
+    test_price_sanity()
     test_deletion_marker()
     test_keyphrases()
     test_end_to_end_demand()
