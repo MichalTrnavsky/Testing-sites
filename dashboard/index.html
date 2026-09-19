@@ -543,10 +543,9 @@ function renderZhrnutie(p){
           el("div",{class:"val"},num(x.new_total)))));
       } else card.append(el("div",{style:"color:var(--muted);font-size:.8rem"},"bez podkategórií"));
     } else {
-      const g=genericSet(s);
-      card.append(chipRow("Typy / modely v ponuke", meaningful(s.top_products,g)));
-      const sold=meaningful(s.top_products_sold,g);
-      if(sold.length) card.append(chipRow("Predané typy", sold));
+      card.append(chipRow("Značky v ponuke", brandy(s.top_products)));
+      const sold=brandy(s.top_products_sold);
+      if(sold.length) card.append(chipRow("Predané značky", sold));
     }
     grid.append(card);
   });
@@ -600,6 +599,33 @@ function genericSet(s){
 function meaningful(pairs,g){          // ponechá frázu, ak má aspoň 1 „nesamozrejmé" slovo
   return (pairs||[]).filter(([ph])=> ph.split(" ").some(w=> !g.has(w) && !g.has(stem(w))));
 }
+// ZOZNAM POVOLENÝCH ZNAČIEK (lowercase, bez diakritiky). Do „Značky / modely"
+// pustíme len frázy obsahujúce aspoň jednu značku – fragmenty ako „stojanova
+// vrtacka" či „riadu sirka" vypadnú. Zoznam sa dá kedykoľvek rozšíriť.
+const BRANDS=new Set([
+  "lego","duplo","playmobil","cybex","britax","romer","kinderkraft","stokke","thule",
+  "bugaboo","joolz","chicco","hauck","anex","joie","maxicosi","avionaut","inglesina",
+  "recaro","nuna","quinny","mima","bebetto","zopa","coletto","chipolino","barbie",
+  "hotwheels","fisher","emmaljunga","peg","perego","babyzen","graco",
+  "samsung","philips","sony","whirlpool","bosch","electrolux","panasonic","apple",
+  "airpods","jbl","eta","tesla","gorenje","yamaha","sencor","pioneer","siemens",
+  "beko","zanussi","candy","indesit","miele","aeg","sharp","tcl","hisense","dyson",
+  "rowenta","tefal","concept","xiaomi","nespresso","krups","delonghi","huawei",
+  "marshall","bose","jvc","technics","denon","harman","kenwood",
+  "vari","stihl","makita","terra","hilti","hecht","husqvarna","milwaukee","parkside",
+  "agzat","dewalt","einhell","honda","gardena","fiskars","metabo","ryobi","scheppach",
+  "alko","oleo","stiga","mtd","viking","fieldmann","riwall",
+  "zetor","jcb","tos","wacker","kubota","ursus","deutz","fendt","komatsu","linde",
+  "still","desta","balkancar","claas","bomag","caterpillar",
+  "ikea","jysk","asko","sconto","kondela","tempo","brw",
+  "ctm","cube","specialized","kukirin","kellys","trek","adidas","merida","author",
+  "shimano","scott","fox","glock","giant","ktm","bianchi","focus","canyon","dema",
+  "ghost","apache","kross","lapierre","btwin","rockrider","nike","puma","sram",
+  "cannondale","bulls","liv","orbea","decathlon"
+]);
+function brandy(pairs){   // ponechá len frázy obsahujúce reálnu značku
+  return (pairs||[]).filter(([ph])=> ph.split(" ").some(w=>BRANDS.has(w)));
+}
 function modelCol(title,pairs){
   const col=el("div",{});
   col.append(el("div",{class:"k",style:"font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;margin-bottom:8px"},title));
@@ -614,12 +640,13 @@ function modelCol(title,pairs){
 function modelsPanel(){
   if(!F.cat) return null;                 // len keď je zvolená kategória/podkat.
   const s=findSummary(F.cat,F.subcat||null); if(!s) return null;
-  const g=genericSet(s);
+  const off=brandy(s.top_products), sold=brandy(s.top_products_sold);
+  if(!off.length && !sold.length) return null;   // žiadne rozpoznané značky -> panel neukazuj
   const wrap=el("div",{class:"chart"});
-  wrap.append(el("h2",{},`Typy / modely — ${s.subcategory||lab(s.category)}`));
+  wrap.append(el("h2",{},`Značky / modely — ${s.subcategory||lab(s.category)}`));
   const grid=el("div",{style:"display:grid;grid-template-columns:1fr 1fr;gap:20px"});
-  grid.append(modelCol("Najčastejšie v ponuke", meaningful(s.top_products,g)),
-              modelCol("Najviac predané", meaningful(s.top_products_sold,g)));
+  grid.append(modelCol("Značky v ponuke", off),
+              modelCol("Predané značky", sold));
   wrap.append(grid);
   return wrap;
 }
