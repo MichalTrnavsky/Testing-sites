@@ -1,201 +1,201 @@
 category,subcat,keyword,new_count,deleted_count,median_lifespan_days,demand_score
-nabytok,(nezaradené),postel,68,1,0.02,96.74
-elektro,(nezaradené),pracka,23,1,0.18,28.24
-nabytok,(nezaradené),retro,21,1,0.08,28.23
-elektro,(nezaradené),kavovar,13,1,0.08,17.48
-nabytok,(nezaradené),matrac,11,1,0.02,15.65
-nabytok,(nezaradené),stolove,8,1,0.08,10.75
-sport,(nezaradené),bicykel,69,0,,10.0
-deti,(nezaradené),kocik,66,0,,9.57
-nabytok,(nezaradené),stol,65,0,,9.42
-deti,(nezaradené),detska,59,0,,8.55
-nabytok,(nezaradené),odvoz,6,1,0.02,8.54
-hudba,(nezaradené),best,5,1,0.01,7.19
-nabytok,(nezaradené),hodiny,5,1,0.08,6.72
-elektro,(nezaradené),krups,5,1,0.08,6.72
-nabytok,(nezaradené),suprava,45,0,,6.52
-deti,(nezaradené),lego,45,0,,6.52
-nabytok,(nezaradené),sedacia,44,0,,6.38
-nabytok,(nezaradené),sedacia suprava,44,0,,6.38
-deti,(nezaradené),detsky,44,0,,6.38
-stroje,(nezaradené),vozik,43,0,,6.23
-deti,(nezaradené),cybex,40,0,,5.8
-nabytok,(nezaradené),stolik,39,0,,5.65
-stroje,(nezaradené),traktor,38,0,,5.51
-stroje,(nezaradené),vysokozdvizny vozik,36,0,,5.22
-stroje,(nezaradené),vysokozdvizny,36,0,,5.22
-deti,(nezaradené),bicykel,36,0,,5.22
-elektro,(nezaradené),slim,4,1,0.18,4.91
-stroje,(nezaradené),zetor,33,0,,4.78
-elektro,(nezaradené),samsung,31,0,,4.49
-deti,(nezaradené),postielka,30,0,,4.35
-nabytok,(nezaradené),gauc,29,0,,4.2
-hudba,(nezaradené),yamaha,29,0,,4.2
-stroje,(nezaradené),jcb,28,0,,4.06
-hudba,(nezaradené),gitaru,28,0,,4.06
-deti,(nezaradené),detske,28,0,,4.06
-elektro,(nezaradené),kavovar krups,3,1,0.08,4.03
-elektro,(nezaradené),airpods,27,0,,3.91
-deti,(nezaradené),autosedacka,27,0,,3.91
-nabytok,(nezaradené),stolicky,26,0,,3.77
-deti,(nezaradené),detsky bicykel,26,0,,3.77
-nabytok,(nezaradené),konferencny,25,0,,3.62
-elektro,(nezaradené),led,25,0,,3.62
-nabytok,(nezaradené),kreslo,24,0,,3.48
-stroje,(nezaradené),bager,24,0,,3.48
-sport,(nezaradené),horsky,23,0,,3.33
-sport,(nezaradené),cube,23,0,,3.33
-nabytok,(nezaradené),jedalensky,22,0,,3.19
-nabytok,(nezaradené),sedacka,22,0,,3.19
-nabytok,(nezaradené),konferencny stolik,22,0,,3.19
-stroje,(nezaradené),nakladac,22,0,,3.19
-sport,(nezaradené),horsky bicykel,21,0,,3.04
-elektro,(nezaradené),philips,20,0,,2.9
-deti,(nezaradené),lego duplo,20,0,,2.9
-deti,(nezaradené),duplo,20,0,,2.9
-stroje,(nezaradené),pila,19,0,,2.75
-elektro,(nezaradené),smart,19,0,,2.75
-deti,(nezaradené),vel,19,0,,2.75
-nabytok,(nezaradené),jedalensky stol,18,0,,2.61
-hudba,(nezaradené),gitara,18,0,,2.61
-hudba,(nezaradené),akordeon,18,0,,2.61
-nabytok,(nezaradené),kuchynska,17,0,,2.46
-elektro,(nezaradené),whirlpool,17,0,,2.46
-sport,(nezaradené),ebike,17,0,,2.46
-sport,(nezaradené),velkost,17,0,,2.46
-deti,(nezaradené),romer,17,0,,2.46
-deti,(nezaradené),britax,17,0,,2.46
-deti,(nezaradené),postel,17,0,,2.46
-deti,(nezaradené),bunda,17,0,,2.46
-hudba,(nezaradené),platne,17,0,,2.46
-dom,(nezaradené),hrozno,16,0,,2.32
-nabytok,(nezaradené),rohova,16,0,,2.32
-nabytok,(nezaradené),nabytok,16,0,,2.32
-elektro,(nezaradené),sony,16,0,,2.32
-sport,(nezaradené),ctm,16,0,,2.32
-stroje,(nezaradené),lpg,16,0,,2.32
-hudba,(nezaradené),dvd,16,0,,2.32
-dom,(nezaradené),plastove,15,0,,2.17
-nabytok,(nezaradené),linka,15,0,,2.17
-deti,(nezaradené),britax romer,15,0,,2.17
-deti,(nezaradené),detska postielka,15,0,,2.17
-hudba,(nezaradené),piano,15,0,,2.17
-hudba,(nezaradené),husle,15,0,,2.17
-nabytok,(nezaradené),skrina,15,0,,2.17
-stroje,(nezaradené),traktor bager,15,0,,2.17
-dom,(nezaradené),dvere,14,0,,2.03
-dom,(nezaradené),kosacka,14,0,,2.03
-nabytok,(nezaradené),kuchynska linka,14,0,,2.03
-elektro,(nezaradené),bosch,14,0,,2.03
-elektro,(nezaradené),vysavac,14,0,,2.03
-sport,(nezaradené),carbon,14,0,,2.03
-elektro,(nezaradené),chladnicka,14,0,,2.03
-hudba,(nezaradené),weltmeister,14,0,,2.03
-dom,(nezaradené),malotraktor,13,0,,1.88
-stroje,(nezaradené),jungheinrich,13,0,,1.88
-stroje,(nezaradené),mth,13,0,,1.88
-sport,(nezaradené),specialized,13,0,,1.88
-deti,(nezaradené),2v1,13,0,,1.88
-hudba,(nezaradené),fender,13,0,,1.88
-elektro,(nezaradené),repro,13,0,,1.88
-elektro,(nezaradené),robot,13,0,,1.88
-deti,(nezaradené),velkost,13,0,,1.88
-deti,(nezaradené),tenisky,13,0,,1.88
-deti,(nezaradené),zimna,13,0,,1.88
-nabytok,(nezaradené),podnoze,12,0,,1.74
-nabytok,(nezaradené),stena,12,0,,1.74
-nabytok,(nezaradené),sedenie,12,0,,1.74
-nabytok,(nezaradené),manzelska,12,0,,1.74
-nabytok,(nezaradené),manzelska postel,12,0,,1.74
-nabytok,(nezaradené),cierne,12,0,,1.74
-nabytok,(nezaradené),ikea,12,0,,1.74
-elektro,(nezaradené),sluchadla,12,0,,1.74
-sport,(nezaradené),kukirin,12,0,,1.74
-sport,(nezaradené),bauer,12,0,,1.74
-deti,(nezaradené),odrazadlo,12,0,,1.74
-hudba,(nezaradené),akusticku,12,0,,1.74
-nabytok,(nezaradené),skrinka,12,0,,1.74
-nabytok,(nezaradené),zostava,12,0,,1.74
-stroje,(nezaradené),gastro,12,0,,1.74
-nabytok,(nezaradené),komoda,11,0,,1.59
-nabytok,(nezaradené),detska,11,0,,1.59
-nabytok,(nezaradené),kovove podnoze,11,0,,1.59
-nabytok,(nezaradené),kovove,11,0,,1.59
-elektro,(nezaradené),svietidlo,11,0,,1.59
-elektro,(nezaradené),pioneer,11,0,,1.59
-elektro,(nezaradené),bluetooth,11,0,,1.59
-sport,(nezaradené),stereo,11,0,,1.59
-sport,(nezaradené),cube stereo,11,0,,1.59
-hudba,(nezaradené),klavir,11,0,,1.59
-stroje,(nezaradené),nerezovy,11,0,,1.59
-elektro,(nezaradené),pracku,11,0,,1.59
-elektro,(nezaradené),kuchynsky robot,11,0,,1.59
-elektro,(nezaradené),kuchynsky,11,0,,1.59
-stroje,(nezaradené),hodin,11,0,,1.59
-dom,(nezaradené),kontajner,10,0,,1.45
-dom,(nezaradené),zahradny,10,0,,1.45
-dom,(nezaradené),domcek,10,0,,1.45
-dom,(nezaradené),kotol,10,0,,1.45
-dom,(nezaradené),betonove,10,0,,1.45
-nabytok,(nezaradené),masiv,10,0,,1.45
-nabytok,(nezaradené),zahradne,10,0,,1.45
-nabytok,(nezaradené),rozkladaci,10,0,,1.45
-stroje,(nezaradené),pasovy,10,0,,1.45
-stroje,(nezaradené),kubota,10,0,,1.45
-elektro,(nezaradené),apple,10,0,,1.45
-sport,(nezaradené),trek,10,0,,1.45
-sport,(nezaradené),vel,10,0,,1.45
-sport,(nezaradené),pas,10,0,,1.45
-deti,(nezaradené),vajicko,10,0,,1.45
-deti,(nezaradené),stolicka,10,0,,1.45
-hudba,(nezaradené),bicie,10,0,,1.45
-hudba,(nezaradené),akusticku gitaru,10,0,,1.45
-dom,(nezaradené),cerpadlo,10,0,,1.45
-nabytok,(nezaradené),dvere,9,0,,1.3
-nabytok,(nezaradené),zahradne sedenie,9,0,,1.3
-nabytok,(nezaradené),pisaci,9,0,,1.3
-nabytok,(nezaradené),rozkladacia,9,0,,1.3
-stroje,(nezaradené),minibager,9,0,,1.3
-stroje,(nezaradené),motor,9,0,,1.3
-stroje,(nezaradené),nosnost,9,0,,1.3
-stroje,(nezaradené),vzv,9,0,,1.3
-elektro,(nezaradené),reproduktory,9,0,,1.3
-elektro,(nezaradené),eta,9,0,,1.3
-elektro,(nezaradené),jbl,9,0,,1.3
-elektro,(nezaradené),audio,9,0,,1.3
-sport,(nezaradené),shimano,9,0,,1.3
-sport,(nezaradené),bezecky,9,0,,1.3
-deti,(nezaradené),auticko,9,0,,1.3
-nabytok,(nezaradené),pohovka,9,0,,1.3
-sport,(nezaradené),merida,9,0,,1.3
-deti,(nezaradené),detsku,9,0,,1.3
-deti,(nezaradené),zimna bunda,9,0,,1.3
-deti,(nezaradené),zimne,9,0,,1.3
-deti,(nezaradené),topanky,9,0,,1.3
-hudba,(nezaradené),akordeon weltmeister,9,0,,1.3
-hudba,(nezaradené),cdcka,9,0,,1.3
-hudba,(nezaradené),bas,9,0,,1.3
-elektro,(nezaradené),redukcia,9,0,,1.3
-dom,(nezaradené),dlazba,8,0,,1.16
-dom,(nezaradené),novita,8,0,,1.16
-dom,(nezaradené),trativod,8,0,,1.16
-nabytok,(nezaradené),koberec,8,0,,1.16
-nabytok,(nezaradené),supravu,8,0,,1.16
-nabytok,(nezaradené),tvar,8,0,,1.16
-nabytok,(nezaradené),tvar cierne,8,0,,1.16
-nabytok,(nezaradené),pisaci stol,8,0,,1.16
-nabytok,(nezaradené),matracom,8,0,,1.16
-stroje,(nezaradené),john,8,0,,1.16
-stroje,(nezaradené),john deere,8,0,,1.16
-stroje,(nezaradené),deere,8,0,,1.16
-stroje,(nezaradené),vozik jungheinrich,8,0,,1.16
-elektro,(nezaradené),zosilnovac,8,0,,1.16
-elektro,(nezaradené),gorenje,8,0,,1.16
-elektro,(nezaradené),roboticky,8,0,,1.16
-sport,(nezaradené),zaruka,8,0,,1.16
-sport,(nezaradené),elektrobicykel,8,0,,1.16
-sport,(nezaradené),kolobezku,8,0,,1.16
-sport,(nezaradené),bateria,8,0,,1.16
-sport,(nezaradené),kolobezka,8,0,,1.16
-sport,(nezaradené),elektricka,8,0,,1.16
-sport,(nezaradené),elektricka kolobezka,8,0,,1.16
+deti,Lego,lego,104,0,,10.0
+nabytok,Postele,postel,99,0,,9.52
+deti,Bicykle,bicykel,81,0,,7.79
+dom,"Dvere, brány",dvere,71,0,,6.83
+deti,Odrážadlá,odrazadlo,69,0,,6.63
+elektro,Kávovary,kavovar,67,0,,6.44
+elektro,Vysávače,vysavac,67,0,,6.44
+sport,Cestné bicykle,bicykel,65,0,,6.25
+dom,Kosačky,kosacka,63,0,,6.06
+dom,Čerpadlá,cerpadlo,62,0,,5.96
+nabytok,Stoly,stol,62,0,,5.96
+elektro,Práčky,pracka,60,0,,5.77
+nabytok,Koberce a podlahová krytina,koberec,59,0,,5.67
+deti,Kočíky,kocik,59,0,,5.67
+stroje,Skladová technika,vozik,56,0,,5.38
+sport,Kolobežky,kolobezka,56,0,,5.38
+sport,Horské bicykle,bicykel,55,0,,5.29
+nabytok,Matrace,matrac,53,0,,5.1
+deti,Bicykle,detsky,51,0,,4.9
+deti,Nosiče,nosic,51,0,,4.9
+elektro,Chladničky,chladnicka,50,0,,4.81
+nabytok,Stoličky,stolicky,48,0,,4.62
+sport,"In-lines, Skateboarding",korcule,48,0,,4.62
+dom,Okná,plastove,47,0,,4.52
+deti,Autosedačky,autosedacka,47,0,,4.52
+deti,Nábytok pre deti,detska,46,0,,4.42
+dom,Píly,pila,44,0,,4.23
+elektro,Slúchadlá,airpods,44,0,,4.23
+deti,Bicykle,detsky bicykel,44,0,,4.23
+dom,Okná,okna,43,0,,4.13
+nabytok,Sedacie súpravy,sedacia,43,0,,4.13
+nabytok,Sedacie súpravy,suprava,42,0,,4.04
+nabytok,Sedacie súpravy,sedacia suprava,41,0,,3.94
+stroje,Skladová technika,vysokozdvizny,41,0,,3.94
+stroje,Skladová technika,vysokozdvizny vozik,40,0,,3.85
+nabytok,Kreslá a gauče,kreslo,39,0,,3.75
+nabytok,Obývacie steny,stena,39,0,,3.75
+elektro,Televízory,samsung,39,0,,3.75
+dom,"Malotraktory, Kultivátory",vari,38,0,,3.65
+dom,Okná,okno,38,0,,3.65
+nabytok,Stoly,stolik,38,0,,3.65
+nabytok,Skrine,skrina,37,0,,3.56
+elektro,"Svietidlá, Lampy",led,37,0,,3.56
+nabytok,Kuchyne,linka,36,0,,3.46
+nabytok,Stoličky,stolicka,36,0,,3.46
+nabytok,Obývacie steny,obyvacia,35,0,,3.37
+stroje,Generátory,elektrocentrala,35,0,,3.37
+elektro,Projektory,projektor,35,0,,3.37
+elektro,Slúchadlá,sluchadla,35,0,,3.37
+elektro,Šijacie stroje,stroj,34,0,,3.27
+deti,Nábytok pre deti,postielka,34,0,,3.27
+dom,Píly,stihl,33,0,,3.17
+stroje,Textilné stroje,stroj,33,0,,3.17
+nabytok,"Lampy, osvetlenie",luster,32,0,,3.08
+stroje,Drevoobrábacie stroje,pila,32,0,,3.08
+sport,Futbal,kopacky,32,0,,3.08
+sport,Kolobežky,elektricka,32,0,,3.08
+dom,Miešačky,miesacka,31,0,,2.98
+nabytok,"Lampy, osvetlenie",lampa,31,0,,2.98
+nabytok,Obývacie steny,obyvacia stena,31,0,,2.98
+elektro,Digestory,digestor,31,0,,2.98
+elektro,Šijacie stroje,sijaci,31,0,,2.98
+elektro,Vysávače,roboticky,31,0,,2.98
+sport,Kolobežky,elektricka kolobezka,31,0,,2.98
+nabytok,Kuchyne,kuchynska,30,0,,2.88
+elektro,Šijacie stroje,sijaci stroj,30,0,,2.88
+sport,Horské bicykle,horsky,30,0,,2.88
+deti,Kočíky,cybex,30,0,,2.88
+dom,Bazény,bazen,29,0,,2.79
+nabytok,Kreslá a gauče,gauc,29,0,,2.79
+stroje,Motory,motor,29,0,,2.79
+stroje,Poľnohospodárska technika,zetor,29,0,,2.79
+elektro,Sporáky,sporak,29,0,,2.79
+elektro,Autorádiá,autoradio,29,0,,2.79
+elektro,Vysávače,roboticky vysavac,29,0,,2.79
+sport,Horské bicykle,horsky bicykel,29,0,,2.79
+dom,"Malotraktory, Kultivátory",agzat,28,0,,2.69
+dom,Radiátory,radiator,28,0,,2.69
+deti,Autosedačky,romer,28,0,,2.69
+dom,"Malotraktory, Kultivátory",malotraktor,27,0,,2.6
+dom,Záhradné grily,gril,27,0,,2.6
+stroje,Čerpadlá,cerpadlo,27,0,,2.6
+stroje,Motory,elektromotor,27,0,,2.6
+stroje,Skladová technika,lpg,27,0,,2.6
+elektro,Zosilňovače,zosilnovac,27,0,,2.6
+elektro,"Svietidlá, Lampy",svietidlo,27,0,,2.6
+nabytok,Kúpeľne,umyvadlo,26,0,,2.5
+nabytok,Stoly,konferencny,26,0,,2.5
+elektro,Mrazničky,mraznicka,26,0,,2.5
+elektro,Zvlhčovače vzduchu,vzduchu,26,0,,2.5
+dom,"Malotraktory, Kultivátory",terra,25,0,,2.4
+elektro,Sušičky,susicka,25,0,,2.4
+sport,Kolobežky,kukirin,25,0,,2.4
+sport,Súčiastky a diely,shimano,25,0,,2.4
+deti,Autosedačky,britax,25,0,,2.4
+dom,"Kotle, Kachle, Bojlery",kotol,24,0,,2.31
+dom,"Malotraktory, Kultivátory",terra vari,24,0,,2.31
+dom,Snežná technika,freza,24,0,,2.31
+nabytok,Kuchyne,kuchynska linka,24,0,,2.31
+nabytok,Stoly,konferencny stolik,24,0,,2.31
+stroje,Stavebné stroje,jcb,24,0,,2.31
+stroje,Stavebné stroje,bager,24,0,,2.31
+stroje,Textilné stroje,sijaci stroj,24,0,,2.31
+stroje,Textilné stroje,sijaci,24,0,,2.31
+stroje,Náhradné diely,zetor,24,0,,2.31
+elektro,Umývačky riadu,umyvacka,24,0,,2.31
+elektro,Televízory,led,24,0,,2.31
+sport,"In-lines, Skateboarding",kolieskove korcule,24,0,,2.31
+sport,"In-lines, Skateboarding",kolieskove,24,0,,2.31
+deti,Autosedačky,britax romer,24,0,,2.31
+dom,Okná,plastove okno,23,0,,2.21
+elektro,Umývačky riadu,riadu,23,0,,2.21
+sport,Futbal,adidas,23,0,,2.21
+deti,Autosedačky,cybex,23,0,,2.21
+nabytok,Jedálenské kúty,stol,22,0,,2.12
+nabytok,Sedacie súpravy,sedacka,22,0,,2.12
+elektro,Mikrovlnné rúry,rura,22,0,,2.12
+elektro,Televízory,televizor,22,0,,2.12
+sport,Paintball,airsoft,22,0,,2.12
+deti,Baby monitory,monitor,22,0,,2.12
+deti,Sedačky na bicykel,sedacka,22,0,,2.12
+nabytok,Skrine,komoda,21,0,,2.02
+stroje,Potravinárske stroje,stol,21,0,,2.02
+stroje,Potravinárske stroje,gastro,21,0,,2.02
+elektro,Práčky,pracku,21,0,,2.02
+elektro,Žehličky,zehlicka,21,0,,2.02
+sport,"Tenis, squash, badminton",tenisova,21,0,,2.02
+deti,Športové potreby,detska,21,0,,2.02
+deti,Športové potreby,korcule,21,0,,2.02
+dom,"Kotle, Kachle, Bojlery",kachle,20,0,,1.92
+nabytok,Záhradný nábytok,sedenie,20,0,,1.92
+stroje,Poľnohospodárska technika,traktor,20,0,,1.92
+elektro,Chladničky,chladnicku,20,0,,1.92
+elektro,Kávovary,delonghi,20,0,,1.92
+sport,Futbal,dres,20,0,,1.92
+deti,Nábytok pre deti,postel,20,0,,1.92
+nabytok,Záhradný nábytok,zahradne,19,0,,1.83
+elektro,Práčky,whirlpool,19,0,,1.83
+elektro,Umývačky riadu,umyvacka riadu,19,0,,1.83
+elektro,"Video, DVD prehrávače",dvd,19,0,,1.83
+elektro,"Svietidlá, Lampy",lampa,19,0,,1.83
+sport,"Tenis, squash, badminton",raketa,19,0,,1.83
+deti,Chodítka a hopsadlá,choditko,19,0,,1.83
+deti,Športové potreby,detske,19,0,,1.83
+dom,Okná,plastove okna,18,0,,1.73
+dom,Píly,cirkular,18,0,,1.73
+dom,Vysávače/Fúkače,vysavac,18,0,,1.73
+stroje,Potravinárske stroje,nerezovy,18,0,,1.73
+elektro,"Fény, Kulmy",kulma,18,0,,1.73
+elektro,"Svietidlá, Lampy",stropne,18,0,,1.73
+sport,Elektrobicykle,ebike,18,0,,1.73
+deti,Kojenecké potreby,odsavacka,18,0,,1.73
+deti,Nábytok pre deti,detska postielka,18,0,,1.73
+deti,Nábytok pre deti,stolicka,18,0,,1.73
+dom,"Dvere, brány",vchodove,17,0,,1.63
+dom,Píly,motorova,17,0,,1.63
+dom,Píly,motorova pila,17,0,,1.63
+nabytok,Knižnice,kniznica,17,0,,1.63
+nabytok,Matrace,matrace,17,0,,1.63
+elektro,Mikrovlnné rúry,mikrovlnna rura,17,0,,1.63
+elektro,Mikrovlnné rúry,mikrovlnna,17,0,,1.63
+elektro,Repro sústavy,repro,17,0,,1.63
+elektro,Slúchadlá,apple,17,0,,1.63
+elektro,Televízory,smart,17,0,,1.63
+elektro,Nabíjačky batérií,nabijacka,17,0,,1.63
+sport,"Tenis, squash, badminton",tenisova raketa,17,0,,1.63
+deti,Autosedačky,vajicko,17,0,,1.63
+deti,Sedačky na bicykel,bicykel,17,0,,1.63
+deti,Športové potreby,prilba,17,0,,1.63
+dom,"Dvere, brány",vchodove dvere,16,0,,1.54
+dom,Klimatizácie,klimatizacia,16,0,,1.54
+nabytok,Obývacie steny,stolik,16,0,,1.54
+nabytok,Postele,detska,16,0,,1.54
+nabytok,Sedacie súpravy,gauc,16,0,,1.54
+nabytok,Stoly,jedalensky,16,0,,1.54
+stroje,Historické stroje,zetor,16,0,,1.54
+stroje,Skladová technika,paletovy,16,0,,1.54
+stroje,Stavebné stroje,traktor,16,0,,1.54
+elektro,Repro sústavy,reproduktory,16,0,,1.54
+elektro,Slúchadlá,apple airpods,16,0,,1.54
+elektro,"Video, DVD prehrávače",prehravac,16,0,,1.54
+elektro,"Video, DVD prehrávače",vhs,16,0,,1.54
+sport,Kolobežky,kolobezku,16,0,,1.54
+sport,Elektrobicykle,bosch,16,0,,1.54
+deti,Baby monitory,dychu,16,0,,1.54
+deti,Sedačky na bicykel,sedacka bicykel,16,0,,1.54
+dom,Miešačky,miesacku,15,0,,1.44
+dom,Snežná technika,snezna,15,0,,1.44
+nabytok,Jedálenské kúty,jedalensky,15,0,,1.44
+nabytok,Kuchyne,spotrebici,15,0,,1.44
+nabytok,Obývacie steny,komoda,15,0,,1.44
+nabytok,Sedacie súpravy,rohova,15,0,,1.44
+nabytok,Spálne,postel,15,0,,1.44
+stroje,Stavebné stroje,traktor bager,15,0,,1.44
+elektro,Chladničky,mraznickou,15,0,,1.44
+elektro,Práčky,samsung,15,0,,1.44
+elektro,Práčky,automaticka,15,0,,1.44
+elektro,Práčky,automaticka pracka,15,0,,1.44
+elektro,Sporáky,rura,15,0,,1.44
+elektro,"Fény, Kulmy",vlasy,15,0,,1.44
