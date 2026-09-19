@@ -406,6 +406,11 @@ function renderDopytSubcat(p){
 
 /* ---------- PREDANÉ (zmazané = pravdepodobne predané) ---------- */
 const lifeTxt = h => h==null? "–" : (h<48? Math.round(h)+" h" : (Math.round(h/24*10)/10)+" d");
+function ocBadge(o){
+  const map={sold:["g","predané"],relisted:["w","obnovené"],expired:["b","expirované"]};
+  const m=map[o]||["w","predané?"];
+  return `<span class="pill ${m[0]}">${m[1]}</span>`;
+}
 function whenTxt(iso){ const d=new Date(iso); if(isNaN(d)) return iso||"–";
   return d.toLocaleString("sk-SK",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}); }
 const WINLABEL={1:"24 h",7:"7 dní",30:"30 dní",0:"celé okno"};
@@ -414,14 +419,20 @@ function inWindow(r,winDays){ if(!winDays) return true;
 function med(a){ if(!a||!a.length) return null;
   const s=[...a].sort((x,y)=>x-y),m=Math.floor(s.length/2);
   return s.length%2? s[m] : (s[m-1]+s[m])/2; }
+const ocOf=r=> r.outcome || "sold";   // null => spätná kompatibilita: ber ako predané
 function aggSold(rows,keyFn){
   const map=new Map();
   for(const r of rows){ let ks=keyFn(r); if(!Array.isArray(ks)) ks=[ks];
+    const oc=ocOf(r);
     for(const k of ks){ if(!k) continue;
-      let o=map.get(k); if(!o){o={key:k,count:0,prices:[],lives:[],cat:r.category,subcat:r.subcat};map.set(k,o);}
-      o.count++; if(r.price_eur!=null)o.prices.push(r.price_eur);
-      if(r.lifespan_hours!=null)o.lives.push(r.lifespan_hours); } }
-  return [...map.values()];
+      let o=map.get(k); if(!o){o={key:k,sold:0,relisted:0,expired:0,prices:[],lives:[],cat:r.category,subcat:r.subcat};map.set(k,o);}
+      if(oc==="sold"){ o.sold++; if(r.price_eur!=null)o.prices.push(r.price_eur);
+        if(r.lifespan_hours!=null)o.lives.push(r.lifespan_hours); }
+      else if(oc==="relisted") o.relisted++;
+      else if(oc==="expired") o.expired++;
+    } }
+  return [...map.values()].map(o=>({...o, count:o.sold,
+    sell_through:(o.sold+o.expired)>0? Math.round(100*o.sold/(o.sold+o.expired)) : null }));
 }
 function renderPredane(p){
   const mp=modelsPanel(); if(mp) p.append(mp);
@@ -438,10 +449,13 @@ function renderPredane(p){
   agg.sort(cmp[F.sort]||cmp.count);
   agg.forEach((o,i)=>o._ord=-i);
   showCount(agg.length, F.soldGroup==="keyword"?"kľúčových slov":"podkategórií");
+  const tot={sold:0,relisted:0,expired:0};
+  rows.forEach(r=>{const o=ocOf(r); if(tot[o]!=null)tot[o]++;});
   p.append(el("div",{class:"note"},
-    `Za „${winLabel}“: ${rows.length} predaných (zmazaných) inzerátov spolu. `
-    +"Číslo pri segmente = koľko sa ich za toto obdobie predalo (zmizlo). "
-    +"Pozn.: história je zatiaľ krátka (DB má pár hodín) – okná 7/30 dní sa naplnia časom."));
+    `Za „${winLabel}“: `,el("b",{},String(tot.sold))," predané · "
+    +`${tot.relisted} obnovené · ${tot.expired} expirované. `
+    +"„Predané“ = zmazané a NEobjavilo sa znova (zmazanie ≠ predaj: obnovené/"
+    +"expirované nerátame). Pozn.: klasifikácia dozrie s viacerými dňami dát."));
   if(!agg.length){ p.append(emptyNote()); return; }
   const top=agg.slice(0,F.top||15), max=Math.max(...top.map(o=>o.count),1);
   const chart=el("div",{class:"chart"},el("h2",{},`Najviac predané za ${winLabel} — top ${top.length}`));
@@ -452,16 +466,21 @@ function renderPredane(p){
       el("div",{class:"track"},el("div",{class:"fill",style:`width:${o.count/max*100}%`})),
       el("div",{class:"val"},o.count))); });
   p.append(chart);
+  const stPill=o=>o.sell_through==null?"–":`<span class="pill ${o.sell_through>=50?"g":o.sell_through>=25?"w":"b"}">${o.sell_through}%</span>`;
   const cols = F.soldGroup==="keyword"
     ? [["l","kľúčové slovo",o=>o.key,null],
        ["","predané",o=>o.count,"count"],
+       ["","sell-through",stPill,"sell_through"],
+       ["","expir.",o=>o.expired,"expired"],
        ["","cena medián",o=>med(o.prices)==null?"–":eur(med(o.prices)),null],
        ["","žil medián",o=>o.lives.length?lifeTxt(med(o.lives)):"–",null]]
     : [["l","kategória",o=>lab(o.cat),null],
        ["l","podkategória",o=>o.key,null],
        ["","predané",o=>o.count,"count"],
-       ["","cena medián",o=>med(o.prices)==null?"–":eur(med(o.prices)),null],
-       ["","žil medián",o=>o.lives.length?lifeTxt(med(o.lives)):"–",null]];
+       ["","sell-through",stPill,"sell_through"],
+       ["","obnov.",o=>o.relisted,"relisted"],
+       ["","expir.",o=>o.expired,"expired"],
+       ["","cena medián",o=>med(o.prices)==null?"–":eur(med(o.prices)),null]];
   p.append(makeTable(cols,agg,"_ord"));
 }
 function renderPredaneList(p,rows,winLabel){
@@ -474,12 +493,13 @@ function renderPredaneList(p,rows,winLabel){
   if(!rows.length){ p.append(el("div",{class:"note"},
     `Za „${winLabel}“ zatiaľ žiadne zachytené zmazania. Napĺňa sa priebežne, ako inzeráty miznú.`)); return; }
   p.append(el("div",{class:"note"},
-    "„Predané“ = inzerát, ktorý sme videli a potom zmizol (overené na detaile, že bol zmazaný, "
-    +"nie len odsunutý). Toto je najpriamejší signál dopytu. Pozn.: „žil“ je zatiaľ obmedzené "
-    +"vekom databázy – reálny rozptyl (hodiny vs. dni) uvidíš po pár dňoch zberu."));
+    "Zoznam všetkých zmazaných v okne so „stavom“: "
+    +"predané (zmizlo a neobjavilo sa znova) · obnovené (predajca preposol) · "
+    +"expirované (dožilo ~expiráciu). Zmazanie ≠ predaj – preto ten stav."));
   const cols=[["l","kategória",r=>lab(r.category),null],
     ["l","podkategória",r=>r.subcat||"–",null],
     ["l","inzerát",r=>r.title||"–",null],
+    ["l","stav",r=>ocBadge(ocOf(r)),null],
     ["","cena",r=>r.price_eur==null?"–":eur(r.price_eur),"price_eur"],
     ["","žil",r=>lifeTxt(r.lifespan_hours),"lifespan_hours"],
     ["l","zmazané",r=>whenTxt(r.deleted_at),null]];
@@ -526,9 +546,10 @@ function renderZhrnutie(p){
     const stats=el("div",{class:"stats"});
     stats.append(
       stat("nové spolu",num(s.new_total),`za ${W} dní`),
-      stat("nové / deň",num(s.new_per_day),
-        s.rate_basis==="posted_date"?"z inzerátov":(s.rate_basis==="today"?"dnes, zatiaľ":"treba viac dní")),
-      stat("predané spolu",num(s.deleted_total),s.deleted_total?`za ${W} dní`:"čaká na dáta"),
+      stat("predané",num(s.sold_total||0),
+        s.sold_total?`za ${W} dní`:"čaká na dáta"),
+      stat("sell-through",s.sell_through==null?"–":s.sell_through+" %",
+        s.sell_through==null?"treba viac dní":"predané ÷ (pred.+expir.)"),
       stat("cena medián",s.price_median==null?"–":eur(s.price_median),
         s.price_min==null?"":`${eur(s.price_min)}–${eur(s.price_max)}`));
     card.append(stats);

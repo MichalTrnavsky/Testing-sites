@@ -52,6 +52,18 @@ class Config:
     # koľko detailov kontrolovať za beh (šetrenie requestov)
     max_deletion_checks_per_run: int = 300
 
+    # --- klasifikácia výsledku zmazania (predané / preposted / expirované) ---
+    # expiračné okno Bazoša: voľné inzeráty po ~tolko dňoch vypršia
+    expiry_window_days: float = 60.0
+    # tolerancia okolo expirácie (inzerát zmazaný v tomto pásme = "expirované")
+    expiry_tolerance_days: float = 8.0
+    # okno na detekciu re-inzerátu (rovnaký titul+cena sa objaví po zmazaní)
+    repost_window_days: float = 14.0
+    # cenová tolerancia pre re-inzerát (0.15 = ±15 %)
+    repost_price_tolerance: float = 0.15
+    # min. počet zmysluplných slov v odtlačku nadpisu, aby sme mu verili
+    repost_min_tokens: int = 3
+
     @staticmethod
     def load(path: str | None) -> "Config":
         cfg = Config()

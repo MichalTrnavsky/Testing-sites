@@ -164,6 +164,7 @@ def cmd_export(args) -> int:
             "title": r["title"], "url": r["url"], "price_eur": r["price_eur"],
             "first_seen": r["first_seen"], "deleted_at": r["deleted_at"],
             "lifespan_hours": round(r["lifespan_hours"], 1) if r["lifespan_hours"] is not None else None,
+            "outcome": r["outcome"],   # sold | relisted | expired | None
             # kľúčové slová pre súhrn „za obdobie" na strane dashboardu
             "keywords": sorted(set(keyphrases(r["title"] or "")))[:20],
         } for r in dels]
@@ -182,6 +183,19 @@ def cmd_export(args) -> int:
         print(f"JSON zapísané: {args.out} "
               f"(dopyt={len(demand)}, arbitráž={len(arb)}, "
               f"predané={len(deletions)}, kategórie={len(cats)})")
+    finally:
+        store.close()
+    return 0
+
+
+def cmd_classify(args) -> int:
+    from .outcomes import classify_outcomes
+    cfg = _load(args)
+    store = Store(cfg.db_path)
+    try:
+        res = classify_outcomes(cfg, store)
+        print(f"Klasifikované: predané={res.get('sold',0)}, "
+              f"preposted={res.get('relisted',0)}, expirované={res.get('expired',0)}.")
     finally:
         store.close()
     return 0
@@ -288,6 +302,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     ps = sub.add_parser("sweep", help="over zmiznuté a označ zmazané")
     ps.set_defaults(func=cmd_sweep)
+
+    pcl = sub.add_parser("classify", help="klasifikuj zmazané: predané/preposted/expirované")
+    pcl.set_defaults(func=cmd_classify)
 
     pr = sub.add_parser("report", help="TOP segmenty dopytu")
     pr.add_argument("--category", help="obmedz na jednu kategóriu (napr. zahrada)")

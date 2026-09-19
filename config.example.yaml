@@ -69,3 +69,13 @@ db_path: "bazos.db"
 # Detekcia zmazania
 missing_runs_before_check: 1   # po koľkých behoch bez videnia overiť detail
 max_deletion_checks_per_run: 300
+
+# Klasifikácia výsledku zmazania (zmazanie != predaj):
+#   sold      = zmizlo a neobjavilo sa znova (pravdepodobne predané)
+#   relisted  = predajca preposol (rovnaký titul+cena sa objaví znova) -> nepredané
+#   expired   = dožilo blízko expirácie Bazoša -> skôr nepredané
+expiry_window_days: 60         # po ~toľkých dňoch voľný inzerát vyprší
+expiry_tolerance_days: 8       # pásmo okolo expirácie
+repost_window_days: 14         # okno na spárovanie re-inzerátu
+repost_price_tolerance: 0.15   # ±15 % cena pre re-inzerát
+repost_min_tokens: 3           # min. slov v nadpise, aby sme odtlačku verili

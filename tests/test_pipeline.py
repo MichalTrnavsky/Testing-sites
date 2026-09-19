@@ -125,6 +125,48 @@ def test_end_to_end_demand():
     print("test_end_to_end_demand OK  (top3:", sorted(top3), ")")
 
 
+def test_classify_outcomes():
+    from bazos_monitor.outcomes import classify_outcomes
+    from bazos_monitor.config import Config
+    tmp = tempfile.mkdtemp()
+    store = Store(os.path.join(tmp, "o.db"))
+    now = datetime.utcnow()
+
+    def add(ad_id, title, price, first_seen, posted=None, subcat="Kočíky"):
+        store.upsert_listing_ad(ad_id=ad_id, category="deti", title=title,
+                                url=f"https://x/inzerat/{ad_id}/", price_eur=price,
+                                posted_date=posted, now_iso=first_seen.isoformat(),
+                                subcat=subcat, subcat_id="kociky")
+
+    # 1) SOLD: krátko žil, žiadny re-inzerát
+    add("S1", "Cybex Balios Lux kocik modry", 300, now - timedelta(hours=3))
+    store.mark_deleted("S1", (now - timedelta(hours=1)).isoformat())
+
+    # 2) EXPIRED: dátum na inzeráte 70 dní dozadu (>= expiračné okno)
+    add("E1", "Stara pila stihl velka", 150, now - timedelta(days=2),
+        posted=(now - timedelta(days=70)).date().isoformat(), subcat="Píly")
+    store.mark_deleted("E1", now.isoformat())
+
+    # 3) RELISTED: originál zmazaný, potom sa objaví takmer identický (nová ad_id)
+    add("R1", "Detsky kocik cybex modry hlboky", 200, now - timedelta(days=10))
+    store.mark_deleted("R1", (now - timedelta(days=5)).isoformat())
+    add("R2", "Detsky kocik cybex modry hlboky", 210, now - timedelta(days=4))  # aktívny re-inzerát
+    store.conn.commit()
+
+    res = classify_outcomes(Config(), store)
+    assert res.get("sold", 0) == 1, res
+    assert res.get("expired", 0) == 1, res
+    assert res.get("relisted", 0) == 1, res
+
+    rows = {r["ad_id"]: r["outcome"] for r in store.iter_ads(None)}
+    assert rows["S1"] == "sold"
+    assert rows["E1"] == "expired"
+    assert rows["R1"] == "relisted"
+    assert rows["R2"] is None  # aktívny sa neklasifikuje
+    store.close()
+    print("test_classify_outcomes OK")
+
+
 def test_recent_deletions():
     tmp = tempfile.mkdtemp()
     store = Store(os.path.join(tmp, "d.db"))
