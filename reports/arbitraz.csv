@@ -1,201 +1,201 @@
-category,keyword,volume,deleted_count,median_lifespan_days,used_median_eur,new_median_eur,cheap_new_competitors,price_gap_eur,arbitrage_score
-nabytok,postel,68,1,0.02,200.0,600,0,400.0,193.48
-sport,cube,23,0,,2000,,0,,66.67
-stroje,pila,19,0,,2245.0,,0,,61.82
-sport,ebike,17,0,,1825.0,,0,,44.96
-sport,stereo,11,0,,2490,,0,,39.7
-sport,cube stereo,11,0,,2490,,0,,39.7
-dom,domcek,10,0,,2349.5,,0,,34.05
-sport,carbon,14,0,,1570.0,,0,,31.86
-sport,ctm,16,0,,1200,,0,,27.83
-dom,malotraktor,13,0,,1450,,0,,27.32
-dom,zahradny,10,0,,1794.5,,0,,26.01
-dom,kosacka,14,0,,1250,,0,,25.36
-sport,velkost,17,0,,999,,0,,24.61
-stroje,elektricky,6,0,,2802.5,,0,,24.37
-sport,stereo hybrid,5,0,,2750,,0,,19.93
-sport,hybrid,5,0,,2750,,0,,19.93
-stroje,dph,7,0,,1950,,0,,19.78
-sport,celoodpruzeny,6,0,,2275.0,,0,,19.78
-elektro,kavovar,13,1,0.08,112.5,,0,,19.67
-sport,trek,10,0,,1199.5,,0,,17.38
-sport,specialized,13,0,,899,,0,,16.94
-sport,ebike cube,5,0,,2300,,0,,16.67
-dom,doprava,6,0,,1849.0,,0,,16.08
-stroje,automat,5,0,,2214,,0,,16.04
-hudba,yamaha,29,0,,370,1000,0,630,15.55
-stroje,dopravy,6,0,,1775.0,,0,,15.43
-stroje,dph dopravy,6,0,,1775.0,,0,,15.43
-hudba,husle,15,0,,670.0,,0,,14.57
-hudba,kridlo,6,0,,1674.5,,0,,14.56
-deti,cybex,40,0,,250,,0,,14.49
-dom,zdarma,5,0,,1899,,0,,13.76
-stroje,zdvihak,5,0,,1850,,0,,13.41
-nabytok,stol,65,0,,139.0,450,0,311.0,13.09
-dom,dreveny,5,0,,1799,,0,,13.04
-dom,garaz,5,0,,1790,,0,,12.97
-sport,cestny bicykel,6,0,,1470.0,,0,,12.78
-sport,cestny,6,0,,1470.0,,0,,12.78
-hudba,klavir,11,0,,800.0,,0,,12.75
-sport,elektrobicykel,8,0,,1097.5,,0,,12.72
-hudba,akordeon,18,0,,467.5,,0,,12.2
-elektro,krups,5,1,0.08,180,,0,,12.1
-sport,bicykel,69,0,,340.0,460.0,2,120.0,11.33
-sport,bosch,6,0,,1300,,0,,11.3
-hudba,weltmeister,14,0,,542.0,,0,,11.0
-dom,virivka,5,0,,1500,,0,,10.87
-stroje,paletovy,5,0,,1500,,0,,10.87
-stroje,paletovy vozik,5,0,,1500,,0,,10.87
-nabytok,linka,14,0,,1550,1490,2,-60,10.48
-nabytok,kuchynska linka,14,0,,1550,1490,2,-60,10.48
-stroje,stroj,6,0,,1195.0,,0,,10.39
-dom,kotol,10,0,,700,,0,,10.14
-dom,kachle,6,0,,1150,,0,,10.0
-nabytok,sedacia,43,0,,800,500.0,4,-300.0,9.97
-nabytok,sedacia suprava,43,0,,800,500.0,4,-300.0,9.97
-dom,vari,5,0,,1325.0,,0,,9.6
-deti,kocik,66,0,,200.0,285.0,1,85.0,9.57
-dom,traktorova,5,0,,1300.0,,0,,9.42
-dom,traktorova kosacka,5,0,,1300.0,,0,,9.42
-nabytok,kuchyna,7,0,,1857.0,1650,1,-207.0,9.42
-hudba,piano,15,0,,430,,0,,9.35
-elektro,zosilnovac,8,0,,790,,0,,9.16
-hudba,model,7,0,,890,,0,,9.03
-nabytok,gauc,28,0,,220,500.0,0,280.0,8.93
-sport,karbonovy,5,0,,1190,,0,,8.62
-nabytok,odvoz,6,1,0.02,100.0,,0,,8.54
-nabytok,suprava,44,0,,650.0,500.0,4,-150.0,8.29
-sport,gravel,6,0,,949.5,,0,,8.26
-sport,fitness,7,0,,799,,0,,8.11
-sport,pas,10,0,,550.0,,0,,7.97
-sport,bezecky,9,0,,600,,0,,7.83
-hudba,heligonka,7,0,,2300,2200.0,2,-100.0,7.78
-dom,lesenie,7,0,,750,,0,,7.61
-dom,kada,5,0,,1040,,0,,7.54
-nabytok,sedenie,12,0,,420.0,,0,,7.3
-nabytok,rohova,15,0,,1000,600,2,-400,7.25
-sport,bezecky pas,8,0,,625.0,,0,,7.25
-nabytok,teak zahradne,5,0,,980,,0,,7.1
-nabytok,teak,5,0,,980,,0,,7.1
-nabytok,zahradne,10,0,,490,,0,,7.1
-sport,ultra,6,0,,775.0,,0,,6.74
-hudba,fender,13,0,,700.0,50,1,-650.0,6.59
-elektro,samsung,30,0,,150,690,0,540,6.52
-sport,kellys,6,0,,750.0,,0,,6.52
-sport,merida,9,0,,499,,0,,6.51
-dom,nadrz,5,0,,885.0,,0,,6.41
-nabytok,jedalensky,22,0,,200.0,450,0,250.0,6.38
-nabytok,kuchynska,17,0,,1550,735.0,5,-815.0,6.36
-hudba,akordeon weltmeister,9,0,,485,,0,,6.33
-sport,fox,6,0,,725.0,,0,,6.3
-deti,detsky,42,0,,100,200,0,100,6.09
-sport,vel,10,0,,799,45,1,-754,5.79
-sport,life,5,0,,799,,0,,5.79
-hudba,audio,5,0,,790,,0,,5.72
-sport,bateria,8,0,,480.0,,0,,5.57
-nabytok,zahradne sedenie,9,0,,420.0,,0,,5.48
-nabytok,konferencny,25,0,,150,,0,,5.43
-elektro,pracka,23,0,,160.0,690,0,530.0,5.33
-nabytok,sedacka,22,0,,500,440.0,2,-60.0,5.31
-nabytok,jedalensky stol,18,0,,200.0,450,0,250.0,5.22
-stroje,gastro,12,0,,290.0,,0,,5.04
-hudba,korg,5,0,,650,,0,,4.71
-stroje,hydraulicky,5,0,,649,,0,,4.7
-sport,shimano,9,0,,360,,0,,4.7
-stroje,nerezovy,11,0,,291,,0,,4.64
-elektro,pioneer,11,0,,289,,0,,4.61
-nabytok,nabytok,16,0,,192.5,,0,,4.46
-sport,puskohlad,6,0,,1000,50,1,-950,4.35
-deti,detsky bicykel,25,0,,120,,0,,4.35
-nabytok,konferencny stolik,22,0,,132.5,,0,,4.22
-nabytok,manzelska postel,12,0,,240,,0,,4.17
-nabytok,manzelska,12,0,,240,,0,,4.17
-sport,gen,7,0,,409.5,,0,,4.15
-sport,kolobezku,8,0,,354.5,,0,,4.11
-nabytok,sedacku,6,0,,470.0,,0,,4.09
-nabytok,stena,12,0,,235.0,,0,,4.09
-nabytok,rohova sedacia,6,0,,470,600,0,130,4.09
-nabytok,poschodova postel,6,0,,450.0,,0,,3.91
-nabytok,poschodova,6,0,,450.0,,0,,3.91
-nabytok,pohovka,9,0,,300,,0,,3.91
-nabytok,kreslo,24,0,,109.5,250,0,140.5,3.81
-deti,thule,7,0,,375.0,,0,,3.8
-elektro,chladnicka,14,0,,185.0,,0,,3.75
-deti,postel,17,0,,150.0,190,0,40.0,3.7
-nabytok,suprava gauc,7,0,,1449.0,450,3,-999.0,3.68
-nabytok,rohova sedacka,5,0,,1000,480,1,-520,3.62
-nabytok,masiv,10,0,,250.0,450,0,200.0,3.62
-hudba,rcf,5,0,,500,,0,,3.62
-hudba,heligonku,6,0,,412.5,,0,,3.59
-dom,drevo,6,0,,400,,0,,3.48
-sport,zaruka,8,0,,1200,450,3,-750,3.48
-sport,5ah,5,0,,480,,0,,3.48
-nabytok,kozena,6,0,,399.5,,0,,3.47
-nabytok,skrina,14,0,,170.0,,0,,3.45
-elektro,stereo,7,0,,339,,0,,3.44
-nabytok,rozkladacia,9,0,,250.0,600,0,350.0,3.26
-deti,urban,6,0,,375.0,,0,,3.26
-sport,ktm,5,0,,450,,0,,3.26
-deti,stokke,8,0,,275.0,,0,,3.19
-sport,elektricky,6,0,,730,700,1,-30,3.17
-stroje,stol,7,0,,309,,0,,3.13
-sport,horsky,23,0,,280,180.0,2,-100.0,3.11
-hudba,gitara,17,0,,125.0,,0,,3.08
-dom,bazen,7,0,,300,,0,,3.04
-sport,bike,6,0,,699,580,1,-119,3.04
-sport,bauer,12,0,,173.5,,0,,3.02
-stroje,stoly,7,0,,293,,0,,2.97
-elektro,bosch,14,0,,145.0,,0,,2.94
-elektro,susicka,5,0,,400,,0,,2.9
-deti,kocik cybex,5,0,,400,,0,,2.9
-deti,woom,5,0,,400,,0,,2.9
-nabytok,dreveny,5,0,,400,,0,,2.9
-dom,dvere,14,0,,140.0,350,0,210.0,2.84
-sport,horsky bicykel,21,0,,280,180.0,2,-100.0,2.84
-sport,damsky,7,0,,280,,0,,2.84
-sport,elektricka kolobezka,8,0,,235,1249,0,1014,2.72
-sport,kolobezka,8,0,,235,1249,0,1014,2.72
-sport,elektricka,8,0,,235,1249,0,1014,2.72
-sport,elektricky bicykel,5,0,,740.0,700,1,-40.0,2.68
-deti,easywalker,6,0,,304.5,,0,,2.65
-hudba,boss,7,0,,260.0,339,0,79.0,2.64
-nabytok,rozkladaci,9,0,,200,1700,0,1500,2.61
-nabytok,matracom,8,0,,225.0,,0,,2.61
-sport,detsky,6,0,,300,,0,,2.61
-elektro,audio,8,0,,224.5,,0,,2.6
-deti,thule urban,5,0,,350,,0,,2.54
-stroje,drez,6,0,,290.0,,0,,2.52
-sport,lite,6,0,,285.0,,0,,2.48
-deti,joolz,5,0,,340.0,1300,0,960.0,2.46
-deti,romer,17,0,,100,,0,,2.46
-deti,britax,17,0,,100,,0,,2.46
-nabytok,skrine,6,0,,275.0,,0,,2.39
-elektro,airpods max,7,0,,230,,0,,2.33
-elektro,max,7,0,,230,,0,,2.33
-nabytok,supravu,8,0,,200,,0,,2.32
-sport,sonar,5,0,,320,,0,,2.32
-nabytok,uloznym,8,0,,200.0,,0,,2.32
-sport,glock,5,0,,599,600,1,1,2.17
-deti,britax romer,15,0,,100,,0,,2.17
-sport,detsky bicykel,5,0,,300,,0,,2.17
-hudba,zosilnovac,5,0,,300,,0,,2.17
-sport,kukirin,12,0,,480,425,3,-55,2.09
-stroje,nerezove,5,0,,289,,0,,2.09
-elektro,receiver,5,0,,289,,0,,2.09
-elektro,gold,6,0,,239.5,,0,,2.08
-deti,dvojkombinacia,5,0,,279.5,,0,,2.03
-hudba,reproduktory,7,0,,200.0,,0,,2.03
-hudba,marshall,6,0,,232.5,,0,,2.02
-nabytok,sedaciu supravu,7,0,,197.5,,0,,2.0
-nabytok,sedaciu,7,0,,197.5,,0,,2.0
-nabytok,stol stolicky,7,0,,190,,0,,1.93
-nabytok,dubova,5,0,,530.0,450,1,-80.0,1.92
-nabytok,zostava,11,0,,119,,0,,1.9
-nabytok,stolicky,26,0,,100,30,1,-70,1.88
-deti,2v1,13,0,,100,,0,,1.88
-elektro,robot,13,0,,100,,0,,1.88
-hudba,bicie,10,0,,384.5,349.0,2,-35.5,1.86
-elektro,apple,10,0,,250.0,120,1,-130.0,1.81
-nabytok,postel matracom,5,0,,250,,0,,1.81
-hudba,roland,5,0,,483.5,380,1,-103.5,1.75
-nabytok,pisaci stol,8,0,,145.0,,0,,1.68
+category,subcat,keyword,volume,deleted_count,median_lifespan_days,used_median_eur,new_median_eur,cheap_new_competitors,price_gap_eur,arbitrage_score
+nabytok,(nezaradené),postel,68,1,0.02,200.0,600,0,400.0,193.48
+sport,(nezaradené),cube,23,0,,2000,,0,,66.67
+elektro,(nezaradené),pracka,23,1,0.18,160.0,690,0,530.0,45.19
+sport,(nezaradené),ebike,17,0,,1825.0,,0,,44.96
+sport,(nezaradené),cube stereo,11,0,,2490,,0,,39.7
+sport,(nezaradené),stereo,11,0,,2490,,0,,39.7
+dom,(nezaradené),domcek,10,0,,2349.5,,0,,34.05
+sport,(nezaradené),carbon,14,0,,1570.0,,0,,31.86
+sport,(nezaradené),ctm,16,0,,1200,,0,,27.83
+dom,(nezaradené),malotraktor,13,0,,1450,,0,,27.32
+dom,(nezaradené),zahradny,10,0,,1794.5,,0,,26.01
+dom,(nezaradené),kosacka,14,0,,1250,,0,,25.36
+sport,(nezaradené),velkost,17,0,,999,,0,,24.61
+stroje,(nezaradené),elektricky,6,0,,2802.5,,0,,24.37
+sport,(nezaradené),hybrid,5,0,,2750,,0,,19.93
+sport,(nezaradené),stereo hybrid,5,0,,2750,,0,,19.93
+stroje,(nezaradené),dph,7,0,,1950,,0,,19.78
+sport,(nezaradené),celoodpruzeny,6,0,,2275.0,,0,,19.78
+elektro,(nezaradené),kavovar,13,1,0.08,112.5,,0,,19.67
+stroje,(nezaradené),hydraulicky,5,0,,2600,,0,,18.84
+sport,(nezaradené),trek,10,0,,1199.5,,0,,17.38
+sport,(nezaradené),specialized,13,0,,899,,0,,16.94
+sport,(nezaradené),ebike cube,5,0,,2300,,0,,16.67
+dom,(nezaradené),doprava,6,0,,1849.0,,0,,16.08
+stroje,(nezaradené),automat,5,0,,2214,,0,,16.04
+hudba,(nezaradené),yamaha,29,0,,370,1000,0,630,15.55
+stroje,(nezaradené),dph dopravy,6,0,,1775.0,,0,,15.43
+stroje,(nezaradené),dopravy,6,0,,1775.0,,0,,15.43
+hudba,(nezaradené),husle,15,0,,670.0,,0,,14.57
+hudba,(nezaradené),kridlo,6,0,,1674.5,,0,,14.56
+deti,(nezaradené),cybex,40,0,,250,,0,,14.49
+dom,(nezaradené),zdarma,5,0,,1899,,0,,13.76
+stroje,(nezaradené),zdvihak,5,0,,1850,,0,,13.41
+dom,(nezaradené),dreveny,5,0,,1799,,0,,13.04
+dom,(nezaradené),garaz,5,0,,1790,,0,,12.97
+nabytok,(nezaradené),stol,65,0,,137.0,450,0,313.0,12.91
+sport,(nezaradené),cestny,6,0,,1470.0,,0,,12.78
+sport,(nezaradené),cestny bicykel,6,0,,1470.0,,0,,12.78
+hudba,(nezaradené),klavir,11,0,,800.0,,0,,12.75
+sport,(nezaradené),elektrobicykel,8,0,,1097.5,,0,,12.72
+hudba,(nezaradené),akordeon,18,0,,467.5,,0,,12.2
+elektro,(nezaradené),krups,5,1,0.08,180,,0,,12.1
+stroje,(nezaradené),stroj,6,0,,1345.0,,0,,11.7
+sport,(nezaradené),bosch,6,0,,1300,,0,,11.3
+dom,(nezaradené),virivka,5,0,,1500,,0,,10.87
+stroje,(nezaradené),paletovy vozik,5,0,,1500,,0,,10.87
+stroje,(nezaradené),paletovy,5,0,,1500,,0,,10.87
+nabytok,(nezaradené),linka,15,0,,1465.0,1490,2,25.0,10.62
+sport,(nezaradené),bicykel,69,0,,315.0,460.0,2,145.0,10.5
+nabytok,(nezaradené),kuchynska linka,14,0,,1550,1490,2,-60,10.48
+dom,(nezaradené),kotol,10,0,,700,,0,,10.14
+dom,(nezaradené),kachle,6,0,,1150,,0,,10.0
+nabytok,(nezaradené),gauc,29,0,,235.0,500.0,0,265.0,9.88
+dom,(nezaradené),vari,5,0,,1325.0,,0,,9.6
+deti,(nezaradené),kocik,66,0,,200.0,285.0,1,85.0,9.57
+dom,(nezaradené),traktorova kosacka,5,0,,1300.0,,0,,9.42
+dom,(nezaradené),traktorova,5,0,,1300.0,,0,,9.42
+nabytok,(nezaradené),kuchyna,7,0,,1857.0,1650,1,-207.0,9.42
+hudba,(nezaradené),piano,15,0,,430,,0,,9.35
+elektro,(nezaradené),zosilnovac,8,0,,790,,0,,9.16
+hudba,(nezaradené),model,7,0,,890,,0,,9.03
+sport,(nezaradené),karbonovy,5,0,,1190,,0,,8.62
+nabytok,(nezaradené),sedacia,44,0,,650.0,500.0,4,-150.0,8.29
+nabytok,(nezaradené),sedacia suprava,44,0,,650.0,500.0,4,-150.0,8.29
+sport,(nezaradené),gravel,6,0,,949.5,,0,,8.26
+sport,(nezaradené),fitness,7,0,,799,,0,,8.11
+sport,(nezaradené),pas,10,0,,550.0,,0,,7.97
+hudba,(nezaradené),weltmeister,14,0,,392.0,,0,,7.95
+sport,(nezaradené),bezecky,9,0,,600,,0,,7.83
+hudba,(nezaradené),heligonka,7,0,,2300,2200.0,2,-100.0,7.78
+dom,(nezaradené),lesenie,7,0,,750,,0,,7.61
+dom,(nezaradené),kada,5,0,,1040,,0,,7.54
+nabytok,(nezaradené),sedenie,12,0,,420.0,,0,,7.3
+sport,(nezaradené),bezecky pas,8,0,,625.0,,0,,7.25
+nabytok,(nezaradené),zahradne,10,0,,490,,0,,7.1
+nabytok,(nezaradené),teak,5,0,,980,,0,,7.1
+nabytok,(nezaradené),teak zahradne,5,0,,980,,0,,7.1
+elektro,(nezaradené),samsung,31,0,,150.0,690,0,540.0,6.74
+sport,(nezaradené),ultra,6,0,,775.0,,0,,6.74
+nabytok,(nezaradené),stolik,39,0,,119,,0,,6.73
+hudba,(nezaradené),fender,13,0,,700.0,50,1,-650.0,6.59
+nabytok,(nezaradené),rohova,16,0,,850.0,600,2,-250.0,6.57
+nabytok,(nezaradené),suprava,45,0,,500,500.0,4,0.0,6.52
+sport,(nezaradené),kellys,6,0,,750.0,,0,,6.52
+sport,(nezaradené),merida,9,0,,499,,0,,6.51
+dom,(nezaradené),nadrz,5,0,,885.0,,0,,6.41
+nabytok,(nezaradené),jedalensky,22,0,,200.0,450,0,250.0,6.38
+deti,(nezaradené),detsky,44,0,,100,200,0,100,6.38
+nabytok,(nezaradené),kuchynska,17,0,,1550,735.0,5,-815.0,6.36
+hudba,(nezaradené),akordeon weltmeister,9,0,,485,,0,,6.33
+sport,(nezaradené),fox,6,0,,725.0,,0,,6.3
+sport,(nezaradené),shimano,9,0,,450,,0,,5.87
+sport,(nezaradené),vel,10,0,,799,45,1,-754,5.79
+sport,(nezaradené),life,5,0,,799,,0,,5.79
+hudba,(nezaradené),audio,5,0,,790,,0,,5.72
+nabytok,(nezaradené),zahradne sedenie,9,0,,420.0,,0,,5.48
+nabytok,(nezaradené),konferencny,25,0,,150,,0,,5.43
+nabytok,(nezaradené),sedacka,22,0,,500,440.0,2,-60.0,5.31
+nabytok,(nezaradené),jedalensky stol,18,0,,200.0,450,0,250.0,5.22
+sport,(nezaradené),bateria,8,0,,450.0,,0,,5.22
+stroje,(nezaradené),gastro,12,0,,290.0,,0,,5.04
+nabytok,(nezaradené),konferencny stolik,22,0,,150.0,,0,,4.78
+hudba,(nezaradené),korg,5,0,,650,,0,,4.71
+nabytok,(nezaradené),kreslo,24,0,,135.0,250,0,115.0,4.7
+stroje,(nezaradené),nerezovy,11,0,,291,,0,,4.64
+sport,(nezaradené),kolobezku,8,0,,399.5,,0,,4.63
+elektro,(nezaradené),pioneer,11,0,,289,,0,,4.61
+nabytok,(nezaradené),nabytok,16,0,,192.5,,0,,4.46
+sport,(nezaradené),puskohlad,6,0,,1000,50,1,-950,4.35
+nabytok,(nezaradené),manzelska postel,12,0,,240,,0,,4.17
+nabytok,(nezaradené),manzelska,12,0,,240,,0,,4.17
+sport,(nezaradené),gen,7,0,,409.5,,0,,4.15
+deti,(nezaradené),detsky bicykel,26,0,,110.0,,0,,4.14
+nabytok,(nezaradené),sedacku,6,0,,470.0,,0,,4.09
+nabytok,(nezaradené),stena,12,0,,235.0,,0,,4.09
+nabytok,(nezaradené),rohova sedacia,6,0,,470,600,0,130,4.09
+nabytok,(nezaradené),poschodova postel,6,0,,450.0,,0,,3.91
+nabytok,(nezaradené),poschodova,6,0,,450.0,,0,,3.91
+nabytok,(nezaradené),pohovka,9,0,,300,,0,,3.91
+deti,(nezaradené),thule,7,0,,375.0,,0,,3.8
+elektro,(nezaradené),chladnicka,14,0,,185.0,,0,,3.75
+deti,(nezaradené),postel,17,0,,150.0,190,0,40.0,3.7
+nabytok,(nezaradené),skrina,15,0,,170,,0,,3.7
+nabytok,(nezaradené),suprava gauc,7,0,,1449.0,450,3,-999.0,3.68
+nabytok,(nezaradené),rohova sedacka,5,0,,1000,480,1,-520,3.62
+nabytok,(nezaradené),masiv,10,0,,250.0,450,0,200.0,3.62
+hudba,(nezaradené),rcf,5,0,,500,,0,,3.62
+hudba,(nezaradené),heligonku,6,0,,412.5,,0,,3.59
+dom,(nezaradené),drevo,6,0,,400,,0,,3.48
+sport,(nezaradené),zaruka,8,0,,1200,450,3,-750,3.48
+elektro,(nezaradené),stereo,7,0,,339,,0,,3.44
+nabytok,(nezaradené),rozkladacia,9,0,,250.0,600,0,350.0,3.26
+elektro,(nezaradené),audio,9,0,,250,,0,,3.26
+deti,(nezaradené),urban,6,0,,375.0,,0,,3.26
+nabytok,(nezaradené),dreveny,5,0,,450,,0,,3.26
+sport,(nezaradené),ktm,5,0,,450,,0,,3.26
+sport,(nezaradené),5ah,5,0,,450,,0,,3.26
+deti,(nezaradené),stokke,8,0,,275.0,,0,,3.19
+sport,(nezaradené),elektricky,6,0,,730,700,1,-30,3.17
+stroje,(nezaradené),stol,7,0,,309,,0,,3.13
+sport,(nezaradené),horsky,23,0,,280,180.0,2,-100.0,3.11
+dom,(nezaradené),bazen,7,0,,300,,0,,3.04
+nabytok,(nezaradené),kozena,7,0,,300,,0,,3.04
+nabytok,(nezaradené),rozkladaci,10,0,,210.0,1700,0,1490.0,3.04
+sport,(nezaradené),bike,6,0,,699,580,1,-119,3.04
+sport,(nezaradené),bauer,12,0,,173.5,,0,,3.02
+stroje,(nezaradené),stoly,7,0,,293,,0,,2.97
+elektro,(nezaradené),bosch,14,0,,145.0,,0,,2.94
+elektro,(nezaradené),susicka,5,0,,400,,0,,2.9
+deti,(nezaradené),kocik cybex,5,0,,400,,0,,2.9
+deti,(nezaradené),woom,5,0,,400,,0,,2.9
+hudba,(nezaradené),gitara,18,0,,110,,0,,2.87
+dom,(nezaradené),dvere,14,0,,140.0,350,0,210.0,2.84
+sport,(nezaradené),horsky bicykel,21,0,,280,180.0,2,-100.0,2.84
+sport,(nezaradené),damsky,7,0,,280,,0,,2.84
+sport,(nezaradené),kolobezka,8,0,,235,1249,0,1014,2.72
+sport,(nezaradené),elektricka kolobezka,8,0,,235,1249,0,1014,2.72
+sport,(nezaradené),elektricka,8,0,,235,1249,0,1014,2.72
+sport,(nezaradené),elektricky bicykel,5,0,,740.0,700,1,-40.0,2.68
+deti,(nezaradené),easywalker,6,0,,304.5,,0,,2.65
+hudba,(nezaradené),boss,7,0,,260.0,339,0,79.0,2.64
+nabytok,(nezaradené),matracom,8,0,,225.0,,0,,2.61
+sport,(nezaradené),detsky,6,0,,300,,0,,2.61
+deti,(nezaradené),thule urban,5,0,,350,,0,,2.54
+stroje,(nezaradené),drez,6,0,,290.0,,0,,2.52
+sport,(nezaradené),lite,6,0,,285.0,,0,,2.48
+deti,(nezaradené),joolz,5,0,,340.0,1300,0,960.0,2.46
+deti,(nezaradené),romer,17,0,,100,,0,,2.46
+deti,(nezaradené),britax,17,0,,100,,0,,2.46
+nabytok,(nezaradené),zostava,12,0,,139.5,,0,,2.43
+nabytok,(nezaradené),skrine,6,0,,275.0,,0,,2.39
+elektro,(nezaradené),max,7,0,,230,,0,,2.33
+elektro,(nezaradené),airpods max,7,0,,230,,0,,2.33
+nabytok,(nezaradené),supravu,8,0,,200,,0,,2.32
+sport,(nezaradené),sonar,5,0,,320,,0,,2.32
+nabytok,(nezaradené),uloznym,8,0,,200.0,,0,,2.32
+elektro,(nezaradené),black,6,0,,500,279,1,-221,2.17
+sport,(nezaradené),glock,5,0,,599,600,1,1,2.17
+deti,(nezaradené),britax romer,15,0,,100,,0,,2.17
+sport,(nezaradené),detsky bicykel,5,0,,300,,0,,2.17
+hudba,(nezaradené),zosilnovac,5,0,,300,,0,,2.17
+hudba,(nezaradené),marshall,6,0,,245.0,,0,,2.13
+sport,(nezaradené),kukirin,12,0,,480,425,3,-55,2.09
+stroje,(nezaradené),nerezove,5,0,,289,,0,,2.09
+elektro,(nezaradené),receiver,5,0,,289,,0,,2.09
+elektro,(nezaradené),gold,6,0,,239.5,,0,,2.08
+deti,(nezaradené),dvojkombinacia,5,0,,279.5,,0,,2.03
+nabytok,(nezaradené),sedaciu,7,0,,197.5,,0,,2.0
+nabytok,(nezaradené),sedaciu supravu,7,0,,197.5,,0,,2.0
+nabytok,(nezaradené),stol stolicky,7,0,,190,,0,,1.93
+nabytok,(nezaradené),dubova,5,0,,530.0,450,1,-80.0,1.92
+nabytok,(nezaradené),rozkladaci gauc,6,0,,220,1700,0,1480,1.91
+nabytok,(nezaradené),stolicky,26,0,,100,30,1,-70,1.88
+deti,(nezaradené),2v1,13,0,,100,,0,,1.88
+elektro,(nezaradené),robot,13,0,,100,,0,,1.88
+hudba,(nezaradené),bicie,10,0,,384.5,349.0,2,-35.5,1.86
+elektro,(nezaradené),apple,10,0,,250.0,120,1,-130.0,1.81
+nabytok,(nezaradené),postel matracom,5,0,,250,,0,,1.81
+hudba,(nezaradené),reproduktory,7,0,,174.5,,0,,1.77
+hudba,(nezaradené),roland,5,0,,483.5,380,1,-103.5,1.75
