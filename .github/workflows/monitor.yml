@@ -1,0 +1,66 @@
+name: Bazoš dopyt monitor
+
+# Beží automaticky každé 3 hodiny + dá sa spustiť aj ručne.
+# POZOR: naplánovaný (schedule) beh GitHub spúšťa IBA z DEFAULT vetvy (main).
+# Preto, aby to bežalo 3 dni samo, musí byť tento súbor na main.
+on:
+  schedule:
+    - cron: "0 */3 * * *"   # každé 3 hodiny (UTC)
+  workflow_dispatch:         # ručné spustenie z GitHub UI / API
+
+# Nech sa behy neprekrývajú (kvôli commitu stavu späť do repa).
+concurrency:
+  group: bazos-monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: write            # aby mohol commitnúť DB + reporty späť
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Crawl listingov
+        run: python -m bazos_monitor.cli --config config.example.yaml --db data/bazos.db crawl
+
+      - name: Sweep (detekcia zmazaní = životnosť)
+        run: python -m bazos_monitor.cli --config config.example.yaml --db data/bazos.db sweep
+
+      - name: Generuj reporty
+        run: |
+          mkdir -p reports
+          python -m bazos_monitor.cli --db data/bazos.db report --window 30 --top 50 > reports/dopyt.txt
+          python -m bazos_monitor.cli --db data/bazos.db report --window 30 --top 200 --csv reports/dopyt.csv > /dev/null
+          python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --top 50 > reports/arbitraz.txt
+          python -m bazos_monitor.cli --db data/bazos.db arbitraz --window 30 --min-price 100 --top 200 --csv reports/arbitraz.csv > /dev/null
+          echo "Posledný beh: $(date -u '+%Y-%m-%d %H:%M UTC')" > reports/_last_run.txt
+
+      - name: Commit stavu a reportov
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/bazos.db reports/
+          if git diff --cached --quiet; then
+            echo "Žiadne zmeny na commit."
+          else
+            git commit -m "data: crawl + reporty $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
+
+      - name: Nahraj reporty aj ako artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporty
+          path: reports/
+          retention-days: 14

@@ -6,3 +6,7 @@ config.yaml
 *.csv
 .venv/
 venv/
+
+# Výnimky: stav DB a reporty, ktoré si udržiava GitHub Actions v repe
+!data/bazos.db
+!reports/*.csv
