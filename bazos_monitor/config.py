@@ -19,10 +19,13 @@ class Config:
     # ktoré vylúčiť (default: reality/auto/moto – viď categories.DEFAULT_EXCLUDED)
     exclude_categories: list[str] | None = None
 
-    # koľko stránok listingu prejsť na kategóriu za jeden beh
-    max_pages_per_category: int = 5
-    # per-kategóriové prepísanie hĺbky (napr. {"deti": 10}) – keď má kategória
-    # vyšší pohyb, zvýšime hĺbku len jej
+    # POISTNÝ strop stránok na kategóriu (crawl sa zvyčajne zastaví skôr –
+    # keď narazí na inzeráty staršie než crawl_lookback_days)
+    max_pages_per_category: int = 25
+    # sťahuj strany, kým sú inzeráty novšie než X dní (0 = ignoruj, ber strop)
+    crawl_lookback_days: float = 3.0
+    # per-kategóriové prepísanie stropu (napr. {"deti": 40}) – keď má kategória
+    # extrémny pohyb, zvýšime strop len jej
     pages_per_category: dict = field(default_factory=dict)
     # inzerátov na stránku (Bazoš default býva 20)
     per_page: int = 20

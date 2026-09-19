@@ -39,9 +39,17 @@ def crawl(config: Config, store, log=print) -> dict:
 
 
 def _crawl_category(cat: Category, config: Config, fetcher: Fetcher, store, log) -> tuple[int, int]:
-    now_iso = datetime.utcnow().isoformat()
+    now = datetime.utcnow()
+    now_iso = now.isoformat()
     seen_ids: set[str] = set()
     new_count = 0
+
+    # sťahujeme, kým nedôjdeme k inzerátom starším než horizont (aby sme
+    # zachytili všetky nové ponuky aj v rýchlych kategóriách), s poistným
+    # stropom max_pages. Horizont = crawl_lookback_days (0 = vypnuté).
+    from datetime import date, timedelta
+    cutoff = (now - timedelta(days=config.crawl_lookback_days)).date() \
+        if config.crawl_lookback_days else None
 
     max_pages = config.pages_per_category.get(cat.key, config.max_pages_per_category)
     for page in range(max_pages):
@@ -55,6 +63,11 @@ def _crawl_category(cat: Category, config: Config, fetcher: Fetcher, store, log)
         if not ads:
             # žiadne inzeráty = pravdepodobne koniec / zmena štruktúry
             break
+
+        # ak sme už za horizontom čerstvosti (na stránke sú dátumy a všetky
+        # sú staršie než cutoff), po spracovaní tejto stránky končíme
+        posted = [a.posted_date for a in ads if a.posted_date is not None]
+        past_horizon = bool(cutoff and posted and all(d < cutoff for d in posted))
 
         with store.tx():
             for ad in ads:
@@ -72,6 +85,9 @@ def _crawl_category(cat: Category, config: Config, fetcher: Fetcher, store, log)
                 )
                 if is_new:
                     new_count += 1
+
+        if past_horizon:
+            break
 
     # inzeráty kategórie, ktoré sme teraz nevideli → +1 missing_run
     with store.tx():
