@@ -166,24 +166,39 @@ def next_page_url(subdomain: str, page_index: int, per_page: int) -> str:
 
 
 def parse_subcategories(html: str) -> list[tuple[str, str]]:
-    """Z hlavnej stránky subdomény vytiahne podkategórie.
+    """Z hlavnej stránky subdomény vytiahne podkategórie ``(id, názov)``.
 
-    Hľadá odkazy s parametrom ``category=<ID>`` (menu sekcií) a vráti
-    dvojice ``(id, názov)``. Deduplikuje podľa id, poradie zachováva.
+    Bazoš má výber podkategórie ako rozbaľovací ``<select name="category">``
+    s ``<option value="120">Kočíky</option>`` – ID je vo value, názov v texte.
+    Pre istotu čítame aj prípadné odkazy s ``?category=<ID>``. Ak sa názov
+    nenájde, označíme podkategóriu ako ``kat. <ID>``. Dedup podľa id.
     """
     soup = BeautifulSoup(html, "lxml")
     out: dict[str, str] = {}
+
+    # 1) <select name~=category> -> <option value=ID>Názov</option>
+    for sel in soup.find_all("select"):
+        nm = (sel.get("name") or sel.get("id") or "").lower()
+        if "categ" not in nm:
+            continue
+        for opt in sel.find_all("option"):
+            val = (opt.get("value") or "").strip()
+            if not val.isdigit() or val == "0":
+                continue
+            name = opt.get_text(strip=True)
+            out.setdefault(val, name or f"kat. {val}")
+
+    # 2) odkazy s ?category=<ID> (názov = text odkazu)
     for a in soup.find_all("a", href=True):
         m = SUBCAT_RE.search(a["href"])
         if not m:
             continue
         cid = m.group(1)
         if cid == "0":
-            continue  # "všetko"
-        name = a.get_text(strip=True)
-        if not name:
             continue
-        out.setdefault(cid, name)
+        name = a.get_text(strip=True)
+        out.setdefault(cid, name or f"kat. {cid}")
+
     return list(out.items())
 
 
