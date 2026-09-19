@@ -35,9 +35,9 @@ Zhrnutie: Nábytok  —  posledných 30 dní
   Cena:             min 1 / medián 390 / max 220300 € (rozptyl 220299 €)
   TOP produkty (podľa výskytu v nadpisoch):
      1. stol                         14×
-     2. suprava                      11×
-     3. sedacia suprava              11×
-     4. sedacia                      11×
+     2. sedacia suprava              11×
+     3. sedacia                      11×
+     4. suprava                      11×
      5. postel                       10×
      6. kuchynska                    8×
      7. linka                        8×
@@ -65,10 +65,10 @@ Zhrnutie: Stroje  —  posledných 30 dní
 
 Zhrnutie: Elektro  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 99.0/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    102  (≈ 101.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
-  Cena:             min 6 / medián 168 / max 555550 € (rozptyl 555544 €)
+  Cena:             min 6 / medián 172 / max 555550 € (rozptyl 555544 €)
   TOP produkty (podľa výskytu v nadpisoch):
      1. airpods                      8×
      2. led                          6×
@@ -83,25 +83,25 @@ Zhrnutie: Elektro  —  posledných 30 dní
 
 Zhrnutie: Šport  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 98.0/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    101  (≈ 99.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
-  Cena:             min 16 / medián 874 / max 410700 € (rozptyl 410684 €)
+  Cena:             min 16 / medián 850 / max 410700 € (rozptyl 410684 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. bicykel                      14×
-     2. horsky                       6×
-     3. ebike                        5×
-     4. horsky bicykel               5×
+     1. bicykel                      15×
+     2. horsky                       7×
+     3. horsky bicykel               6×
+     4. ebike                        5×
      5. kukirin                      3×
      6. glock                        3×
      7. motorovy                     3×
-     8. kolobezku                    3×
+     8. elektricku                   3×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Detský bazár  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    101  (≈ 101.0/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    103  (≈ 103.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 10 / medián 160 / max 210210 € (rozptyl 210200 €)
@@ -112,17 +112,17 @@ Zhrnutie: Detský bazár  —  posledných 30 dní
      4. autosedacka                  9×
      5. postielka                    8×
      6. detska postielka             6×
-     7. 2v1                          5×
-     8. kocik cybex                  4×
+     7. britax                       5×
+     8. romer                        5×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Hudba  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 100.0/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    101  (≈ 101.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
-  Cena:             min 1 / medián 448 / max 4500 € (rozptyl 4499 €)
+  Cena:             min 1 / medián 500 / max 4500 € (rozptyl 4499 €)
   TOP produkty (podľa výskytu v nadpisoch):
      1. yamaha                       8×
      2. piano                        5×
