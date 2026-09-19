@@ -3,36 +3,56 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
-Nábytok      sedacia                 11      -      1399       -           0    66.9
-Nábytok      suprava                 11      -      1399       -           0    66.9
-Nábytok      sedacia suprava         11      -      1399       -           0    66.9
-Šport        ebike                    5      -      2300       -           0    50.0
-Hudba        piano                    5      -      2190       -           0    47.6
-Stroje       vozik                    5      -      1850       -           0    40.2
-Stroje       elektricky               5      -      1850       -           0    40.2
-Dom a záhrad malotraktor              5      -      1450       -           0    31.5
-Nábytok      gauc                     5      -      1399       -           0    30.4
-Nábytok      sedenie                  7      -       980       -           0    29.8
-Detský bazár cybex                   20      -       299       -           0    26.0
-Nábytok      zahradne                 6      -       985       -           0    25.7
-Nábytok      teak                     5      -       980       -           0    21.3
-Nábytok      teak zahradne            5      -       980       -           0    21.3
-Nábytok      zahradne sedenie         5      -       980       -           0    21.3
-Šport        bicykel                 15      -       529     420           1    17.2
-Hudba        yamaha                   8      -       399       -           0    13.9
-Nábytok      postel                  10      -       290     600           0    12.6
-Detský bazár kocik                   23      -       250     250           1    12.5
-Nábytok      stol                    14      -       182     450           0    11.1
-Detský bazár 2v1                      5      -       259       -           0     5.6
-Nábytok      kreslo                   5      -       250       -           0     5.4
-Elektro      apple                    5      -       250       -           0     5.4
-Šport        horsky                   7      -       300     140           1     4.6
-Nábytok      stolicky                 5      -       190       -           0     4.1
-Nábytok      sedacka                  5      -       499     440           2     3.6
-Detský bazár britax                   5      -       150       -           0     3.3
-Detský bazár romer                    5      -       150       -           0     3.3
-Detský bazár britax romer             5      -       150       -           0     3.3
-Šport        horsky bicykel           6      -       150     140           1     2.0
+Stroje       pila                    19      -      2650       -           0    75.2
+Šport        cube                    23      -      2000       -           0    68.7
+Šport        ebike                   17      -      1825       -           0    46.3
+Šport        cube stereo             11      -      2490       -           0    40.9
+Šport        stereo                  11      -      2490       -           0    40.9
+Dom a záhrad domcek                  10      -      2350       -           0    35.1
+Šport        carbon                  14      -      1570       -           0    32.8
+Šport        ctm                     14      -      1290       -           0    27.0
+Dom a záhrad zahradny                10      -      1794       -           0    26.8
+Dom a záhrad kosacka                 14      -      1250       -           0    26.1
+Šport        velkost                 17      -       999       -           0    25.4
+Stroje       elektricky               6      -      2802       -           0    25.1
+Šport        stereo hybrid            5      -      2750       -           0    20.5
+Šport        hybrid                   5      -      2750       -           0    20.5
+Stroje       dph                      7      -      1950       -           0    20.4
+Šport        celoodpruzeny            6      -      2275       -           0    20.4
+Nábytok      postel                  57      -       212     600           0    18.0
+Hudba        weltmeister             13      -       890       -           0    17.3
+Šport        ebike cube               5      -      2300       -           0    17.2
+Hudba        husle                   13      -       870       -           0    16.9
+Hudba        yamaha                  28      -       399    1000           0    16.7
+Dom a záhrad doprava                  6      -      1849       -           0    16.6
+Stroje       automat                  5      -      2214       -           0    16.5
+Šport        trek                     9      -      1199       -           0    16.1
+Šport        specialized             12      -       894       -           0    16.0
+Stroje       dopravy                  6      -      1775       -           0    15.9
+Stroje       dph dopravy              6      -      1775       -           0    15.9
+Hudba        akordeon                17      -       599       -           0    15.2
+Dom a záhrad zdarma                   5      -      1899       -           0    14.2
+Hudba        piano                   12      -       785       -           0    14.1
+Stroje       zdvihak                  5      -      1850       -           0    13.8
+Detský bazár cybex                   37      -       250       -           0    13.8
+Dom a záhrad dreveny                  5      -      1799       -           0    13.4
+Dom a záhrad garaz                    5      -      1790       -           0    13.4
+Šport        elektrobicykel           8      -      1098       -           0    13.1
+Hudba        kridlo                   5      -      1699       -           0    12.7
+Hudba        akordeon weltmeister     9      -       890       -           0    12.0
+Hudba        klavir                  10      -       800       -           0    11.9
+Šport        bateria                  8      -       990       -           0    11.8
+Šport        bosch                    6      -      1300       -           0    11.6
+Nábytok      stol                    56      -       139     450           0    11.6
+Šport        bicykel                 67      -       340     460           2    11.3
+Stroje       paletovy vozik           5      -      1500       -           0    11.2
+Stroje       paletovy                 5      -      1500       -           0    11.2
+Šport        cestny bicykel           5      -      1490       -           0    11.1
+Šport        cestny                   5      -      1490       -           0    11.1
+Nábytok      kuchynska linka         14      -      1550    1490           2    10.8
+Nábytok      linka                   14      -      1550    1490           2    10.8
+Stroje       stroj                    6      -      1195       -           0    10.7
+Dom a záhrad kotol                   10      -       700       -           0    10.4
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
