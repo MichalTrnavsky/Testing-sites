@@ -1,0 +1,177 @@
+
+## Záhrada (zahrada)  — 0 podkategórií
+
+## Dom a záhrada (dom)  — 20 podkategórií
+   bazeny                 Bazény
+   cerpadla               Čerpadlá
+   dvere                  Dvere, brány
+   klimatizacie           Klimatizácie
+   kosacky                Kosačky
+   kotle                  Kotle, Kachle, Bojlery
+   malotraktory           Malotraktory, Kultivátory
+   miesacky               Miešačky
+   naradie                Náradie
+   okna                   Okná
+   pily                   Píly
+   snezna                 Snežná technika
+   stavebny               Stavebný materiál
+   radiatory              Radiátory
+   rastliny               Rastliny
+   vybavenie              Vybavenie dielne
+   vysavace               Vysávače/Fúkače
+   grily                  Záhradné grily
+   technika               Záhradná technika
+   ostatne                Ostatné
+
+## Nábytok (nabytok)  — 18 podkategórií
+   jedalenske             Jedálenské kúty
+   kniznice               Knižnice
+   koberce                Koberce a podlahová krytina
+   kresla                 Kreslá a gauče
+   kuchyne                Kuchyne
+   kupelne                Kúpeľne
+   lampy                  Lampy, osvetlenie
+   matrace                Matrace
+   obyvacie               Obývacie steny
+   postele                Postele
+   sedacie                Sedacie súpravy
+   skrine                 Skrine
+   spalne                 Spálne
+   stolicky               Stoličky
+   stoly                  Stoly
+   zahradny               Záhradný nábytok
+   doplnky                Doplnky
+   nabytok                Ostatný nábytok
+
+## Stroje (stroje)  — 19 podkategórií
+   cerpadla               Čerpadlá
+   cistiace               Čistiace stroje
+   drevoobrabacie         Drevoobrábacie stroje
+   generatory             Generátory
+   historicke             Historické stroje
+   motory                 Motory
+   komunalna              Komunálna technika
+   kovoobrabacie          Kovoobrábacie stroje
+   lesna                  Lesná technika
+   polnohospodarska       Poľnohospodárska technika
+   potravinarske          Potravinárske stroje
+   skladova               Skladová technika
+   stavebne               Stavebné stroje
+   textilne               Textilné stroje
+   tlaciarenske           Tlačiarenské stroje
+   prevadzkarne           Vybavenie prevádzkarne
+   linka                  Výrobná linka
+   diely                  Náhradné diely
+   ostatne                Ostatné
+
+## Elektro (elektro)  — 32 podkategórií
+   digestory              Digestory
+   chladnicky             Chladničky
+   mikrovlnky             Mikrovlnné rúry
+   mraznicky              Mrazničky
+   pracky                 Práčky
+   sporaky                Sporáky
+   susicky                Sušičky
+   umyvacky               Umývačky riadu
+   ostatnebila            Ostatné - biela
+   autoradia              Autorádiá
+   kina                   Domáce kiná
+   hifi                   Hifi systémy, Rádiá
+   projektory             Projektory
+   repro                  Repro sústavy
+   sluchadla              Slúchadlá
+   televizory             Televízory
+   dvd                    Video, DVD prehrávače
+   zosilnovace            Zosilňovače
+   ostatneav              Ostatné audio video
+   depilatory             Epilátory, Depilátory
+   feny                   Fény, Kulmy
+   holiace                Holiace strojčeky
+   kavovary               Kávovary
+   nabijacky              Nabíjačky batérií
+   mixery                 Ručné šľahače, Mixéry
+   lampy                  Svietidlá, Lampy
+   sijacie                Šijacie stroje
+   vysavace               Vysávače
+   vysielacky             Vysielačky
+   zvlhcovace             Zvlhčovače vzduchu
+   zehlicky               Žehličky
+   ostatne                Ostatné drobné
+
+## Šport (sport)  — 27 podkategórií
+   fitness                Fitness, jogging
+   golf                   Golf
+   futbal                 Futbal
+   korcule                In-lines, Skateboarding
+   kemping                Kemping
+   letectvo               Letectvo
+   loptove                Loptové hry
+   lov                    Poľovníctvo, lov
+   paintball              Paintball
+   rybareni               Rybolov
+   hry                    Spoločenské hry
+   tenis                  Tenis, squash, badminton
+   turistika              Turistika, horolezectvo
+   vodni                  Vodné športy, potápanie
+   ostatni                Všetko ostatné
+   kolobezky              Kolobežky
+   horska                 Horské bicykle
+   cestne                 Cestné bicykle
+   elektrobicykle         Elektrobicykle
+   soucastky              Súčiastky a diely
+   cyklistika             Ostatná cyklistika
+   bezky                  Bežkovanie
+   lyze                   Lyžovanie
+   skialpy                Skialpy
+   snowboard              Snowboarding
+   hokej                  Hokej, korčuľovanie
+   zimni                  Ostatné zimné
+
+## Detský bazár (deti)  — 31 podkategórií
+   autosedacky            Autosedačky
+   baby                   Baby monitory
+   bicykle                Bicykle
+   hracky                 Hračky
+   choditka               Chodítka a hopsadlá
+   kociky                 Kočíky
+   kojenecke              Kojenecké potreby
+   lego                   Lego
+   nabytok                Nábytok pre deti
+   nositka                Nosiče
+   odrazadla              Odrážadlá
+   sedacky                Sedačky na bicykel
+   sportove               Športové potreby
+   skolske                Školské potreby
+   ostatne                Ostatné
+   dupacky                Body, dupačky a overaly
+   bundy                  Bundy a kabátiky
+   ciapky                 Čiapky a klobúčiky
+   nohavice               Nohavice, kraťasy a tepláky
+   kombinezy              Kombinézy
+   komplety               Komplety
+   mikiny                 Mikiny a svetre
+   obuv                   Obuv
+   plavky                 Plavky
+   ponozky                Ponožky a pančušky
+   pyzamka                Pyžamká a župančeky
+   rukavice               Rukavice a šály
+   bielizen               Spodná bielizeň
+   suknicky               Sukničky a šatočky
+   tricka                 Tričká a košieľky
+   oblecenie              Ostatné oblečenie
+
+## Hudba (hudba)  — 14 podkategórií
+   bicie                  Bicie nástroje
+   dychove                Dychové nástroje
+   klavesove              Klávesové nástroje
+   slacikove              Sláčikové nástroje
+   strunove               Strunové nástroje
+   nastroje               Ostatné nástroje
+   nahravky               DVD, CD, MC, LP
+   skupiny                Hudobníci a skupiny
+   koncerty               Koncerty
+   noty                   Noty, texty
+   skusobne               Skúšobne
+   svetelna               Svetelná technika
+   zvukova                Zvuková technika
+   ostatne                Ostatné
