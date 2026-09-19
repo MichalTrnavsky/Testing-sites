@@ -21,6 +21,9 @@ class Config:
 
     # koľko stránok listingu prejsť na kategóriu za jeden beh
     max_pages_per_category: int = 5
+    # per-kategóriové prepísanie hĺbky (napr. {"deti": 10}) – keď má kategória
+    # vyšší pohyb, zvýšime hĺbku len jej
+    pages_per_category: dict = field(default_factory=dict)
     # inzerátov na stránku (Bazoš default býva 20)
     per_page: int = 20
 

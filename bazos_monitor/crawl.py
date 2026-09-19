@@ -43,7 +43,8 @@ def _crawl_category(cat: Category, config: Config, fetcher: Fetcher, store, log)
     seen_ids: set[str] = set()
     new_count = 0
 
-    for page in range(config.max_pages_per_category):
+    max_pages = config.pages_per_category.get(cat.key, config.max_pages_per_category)
+    for page in range(max_pages):
         url = next_page_url(cat.subdomain, page, config.per_page)
         res = fetcher.get(url)
         if not res.ok:

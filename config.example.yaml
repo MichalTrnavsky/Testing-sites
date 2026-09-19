@@ -21,8 +21,11 @@ exclude_categories:
   - moto
 
 # Rozsah crawlu
-max_pages_per_category: 5      # koľko stránok listingu na kategóriu
+max_pages_per_category: 5      # koľko stránok listingu na kategóriu (~100 inzerátov)
 per_page: 20                   # inzerátov na stránku (Bazoš default)
+# Keď má niektorá kategória vyšší pohyb, zvýš hĺbku len jej (odkomentuj):
+# pages_per_category:
+#   deti: 10                   # ~200 inzerátov len pre Detský bazár
 
 # Slušné správanie voči serveru
 request_delay_seconds: 1.5     # pauza medzi requestami
