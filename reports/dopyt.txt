@@ -7,14 +7,14 @@ Detský bazár cybex                        20     0         -     8.7
 Nábytok      stol                         14     0         -     6.1
 Šport        bicykel                      14     0         -     6.1
 Detský bazár detska                       13     0         -     5.7
-Nábytok      sedacia                      11     0         -     4.8
 Nábytok      sedacia suprava              11     0         -     4.8
+Nábytok      sedacia                      11     0         -     4.8
 Nábytok      suprava                      11     0         -     4.8
 Nábytok      postel                       10     0         -     4.3
 Detský bazár autosedacka                   9     0         -     3.9
 Nábytok      kuchynska                     8     0         -     3.5
-Nábytok      linka                         8     0         -     3.5
 Nábytok      kuchynska linka               8     0         -     3.5
+Nábytok      linka                         8     0         -     3.5
 Elektro      airpods                       8     0         -     3.5
 Detský bazár postielka                     8     0         -     3.5
 Hudba        yamaha                        8     0         -     3.5
@@ -37,8 +37,8 @@ Nábytok      gauc                          5     0         -     2.2
 Nábytok      kreslo                        5     0         -     2.2
 Nábytok      sedacka                       5     0         -     2.2
 Nábytok      stolove                       5     0         -     2.2
-Nábytok      teak zahradne                 5     0         -     2.2
 Nábytok      teak                          5     0         -     2.2
+Nábytok      teak zahradne                 5     0         -     2.2
 Nábytok      zahradne sedenie              5     0         -     2.2
 Stroje       nakladac                      5     0         -     2.2
 Stroje       traktor                       5     0         -     2.2

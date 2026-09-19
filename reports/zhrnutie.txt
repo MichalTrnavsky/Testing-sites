@@ -22,8 +22,8 @@ Zhrnutie: Dom a záhrada  —  posledných 30 dní
      4. vari                         3×
      5. panely                       3×
      6. virivka                      2×
-     7. mineralna                    2×
-     8. vata                         2×
+     7. vata                         2×
+     8. mineralna                    2×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
@@ -35,9 +35,9 @@ Zhrnutie: Nábytok  —  posledných 30 dní
   Cena:             min 1 / medián 390 / max 220300 € (rozptyl 220299 €)
   TOP produkty (podľa výskytu v nadpisoch):
      1. stol                         14×
-     2. sedacia                      11×
-     3. suprava                      11×
-     4. sedacia suprava              11×
+     2. suprava                      11×
+     3. sedacia suprava              11×
+     4. sedacia                      11×
      5. postel                       10×
      6. kuchynska                    8×
      7. linka                        8×
@@ -95,7 +95,7 @@ Zhrnutie: Šport  —  posledných 30 dní
      5. kukirin                      3×
      6. glock                        3×
      7. motorovy                     3×
-     8. elektricku                   3×
+     8. kolobezku                    3×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
