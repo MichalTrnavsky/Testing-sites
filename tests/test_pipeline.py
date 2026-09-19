@@ -218,6 +218,36 @@ def test_summarize_kociky():
           "del/deň:", s.deleted_per_day, "top:", s.top_products[0], ")")
 
 
+def test_freshness_filter():
+    tmp = tempfile.mkdtemp()
+    store = Store(os.path.join(tmp, "f.db"))
+    now = datetime.utcnow()
+    # 6 čerstvých (pridané pred 3 dňami) + 6 starých ležiakov (pred 40 dňami)
+    for i in range(6):
+        fs = (now - timedelta(days=1)).isoformat()
+        fresh_posted = (now - timedelta(days=3)).date().isoformat()
+        store.upsert_listing_ad(ad_id=f"F{i}", category="zahrada", title="Zahradny gril",
+                                url=f"https://x/inzerat/f{i}/", price_eur=200,
+                                posted_date=fresh_posted, now_iso=fs)
+        old_posted = (now - timedelta(days=40)).date().isoformat()
+        store.upsert_listing_ad(ad_id=f"O{i}", category="zahrada", title="Stary lezak vec",
+                                url=f"https://x/inzerat/o{i}/", price_eur=200,
+                                posted_date=old_posted, now_iso=fs)
+    store.conn.commit()
+
+    # bez limitu vidno oboje
+    s_all = summarize(store, category="zahrada", window_days=60, top_products=10)
+    prods_all = [p for p, _ in s_all.top_products]
+    assert any("gril" in p for p in prods_all) and any("lezak" in p for p in prods_all)
+    # s limitom 21 dní starý ležiak vypadne
+    s_fresh = summarize(store, category="zahrada", window_days=60, top_products=10, max_age_days=21)
+    prods_fresh = [p for p, _ in s_fresh.top_products]
+    assert any("gril" in p for p in prods_fresh), prods_fresh
+    assert not any("lezak" in p for p in prods_fresh), prods_fresh
+    store.close()
+    print("test_freshness_filter OK")
+
+
 if __name__ == "__main__":
     test_parse_listing()
     test_price_sanity()
@@ -227,4 +257,5 @@ if __name__ == "__main__":
     test_condition_of()
     test_arbitrage_ratan()
     test_summarize_kociky()
+    test_freshness_filter()
     print("\nVŠETKY TESTY PREŠLI")

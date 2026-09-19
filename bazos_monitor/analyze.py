@@ -161,12 +161,33 @@ def _parse_iso(s: str | None) -> datetime | None:
         return None
 
 
+def _ad_age_days(row, now: datetime) -> float | None:
+    """Vek inzerátu v dňoch – primárne z dátumu pridania na inzeráte
+    (posted_date), inak z nášho prvého videnia (first_seen)."""
+    pd = _parse_iso(row["posted_date"])
+    if pd is not None:
+        return (now.date() - pd.date()).days
+    fs = _parse_iso(row["first_seen"])
+    if fs is not None:
+        return (now - fs).total_seconds() / 86400.0
+    return None
+
+
+def _too_old(row, now: datetime, max_age_days: float | None) -> bool:
+    """True ak je inzerát starší než strop čerstvosti (irelevantná ležiačka)."""
+    if not max_age_days:
+        return False
+    age = _ad_age_days(row, now)
+    return age is not None and age > max_age_days
+
+
 def analyze(
     store,
     category: str | None,
     window_days: int,
     min_new: int,
     top: int,
+    max_age_days: float | None = None,
 ) -> list[SegmentStat]:
     """Spočíta štatistiky segmentov naprieč (alebo v rámci) kategórií."""
     now = datetime.utcnow()
@@ -182,6 +203,8 @@ def analyze(
         first_seen = _parse_iso(r["first_seen"])
         if first_seen is None or first_seen < since:
             continue  # mimo okna
+        if _too_old(r, now, max_age_days):
+            continue  # stará ležiačka -> irelevantná pre dopyt
         cat = r["category"]
         phrases = set(keyphrases(r["title"]))
         is_deleted = r["status"] == "deleted"
@@ -280,6 +303,7 @@ def analyze_arbitrage(
     min_used_price: float,
     top: int,
     max_used_price: float | None = None,
+    max_age_days: float | None = None,
 ) -> list[ArbitrageStat]:
     """Nájde segmenty s vysokým dopytom A vysokou cenou použitého tovaru.
 
@@ -303,6 +327,8 @@ def analyze_arbitrage(
         first_seen = _parse_iso(r["first_seen"])
         if first_seen is None or first_seen < since:
             continue
+        if _too_old(r, now, max_age_days):
+            continue  # stará ležiačka -> nie je to živý dopyt
         cat = r["category"]
         price = r["price_eur"]
         cond = condition_of(r["title"])
@@ -437,6 +463,7 @@ def summarize(
     window_days: int,
     keyword: str | None = None,
     top_products: int = 10,
+    max_age_days: float | None = None,
 ) -> SegmentSummary:
     """Zhrnie kategóriu (alebo v nej segment podľa ``keyword``).
 
@@ -464,6 +491,8 @@ def summarize(
             toks = set(normalize_tokens(title))
             if kw_norm not in toks and kw_norm not in strip_diacritics(title.lower()):
                 continue
+        if _too_old(r, now, max_age_days):
+            continue  # stará ležiačka -> irelevantná
 
         first_seen = _parse_iso(r["first_seen"])
         deleted_at = _parse_iso(r["deleted_at"])

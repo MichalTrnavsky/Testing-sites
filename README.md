@@ -116,6 +116,17 @@ Zhrnutie: Detský bazár / „kocik"  —  posledných 10 dní
 Bez `--keyword` zhrnie celú kategóriu. Workflow generuje `reports/zhrnutie.txt`
 pre všetky sledované kategórie pri každom behu.
 
+## Filter čerstvosti (`--max-age`)
+
+Inzeráty staršie ako `--max-age` dní (default **21**) sa v analýze **ignorujú**.
+Dôvod: staré ponuky sú vytlačené novšími dozadu a väčšinou znamenajú
+„nepredajné / zabudnuté / zaseknuté" – nie živý dopyt. Filter platí pre
+`report`, `arbitraz` aj `zhrnutie` (podľa dátumu pridania na inzeráte).
+`--max-age 0` limit vypne.
+
+Navyše crawler sťahuje len prvých pár strán (najnovšie inzeráty), takže staré
+ležiaky vzadu v listingu sa väčšinou ani nenačítajú.
+
 ## Arbitráž – hlavný účel nástroja
 
 Cieľom nie je len „vysoký dopyt", ale **arbitrážna príležitosť**: segment, kde
