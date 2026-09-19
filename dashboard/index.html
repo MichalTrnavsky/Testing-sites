@@ -341,6 +341,7 @@ function compPill(n){const c=n>=3?"b":n>0?"w":"g";return `<span class="pill ${c}
 
 /* ---------- DOPYT ---------- */
 function renderDopyt(p){
+  const mp=modelsPanel(); if(mp) p.append(mp);
   if(F.groupBy==="subcat"){ renderDopytSubcat(p); return; }
   let rows=applyCommon(DATA.demand).filter(r=>!F.minVol||r.new_count>=F.minVol);
   const cmp={score:(a,b)=>b.demand_score-a.demand_score,
@@ -421,6 +422,7 @@ function aggSold(rows,keyFn){
   return [...map.values()];
 }
 function renderPredane(p){
+  const mp=modelsPanel(); if(mp) p.append(mp);
   const winLabel=WINLABEL[F.soldWin]||(F.soldWin+" dní");
   let rows=(DATA.deletions||[]).filter(r=>(!F.cat||r.category===F.cat)
     && (!F.subcat||r.subcat===F.subcat) && inWindow(r,F.soldWin));
@@ -514,7 +516,13 @@ function renderZhrnutie(p){
     (s.top_products||[]).slice(0,8).forEach(([ph,c])=>
       chips.append(el("span",{class:"chip"},ph+" ",el("b",{},"×"+c))));
     if(!s.top_products||!s.top_products.length) chips.append(el("span",{class:"chip"},"zatiaľ málo dát"));
-    card.append(el("div",{class:"stat"},el("div",{class:"k",style:"margin-bottom:6px"},"Top produkty")),chips);
+    card.append(el("div",{class:"stat"},el("div",{class:"k",style:"margin-bottom:6px"},"Top typy v ponuke")),chips);
+    if(s.top_products_sold&&s.top_products_sold.length){
+      const sc=el("div",{class:"chips"});
+      s.top_products_sold.slice(0,8).forEach(([ph,c])=>
+        sc.append(el("span",{class:"chip"},ph+" ",el("b",{},"×"+c))));
+      card.append(el("div",{class:"stat"},el("div",{class:"k",style:"margin:10px 0 6px"},"Top predané typy")),sc);
+    }
     grid.append(card);
   });
   p.append(grid);
@@ -544,6 +552,51 @@ function makeTable(cols,rows,defSort){
     [...tr.children].forEach(th=>th.classList.toggle("sorted",th.dataset.k===sortKey));
   }
   draw();return wrap;
+}
+/* ---------- drill-down na typy / modely (z per-podkat. zhrnutí) ---------- */
+function findSummary(cat,subcat){
+  return (DATA.summaries||[]).find(s=> s.category===cat &&
+    (subcat? s.subcategory===subcat : !s.subcategory));
+}
+// generické opisné slová – nie sú to „typy/modely", odfiltrujeme z drillu
+const DESC=new Set(["detsky","detska","detske","sportovy","sportova","sportove",
+  "novy","nova","nove","noveho","kombinacia","kombinovany","kombinovana","hlboky",
+  "hlboka","luxusny","luxusna","kvalitny","retro","set","predam","stav","zachovaly",
+  "krasny","krasna","velky","velka","maly","mala","2v1","3v1","1v1","ks","kus"]);
+const normd=s=>(s||"").normalize("NFKD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const stem=w=>w.replace(/[aeiouy]$/,"");   // hrubý slovenský „stem" (odstráň koncovú samohlásku)
+function genericSet(s){
+  const g=new Set();
+  DESC.forEach(w=>{ g.add(w); g.add(stem(w)); });
+  normd(s.subcategory||lab(s.category)).split(/[^a-z0-9]+/).forEach(w=>{
+    if(w.length>2){ g.add(w); g.add(stem(w)); }});
+  return g;
+}
+function meaningful(pairs,g){          // ponechá frázu, ak má aspoň 1 „nesamozrejmé" slovo
+  return (pairs||[]).filter(([ph])=> ph.split(" ").some(w=> !g.has(w) && !g.has(stem(w))));
+}
+function modelCol(title,pairs){
+  const col=el("div",{});
+  col.append(el("div",{class:"k",style:"font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;margin-bottom:8px"},title));
+  if(!pairs||!pairs.length){ col.append(el("div",{style:"color:var(--muted);font-size:.8rem"},"zatiaľ málo dát")); return col; }
+  const max=Math.max(...pairs.map(p=>p[1]),1);
+  pairs.slice(0,10).forEach(([ph,c])=>col.append(el("div",{class:"row"},
+    el("div",{class:"name"},ph),
+    el("div",{class:"track"},el("div",{class:"fill",style:`width:${c/max*100}%`})),
+    el("div",{class:"val"},c))));
+  return col;
+}
+function modelsPanel(){
+  if(!F.cat) return null;                 // len keď je zvolená kategória/podkat.
+  const s=findSummary(F.cat,F.subcat||null); if(!s) return null;
+  const g=genericSet(s);
+  const wrap=el("div",{class:"chart"});
+  wrap.append(el("h2",{},`Typy / modely — ${s.subcategory||lab(s.category)}`));
+  const grid=el("div",{style:"display:grid;grid-template-columns:1fr 1fr;gap:20px"});
+  grid.append(modelCol("Najčastejšie v ponuke", meaningful(s.top_products,g)),
+              modelCol("Najviac predané", meaningful(s.top_products_sold,g)));
+  wrap.append(grid);
+  return wrap;
 }
 function showCount(n,noun){const c=$("#count");c.hidden=false;c.textContent=n+" "+(noun||"segmentov");}
 function emptyNote(){return el("div",{class:"note"},

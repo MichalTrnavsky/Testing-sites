@@ -20,7 +20,7 @@ import csv
 import re
 import unicodedata
 from collections import defaultdict
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from datetime import datetime, timedelta
 from statistics import median
 
@@ -462,8 +462,9 @@ class SegmentSummary:
     price_min: int | None
     price_median: float | None
     price_max: int | None
-    top_products: list[tuple[str, int]]  # (fráza, počet)
+    top_products: list[tuple[str, int]]  # (fráza, počet) – v ponuke (nové)
     rate_basis: str = "first_seen"  # "posted_date" = odhad z dátumov na inzerátoch
+    top_products_sold: list[tuple[str, int]] = field(default_factory=list)  # predané typy
 
 
 def _pct(prices: list[int]):
@@ -509,6 +510,7 @@ def summarize(
     lifespans: list[float] = []
     prices: list[int] = []
     phrase_counts: dict[str, int] = defaultdict(int)
+    sold_phrase_counts: dict[str, int] = defaultdict(int)  # typy medzi predanými
     posted_days: list = []  # dátumy pridania (z inzerátov) v okne
 
     since_date = since.date()
@@ -544,10 +546,15 @@ def summarize(
             deleted_total += 1
             if first_seen is not None:
                 lifespans.append((deleted_at - first_seen).total_seconds() / 86400.0)
+            for ph in set(keyphrases(title, max_n=3)):
+                if kw_norm and ph == kw_norm:
+                    continue
+                sold_phrase_counts[ph] += 1
 
     days = max(window_days, 1)
     pmin, pmed, pmax = _pct(prices)
     top = sorted(phrase_counts.items(), key=lambda kv: kv[1], reverse=True)[:top_products]
+    top_sold = sorted(sold_phrase_counts.items(), key=lambda kv: kv[1], reverse=True)[:top_products]
 
     # Denný prírastok:
     #  1) ak máme aspoň jeden CELÝ predošlý deň → priemer za tie dni (reálna
@@ -584,6 +591,7 @@ def summarize(
         price_max=pmax,
         top_products=top,
         rate_basis=rate_basis,
+        top_products_sold=top_sold,
     )
 
 
@@ -618,6 +626,10 @@ def format_summary(s: SegmentSummary) -> str:
             lines.append(f"    {i:>2}. {ph:<28} {cnt}×")
     else:
         lines.append("    (zatiaľ málo dát)")
+    if s.top_products_sold:
+        lines.append("  TOP predané typy (podľa zmazaní):")
+        for i, (ph, cnt) in enumerate(s.top_products_sold, 1):
+            lines.append(f"    {i:>2}. {ph:<28} {cnt}×")
     if s.deleted_total == 0:
         lines.append("")
         lines.append("  Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).")
