@@ -141,7 +141,7 @@
 const CATLABEL = {};
 let DATA = null, VIEW = "arbitraz";
 const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15,
-  groupBy:"subcat", soldWin:7, soldGroup:"keyword" };
+  groupBy:"subcat", soldWin:7, soldGroup:"subcat" };
 
 const $ = (s,el=document)=>el.querySelector(s);
 const el = (t,a={},...kids)=>{const n=document.createElement(t);
@@ -174,7 +174,7 @@ async function fetchData(){
 
 function resetFilters(){
   F.cat="";F.subcat="";F.q="";F.minVol=0;F.sort="";F.top=15;F.groupBy="subcat";
-  F.soldWin=7;F.soldGroup="keyword";
+  F.soldWin=7;F.soldGroup="subcat";
   F.minPrice=0;F.maxPrice=3000; /* rozumný strop dovozu; daj 0 pre bez limitu */
 }
 
@@ -245,7 +245,7 @@ function soldWinBox(){
 }
 function soldGroupBox(){
   const s=el("select",{id:"f-sgroup"});
-  [["keyword","Súhrn podľa slov"],["subcat","Súhrn podľa podkat."],["list","Zoznam inzerátov"]].forEach(
+  [["subcat","Súhrn podľa podkat."],["keyword","Súhrn podľa slov"],["list","Zoznam inzerátov"]].forEach(
     ([v,t])=>s.append(el("option",{value:v},t)));
   s.value=F.soldGroup; s.onchange=()=>{F.soldGroup=s.value;F.sort="";render();};
   return field("Zobraziť",s);
