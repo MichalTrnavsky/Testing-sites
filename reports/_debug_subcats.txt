@@ -1,85 +1,177 @@
-URL https://deti.bazos.sk/  HTTP 200 ok=True bytes=43078
-=== SELECTY ===
-- <select name='rubriky' id=None> opcií=21
-    value='www' text='Všetky rubriky'
-    value='auto' text='Auto'
-    value='deti' text='Deti'
-    value='dom' text='Dom a záhrada'
-    value='elektro' text='Elektro'
-    value='foto' text='Foto'
-    value='hudba' text='Hudba'
-    value='knihy' text='Knihy'
-    value='mobil' text='Mobily'
-    value='motocykle' text='Motocykle'
-    value='nabytok' text='Nábytok'
-    value='oblecenie' text='Oblečenie'
-=== NÁZVY podkat. v surovom HTML ===
-    'Kočíky' -> True
-    'Kocíky' -> False
-    'Baby monitory' -> True
-    'Autosedačky' -> True
-    'Autosedacky' -> False
-=== <script src> ===
-    https://www.bazos.sk/cookie-consent.js
-    https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C
-=== okolie prvého výskytu 'category' v HTML ===
-    slatakci('spam','195477737');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195477737');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','7675636','13338333','Rossy85');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195477737');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span> </div> </div>  <div class="inzeraty inzeratyflex"> <div class="inzer
-=== OKOLIE 'Kočíky' a 'Baby monitory' (surové HTML) ===
---- Kočíky @ 8141 ---
-div class="barvaleva">
-<a href="/autosedacky/" >Autosedačky</a>
-<a href="/baby/" >Baby monitory</a>
-<a href="/bicykle/" >Bicykle</a>
-<a href="https://knihy.bazos.sk/detska/">Detská literatúra</a>
-<a href="/hracky/" >Hračky</a>
-<a href="/choditka/" >Chodítka a hopsadlá</a>
-<a href="/kociky/" >Kočíky</a>
-<a href="/kojenecke/" >Kojenecké potreby</a>
-<a href="/lego/" >Lego</a>
-<a href="/nabytok/" >Nábytok pre deti</a>
-<a href="/nositka/" >Nosiče</a>
-<a href="/odrazadla/" >Odrážadlá</a>
 
---- Baby monitory @ 7925 ---
-href=https://www.bazos.sk/>Hlavná stránka</a>  > <h1 class="nadpiskategorie">Deti</h1></div>
-<br>
+## Záhrada (zahrada)  — 0 podkategórií
 
+## Dom a záhrada (dom)  — 20 podkategórií
+   bazeny                 Bazény
+   cerpadla               Čerpadlá
+   dvere                  Dvere, brány
+   klimatizacie           Klimatizácie
+   kosacky                Kosačky
+   kotle                  Kotle, Kachle, Bojlery
+   malotraktory           Malotraktory, Kultivátory
+   miesacky               Miešačky
+   naradie                Náradie
+   okna                   Okná
+   pily                   Píly
+   snezna                 Snežná technika
+   stavebny               Stavebný materiál
+   radiatory              Radiátory
+   rastliny               Rastliny
+   vybavenie              Vybavenie dielne
+   vysavace               Vysávače/Fúkače
+   grily                  Záhradné grily
+   technika               Záhradná technika
+   ostatne                Ostatné
 
-<div class="flexmain"><div class="menuleft"><div class="nadpismenu">Kategórie</div>
-<div class="barvalmenu">
-<div class="barvaleva">
-<a href="/autosedacky/" >Autosedačky</a>
-<a href="/baby/" >Baby monitory</a>
-<a href="/bicykle/" >Bicykle</a>
-<a href="https://knihy.bazos.sk/detska/">Detská literatúra</a>
-<a href="/hracky/" >Hračky</a>
-<a href="/choditka/" >Chodítka a hopsadlá</a>
-<a h
------ ELEKTRO -----
-URL https://elektro.bazos.sk/  HTTP 200 ok=True bytes=42073
-=== SELECTY ===
-- <select name='rubriky' id=None> opcií=21
-    value='www' text='Všetky rubriky'
-    value='auto' text='Auto'
-    value='deti' text='Deti'
-    value='dom' text='Dom a záhrada'
-    value='elektro' text='Elektro'
-    value='foto' text='Foto'
-    value='hudba' text='Hudba'
-    value='knihy' text='Knihy'
-    value='mobil' text='Mobily'
-    value='motocykle' text='Motocykle'
-    value='nabytok' text='Nábytok'
-    value='oblecenie' text='Oblečenie'
-=== NÁZVY podkat. v surovom HTML ===
-    'Kočíky' -> False
-    'Kocíky' -> False
-    'Baby monitory' -> False
-    'Autosedačky' -> False
-    'Autosedacky' -> False
-=== <script src> ===
-    https://www.bazos.sk/cookie-consent.js
-    https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C
-=== okolie prvého výskytu 'category' v HTML ===
-    slatakci('spam','195531247');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195531247');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5994834','4896187','Peter');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195531247');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span> </div> </div>  <div class="inzeraty inzeratyflex"> <div class="inzeraty
-=== OKOLIE 'Kočíky' a 'Baby monitory' (surové HTML) ===
+## Nábytok (nabytok)  — 18 podkategórií
+   jedalenske             Jedálenské kúty
+   kniznice               Knižnice
+   koberce                Koberce a podlahová krytina
+   kresla                 Kreslá a gauče
+   kuchyne                Kuchyne
+   kupelne                Kúpeľne
+   lampy                  Lampy, osvetlenie
+   matrace                Matrace
+   obyvacie               Obývacie steny
+   postele                Postele
+   sedacie                Sedacie súpravy
+   skrine                 Skrine
+   spalne                 Spálne
+   stolicky               Stoličky
+   stoly                  Stoly
+   zahradny               Záhradný nábytok
+   doplnky                Doplnky
+   nabytok                Ostatný nábytok
+
+## Stroje (stroje)  — 19 podkategórií
+   cerpadla               Čerpadlá
+   cistiace               Čistiace stroje
+   drevoobrabacie         Drevoobrábacie stroje
+   generatory             Generátory
+   historicke             Historické stroje
+   motory                 Motory
+   komunalna              Komunálna technika
+   kovoobrabacie          Kovoobrábacie stroje
+   lesna                  Lesná technika
+   polnohospodarska       Poľnohospodárska technika
+   potravinarske          Potravinárske stroje
+   skladova               Skladová technika
+   stavebne               Stavebné stroje
+   textilne               Textilné stroje
+   tlaciarenske           Tlačiarenské stroje
+   prevadzkarne           Vybavenie prevádzkarne
+   linka                  Výrobná linka
+   diely                  Náhradné diely
+   ostatne                Ostatné
+
+## Elektro (elektro)  — 32 podkategórií
+   digestory              Digestory
+   chladnicky             Chladničky
+   mikrovlnky             Mikrovlnné rúry
+   mraznicky              Mrazničky
+   pracky                 Práčky
+   sporaky                Sporáky
+   susicky                Sušičky
+   umyvacky               Umývačky riadu
+   ostatnebila            Ostatné - biela
+   autoradia              Autorádiá
+   kina                   Domáce kiná
+   hifi                   Hifi systémy, Rádiá
+   projektory             Projektory
+   repro                  Repro sústavy
+   sluchadla              Slúchadlá
+   televizory             Televízory
+   dvd                    Video, DVD prehrávače
+   zosilnovace            Zosilňovače
+   ostatneav              Ostatné audio video
+   depilatory             Epilátory, Depilátory
+   feny                   Fény, Kulmy
+   holiace                Holiace strojčeky
+   kavovary               Kávovary
+   nabijacky              Nabíjačky batérií
+   mixery                 Ručné šľahače, Mixéry
+   lampy                  Svietidlá, Lampy
+   sijacie                Šijacie stroje
+   vysavace               Vysávače
+   vysielacky             Vysielačky
+   zvlhcovace             Zvlhčovače vzduchu
+   zehlicky               Žehličky
+   ostatne                Ostatné drobné
+
+## Šport (sport)  — 27 podkategórií
+   fitness                Fitness, jogging
+   golf                   Golf
+   futbal                 Futbal
+   korcule                In-lines, Skateboarding
+   kemping                Kemping
+   letectvo               Letectvo
+   loptove                Loptové hry
+   lov                    Poľovníctvo, lov
+   paintball              Paintball
+   rybareni               Rybolov
+   hry                    Spoločenské hry
+   tenis                  Tenis, squash, badminton
+   turistika              Turistika, horolezectvo
+   vodni                  Vodné športy, potápanie
+   ostatni                Všetko ostatné
+   kolobezky              Kolobežky
+   horska                 Horské bicykle
+   cestne                 Cestné bicykle
+   elektrobicykle         Elektrobicykle
+   soucastky              Súčiastky a diely
+   cyklistika             Ostatná cyklistika
+   bezky                  Bežkovanie
+   lyze                   Lyžovanie
+   skialpy                Skialpy
+   snowboard              Snowboarding
+   hokej                  Hokej, korčuľovanie
+   zimni                  Ostatné zimné
+
+## Detský bazár (deti)  — 31 podkategórií
+   autosedacky            Autosedačky
+   baby                   Baby monitory
+   bicykle                Bicykle
+   hracky                 Hračky
+   choditka               Chodítka a hopsadlá
+   kociky                 Kočíky
+   kojenecke              Kojenecké potreby
+   lego                   Lego
+   nabytok                Nábytok pre deti
+   nositka                Nosiče
+   odrazadla              Odrážadlá
+   sedacky                Sedačky na bicykel
+   sportove               Športové potreby
+   skolske                Školské potreby
+   ostatne                Ostatné
+   dupacky                Body, dupačky a overaly
+   bundy                  Bundy a kabátiky
+   ciapky                 Čiapky a klobúčiky
+   nohavice               Nohavice, kraťasy a tepláky
+   kombinezy              Kombinézy
+   komplety               Komplety
+   mikiny                 Mikiny a svetre
+   obuv                   Obuv
+   plavky                 Plavky
+   ponozky                Ponožky a pančušky
+   pyzamka                Pyžamká a župančeky
+   rukavice               Rukavice a šály
+   bielizen               Spodná bielizeň
+   suknicky               Sukničky a šatočky
+   tricka                 Tričká a košieľky
+   oblecenie              Ostatné oblečenie
+
+## Hudba (hudba)  — 14 podkategórií
+   bicie                  Bicie nástroje
+   dychove                Dychové nástroje
+   klavesove              Klávesové nástroje
+   slacikove              Sláčikové nástroje
+   strunove               Strunové nástroje
+   nastroje               Ostatné nástroje
+   nahravky               DVD, CD, MC, LP
+   skupiny                Hudobníci a skupiny
+   koncerty               Koncerty
+   noty                   Noty, texty
+   skusobne               Skúšobne
+   svetelna               Svetelná technika
+   zvukova                Zvuková technika
+   ostatne                Ostatné
