@@ -9,21 +9,22 @@ nabytok,sedacia suprava,11,0,,4.78
 nabytok,suprava,11,0,,4.78
 nabytok,postel,10,0,,4.35
 deti,autosedacka,9,0,,3.91
-nabytok,linka,8,0,,3.48
-nabytok,kuchynska,8,0,,3.48
 nabytok,kuchynska linka,8,0,,3.48
+nabytok,kuchynska,8,0,,3.48
+nabytok,linka,8,0,,3.48
 elektro,airpods,8,0,,3.48
 deti,postielka,8,0,,3.48
 hudba,yamaha,8,0,,3.48
 nabytok,podnoze,7,0,,3.04
 nabytok,sedenie,7,0,,3.04
 stroje,zetor,7,0,,3.04
+stroje,jungheinrich,7,0,,3.04
 nabytok,zahradne,6,0,,2.61
-nabytok,cierne,6,0,,2.61
 nabytok,kovove,6,0,,2.61
 nabytok,kovove podnoze,6,0,,2.61
+nabytok,cierne,6,0,,2.61
 stroje,dempr,6,0,,2.61
-stroje,jungheinrich,6,0,,2.61
+stroje,vzv,6,0,,2.61
 elektro,led,6,0,,2.61
 sport,horsky,6,0,,2.61
 deti,detska postielka,6,0,,2.61
@@ -33,22 +34,22 @@ nabytok,gauc,5,0,,2.17
 nabytok,kreslo,5,0,,2.17
 nabytok,sedacka,5,0,,2.17
 nabytok,stolove,5,0,,2.17
-nabytok,teak zahradne,5,0,,2.17
-nabytok,zahradne sedenie,5,0,,2.17
 nabytok,teak,5,0,,2.17
+nabytok,zahradne sedenie,5,0,,2.17
+nabytok,teak zahradne,5,0,,2.17
 stroje,nakladac,5,0,,2.17
 stroje,traktor,5,0,,2.17
 stroje,nosnost,5,0,,2.17
 stroje,vozik,5,0,,2.17
-stroje,vzv,5,0,,2.17
+stroje,vzv jungheinrich,5,0,,2.17
 stroje,elektricky,5,0,,2.17
 elektro,apple,5,0,,2.17
 sport,ebike,5,0,,2.17
 sport,horsky bicykel,5,0,,2.17
 deti,2v1,5,0,,2.17
 hudba,piano,5,0,,2.17
-nabytok,jedalensky,4,0,,1.74
 nabytok,jedalensky stol,4,0,,1.74
+nabytok,jedalensky,4,0,,1.74
 nabytok,suprava gauc,4,0,,1.74
 nabytok,kuchyna,4,0,,1.74
 nabytok,skladom,4,0,,1.74
@@ -58,20 +59,19 @@ nabytok,stolove kovove,4,0,,1.74
 stroje,pasovy,4,0,,1.74
 stroje,jcb,4,0,,1.74
 stroje,kubota,4,0,,1.74
+stroje,triplex,4,0,,1.74
 stroje,efg triplex,4,0,,1.74
 stroje,jungheinrich efg,4,0,,1.74
 stroje,efg,4,0,,1.74
-stroje,vzv jungheinrich,4,0,,1.74
-stroje,triplex,4,0,,1.74
-stroje,paletovy vozik,4,0,,1.74
 stroje,paletovy,4,0,,1.74
+stroje,paletovy vozik,4,0,,1.74
 elektro,apple airpods,4,0,,1.74
 elektro,philips,4,0,,1.74
 elektro,profesionalny,4,0,,1.74
 elektro,pracka,4,0,,1.74
 deti,kocik cybex,4,0,,1.74
-deti,britax romer,4,0,,1.74
 deti,britax,4,0,,1.74
+deti,britax romer,4,0,,1.74
 deti,romer,4,0,,1.74
 deti,postel,4,0,,1.74
 deti,detsky,4,0,,1.74
@@ -90,11 +90,11 @@ nabytok,stolik,3,0,,1.3
 nabytok,rohovu,3,0,,1.3
 nabytok,rohova,3,0,,1.3
 nabytok,supravu,3,0,,1.3
-nabytok,sedaciu,3,0,,1.3
 nabytok,sedaciu supravu,3,0,,1.3
+nabytok,sedaciu,3,0,,1.3
 nabytok,masiv,3,0,,1.3
-nabytok,poloh,3,0,,1.3
 nabytok,stol poloh,3,0,,1.3
+nabytok,poloh,3,0,,1.3
 stroje,smykovy,3,0,,1.3
 stroje,smykovy nakladac,3,0,,1.3
 stroje,bager,3,0,,1.3
@@ -102,8 +102,8 @@ stroje,traktor zetor,3,0,,1.3
 stroje,motor,3,0,,1.3
 stroje,pottinger,3,0,,1.3
 stroje,automat,3,0,,1.3
-stroje,predajny automat,3,0,,1.3
 stroje,predajny,3,0,,1.3
+stroje,predajny automat,3,0,,1.3
 stroje,elektricky paletovy,3,0,,1.3
 elektro,doska,3,0,,1.3
 elektro,samsung,3,0,,1.3
@@ -122,14 +122,14 @@ sport,celoodpruzeny,3,0,,1.3
 deti,blue,3,0,,1.3
 deti,stokke,3,0,,1.3
 deti,fox,3,0,,1.3
-deti,bugaboo,3,0,,1.3
 deti,bugaboo fox,3,0,,1.3
+deti,bugaboo,3,0,,1.3
 deti,audi,3,0,,1.3
 deti,vajicko,3,0,,1.3
 deti,kombinacia,3,0,,1.3
+deti,cloud,3,0,,1.3
 deti,plus,3,0,,1.3
 deti,cybex cloud,3,0,,1.3
-deti,cloud,3,0,,1.3
 deti,detska postel,3,0,,1.3
 deti,bicykel,3,0,,1.3
 hudba,husle,3,0,,1.3
@@ -137,9 +137,9 @@ hudba,gitara,3,0,,1.3
 hudba,pioneer,3,0,,1.3
 hudba,korg,3,0,,1.3
 hudba,telecaster,3,0,,1.3
-hudba,gitaru struny,3,0,,1.3
 hudba,zadarmo,3,0,,1.3
 hudba,struny,3,0,,1.3
+hudba,gitaru struny,3,0,,1.3
 hudba,akusticku,3,0,,1.3
 hudba,rcf,3,0,,1.3
 hudba,rcf art,3,0,,1.3

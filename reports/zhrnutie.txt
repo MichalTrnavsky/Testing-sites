@@ -22,8 +22,8 @@ Zhrnutie: Dom a záhrada  —  posledných 30 dní
      4. vari                         3×
      5. panely                       3×
      6. virivka                      2×
-     7. vata                         2×
-     8. mineralna                    2×
+     7. mineralna                    2×
+     8. vata                         2×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
@@ -36,30 +36,30 @@ Zhrnutie: Nábytok  —  posledných 30 dní
   TOP produkty (podľa výskytu v nadpisoch):
      1. stol                         14×
      2. sedacia                      11×
-     3. sedacia suprava              11×
-     4. suprava                      11×
+     3. suprava                      11×
+     4. sedacia suprava              11×
      5. postel                       10×
      6. kuchynska                    8×
-     7. kuchynska linka              8×
-     8. linka                        8×
+     7. linka                        8×
+     8. kuchynska linka              8×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Stroje  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    102  (≈ 99.0/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    103  (≈ 100.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 25 / medián 6000 / max 74900 € (rozptyl 74875 €)
   TOP produkty (podľa výskytu v nadpisoch):
      1. zetor                        7×
-     2. dempr                        6×
-     3. jungheinrich                 6×
-     4. nakladac                     5×
-     5. traktor                      5×
-     6. nosnost                      5×
-     7. vozik                        5×
-     8. vzv                          5×
+     2. jungheinrich                 7×
+     3. dempr                        6×
+     4. vzv                          6×
+     5. nakladac                     5×
+     6. traktor                      5×
+     7. nosnost                      5×
+     8. vozik                        5×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
@@ -95,7 +95,7 @@ Zhrnutie: Šport  —  posledných 30 dní
      5. kukirin                      3×
      6. glock                        3×
      7. motorovy                     3×
-     8. kolobezku                    3×
+     8. elektricku                   3×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
