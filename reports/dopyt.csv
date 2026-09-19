@@ -1,201 +1,201 @@
 category,keyword,new_count,deleted_count,median_lifespan_days,demand_score
-nabytok,postel,58,1,0.02,83.73
-nabytok,matrac,10,1,0.02,14.44
-sport,bicykel,68,0,,10.0
-nabytok,stol,57,0,,8.38
-deti,kocik,53,0,,7.79
-deti,detska,52,0,,7.65
-nabytok,odvoz,5,1,0.02,7.22
-stroje,vozik,43,0,,6.32
-nabytok,suprava,41,0,,6.03
-nabytok,sedacia suprava,40,0,,5.88
-nabytok,sedacia,40,0,,5.88
-hudba,best,4,1,0.01,5.84
-deti,cybex,37,0,,5.44
-stroje,vysokozdvizny,36,0,,5.29
-stroje,vysokozdvizny vozik,36,0,,5.29
-stroje,zetor,33,0,,4.85
-deti,detsky,29,0,,4.26
-hudba,yamaha,29,0,,4.26
-deti,postielka,28,0,,4.12
-nabytok,stolik,26,0,,3.82
-elektro,airpods,26,0,,3.82
-elektro,samsung,25,0,,3.68
-deti,lego,25,0,,3.68
-nabytok,gauc,24,0,,3.53
-sport,horsky,23,0,,3.38
-sport,cube,23,0,,3.38
-nabytok,stolicky,22,0,,3.24
-stroje,traktor,22,0,,3.24
-deti,autosedacka,22,0,,3.24
-deti,bicykel,22,0,,3.24
-stroje,nakladac,21,0,,3.09
-sport,horsky bicykel,21,0,,3.09
-hudba,gitaru,21,0,,3.09
-nabytok,kreslo,19,0,,2.79
-nabytok,sedacka,19,0,,2.79
-stroje,pila,19,0,,2.79
-elektro,pracka,19,0,,2.79
-deti,detske,19,0,,2.79
-elektro,led,18,0,,2.65
-elektro,smart,18,0,,2.65
-nabytok,jedalensky,17,0,,2.5
-nabytok,konferencny,17,0,,2.5
-stroje,jcb,17,0,,2.5
-sport,ebike,17,0,,2.5
-sport,velkost,17,0,,2.5
-hudba,akordeon,17,0,,2.5
-hudba,platne,17,0,,2.5
-dom,hrozno,16,0,,2.35
-nabytok,kuchynska,16,0,,2.35
-elektro,philips,16,0,,2.35
-elektro,whirlpool,16,0,,2.35
-sport,ctm,16,0,,2.35
-deti,detsky bicykel,16,0,,2.35
-stroje,lpg,16,0,,2.35
-dom,plastove,15,0,,2.21
-nabytok,jedalensky stol,15,0,,2.21
-nabytok,nabytok,15,0,,2.21
-deti,romer,15,0,,2.21
-deti,postel,15,0,,2.21
-hudba,gitara,15,0,,2.21
-hudba,dvd,15,0,,2.21
-dom,dvere,14,0,,2.06
-dom,kosacka,14,0,,2.06
-nabytok,kuchynska linka,14,0,,2.06
-nabytok,linka,14,0,,2.06
-nabytok,konferencny stolik,14,0,,2.06
-sport,carbon,14,0,,2.06
-deti,britax,14,0,,2.06
-deti,detska postielka,14,0,,2.06
-dom,malotraktor,13,0,,1.91
-stroje,jungheinrich,13,0,,1.91
-stroje,mth,13,0,,1.91
-elektro,vysavac,13,0,,1.91
-sport,specialized,13,0,,1.91
-deti,britax romer,13,0,,1.91
-hudba,piano,13,0,,1.91
-hudba,husle,13,0,,1.91
-nabytok,retro,13,0,,1.91
-elektro,chladnicka,13,0,,1.91
-deti,vel,13,0,,1.91
-hudba,weltmeister,13,0,,1.91
-nabytok,rohova,12,0,,1.76
-nabytok,podnoze,12,0,,1.76
-nabytok,cierne,12,0,,1.76
-elektro,sony,12,0,,1.76
-sport,kukirin,12,0,,1.76
-sport,bauer,12,0,,1.76
-stroje,gastro,12,0,,1.76
-deti,bunda,12,0,,1.76
-nabytok,stena,11,0,,1.62
-nabytok,sedenie,11,0,,1.62
-nabytok,kovove podnoze,11,0,,1.62
-nabytok,kovove,11,0,,1.62
-elektro,bosch,11,0,,1.62
-sport,stereo,11,0,,1.62
-sport,cube stereo,11,0,,1.62
-deti,odrazadlo,11,0,,1.62
-hudba,fender,11,0,,1.62
-hudba,klavir,11,0,,1.62
-stroje,nerezovy,11,0,,1.62
-elektro,robot,11,0,,1.62
-deti,velkost,11,0,,1.62
-deti,zimna,11,0,,1.62
-dom,zahradny,10,0,,1.47
-dom,kontajner,10,0,,1.47
-dom,domcek,10,0,,1.47
-dom,kotol,10,0,,1.47
-dom,betonove,10,0,,1.47
-nabytok,manzelska postel,10,0,,1.47
-nabytok,manzelska,10,0,,1.47
-stroje,kubota,10,0,,1.47
-sport,vel,10,0,,1.47
-sport,pas,10,0,,1.47
-deti,2v1,10,0,,1.47
-hudba,bicie,10,0,,1.47
-hudba,akusticku,10,0,,1.47
-dom,cerpadlo,10,0,,1.47
-elektro,pracku,10,0,,1.47
-nabytok,komoda,9,0,,1.32
-nabytok,masiv,9,0,,1.32
-nabytok,zahradne,9,0,,1.32
-nabytok,ikea,9,0,,1.32
-stroje,minibager,9,0,,1.32
-stroje,motor,9,0,,1.32
-stroje,nosnost,9,0,,1.32
-stroje,vzv,9,0,,1.32
-elektro,sluchadla,9,0,,1.32
-elektro,pioneer,9,0,,1.32
-elektro,bluetooth,9,0,,1.32
-sport,trek,9,0,,1.32
-sport,shimano,9,0,,1.32
-sport,bezecky,9,0,,1.32
-nabytok,skrina,9,0,,1.32
-nabytok,skrinka,9,0,,1.32
-nabytok,zostava,9,0,,1.32
-elektro,kuchynsky robot,9,0,,1.32
-elektro,kuchynsky,9,0,,1.32
-sport,merida,9,0,,1.32
-deti,zimne,9,0,,1.32
-deti,duplo,9,0,,1.32
-deti,lego duplo,9,0,,1.32
-hudba,akordeon weltmeister,9,0,,1.32
-hudba,cdcka,9,0,,1.32
-dom,dlazba,8,0,,1.18
-dom,novita,8,0,,1.18
-dom,trativod,8,0,,1.18
-nabytok,supravu,8,0,,1.18
-nabytok,detska,8,0,,1.18
-nabytok,zahradne sedenie,8,0,,1.18
-nabytok,rozkladaci,8,0,,1.18
-nabytok,tvar cierne,8,0,,1.18
-nabytok,tvar,8,0,,1.18
-nabytok,pisaci,8,0,,1.18
-nabytok,rozkladacia,8,0,,1.18
-nabytok,matracom,8,0,,1.18
-stroje,deere,8,0,,1.18
-stroje,john,8,0,,1.18
-stroje,john deere,8,0,,1.18
-stroje,vozik jungheinrich,8,0,,1.18
-elektro,apple,8,0,,1.18
-elektro,svietidlo,8,0,,1.18
-elektro,kavovar,8,0,,1.18
-elektro,eta,8,0,,1.18
-elektro,gorenje,8,0,,1.18
-sport,zaruka,8,0,,1.18
-sport,elektrobicykel,8,0,,1.18
-sport,kolobezku,8,0,,1.18
-sport,bateria,8,0,,1.18
-sport,kolobezka,8,0,,1.18
-sport,elektricka kolobezka,8,0,,1.18
-sport,elektricka,8,0,,1.18
-sport,bezecky pas,8,0,,1.18
-deti,stokke,8,0,,1.18
-deti,vajicko,8,0,,1.18
-deti,isofix,8,0,,1.18
-deti,stolicka,8,0,,1.18
-hudba,mikrofon,8,0,,1.18
-hudba,akusticku gitaru,8,0,,1.18
-nabytok,pohovka,8,0,,1.18
-nabytok,drevene,8,0,,1.18
-deti,detsku,8,0,,1.18
-hudba,bas,8,0,,1.18
-dom,lesenie,7,0,,1.03
-dom,vavrinovec,7,0,,1.03
-dom,bazen,7,0,,1.03
-nabytok,stol stolicky,7,0,,1.03
-nabytok,suprava gauc,7,0,,1.03
-nabytok,kuchyna,7,0,,1.03
-nabytok,stolove,7,0,,1.03
-nabytok,sedaciu supravu,7,0,,1.03
-nabytok,sedaciu,7,0,,1.03
-nabytok,pisaci stol,7,0,,1.03
-stroje,pasovy,7,0,,1.03
-stroje,triplex,7,0,,1.03
-stroje,dph,7,0,,1.03
-stroje,cat,7,0,,1.03
-elektro,airpods max,7,0,,1.03
-elektro,max,7,0,,1.03
-elektro,rura,7,0,,1.03
-elektro,stereo,7,0,,1.03
+nabytok,postel,68,1,0.02,96.74
+nabytok,retro,20,1,0.08,26.88
+elektro,kavovar,13,1,0.08,17.48
+nabytok,matrac,11,1,0.02,15.65
+nabytok,stolove,8,1,0.08,10.75
+sport,bicykel,69,0,,10.0
+deti,kocik,66,0,,9.57
+nabytok,stol,65,0,,9.42
+deti,detska,59,0,,8.55
+nabytok,odvoz,6,1,0.02,8.54
+hudba,best,5,1,0.01,7.19
+nabytok,hodiny,5,1,0.08,6.72
+elektro,krups,5,1,0.08,6.72
+nabytok,suprava,44,0,,6.38
+deti,lego,44,0,,6.38
+nabytok,sedacia suprava,43,0,,6.23
+nabytok,sedacia,43,0,,6.23
+stroje,vozik,43,0,,6.23
+deti,detsky,42,0,,6.09
+deti,cybex,40,0,,5.8
+nabytok,stolik,39,0,,5.65
+stroje,vysokozdvizny,36,0,,5.22
+stroje,vysokozdvizny vozik,36,0,,5.22
+deti,bicykel,35,0,,5.07
+stroje,traktor,33,0,,4.78
+stroje,zetor,33,0,,4.78
+elektro,samsung,30,0,,4.35
+deti,postielka,30,0,,4.35
+hudba,yamaha,29,0,,4.2
+nabytok,gauc,28,0,,4.06
+hudba,gitaru,28,0,,4.06
+deti,detske,28,0,,4.06
+elektro,kavovar krups,3,1,0.08,4.03
+elektro,airpods,27,0,,3.91
+nabytok,stolicky,26,0,,3.77
+deti,autosedacka,26,0,,3.77
+nabytok,konferencny,25,0,,3.62
+stroje,jcb,25,0,,3.62
+deti,detsky bicykel,25,0,,3.62
+nabytok,kreslo,24,0,,3.48
+elektro,led,24,0,,3.48
+elektro,pracka,23,0,,3.33
+sport,horsky,23,0,,3.33
+sport,cube,23,0,,3.33
+nabytok,jedalensky,22,0,,3.19
+nabytok,sedacka,22,0,,3.19
+nabytok,konferencny stolik,22,0,,3.19
+stroje,nakladac,22,0,,3.19
+sport,horsky bicykel,21,0,,3.04
+elektro,philips,20,0,,2.9
+deti,duplo,20,0,,2.9
+deti,lego duplo,20,0,,2.9
+stroje,pila,19,0,,2.75
+deti,vel,19,0,,2.75
+nabytok,jedalensky stol,18,0,,2.61
+stroje,bager,18,0,,2.61
+elektro,smart,18,0,,2.61
+hudba,akordeon,18,0,,2.61
+nabytok,kuchynska,17,0,,2.46
+elektro,whirlpool,17,0,,2.46
+sport,ebike,17,0,,2.46
+sport,velkost,17,0,,2.46
+deti,britax,17,0,,2.46
+deti,romer,17,0,,2.46
+deti,postel,17,0,,2.46
+hudba,gitara,17,0,,2.46
+deti,bunda,17,0,,2.46
+hudba,platne,17,0,,2.46
+dom,hrozno,16,0,,2.32
+nabytok,nabytok,16,0,,2.32
+elektro,sony,16,0,,2.32
+sport,ctm,16,0,,2.32
+stroje,lpg,16,0,,2.32
+hudba,dvd,16,0,,2.32
+dom,plastove,15,0,,2.17
+nabytok,rohova,15,0,,2.17
+deti,britax romer,15,0,,2.17
+deti,detska postielka,15,0,,2.17
+hudba,piano,15,0,,2.17
+hudba,husle,15,0,,2.17
+dom,dvere,14,0,,2.03
+dom,kosacka,14,0,,2.03
+nabytok,kuchynska linka,14,0,,2.03
+nabytok,linka,14,0,,2.03
+elektro,bosch,14,0,,2.03
+elektro,vysavac,14,0,,2.03
+sport,carbon,14,0,,2.03
+nabytok,skrina,14,0,,2.03
+elektro,chladnicka,14,0,,2.03
+hudba,weltmeister,14,0,,2.03
+dom,malotraktor,13,0,,1.88
+stroje,jungheinrich,13,0,,1.88
+stroje,mth,13,0,,1.88
+sport,specialized,13,0,,1.88
+deti,2v1,13,0,,1.88
+hudba,fender,13,0,,1.88
+elektro,repro,13,0,,1.88
+elektro,robot,13,0,,1.88
+deti,tenisky,13,0,,1.88
+deti,velkost,13,0,,1.88
+deti,zimna,13,0,,1.88
+nabytok,podnoze,12,0,,1.74
+nabytok,stena,12,0,,1.74
+nabytok,sedenie,12,0,,1.74
+nabytok,manzelska postel,12,0,,1.74
+nabytok,manzelska,12,0,,1.74
+nabytok,cierne,12,0,,1.74
+nabytok,ikea,12,0,,1.74
+elektro,sluchadla,12,0,,1.74
+sport,kukirin,12,0,,1.74
+sport,bauer,12,0,,1.74
+deti,odrazadlo,12,0,,1.74
+hudba,akusticku,12,0,,1.74
+nabytok,skrinka,12,0,,1.74
+stroje,gastro,12,0,,1.74
+nabytok,detska,11,0,,1.59
+nabytok,kovove podnoze,11,0,,1.59
+nabytok,kovove,11,0,,1.59
+elektro,svietidlo,11,0,,1.59
+elektro,pioneer,11,0,,1.59
+elektro,bluetooth,11,0,,1.59
+sport,cube stereo,11,0,,1.59
+sport,stereo,11,0,,1.59
+hudba,klavir,11,0,,1.59
+nabytok,zostava,11,0,,1.59
+stroje,nerezovy,11,0,,1.59
+elektro,pracku,11,0,,1.59
+elektro,kuchynsky robot,11,0,,1.59
+elektro,kuchynsky,11,0,,1.59
+stroje,traktor bager,11,0,,1.59
+dom,zahradny,10,0,,1.45
+dom,kontajner,10,0,,1.45
+dom,domcek,10,0,,1.45
+dom,kotol,10,0,,1.45
+dom,betonove,10,0,,1.45
+nabytok,komoda,10,0,,1.45
+nabytok,masiv,10,0,,1.45
+nabytok,zahradne,10,0,,1.45
+stroje,kubota,10,0,,1.45
+elektro,apple,10,0,,1.45
+sport,trek,10,0,,1.45
+sport,vel,10,0,,1.45
+sport,pas,10,0,,1.45
+deti,vajicko,10,0,,1.45
+deti,stolicka,10,0,,1.45
+hudba,bicie,10,0,,1.45
+hudba,akusticku gitaru,10,0,,1.45
+dom,cerpadlo,10,0,,1.45
+nabytok,zahradne sedenie,9,0,,1.3
+nabytok,rozkladaci,9,0,,1.3
+nabytok,pisaci,9,0,,1.3
+nabytok,rozkladacia,9,0,,1.3
+stroje,minibager,9,0,,1.3
+stroje,nosnost,9,0,,1.3
+stroje,motor,9,0,,1.3
+stroje,vzv,9,0,,1.3
+elektro,reproduktory,9,0,,1.3
+elektro,eta,9,0,,1.3
+elektro,jbl,9,0,,1.3
+sport,shimano,9,0,,1.3
+sport,bezecky,9,0,,1.3
+deti,auticko,9,0,,1.3
+nabytok,pohovka,9,0,,1.3
+sport,merida,9,0,,1.3
+deti,detsku,9,0,,1.3
+deti,zimna bunda,9,0,,1.3
+deti,zimne,9,0,,1.3
+deti,topanky,9,0,,1.3
+hudba,akordeon weltmeister,9,0,,1.3
+hudba,cdcka,9,0,,1.3
+hudba,bas,9,0,,1.3
+elektro,redukcia,9,0,,1.3
+dom,dlazba,8,0,,1.16
+dom,novita,8,0,,1.16
+dom,trativod,8,0,,1.16
+nabytok,supravu,8,0,,1.16
+nabytok,tvar cierne,8,0,,1.16
+nabytok,tvar,8,0,,1.16
+nabytok,pisaci stol,8,0,,1.16
+nabytok,matracom,8,0,,1.16
+stroje,pasovy,8,0,,1.16
+stroje,deere,8,0,,1.16
+stroje,john deere,8,0,,1.16
+stroje,john,8,0,,1.16
+stroje,vozik jungheinrich,8,0,,1.16
+elektro,zosilnovac,8,0,,1.16
+elektro,gorenje,8,0,,1.16
+elektro,roboticky,8,0,,1.16
+elektro,audio,8,0,,1.16
+sport,zaruka,8,0,,1.16
+sport,elektrobicykel,8,0,,1.16
+sport,kolobezku,8,0,,1.16
+sport,bateria,8,0,,1.16
+sport,kolobezka,8,0,,1.16
+sport,elektricka,8,0,,1.16
+sport,elektricka kolobezka,8,0,,1.16
+sport,bezecky pas,8,0,,1.16
+deti,stokke,8,0,,1.16
+deti,isofix,8,0,,1.16
+hudba,mikrofon,8,0,,1.16
