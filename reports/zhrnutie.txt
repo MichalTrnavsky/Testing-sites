@@ -1,6 +1,6 @@
 Zhrnutie: Záhrada  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    0  (≈ 0.0/deň)
+  Nové inzeráty:    0  (≈ 0.0/deň, za sledované obdobie)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             bez cien
@@ -11,7 +11,7 @@ Zhrnutie: Záhrada  —  posledných 30 dní
 
 Zhrnutie: Dom a záhrada  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 3.3/deň)
+  Nové inzeráty:    100  (≈ 100.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 202 / max 918949502650 € (rozptyl 918949502649 €)
@@ -22,32 +22,32 @@ Zhrnutie: Dom a záhrada  —  posledných 30 dní
      4. vari                         3×
      5. panely                       3×
      6. virivka                      2×
-     7. mineralna                    2×
-     8. vata                         2×
+     7. vata                         2×
+     8. mineralna                    2×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Nábytok  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 3.3/deň)
+  Nové inzeráty:    100  (≈ 100.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 10 / medián 400 / max 5320926120 € (rozptyl 5320926110 €)
   TOP produkty (podľa výskytu v nadpisoch):
      1. stol                         14×
-     2. suprava                      12×
+     2. sedacia                      12×
      3. sedacia suprava              12×
-     4. sedacia                      12×
+     4. suprava                      12×
      5. postel                       10×
-     6. kuchynska                    8×
-     7. linka                        8×
-     8. kuchynska linka              8×
+     6. kuchynska linka              8×
+     7. kuchynska                    8×
+     8. linka                        8×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Stroje  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    101  (≈ 3.4/deň)
+  Nové inzeráty:    101  (≈ 98.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 25 / medián 5000 / max 74900 € (rozptyl 74875 €)
@@ -65,7 +65,7 @@ Zhrnutie: Stroje  —  posledných 30 dní
 
 Zhrnutie: Elektro  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 3.3/deň)
+  Nové inzeráty:    100  (≈ 99.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 6 / medián 172 / max 949820080270 € (rozptyl 949820080264 €)
@@ -83,7 +83,7 @@ Zhrnutie: Elektro  —  posledných 30 dní
 
 Zhrnutie: Šport  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 3.3/deň)
+  Nové inzeráty:    100  (≈ 98.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 16 / medián 900 / max 75245511000 € (rozptyl 75245510984 €)
@@ -101,7 +101,7 @@ Zhrnutie: Šport  —  posledných 30 dní
 
 Zhrnutie: Detský bazár  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 3.3/deň)
+  Nové inzeráty:    100  (≈ 100.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 10 / medián 162 / max 911331114200 € (rozptyl 911331114190 €)
@@ -119,7 +119,7 @@ Zhrnutie: Detský bazár  —  posledných 30 dní
 
 Zhrnutie: Hudba  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    100  (≈ 3.3/deň)
+  Nové inzeráty:    100  (≈ 100.0/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 500 / max 905207899750 € (rozptyl 905207899749 €)

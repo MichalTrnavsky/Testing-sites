@@ -15,15 +15,15 @@ Nábytok      gauc                     5      -      1399       -           0   
 Nábytok      sedenie                  7      -       980       -           0    29.8
 Detský bazár cybex                   20      -       299       -           0    26.0
 Nábytok      zahradne                 6      -       985       -           0    25.7
-Nábytok      teak                     5      -       980       -           0    21.3
 Nábytok      teak zahradne            5      -       980       -           0    21.3
 Nábytok      zahradne sedenie         5      -       980       -           0    21.3
+Nábytok      teak                     5      -       980       -           0    21.3
 Nábytok      postel                  10      -       350     600           0    15.2
 Šport        bicykel                 14      -       490     420           1    14.9
 Hudba        yamaha                   8      -       422       -           0    14.7
 Detský bazár kocik                   23      -       250     250           1    12.5
 Nábytok      stol                    14      -       190     450           0    11.6
-Detský bazár 2v1                      5      -       329       -           0     7.2
+Detský bazár 2v1                      5      -       259       -           0     5.6
 Nábytok      kreslo                   5      -       250       -           0     5.4
 Elektro      apple                    5      -       250       -           0     5.4
 Nábytok      stolicky                 5      -       190       -           0     4.1
