@@ -178,6 +178,24 @@ class Store:
             ).fetchall()
         return self.conn.execute("SELECT * FROM ads").fetchall()
 
+    def recent_deletions(self, since_iso: str | None = None, limit: int = 1500):
+        """Nedávno zmazané (pravdepodobne predané) inzeráty, najnovšie prvé.
+
+        ``since_iso`` orezáva na zmazania od daného času (napr. začiatok okna);
+        ``lifespan_hours`` = koľko hodín inzerát žil (deleted_at − first_seen)."""
+        sql = ("""SELECT ad_id, category, subcat, subcat_id, title, url, price_eur,
+                         first_seen, deleted_at,
+                         (julianday(deleted_at) - julianday(first_seen)) * 24.0 AS lifespan_hours
+                  FROM ads
+                  WHERE status = 'deleted' AND deleted_at IS NOT NULL""")
+        params: list = []
+        if since_iso:
+            sql += " AND deleted_at >= ?"
+            params.append(since_iso)
+        sql += " ORDER BY deleted_at DESC LIMIT ?"
+        params.append(limit)
+        return self.conn.execute(sql, params).fetchall()
+
     # ---- retencia (orezanie starých dát) ------------------------------
     def prune_older_than(self, cutoff_iso: str) -> int:
         """Zmaže inzeráty prvýkrát videné pred ``cutoff_iso``.
