@@ -487,7 +487,21 @@ function renderPredaneList(p,rows,winLabel){
 }
 
 /* ---------- ZHRNUTIE ---------- */
+function chipRow(title,pairs){
+  const box=el("div",{});
+  box.append(el("div",{class:"k",style:"margin:10px 0 6px;text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--muted);font-weight:600"},title));
+  const chips=el("div",{class:"chips"});
+  if(pairs&&pairs.length) pairs.slice(0,8).forEach(([ph,c])=>
+    chips.append(el("span",{class:"chip"},ph+" ",el("b",{},"×"+c))));
+  else chips.append(el("span",{class:"chip"},"zatiaľ málo dát"));
+  box.append(chips); return box;
+}
+function subBreakdown(catKey){          // rozpad kategórie podľa podkategórií (sčítava sa)
+  return (DATA.summaries||[]).filter(x=>x.category===catKey && x.subcategory)
+    .sort((a,b)=>b.new_total-a.new_total);
+}
 function renderZhrnutie(p){
+  const W=DATA.window_days;
   let sums;
   if(!F.cat){
     // bez kategórie: celokategóriové zhrnutia (subcategory == null)
@@ -500,30 +514,39 @@ function renderZhrnutie(p){
       sums=(DATA.summaries||[]).filter(s=>s.category===F.cat && !s.subcategory);
   }
   showCount(sums.length);
+  p.append(el("div",{class:"note"},
+    `Všetky čísla sú za okno ${W} dní. „Nové spolu“ sa rozpadá podľa podkategórií `
+    +"a dá sa sčítať. „Typy / modely“ sú výskyty slov v nadpisoch – jeden inzerát "
+    +"môže padnúť do viacerých, takže sa NEsčítavajú (sú to len najčastejšie pojmy)."));
   const grid=el("div",{class:"cards"});
   sums.forEach(s=>{
-    const heading=s.subcategory?s.subcategory:lab(s.category);
-    const card=el("div",{class:"card"},el("h3",{},heading));
-    if(s.subcategory) card.append(el("div",{class:"sub",style:"color:var(--muted);font-size:.72rem;margin:-6px 0 8px"},lab(s.category)));
+    const isCat=!s.subcategory;
+    const card=el("div",{class:"card"},el("h3",{},s.subcategory||lab(s.category)));
+    if(s.subcategory) card.append(el("div",{style:"color:var(--muted);font-size:.72rem;margin:-6px 0 8px"},lab(s.category)));
     const stats=el("div",{class:"stats"});
     stats.append(
+      stat("nové spolu",num(s.new_total),`za ${W} dní`),
       stat("nové / deň",num(s.new_per_day),
         s.rate_basis==="posted_date"?"z inzerátov":(s.rate_basis==="today"?"dnes, zatiaľ":"treba viac dní")),
-      stat("zmazané / deň",num(s.deleted_per_day),s.deleted_total?"":"čaká na dáta"),
+      stat("predané spolu",num(s.deleted_total),s.deleted_total?`za ${W} dní`:"čaká na dáta"),
       stat("cena medián",s.price_median==null?"–":eur(s.price_median),
-        s.price_min==null?"":`${eur(s.price_min)}–${eur(s.price_max)}`),
-      stat("životnosť",s.median_lifespan_days==null?"–":num(s.median_lifespan_days)+" d",""));
+        s.price_min==null?"":`${eur(s.price_min)}–${eur(s.price_max)}`));
     card.append(stats);
-    const chips=el("div",{class:"chips"});
-    (s.top_products||[]).slice(0,8).forEach(([ph,c])=>
-      chips.append(el("span",{class:"chip"},ph+" ",el("b",{},"×"+c))));
-    if(!s.top_products||!s.top_products.length) chips.append(el("span",{class:"chip"},"zatiaľ málo dát"));
-    card.append(el("div",{class:"stat"},el("div",{class:"k",style:"margin-bottom:6px"},"Top typy v ponuke")),chips);
-    if(s.top_products_sold&&s.top_products_sold.length){
-      const sc=el("div",{class:"chips"});
-      s.top_products_sold.slice(0,8).forEach(([ph,c])=>
-        sc.append(el("span",{class:"chip"},ph+" ",el("b",{},"×"+c))));
-      card.append(el("div",{class:"stat"},el("div",{class:"k",style:"margin:10px 0 6px"},"Top predané typy")),sc);
+    if(isCat){
+      const subs=subBreakdown(s.category);
+      card.append(el("div",{class:"k",style:"margin:6px 0 6px;text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--muted);font-weight:600"},"Podkategórie — nové za okno"));
+      if(subs.length){
+        const max=Math.max(...subs.map(x=>x.new_total),1);
+        subs.slice(0,15).forEach(x=>card.append(el("div",{class:"row"},
+          el("div",{class:"name"},x.subcategory),
+          el("div",{class:"track"},el("div",{class:"fill",style:`width:${x.new_total/max*100}%`})),
+          el("div",{class:"val"},num(x.new_total)))));
+      } else card.append(el("div",{style:"color:var(--muted);font-size:.8rem"},"bez podkategórií"));
+    } else {
+      const g=genericSet(s);
+      card.append(chipRow("Typy / modely v ponuke", meaningful(s.top_products,g)));
+      const sold=meaningful(s.top_products_sold,g);
+      if(sold.length) card.append(chipRow("Predané typy", sold));
     }
     grid.append(card);
   });
