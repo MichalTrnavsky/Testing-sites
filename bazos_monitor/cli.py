@@ -19,6 +19,7 @@ from .analyze import (
     format_report,
     format_summary,
     summarize,
+    subcats_with_data,
     write_csv,
 )
 from .categories import ALL_CATEGORIES, DEFAULT_EXCLUDED, resolve_categories
@@ -119,6 +120,7 @@ def cmd_zhrnutie(args) -> int:
             keyword=args.keyword,
             top_products=args.top,
             max_age_days=(args.max_age if args.max_age and args.max_age > 0 else None),
+            subcategory=getattr(args, "subcat", None),
         )
         print(format_summary(s))
     finally:
@@ -141,8 +143,17 @@ def cmd_export(args) -> int:
         arb = analyze_arbitrage(store, category=None, window_days=args.window,
                                 min_volume=2, min_used_price=1.0,
                                 max_used_price=None, max_age_days=age, top=3000)
-        summaries = [summarize(store, category=c.key, window_days=args.window,
-                               top_products=12, max_age_days=age) for c in cats]
+        # zhrnutia: celá kategória + každá podkategória s dátami
+        summaries = []
+        for c in cats:
+            summaries.append(summarize(store, category=c.key, window_days=args.window,
+                                       top_products=12, max_age_days=age))
+            for sub, _cnt in subcats_with_data(store, c.key, args.window, age):
+                if sub == "(nezaradené)":
+                    continue
+                summaries.append(summarize(store, category=c.key, window_days=args.window,
+                                           top_products=12, max_age_days=age,
+                                           subcategory=sub))
         data = {
             "generated_at": datetime.utcnow().isoformat() + "Z",
             "window_days": args.window,
@@ -232,6 +243,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     pz = sub.add_parser("zhrnutie", help="denné prírastky/úbytky, cena, top produkty")
     pz.add_argument("--category", required=True, help="kategória (napr. deti)")
+    pz.add_argument("--subcat", help="podkategória (napr. Kočíky)")
     pz.add_argument("--keyword", help="segment v kategórii (napr. kocik)")
     pz.add_argument("--window", type=int, default=30, help="okno v dňoch (default 30)")
     pz.add_argument("--max-age", type=float, default=21.0,
