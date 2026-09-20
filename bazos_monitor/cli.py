@@ -19,6 +19,7 @@ from .analyze import (
     format_report,
     format_summary,
     keyphrases,
+    price_spreads,
     summarize,
     subcats_with_data,
     write_csv,
@@ -168,21 +169,25 @@ def cmd_export(args) -> int:
             # kľúčové slová pre súhrn „za obdobie" na strane dashboardu
             "keywords": sorted(set(keyphrases(r["title"] or "")))[:20],
         } for r in dels]
+        spreads = price_spreads(store, window_days=args.window, max_age_days=age, min_n=4)
+        from .brands import BRANDS
         data = {
             "generated_at": datetime.utcnow().isoformat() + "Z",
             "window_days": args.window,
             "max_age_days": age,
             "categories": [{"key": c.key, "label": c.label} for c in cats],
+            "brands": sorted(BRANDS),
             "demand": [asdict(s) for s in demand],
             "arbitrage": [asdict(s) for s in arb],
             "summaries": [asdict(s) for s in summaries],
             "deletions": deletions,
+            "price_spread": [asdict(s) for s in spreads],
         }
         with open(args.out, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
         print(f"JSON zapísané: {args.out} "
               f"(dopyt={len(demand)}, arbitráž={len(arb)}, "
-              f"predané={len(deletions)}, kategórie={len(cats)})")
+              f"predané={len(deletions)}, modely={len(spreads)}, kategórie={len(cats)})")
     finally:
         store.close()
     return 0
