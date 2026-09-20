@@ -3,56 +3,56 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
-Stroje       zetor                  182    0.1      1300       -           0   721.9
-Stroje       pila                    50    0.1      2900       -           0   413.5
-Dom a záhrad malotraktor             68    0.1      1060       -           0   219.3
-Nábytok      spotrebici              38    0.6      2680       -           0   207.3
-Stroje       traktor                 64    0.8      1650       -           0   196.4
-Nábytok      kozena                  88    0.7       945       -           0   163.3
-Šport        cube                    22    0.3      2400       -           0   132.2
-Nábytok      postel                 291    0.1       144     388           0   119.9
-Nábytok      souprava                55    0.7       994       -           0   107.4
-Nábytok      sedaci                  53    0.7       994       -           0   103.5
-Nábytok      sedaci souprava         52    0.7       994       -           0   101.5
-Šport        hybrid                  14    0.3      2825       -           0    99.0
-Nábytok      linka spotrebici        18    0.6      2539       -           0    93.0
-Šport        bosch                   27    0.2      1175       -           0    87.1
-Nábytok      kozena sedaci           44    0.7       994       -           0    85.9
-Stroje       doska                   18    0.1      2500    1350           1    66.0
-Dom a záhrad kosacka                120    0.2       170    1480           0    55.6
-Šport        bicykel                192    0.1       100     800           0    55.5
-Šport        cestny                  27    0.3       758       -           0    51.2
-Stroje       vibracna doska          17    0.1      2050    1350           1    51.1
-Nábytok      linka                   65    0.6      2264    1390           5    49.9
-Dom a záhrad kotol                   61    0.2       500    2200           1    42.1
-Elektro      pracka                 115    0.1       119     472           0    41.5
-Šport        cestny bicykel          22    0.3       750       -           0    41.3
-Nábytok      luxusni                 20    0.7      1008       -           0    39.6
-Stroje       vibracna                20    0.1      1350    1350           1    39.6
-Dom a záhrad agzat                   57    0.1       220       -           0    38.2
-Dom a záhrad vari                    91    0.1       250     120           1    34.6
-Stroje       frezka                   7    0.1      1690       -           0    33.7
-Dom a záhrad pelety                  10    0.2      1175       -           0    32.5
-Elektro      chladnicka              77    0.2       150    1100           0    31.7
-Stroje       vlecka                  26    0.1       400       -           0    31.7
-Nábytok      dubova                   6    0.5      2370       -           0    31.3
-Nábytok      kresla                  41    0.3       290       -           0    31.0
-Detský bazár kocik                  255    0.2       130     200           2    30.4
-Dom a záhrad bazena                  11    0.1       890       -           0    29.6
-Šport        pas                     33    0.3       329       -           0    28.1
-Šport        ctm                     62    0.4       190       -           0    28.0
-Nábytok      dubova linka             5    0.5      2477       -           0    27.3
-Nábytok      gauc                    37    0.3       275     500           0    24.8
-Dom a záhrad freza                   25    0.3       375       -           0    24.4
-Šport        bicykel                304    0.3       150     200           4    23.6
-Šport        bezecky                 25    0.3       350       -           0    22.6
-Nábytok      obyvacia                51    0.1       154       -           0    22.5
-Detský bazár thule                   21    0.2       400       -           0    22.4
-Detský bazár cybex                   83    0.2       285     300           2    21.7
-Nábytok      kuchyna                 15    0.2      1600    1193           2    21.6
-Šport        elektrobicykel          44      -      1470       -           0    21.3
-Nábytok      zahradne                21    0.1       350       -           0    21.0
-Nábytok      stena                   53    0.2       150       -           0    20.9
+Stroje       pila                    51    0.1      2300       -           0   274.1
+Stroje       zetor                  233    0.1       450       -           0   262.1
+Dom a záhrad malotraktor             72    0.1      1060       -           0   190.3
+Stroje       traktor                 74    0.8      1650       -           0   186.1
+Nábytok      spotrebici              38    1.0      2680       -           0   138.9
+Šport        cube                    23    0.3      2499       -           0   117.9
+Nábytok      kozena                  89    1.0       944       -           0   114.7
+Nábytok      postel                 318    0.1       140     600           0   104.0
+Šport        hybrid                  15    0.3      2750       -           0    84.6
+Nábytok      souprava                55    1.0       994       -           0    74.6
+Šport        cube stereo             12    0.3      3000       -           0    73.8
+Šport        stereo                  12    0.3      3000       -           0    73.8
+Nábytok      sedaci                  53    1.0       994       -           0    71.9
+Nábytok      linka spotrebici        18    0.7      2539       -           0    70.8
+Nábytok      sedaci souprava         52    1.0       994       -           0    70.5
+Šport        bosch                   28    0.2      1100       -           0    69.3
+Nábytok      kozena sedaci           44    1.0       994       -           0    59.7
+Dom a záhrad kosacka                127    0.2       200    1480           0    56.7
+Stroje       doska                   18    0.1      2500    1350           1    54.1
+Šport        bicykel                220    0.1       100     800           0    52.1
+Nábytok      venkovska               12    1.0      2640       -           0    43.2
+Stroje       vibracna doska          17    0.1      2050    1350           1    41.9
+Dom a záhrad kotol                   65    0.2       500    2200           1    36.8
+Elektro      pracka                 125    0.1       117     472           0    36.4
+Šport        cestny                  29    0.3       607       -           0    36.1
+Nábytok      linka                   70    1.0      2263    1390           5    36.0
+Nábytok      masivu                   9    1.0      2799       -           0    34.4
+Nábytok      masivu spotrebici        9    1.0      2799       -           0    34.4
+Nábytok      venkovska linka          9    1.0      2680       -           0    32.9
+Stroje       vlecka                  29    0.1       450       -           0    32.6
+Stroje       vibracna                20    0.1      1350    1350           1    32.4
+Elektro      chladnicka              95    0.2       150    1100           0    32.1
+Dom a záhrad agzat                   61    0.1       210       -           0    31.9
+Nábytok      linka masivu             8    1.0      2822       -           0    30.8
+Šport        cestny bicykel          24    0.3       594       -           0    29.2
+Dom a záhrad vari                    97    0.1       235     120           1    28.4
+Detský bazár kocik                  297    0.2       125     200           2    27.9
+Šport        slx                      5    0.3      2700       -           0    27.7
+Stroje       frezka                   7    0.1      1690       -           0    27.6
+Nábytok      luxusni                 20    1.0      1008       -           0    27.5
+Dom a záhrad pelety                  10    0.2      1175       -           0    26.6
+Nábytok      kresla                  44    0.3       275       -           0    25.8
+Nábytok      rohova kozena           19    1.0       994       -           0    25.8
+Dom a záhrad bazena                  11    0.1       890       -           0    24.2
+Šport        bicykel                371    0.3       150     200           4    23.6
+Dom a záhrad freza                   27    0.3       400       -           0    23.1
+Nábytok      dubova                   6    0.7      2370       -           0    22.1
+Šport        pas                     34    0.3       292       -           0    21.0
+Nábytok      zahradne                23    0.1       370       -           0    19.9
+Detský bazár cybex                   92    0.2       285     300           2    19.7
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
