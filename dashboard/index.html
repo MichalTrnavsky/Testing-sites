@@ -142,7 +142,7 @@
 const CATLABEL = {};
 let DATA = null, VIEW = "prilezitosti";
 const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15,
-  groupBy:"subcat", soldWin:7, soldGroup:"subcat" };
+  groupBy:"subcat", soldWin:7, soldGroup:"subcat", prilLevel:"brand" };
 
 const $ = (s,el=document)=>el.querySelector(s);
 const el = (t,a={},...kids)=>{const n=document.createElement(t);
@@ -158,6 +158,7 @@ async function boot(){
   if(!DATA){ $("#panel").append(el("div",{class:"note"},
     "Dáta sa nepodarilo načítať. Skontroluj, že vedľa stránky je súbor data.json.")); return; }
   (DATA.categories||[]).forEach(c=>CATLABEL[c.key]=c.label);
+  if(Array.isArray(DATA.brands)&&DATA.brands.length) BRANDS=new Set(DATA.brands);
   const d = new Date(DATA.generated_at);
   $("#meta").textContent = `okno ${DATA.window_days} dní · ≤${DATA.max_age_days??"∞"} dní staré · dáta ${isNaN(d)?DATA.generated_at:d.toLocaleString("sk-SK")}`;
   $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;
@@ -175,7 +176,7 @@ async function fetchData(){
 
 function resetFilters(){
   F.cat="";F.subcat="";F.q="";F.minVol=0;F.sort="";F.top=15;F.groupBy="subcat";
-  F.soldWin=7;F.soldGroup="subcat";
+  F.soldWin=7;F.soldGroup="subcat";F.prilLevel="brand";
   F.minPrice=0;F.maxPrice=3000; /* rozumný strop dovozu; daj 0 pre bez limitu */
 }
 
@@ -259,10 +260,17 @@ function render(){
   const p=$("#panel"); p.innerHTML="";
   if(VIEW==="zhrnutie"){ c.append(catOptions(), subcatOptions()); renderZhrnutie(p); return; }
   if(VIEW==="prilezitosti"){
-    c.append(catOptions(), subcatOptions(), soldWinBox(),
-      sortBox([["sold","predané"],["st","sell-through"],["signal","signál (predané×cena)"],["price","cena medián"],["speed","najrýchlejšie"]]),
-      topBox());
-    renderPrilezitosti(p); return;
+    c.append(catOptions(), subcatOptions(), prilLevelBox());
+    if(F.prilLevel==="model"){
+      c.append(sortBox([["spread","rozpätie %"],["n","v ponuke"],["sold","predané"],["price","cena typická"]]), topBox());
+      renderPrilezitostiModely(p);
+    } else {
+      c.append(soldWinBox(),
+        sortBox([["sold","predané"],["st","sell-through"],["signal","signál (predané×cena)"],["price","cena medián"],["speed","najrýchlejšie"]]),
+        topBox());
+      renderPrilezitosti(p);
+    }
+    return;
   }
   if(VIEW==="predane"){
     c.append(catOptions(), subcatOptions(), soldWinBox(), soldGroupBox());
@@ -583,8 +591,38 @@ function stat(k,v,sub){return el("div",{class:"stat"},el("div",{class:"k"},k),
   el("div",{class:"v"},v,sub?el("small",{}," "+sub):""));}
 
 /* ---------- PRÍLEŽITOSTI (čo sa oplatí obstarať – na úrovni značky) ---------- */
+function prilLevelBox(){
+  const s=el("select",{id:"f-plevel"});
+  [["brand","Značky (dopyt)"],["model","Modely (ceny)"]].forEach(([v,t])=>s.append(el("option",{value:v},t)));
+  s.value=F.prilLevel; s.onchange=()=>{F.prilLevel=s.value;F.sort="";render();};
+  return field("Úroveň",s);
+}
 // značka inzerátu = prvé kľúčové slovo, ktoré je v zozname značiek (inak null)
 function brandOf(ad){ for(const k of (ad.keywords||[])) if(BRANDS.has(k)) return k; return null; }
+/* Modely + cenové rozpätie (z backendu: typická vs. spodná cena) */
+function renderPrilezitostiModely(p){
+  let rows=(DATA.price_spread||[]).filter(o=>(!F.cat||o.category===F.cat) && (!F.subcat||o.subcat===F.subcat));
+  const cmp={spread:(a,b)=>b.spread_pct-a.spread_pct, n:(a,b)=>b.n-a.n,
+    sold:(a,b)=>b.sold_n-a.sold_n, price:(a,b)=>b.price_typical-a.price_typical};
+  rows.sort(cmp[F.sort]||cmp.n);
+  rows.forEach((o,i)=>o._ord=-i);
+  showCount(rows.length,"modelov");
+  p.append(el("div",{class:"note"},
+    "Cenové rozpätie z NAŠICH dát (inzerované ceny za okno). „Typická“ = medián, "
+    +"„Spodná“ = priemer najlacnejšej štvrtiny ponúk (na čo sa dá zohnať). Veľké "
+    +"rozpätie + dopyt = priestor kúpiť lacné a predať drahšie. Orientačné (inzerované ceny)."));
+  if(!rows.length){ p.append(el("div",{class:"note"},
+    "Zatiaľ málo dát na cenové rozpätie (treba aspoň 4 inzeráty na model). Napĺňa sa časom.")); return; }
+  const spPill=o=>`<span class="pill ${o.spread_pct>=50?"g":o.spread_pct>=25?"w":"b"}">${Math.round(o.spread_pct)}%</span>`;
+  const cols=[["l","model",o=>o.model,null],
+    ["l","podkategória",o=>o.subcat||"–",null],
+    ["","v ponuke",o=>o.n,"n"],
+    ["","predané",o=>o.sold_n,"sold_n"],
+    ["","typická",o=>eur(o.price_typical),"price_typical"],
+    ["","spodná",o=>eur(o.price_low),"price_low"],
+    ["","rozpätie",spPill,"spread_pct"]];
+  p.append(makeTable(cols,rows,"_ord"));
+}
 function supplyFor(cat,subcat,brand){   // koľko je v ponuke (z demand segmentov)
   const row=(DATA.demand||[]).find(r=>r.category===cat && r.subcat===subcat && r.keyword===brand);
   return row? row.new_count : null;
@@ -694,7 +732,7 @@ function meaningful(pairs,g){          // ponechá frázu, ak má aspoň 1 „ne
 // ZOZNAM POVOLENÝCH ZNAČIEK (lowercase, bez diakritiky). Do „Značky / modely"
 // pustíme len frázy obsahujúce aspoň jednu značku – fragmenty ako „stojanova
 // vrtacka" či „riadu sirka" vypadnú. Zoznam sa dá kedykoľvek rozšíriť.
-const BRANDS=new Set([
+let BRANDS=new Set([   // fallback; v boot() prepíšeme z DATA.brands (jeden zdroj = backend)
   "lego","duplo","playmobil","cybex","britax","romer","kinderkraft","stokke","thule",
   "bugaboo","joolz","chicco","hauck","anex","joie","maxicosi","avionaut","inglesina",
   "recaro","nuna","quinny","mima","bebetto","zopa","coletto","chipolino","barbie",

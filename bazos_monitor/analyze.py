@@ -625,6 +625,68 @@ def summarize(
     )
 
 
+@dataclass
+class PriceSpread:
+    category: str
+    subcat: str
+    brand: str
+    model: str            # "cybex priam" (značka + model), príp. len značka
+    n: int                # počet inzerátov v ponuke (v okne)
+    sold_n: int           # z toho pravdepodobne predaných
+    price_typical: float  # medián inzerovanej ceny
+    price_low: float      # priemer najlacnejšej štvrtiny (na čo sa dá zohnať)
+    spread_pct: float     # (typical - low) / typical * 100
+
+
+def price_spreads(store, window_days: int, max_age_days: float | None = None,
+                  min_n: int = 4) -> list[PriceSpread]:
+    """Cenové rozpätie po modeloch: typická (medián) vs. spodná (deals) cena.
+
+    Ukazuje priestor „kúp lacné ponuky, predaj za typickú cenu" – čisto z
+    našich dát, bez externých vstupov. Orientačné (inzerované ceny)."""
+    from .brands import model_key  # lazy: brands importuje z analyze
+    now = datetime.utcnow()
+    since = now - timedelta(days=window_days)
+
+    prices: dict[tuple, list[int]] = defaultdict(list)
+    sold: dict[tuple, int] = defaultdict(int)
+    for r in store.iter_ads(None):
+        fs = _parse_iso(r["first_seen"])
+        if fs is None or fs < since:
+            continue
+        if _too_old(r, now, max_age_days):
+            continue
+        mk = model_key(r["title"])
+        if mk is None:
+            continue
+        brand, model = mk
+        key = (r["category"], _subcat(r), brand, model)
+        p = r["price_eur"]
+        if p and p > 0:
+            prices[key].append(p)
+        if _row_outcome(r) == "sold":
+            sold[key] += 1
+
+    out: list[PriceSpread] = []
+    for key, plist in prices.items():
+        if len(plist) < min_n:
+            continue
+        cat, sub, brand, model = key
+        s = sorted(plist)
+        typical = median(s)
+        k = max(1, len(s) // 4)
+        low = sum(s[:k]) / k
+        spread = (typical - low) / typical * 100 if typical else 0.0
+        out.append(PriceSpread(
+            category=cat, subcat=sub, brand=brand, model=model,
+            n=len(plist), sold_n=sold[key],
+            price_typical=round(typical, 1), price_low=round(low, 1),
+            spread_pct=round(spread, 1),
+        ))
+    out.sort(key=lambda x: x.n, reverse=True)
+    return out
+
+
 def format_summary(s: SegmentSummary) -> str:
     cat_label = ALL_CATEGORIES[s.category].label if s.category in ALL_CATEGORIES else s.category
     head = f"{cat_label}"

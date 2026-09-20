@@ -125,6 +125,29 @@ def test_end_to_end_demand():
     print("test_end_to_end_demand OK  (top3:", sorted(top3), ")")
 
 
+def test_price_spreads():
+    from bazos_monitor.analyze import price_spreads
+    tmp = tempfile.mkdtemp()
+    store = Store(os.path.join(tmp, "ps.db"))
+    now = datetime.utcnow()
+    for i, pr in enumerate([100, 120, 150, 600, 650]):
+        store.upsert_listing_ad(ad_id=f"C{i}", category="deti",
+                                title="Predam kocik Cybex Priam modry", url=f"https://x/{i}/",
+                                price_eur=pr, posted_date=None, now_iso=now.isoformat(),
+                                subcat="Kočíky", subcat_id="kociky")
+    store.conn.commit()
+    out = price_spreads(store, window_days=30, max_age_days=None, min_n=4)
+    m = [s for s in out if s.model == "cybex priam"]
+    assert m, [s.model for s in out]
+    s = m[0]
+    assert s.n == 5
+    assert s.price_typical == 150            # medián z [100,120,150,600,650]
+    assert s.price_low == 100                # najlacnejšia štvrtina (k=1)
+    assert s.spread_pct > 0
+    store.close()
+    print("test_price_spreads OK")
+
+
 def test_classify_outcomes():
     from bazos_monitor.outcomes import classify_outcomes
     from bazos_monitor.config import Config
