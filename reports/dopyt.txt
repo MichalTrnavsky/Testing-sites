@@ -2,55 +2,55 @@ TOP dopyt segmenty za posledných 30 dní
 ================================================================
 kategória    segment (kľúč)             nové zmaz. život.dní   skóre
 --------------------------------------------------------------------
-Šport        bicykel                     973    27       1.8    35.9
-Detský bazár kocik                       759     8       2.3    23.8
-Šport        bicykel                     561    13       1.6    22.6
-Šport        detsky                      244     3       0.3    19.7
-Nábytok      postel                      853    21       3.5    19.5
-Detský bazár bicykel                     577    17       2.1    19.4
-Nábytok      suprava                     236     5       0.3    17.9
-Nábytok      sedacia                     234     5       0.3    17.8
-Nábytok      sedacia suprava             227     5       0.3    17.3
-Nábytok      stol                        795    17       3.8    17.1
-Šport        detsky bicykel              183     3       0.3    14.8
-Nábytok      jedalensky                  182     3       0.3    14.7
+Detský bazár kocik                       761     8       2.3    23.8
+Šport        bicykel                     561    16       1.8    20.7
+Nábytok      postel                      855    21       3.5    19.5
+Nábytok      suprava                     237     5       0.3    18.0
+Nábytok      sedacia                     235     5       0.3    17.9
+Nábytok      sedacia suprava             228     5       0.3    17.3
+Nábytok      stol                        796    17       3.8    17.1
+Šport        bicykel                     974    50       5.4    15.7
+Nábytok      jedalensky                  182     3       0.3    14.6
+Detský bazár autosedacka                 433    10       2.1    14.5
 Elektro      samsung                     298    14       1.1    14.5
-Detský bazár autosedacka                 431     7       2.1    14.5
-Šport        horsky bicykel              387    13       1.8    14.3
 Dom a záhrad vari                        260     5       1.0    13.5
 Nábytok      jedalensky stol             162     3       0.3    13.0
-Detský bazár detsky                      384     8       2.1    12.9
-Detský bazár lego                        769    10       5.4    12.3
-Detský bazár detska                      390     5       2.4    11.8
-Nábytok      stolik                      534    12       3.8    11.5
-Detský bazár detsky bicykel              335     8       2.1    11.2
-Elektro      televizor                   210    11       1.1    10.2
-Dom a záhrad dvere                       389    10       3.0     9.9
+Detský bazár bicykel                     580    28       3.7    12.6
+Detský bazár lego                        771    10       5.4    12.3
+Detský bazár detska                      391     5       2.4    11.8
+Nábytok      stolik                      535    12       3.8    11.5
+Elektro      televizor                   211    11       1.1    10.3
+Dom a záhrad dvere                       390    10       3.0    10.0
 Stroje       vrtacka                     102     3       0.1     9.7
 Detský bazár postielka                   312     5       2.4     9.4
-Stroje       zetor                       617    13       5.8     9.3
+Stroje       zetor                       618    13       5.8     9.4
 Detský bazár cybex                       187     2       1.1     9.0
 Dom a záhrad okno                        174     1       1.1     8.7
-Detský bazár odsavacka                   103     3       0.2     8.6
+Detský bazár odsavacka                   104     3       0.2     8.7
 Nábytok      konferencny stolik          250     4       2.1     8.3
-Detský bazár romer                       240     1       2.1     8.1
+Detský bazár romer                       242     1       2.1     8.1
 Nábytok      gauc                        105     5       0.3     8.0
-Detský bazár britax                      235     2       2.1     7.9
+Detský bazár britax                      235     3       2.1     7.9
+Dom a záhrad naradie                      89     1       0.2     7.7
 Šport        pas                          95     1       0.3     7.7
-Šport        horsky                      446    18       5.0     7.6
 Nábytok      kresla                       93     1       0.3     7.6
-Dom a záhrad naradie                      87     1       0.2     7.5
-Detský bazár cybex                       237     2       2.3     7.4
+Detský bazár cybex                       238     2       2.3     7.4
 Nábytok      stolik                       84     1       0.2     7.3
+Šport        horsky                      446    28       5.3     7.2
 Stroje       stroj                        92     1       0.3     7.0
 Šport        cestny                       89     1       0.3     7.0
 Elektro      chladnicku                   85     3       0.3     6.9
 Detský bazár britax romer                205     1       2.1     6.9
 Nábytok      konferencny                 307     7       3.8     6.6
 Šport        korcule                     154     1       1.4     6.6
-Nábytok      stolicka                    277     6       3.8     6.0
-Detský bazár lego                        366     2       5.3     6.0
+Šport        horsky bicykel              387    23       5.3     6.3
+Nábytok      stolicka                    278     6       3.8     6.0
 Elektro      vysavac                     229     2       3.0     5.9
 Šport        airsoft                      62     1       0.1     5.9
+Dom a záhrad cerpadlo                    223     5       3.0     5.7
+Detský bazár mlieka                       68     1       0.2     5.7
+Šport        elektrobicykel              153     3       1.8     5.6
+Nábytok      stolicky                    341     7       5.3     5.6
+Nábytok      pisaci                      164     4       2.1     5.4
 
 Čítanie: vysoké 'nové' + nízka 'život.dní' = silný dopyt (inzeráty rýchlo miznú = predávajú sa).
