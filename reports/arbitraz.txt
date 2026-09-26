@@ -3,56 +3,56 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
-Šport        hybrid                  32    0.3      2799       -           0    66.6
-Šport        bosch                   51    0.3      1725    2700           0    65.4
-Nábytok      spotrebici             109    3.4      2681       -           0    64.9
-Nábytok      sedaci                 116    1.0      1023       -           0    58.7
-Nábytok      sedaci souprava        112    1.0      1024       -           0    56.7
-Šport        cube stereo             24    0.3      3000       -           0    53.5
-Šport        stereo                  24    0.3      3000       -           0    53.5
-Stroje       traktor                281    5.6      2500   43400           1    52.2
-Šport        stereo hybrid           23    0.3      2900       -           0    49.6
-Nábytok      kozena sedaci           91    1.0      1023       -           0    46.0
-Nábytok      souprava               122    2.2      1026       -           0    37.8
-Šport        cestny                  94    0.3       524       -           0    36.6
-Dom a záhrad malotraktor            191    4.1       900       -           0    32.8
-Šport        carbon                  15    0.3      2812    8000           0    31.4
-Nábytok      linka spotrebici        51    3.4      2666       -           0    30.2
-Šport        cube                    48    3.1      2500       -           0    28.7
-Stroje       vrtacka                105    0.1       285       -           0    27.1
-Nábytok      venkovska               44    3.4      2673       -           0    26.1
-Šport        cestny bicykel          73    0.3       450       -           0    24.4
-Stroje       frezka                  17    0.1      1690       -           0    24.3
-Stroje       zetor                  642    5.8       950   20675           3    22.0
-Nábytok      kozena                 217    3.5       914     800           1    21.5
-Nábytok      venkovska linka         36    3.4      2673       -           0    21.4
-Šport        bicykel                586    1.8       100     450           0    20.6
-Stroje       pila                   126    6.2      1200       -           0    20.4
-Nábytok      luxusni                 40    1.0      1023       -           0    20.2
-Nábytok      gauc                   106    0.3       250     530           0    19.1
-Šport        ctm                     32    1.8      1600       -           0    17.9
-Nábytok      dubova                  14    1.0      2477       -           0    17.1
-Stroje       vlecka                  89    5.8      1300       -           0    16.7
-Stroje       vibracna                37    0.1       974    1200           1    15.7
-Šport        bezecky                 66    0.3       300     950           0    15.2
-Nábytok      masivu                  24    3.4      2799       -           0    14.9
-Nábytok      masivu spotrebici       24    3.4      2799       -           0    14.9
-Nábytok      dubova linka            12    1.0      2477       -           0    14.7
-Nábytok      kresla                  95    0.3       195       -           0    14.3
-Šport        bezecky pas             61    0.3       300     950           0    14.0
-Nábytok      kuchyne                 26    3.4      2428       -           0    14.0
-Šport        termovizia              20    0.2       800       -           0    13.1
-Šport        elektrobicykel         157    1.8      1174     540           4    12.9
-Šport        pneu                    20    1.8      1800       -           0    12.6
-Šport        velkost                 49    5.8      1800    2690           0    12.6
-Dom a záhrad pelety                  19    0.2       800       -           0    12.5
-Šport        zeiss                   27    0.3       624       -           0    12.2
-Nábytok      linka masivu            19    3.4      2846       -           0    12.0
-Nábytok      spotrebicmi             20    0.3       775       -           0    12.0
-Šport        elektrobicykel pneu     19    1.8      1800       -           0    12.0
-Dom a záhrad kotol                  190    3.0       499    1785           1    11.4
-Nábytok      drevena                  8    0.7      2466       -           0    11.1
-Stroje       200mm                   22    4.3      2700       -           0    10.9
+Šport        hybrid                  33    0.3      2774       -           0    64.6
+Šport        bosch                   51    0.3      1725    2700           0    62.0
+Nábytok      spotrebici             109    3.4      2681       -           0    61.6
+Nábytok      sedaci                 118    1.0      1023       -           0    56.6
+Nábytok      sedaci souprava        114    1.0      1024       -           0    54.8
+Šport        stereo                  25    0.3      2900       -           0    51.1
+Šport        cube stereo             25    0.3      2900       -           0    51.1
+Šport        stereo hybrid           24    0.3      2888       -           0    48.9
+Nábytok      kozena sedaci           93    1.0      1023       -           0    44.6
+Stroje       traktor                290    5.6      2000   43400           1    40.9
+Šport        cestny                  98    0.3       574       -           0    39.7
+Nábytok      souprava               124    2.2      1026       -           0    36.5
+Šport        carbon                  16    0.3      2750    8000           0    31.0
+Stroje       vrtacka                108    0.1       325       -           0    30.2
+Nábytok      linka spotrebici        51    3.4      2666       -           0    28.7
+Šport        cube                    50    3.1      2500       -           0    28.4
+Šport        cestny bicykel          77    0.3       499       -           0    27.1
+Nábytok      gauc                   124    0.3       300     530           0    25.5
+Dom a záhrad malotraktor            193    5.1       860       -           0    25.3
+Nábytok      venkovska               44    3.4      2673       -           0    24.8
+Stroje       frezka                  17    0.1      1690       -           0    23.1
+Šport        bicykel                618    1.8       100     450           0    20.6
+Nábytok      venkovska linka         36    3.4      2673       -           0    20.3
+Nábytok      kozena                 220    3.5       894     895           1    20.3
+Nábytok      luxusni                 42    1.0      1023       -           0    20.2
+Stroje       pila                   129    6.2      1150       -           0    19.0
+Stroje       zetor                  653    5.8       800   20675           3    17.9
+Šport        ctm                     33    1.8      1600       -           0    17.6
+Stroje       vlecka                  91    5.8      1400       -           0    17.4
+Nábytok      dubova                  14    1.0      2477       -           0    16.3
+Stroje       vibracna                38    0.1       999    1200           1    15.7
+Šport        pneu                    26    1.8      1800       -           0    15.6
+Šport        bezecky                 70    0.3       300     950           0    15.3
+Šport        elektrobicykel pneu     25    1.8      1800       -           0    15.0
+Šport        bezecky pas             65    0.3       300     950           0    14.2
+Nábytok      masivu spotrebici       24    3.4      2799       -           0    14.2
+Nábytok      masivu                  24    3.4      2799       -           0    14.2
+Nábytok      dubova linka            12    1.0      2477       -           0    13.9
+Šport        elektrobicykel         165    1.8      1245     540           4    13.7
+Nábytok      kuchyne                 26    3.4      2428       -           0    13.3
+Nábytok      kresla                  98    0.3       180       -           0    12.9
+Šport        velkost                 52    5.8      1800    2690           0    12.7
+Stroje       doska                   32    0.1      1900    1200           3    12.6
+Šport        termovizia              20    0.2       800       -           0    12.4
+Dom a záhrad pelety                  19    0.2       800       -           0    11.8
+Šport        zeiss                   27    0.3       624       -           0    11.6
+Nábytok      linka masivu            19    3.4      2846       -           0    11.4
+Nábytok      drevena                  8    0.7      2466       -           0    10.5
+Stroje       200mm                   22    4.3      2700       -           0    10.3
+Šport        scott                   11    1.8      2800       -           0    10.2
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
