@@ -1,201 +1,201 @@
 category,subcat,keyword,new_count,deleted_count,median_lifespan_days,demand_score
-deti,Kočíky,kocik,830,11,2.28,22.92
-sport,Cestné bicykle,bicykel,630,16,1.78,20.51
-nabytok,Postele,postel,938,26,3.49,18.92
-nabytok,Sedacie súpravy,suprava,274,5,0.35,18.39
-nabytok,Sedacie súpravy,sedacia,271,5,0.35,18.19
-nabytok,Sedacie súpravy,sedacia suprava,264,5,0.35,17.72
-nabytok,Stoly,stol,877,20,3.77,16.66
-sport,Horské bicykle,bicykel,1103,50,5.38,15.67
-deti,Autosedačky,autosedacka,485,10,2.06,14.36
-elektro,Televízory,samsung,326,16,1.11,14.01
-deti,Bicykle,bicykel,656,28,3.74,12.54
-dom,"Malotraktory, Kultivátory",vari,272,5,0.98,12.47
-deti,Lego,lego,881,10,5.42,12.44
-nabytok,Stoly,stolik,599,15,3.77,11.38
-elektro,Televízory,televizor,229,11,1.11,9.85
-deti,Nábytok pre deti,postielka,344,5,2.4,9.17
-deti,Autosedačky,cybex,207,2,1.14,8.79
-deti,Nábytok pre deti,detska,437,6,3.58,8.65
-stroje,Poľnohospodárska technika,zetor,660,16,6.04,8.5
-deti,Kojenecké potreby,odsavacka,114,3,0.23,8.37
-nabytok,Sedacie súpravy,gauc,124,5,0.35,8.32
-deti,Autosedačky,romer,256,1,2.06,7.58
-sport,"Fitness, jogging",pas,104,1,0.27,7.41
-deti,Autosedačky,britax,250,3,2.06,7.4
-dom,Náradie,naradie,96,1,0.19,7.31
-sport,Horské bicykle,horsky,506,28,5.34,7.23
-dom,"Dvere, brány",dvere,418,12,4.3,7.16
-deti,Kočíky,cybex,255,2,2.28,7.04
-sport,Cestné bicykle,cestny,101,1,0.31,6.97
-stroje,Textilné stroje,stroj,103,1,0.35,6.91
-sport,"In-lines, Skateboarding",korcule,172,1,1.39,6.52
-deti,Autosedačky,britax romer,217,1,2.06,6.43
-elektro,Chladničky,chladnicku,89,3,0.26,6.4
-sport,Horské bicykle,horsky bicykel,443,23,5.34,6.33
-nabytok,Stoly,jedalensky,207,4,2.02,6.21
-nabytok,Stoličky,stolicka,303,6,3.77,5.76
-nabytok,Stoly,konferencny,340,10,4.49,5.61
-nabytok,Stoličky,stolicky,384,7,5.29,5.53
-sport,Paintball,airsoft,66,1,0.08,5.53
-sport,Cestné bicykle,cestny bicykel,80,1,0.31,5.52
-nabytok,Stoly,jedalensky stol,183,4,2.02,5.49
-nabytok,Sedacie súpravy,sedaci,118,17,0.98,5.42
-sport,Elektrobicykle,elektrobicykel,166,3,1.78,5.4
-dom,Čerpadlá,cerpadlo,235,5,3.02,5.31
-deti,Bicykle,detsky,441,18,6.53,5.31
-nabytok,Stoly,pisaci,183,4,2.13,5.3
-deti,Kojenecké potreby,mlieka,72,1,0.23,5.29
-stroje,Textilné stroje,sijaci,78,1,0.35,5.24
-stroje,Textilné stroje,sijaci stroj,78,1,0.35,5.24
-nabytok,Sedacie súpravy,sedaci souprava,114,17,0.98,5.23
-sport,Kolobežky,kolobezka,367,8,5.42,5.18
-nabytok,Kuchyne,linka,248,17,3.4,5.11
-sport,"Fitness, jogging",bezecky,71,1,0.27,5.06
-nabytok,Obývacie steny,stena,162,4,1.91,5.04
-nabytok,Sedacie súpravy,sedacka,250,6,3.5,5.04
-elektro,"Svietidlá, Lampy",luster,105,2,0.93,4.94
-elektro,Práčky,pracka,357,31,5.57,4.93
-deti,Nábytok pre deti,detska postielka,185,3,2.4,4.93
-nabytok,Obývacie steny,stolik,60,1,0.15,4.72
-sport,"Fitness, jogging",bezecky pas,66,1,0.27,4.7
-deti,Kojenecké potreby,avent,64,1,0.23,4.7
-deti,Hračky,lego,386,5,6.49,4.67
-deti,Bicykle,detsky bicykel,384,18,6.53,4.62
-nabytok,Matrace,matrac,192,2,2.79,4.59
-nabytok,Sedacie súpravy,kozena,221,23,3.5,4.46
-dom,"Kotle, Kachle, Bojlery",kotol,199,2,3.05,4.45
-sport,Horské bicykle,damsky,62,1,0.27,4.42
-nabytok,Jedálenské kúty,jedalensky,56,1,0.15,4.4
-dom,Náradie,aku,198,5,3.15,4.33
-dom,Rastliny,zemiaky,60,6,0.26,4.31
-nabytok,Kúpeľne,skrinka,64,1,0.35,4.29
-nabytok,Sedacie súpravy,kozena sedaci,93,14,0.97,4.27
-elektro,Televízory,diely,99,3,1.11,4.26
-nabytok,Stoly,pisaci stol,147,4,2.13,4.25
-deti,Odrážadlá,odrazadlo,278,4,4.95,4.23
-dom,Kosačky,kosacka,293,12,5.35,4.19
-nabytok,Kreslá a gauče,kreslo,296,8,5.43,4.17
-nabytok,Skrine,skrina,311,6,5.76,4.17
-elektro,Kávovary,kavovar,307,11,5.85,4.06
-nabytok,Stoly,konferencny stolik,278,7,5.22,4.05
-deti,Kojenecké potreby,philips,55,1,0.23,4.04
-dom,Píly,pila,225,6,4.15,3.96
-deti,Kojenecké potreby,elektricka,54,3,0.23,3.96
-elektro,Televízory,sony,50,2,0.16,3.91
-sport,"Poľovníctvo, lov",slavia,64,1,0.49,3.91
-stroje,Poľnohospodárska technika,traktor,292,7,5.78,3.9
-elektro,"Hifi systémy, Rádiá",philips,50,3,0.18,3.83
-deti,Kojenecké potreby,odsavacka mlieka,52,1,0.23,3.82
-deti,Kojenecké potreby,philips avent,52,1,0.23,3.82
-nabytok,Sedacie súpravy,pohovka,69,3,0.68,3.73
-nabytok,Kuchyne,kuchynska,179,5,3.4,3.69
-nabytok,Sedacie súpravy,supravu,50,2,0.25,3.64
-nabytok,Skrine,komoda,177,8,3.5,3.57
-nabytok,Spálne,stolik,45,3,0.15,3.54
-nabytok,Ostatný nábytok,ikea,58,1,0.49,3.53
-elektro,"Svietidlá, Lampy",led,212,7,4.46,3.52
-sport,Elektrobicykle,bosch,51,3,0.31,3.52
-nabytok,Sedacie súpravy,sedaciu supravu,48,2,0.25,3.49
-nabytok,Sedacie súpravy,sedaciu,48,2,0.25,3.49
-stroje,Náhradné diely,zetor,211,8,4.48,3.49
-elektro,"Hifi systémy, Rádiá",sony,76,3,0.97,3.49
-nabytok,Stoly,kuchynsky,49,1,0.28,3.48
-elektro,Televízory,philips,81,3,1.11,3.48
-nabytok,Sedacie súpravy,souprava,124,18,2.24,3.47
-dom,Stavebný materiál,betonove,57,1,0.49,3.46
-sport,"In-lines, Skateboarding",kolieskove,91,1,1.39,3.45
-deti,Kočíky,stokke,47,1,0.24,3.45
-nabytok,Sedacie súpravy,rohova,169,9,3.5,3.41
-elektro,Chladničky,chladnicka,270,19,6.17,3.41
-sport,Horské bicykle,detsky,282,14,6.49,3.41
-dom,"Kotle, Kachle, Bojlery",protherm,56,1,0.5,3.4
-stroje,Ostatné,kompresor,58,3,0.56,3.36
-sport,"Poľovníctvo, lov",vzduchovka,142,2,2.83,3.36
-sport,"Turistika, horolezectvo",topanky,40,1,0.08,3.35
-stroje,Skladová technika,vozik,198,8,4.42,3.31
-nabytok,Obývacie steny,obyvacia,166,5,3.57,3.3
-elektro,"Svietidlá, Lampy",lampa,155,2,3.26,3.3
-stroje,Kovoobrábacie stroje,tos,193,1,4.34,3.28
-sport,"Fitness, jogging",insportline,47,1,0.31,3.24
-sport,"In-lines, Skateboarding",kolieskove korcule,85,1,1.39,3.22
-deti,Nábytok pre deti,ikea,120,5,2.4,3.2
-nabytok,Kuchyne,kuchynska linka,155,4,3.43,3.17
-elektro,Vysávače,vysavac,246,5,6.17,3.11
-nabytok,Kreslá a gauče,gauc,219,7,5.5,3.05
-dom,Náradie,hilti,138,3,3.15,3.02
-nabytok,Postele,biela,40,1,0.22,2.98
-elektro,Slúchadlá,sluchadla,229,6,6.03,2.95
-elektro,Slúchadlá,anc,41,1,0.26,2.95
-sport,Horské bicykle,ctm,197,10,5.05,2.95
-dom,"Malotraktory, Kultivátory",malotraktor,196,5,5.08,2.92
-elektro,Umývačky riadu,umyvacka,112,6,2.48,2.92
-nabytok,Jedálenské kúty,jedalensky stol,37,1,0.15,2.91
-nabytok,Spálne,nocny,37,3,0.15,2.91
-deti,Kočíky,thule,72,2,1.26,2.89
-nabytok,Kúpeľne,umyvadlo,121,2,2.82,2.87
-deti,Bicykle,velkost,36,2,0.14,2.87
-elektro,Autorádiá,autoradio,184,8,4.84,2.86
-deti,Kojenecké potreby,elektricka odsavacka,39,3,0.23,2.86
-dom,"Malotraktory, Kultivátory",agzat,222,4,6.06,2.85
-nabytok,Obývacie steny,obyvacia stena,140,3,3.47,2.84
-nabytok,Spálne,nocny stolik,36,3,0.15,2.83
-elektro,Kávovary,jura,41,3,0.32,2.82
-deti,Autosedačky,detska,95,1,2.06,2.81
-stroje,Kovoobrábacie stroje,bruska,162,2,4.27,2.79
-nabytok,Ostatný nábytok,komoda,99,2,2.25,2.76
-nabytok,Postele,drevena,36,1,0.19,2.75
-nabytok,Koberce a podlahová krytina,koberec,207,3,5.86,2.74
-dom,"Kotle, Kachle, Bojlery",kachle,181,5,5.08,2.7
-elektro,"Svietidlá, Lampy",svietidlo,186,1,5.29,2.68
-elektro,"Video, DVD prehrávače",dvd,64,1,1.19,2.65
-dom,Píly,husqvarna,38,1,0.33,2.6
-deti,Nábytok pre deti,stolicka,182,1,5.34,2.6
-sport,Cestné bicykle,retro,57,4,1.01,2.57
-deti,Hračky,drevena,51,1,0.8,2.57
-elektro,Ostatné - biela,friteza,38,1,0.35,2.55
-sport,Súčiastky a diely,favorit,85,1,2.06,2.52
-nabytok,Stoličky,ikea,35,1,0.26,2.51
-sport,Horské bicykle,detsky bicykel,207,12,6.49,2.51
-sport,"Poľovníctvo, lov",vzduchovka slavia,41,1,0.49,2.5
-nabytok,Kúpeľne,bateria,37,1,0.35,2.48
-stroje,Stavebné stroje,wacker,40,1,0.46,2.48
-elektro,Umývačky riadu,umyvacka riadu,95,6,2.48,2.48
-dom,Náradie,makita,113,3,3.15,2.47
-sport,Súčiastky a diely,bicykel,83,2,2.06,2.46
-dom,Ostatné,plastove,98,5,2.69,2.41
-elektro,Ostatné drobné,zdroj,59,8,1.23,2.4
-deti,Nosiče,nosic,187,5,6.09,2.39
-nabytok,Kúpeľne,kupelnova,35,1,0.35,2.35
-sport,Cestné bicykle,retro bicykel,30,2,0.16,2.35
-dom,Radiátory,radiator,112,2,3.34,2.34
-deti,Autosedačky,detska autosedacka,79,1,2.06,2.34
-dom,Náradie,vrtaci skrutkovac,28,1,0.09,2.33
-dom,Náradie,vrtaci,28,1,0.09,2.33
-elektro,Slúchadlá,airpods,178,4,5.96,2.32
-elektro,Televízory,smart,161,13,5.29,2.32
-elektro,Televízory,led,160,4,5.29,2.31
-elektro,Televízory,lcd,106,2,3.2,2.29
-nabytok,Postele,detska,135,2,4.37,2.28
-sport,Elektrobicykle,hybrid,33,1,0.31,2.28
-deti,Kočíky,grey,31,1,0.24,2.28
-dom,Bazény,bazen,89,1,2.57,2.26
-dom,Okná,plastove,189,4,6.58,2.26
-nabytok,Kuchyne,spotrebici,109,15,3.4,2.25
-sport,Cestné bicykle,damsky,69,1,1.78,2.25
-stroje,Skladová technika,vysokozdvizny,132,4,4.38,2.22
-elektro,Repro sústavy,reproduktory,159,6,5.53,2.21
-deti,Hračky,kuchynka,44,1,0.8,2.21
-dom,Okná,okna,183,2,6.58,2.19
-dom,Náradie,skrutkovac,63,2,1.62,2.18
-elektro,Repro sústavy,subwoofer,49,2,1.04,2.18
-deti,Kočíky,fusak,79,1,2.28,2.18
-dom,Radiátory,radiatory,49,1,1.05,2.17
-sport,Kolobežky,elektricka,153,7,5.42,2.16
-nabytok,Matrace,90x200,30,1,0.26,2.15
-sport,Kolobežky,xiaomi,105,4,3.45,2.14
-dom,Rastliny,hrozno,28,3,0.19,2.13
-sport,Futbal,dres,178,1,6.57,2.13
-elektro,"Svietidlá, Lampy",svetla,28,1,0.2,2.12
-deti,Hračky,babika,158,28,5.77,2.12
-dom,Náradie,bosch,129,2,4.59,2.09
+deti,Kočíky,kocik,841,12,2.28,22.97
+sport,Cestné bicykle,bicykel,636,16,1.78,20.49
+nabytok,Postele,postel,945,26,3.49,18.86
+nabytok,Sedacie súpravy,suprava,276,5,0.35,18.32
+nabytok,Sedacie súpravy,sedacia,273,5,0.35,18.12
+nabytok,Sedacie súpravy,sedacia suprava,266,5,0.35,17.66
+nabytok,Stoly,stol,882,20,3.77,16.57
+deti,Autosedačky,autosedacka,492,10,2.06,14.41
+elektro,Televízory,samsung,329,16,1.11,13.99
+sport,Horské bicykle,bicykel,1115,61,6.43,13.47
+deti,Bicykle,bicykel,663,28,3.74,12.54
+dom,"Malotraktory, Kultivátory",vari,274,5,0.98,12.43
+deti,Lego,lego,887,12,5.64,11.99
+nabytok,Stoly,stolik,610,15,3.77,11.46
+elektro,Televízory,televizor,229,11,1.11,9.74
+deti,Nábytok pre deti,postielka,347,5,2.4,9.15
+stroje,Poľnohospodárska technika,zetor,700,16,6.04,8.92
+deti,Autosedačky,cybex,211,2,1.14,8.86
+deti,Nábytok pre deti,detska,439,6,3.58,8.6
+deti,Kojenecké potreby,odsavacka,116,3,0.23,8.42
+nabytok,Sedacie súpravy,gauc,124,5,0.35,8.23
+deti,Autosedačky,romer,258,1,2.06,7.56
+sport,"Fitness, jogging",pas,106,1,0.27,7.47
+deti,Autosedačky,britax,252,3,2.06,7.38
+sport,Horské bicykle,horsky,514,33,5.34,7.27
+dom,Náradie,naradie,96,1,0.19,7.23
+dom,"Dvere, brány",dvere,423,12,4.3,7.16
+deti,Kočíky,cybex,256,2,2.28,6.99
+sport,Cestné bicykle,cestny,102,1,0.31,6.96
+stroje,Textilné stroje,stroj,103,1,0.35,6.84
+sport,"In-lines, Skateboarding",korcule,174,1,1.39,6.52
+deti,Autosedačky,britax romer,219,1,2.06,6.41
+elektro,Chladničky,chladnicku,89,3,0.26,6.33
+nabytok,Stoly,jedalensky,208,4,2.02,6.17
+nabytok,Stoličky,stolicka,309,6,3.77,5.81
+nabytok,Stoly,konferencny,346,10,4.49,5.65
+sport,Paintball,airsoft,68,1,0.08,5.63
+nabytok,Stoličky,stolicky,390,7,5.29,5.56
+sport,Horské bicykle,horsky bicykel,451,28,6.28,5.56
+nabytok,Stoly,jedalensky stol,184,4,2.02,5.46
+sport,Cestné bicykle,cestny bicykel,80,1,0.31,5.46
+dom,Čerpadlá,cerpadlo,240,5,3.02,5.36
+nabytok,Sedacie súpravy,sedaci,118,17,0.98,5.36
+nabytok,Stoly,pisaci,186,4,2.13,5.33
+deti,Bicykle,detsky,444,18,6.53,5.29
+deti,Kojenecké potreby,mlieka,72,1,0.23,5.23
+nabytok,Sedacie súpravy,sedaci souprava,114,17,0.98,5.18
+stroje,Textilné stroje,sijaci stroj,78,1,0.35,5.18
+stroje,Textilné stroje,sijaci,78,1,0.35,5.18
+sport,Kolobežky,kolobezka,370,9,5.42,5.17
+sport,"Fitness, jogging",bezecky,72,1,0.27,5.07
+nabytok,Kuchyne,linka,248,17,3.4,5.06
+nabytok,Obývacie steny,stena,164,4,1.91,5.05
+nabytok,Sedacie súpravy,sedacka,252,6,3.5,5.03
+elektro,Práčky,pracka,365,31,5.57,4.98
+deti,Nábytok pre deti,detska postielka,186,3,2.4,4.9
+elektro,"Svietidlá, Lampy",luster,105,2,0.93,4.89
+deti,Kojenecké potreby,avent,67,1,0.23,4.87
+nabytok,Obývacie steny,stolik,62,1,0.15,4.82
+sport,"Fitness, jogging",bezecky pas,67,1,0.27,4.72
+deti,Hračky,lego,392,6,6.49,4.69
+deti,Bicykle,detsky bicykel,387,18,6.53,4.61
+nabytok,Matrace,matrac,192,2,2.79,4.54
+dom,"Kotle, Kachle, Bojlery",kotol,202,2,3.05,4.47
+nabytok,Sedacie súpravy,kozena,222,23,3.5,4.43
+sport,Horské bicykle,damsky,62,1,0.27,4.37
+nabytok,Jedálenské kúty,jedalensky,56,1,0.15,4.35
+dom,Náradie,aku,199,5,3.15,4.3
+elektro,Televízory,diely,101,3,1.11,4.29
+dom,Rastliny,zemiaky,60,6,0.26,4.26
+nabytok,Kúpeľne,skrinka,64,1,0.35,4.25
+nabytok,Stoly,pisaci stol,148,4,2.13,4.24
+dom,Kosačky,kosacka,299,12,5.35,4.23
+deti,Odrážadlá,odrazadlo,281,4,4.95,4.23
+nabytok,Sedacie súpravy,kozena sedaci,93,14,0.97,4.22
+nabytok,Skrine,skrina,314,6,5.76,4.16
+nabytok,Kreslá a gauče,kreslo,298,8,5.43,4.15
+nabytok,Stoly,konferencny stolik,282,7,5.22,4.07
+sport,"Poľovníctvo, lov",slavia,67,1,0.49,4.05
+elektro,Televízory,sony,52,2,0.16,4.03
+elektro,Kávovary,kavovar,308,11,5.85,4.03
+deti,Kojenecké potreby,elektricka,55,3,0.23,3.99
+deti,Kojenecké potreby,philips,55,1,0.23,3.99
+dom,Píly,pila,228,6,4.15,3.97
+stroje,Poľnohospodárska technika,traktor,292,7,5.78,3.86
+elektro,"Hifi systémy, Rádiá",philips,50,3,0.18,3.79
+deti,Kojenecké potreby,philips avent,52,1,0.23,3.78
+deti,Kojenecké potreby,odsavacka mlieka,52,1,0.23,3.78
+nabytok,Sedacie súpravy,pohovka,69,3,0.68,3.69
+nabytok,Sedacie súpravy,supravu,51,2,0.25,3.67
+nabytok,Kuchyne,kuchynska,179,5,3.4,3.65
+nabytok,Spálne,stolik,46,3,0.15,3.58
+nabytok,Skrine,komoda,178,8,3.5,3.55
+nabytok,Ostatný nábytok,ikea,59,1,0.49,3.55
+nabytok,Sedacie súpravy,sedaciu,49,2,0.25,3.53
+nabytok,Sedacie súpravy,sedaciu supravu,49,2,0.25,3.53
+elektro,"Svietidlá, Lampy",led,214,7,4.46,3.51
+sport,"In-lines, Skateboarding",kolieskove,93,1,1.39,3.49
+dom,"Kotle, Kachle, Bojlery",protherm,58,1,0.5,3.48
+dom,Stavebný materiál,betonove,58,1,0.49,3.48
+sport,Elektrobicykle,bosch,51,3,0.31,3.48
+elektro,"Hifi systémy, Rádiá",sony,76,3,0.97,3.46
+stroje,Náhradné diely,zetor,211,8,4.48,3.45
+nabytok,Sedacie súpravy,souprava,124,18,2.24,3.44
+nabytok,Stoly,kuchynsky,49,1,0.28,3.44
+elektro,Televízory,philips,81,3,1.11,3.44
+sport,Horské bicykle,detsky,285,15,6.49,3.41
+nabytok,Sedacie súpravy,rohova,170,9,3.5,3.39
+elektro,Chladničky,chladnicka,271,19,6.17,3.39
+sport,"Poľovníctvo, lov",vzduchovka,144,2,2.83,3.37
+stroje,Ostatné,kompresor,58,3,0.56,3.33
+elektro,"Svietidlá, Lampy",lampa,158,2,3.26,3.33
+sport,"Turistika, horolezectvo",topanky,40,1,0.08,3.31
+nabytok,Obývacie steny,obyvacia,168,5,3.57,3.3
+stroje,Skladová technika,vozik,198,8,4.42,3.28
+sport,"Fitness, jogging",insportline,48,1,0.31,3.27
+sport,"In-lines, Skateboarding",kolieskove korcule,87,1,1.39,3.26
+stroje,Kovoobrábacie stroje,tos,193,1,4.34,3.24
+deti,Nábytok pre deti,ikea,121,5,2.4,3.19
+nabytok,Kuchyne,kuchynska linka,155,4,3.43,3.14
+elektro,Vysávače,vysavac,248,5,6.17,3.1
+nabytok,Kreslá a gauče,gauc,224,7,5.5,3.09
+dom,Náradie,hilti,139,3,3.15,3.01
+sport,Elektrobicykle,elektrobicykel,168,4,4.02,3.0
+elektro,Slúchadlá,anc,42,1,0.26,2.99
+dom,"Malotraktory, Kultivátory",malotraktor,201,5,5.08,2.96
+nabytok,Postele,biela,40,1,0.22,2.95
+nabytok,Spálne,nocny,38,3,0.15,2.95
+elektro,Umývačky riadu,umyvacka,114,6,2.48,2.94
+deti,Bicykle,velkost,37,2,0.14,2.91
+deti,Kojenecké potreby,elektricka odsavacka,40,3,0.23,2.91
+elektro,Autorádiá,autoradio,188,8,4.84,2.89
+nabytok,Jedálenské kúty,jedalensky stol,37,1,0.15,2.88
+nabytok,Spálne,nocny stolik,37,3,0.15,2.88
+nabytok,Kúpeľne,umyvadlo,122,2,2.82,2.86
+nabytok,Obývacie steny,obyvacia stena,142,3,3.47,2.85
+dom,"Malotraktory, Kultivátory",agzat,222,4,6.06,2.82
+elektro,Slúchadlá,sluchadla,231,7,6.35,2.82
+sport,Horské bicykle,ctm,200,12,5.38,2.81
+elektro,Kávovary,jura,41,3,0.32,2.79
+deti,Autosedačky,detska,95,1,2.06,2.78
+nabytok,Ostatný nábytok,komoda,100,2,2.25,2.76
+stroje,Kovoobrábacie stroje,bruska,162,2,4.27,2.76
+dom,"Kotle, Kachle, Bojlery",kachle,185,5,5.08,2.73
+nabytok,Koberce a podlahová krytina,koberec,208,3,5.86,2.72
+nabytok,Postele,drevena,36,1,0.19,2.72
+elektro,"Svietidlá, Lampy",svietidlo,189,1,5.29,2.69
+elektro,"Video, DVD prehrávače",dvd,65,1,1.19,2.67
+nabytok,Stoličky,ikea,37,1,0.26,2.63
+deti,Nábytok pre deti,stolicka,186,1,5.34,2.63
+sport,Súčiastky a diely,favorit,88,1,2.06,2.58
+dom,Píly,husqvarna,38,1,0.33,2.57
+sport,Cestné bicykle,retro,57,4,1.01,2.54
+deti,Hračky,drevena,51,1,0.8,2.54
+sport,"Poľovníctvo, lov",vzduchovka slavia,42,1,0.49,2.54
+elektro,Ostatné - biela,friteza,38,1,0.35,2.52
+elektro,Umývačky riadu,umyvacka riadu,97,6,2.48,2.5
+sport,Horské bicykle,detsky bicykel,208,13,6.49,2.49
+dom,Náradie,makita,114,3,3.15,2.46
+nabytok,Kúpeľne,bateria,37,1,0.35,2.46
+sport,Súčiastky a diely,bicykel,84,2,2.06,2.46
+stroje,Stavebné stroje,wacker,40,1,0.46,2.45
+dom,Radiátory,radiator,116,2,3.34,2.4
+dom,Ostatné,plastove,99,5,2.69,2.4
+deti,Nosiče,nosic,188,5,6.09,2.38
+elektro,Ostatné drobné,zdroj,59,8,1.23,2.37
+deti,Hračky,kuchynka,47,1,0.8,2.34
+nabytok,Kúpeľne,kupelnova,35,1,0.35,2.32
+sport,Cestné bicykle,retro bicykel,30,2,0.16,2.32
+dom,Náradie,vrtaci skrutkovac,28,1,0.09,2.31
+dom,Náradie,vrtaci,28,1,0.09,2.31
+elektro,Slúchadlá,airpods,179,4,5.96,2.31
+deti,Autosedačky,detska autosedacka,79,1,2.06,2.31
+elektro,Televízory,smart,161,13,5.29,2.29
+elektro,Televízory,led,160,4,5.29,2.28
+dom,Bazény,bazen,90,1,2.57,2.26
+nabytok,Postele,detska,135,2,4.37,2.26
+elektro,Televízory,lcd,106,2,3.2,2.26
+sport,Elektrobicykle,hybrid,33,1,0.31,2.25
+dom,Okná,plastove,189,4,6.58,2.24
+nabytok,Kuchyne,spotrebici,109,15,3.4,2.22
+sport,Cestné bicykle,damsky,69,1,1.78,2.22
+stroje,Skladová technika,vysokozdvizny,132,4,4.38,2.2
+elektro,Repro sústavy,reproduktory,160,6,5.53,2.2
+dom,Okná,okna,183,2,6.58,2.17
+dom,Náradie,skrutkovac,63,2,1.62,2.16
+deti,Kočíky,fusak,79,1,2.28,2.16
+elektro,Repro sústavy,subwoofer,49,2,1.04,2.15
+dom,Radiátory,radiatory,49,1,1.05,2.14
+sport,Kolobežky,xiaomi,106,4,3.45,2.14
+sport,Kolobežky,elektricka,153,8,5.42,2.14
+nabytok,Matrace,90x200,30,1,0.26,2.13
+dom,Rastliny,hrozno,28,3,0.19,2.11
+sport,Futbal,dres,178,1,6.57,2.11
+deti,Hračky,babika,159,28,5.77,2.11
+dom,Náradie,bosch,131,2,4.59,2.1
+elektro,"Svietidlá, Lampy",svetla,28,1,0.2,2.1
+elektro,Televízory,sony bravia,26,1,0.12,2.08
+elektro,Televízory,bravia,26,1,0.12,2.08
+nabytok,Sedacie súpravy,suprava gauc,31,1,0.35,2.06
