@@ -3,18 +3,18 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
-Šport        hybrid                  33    0.3      2774       -           0    62.5
+Šport        hybrid                  34    0.3      2750       -           0    63.8
+Šport        bosch                   54    0.3      1675    3600           0    61.7
 Nábytok      spotrebici             109    3.4      2681       -           0    59.6
-Šport        bosch                   51    0.3      1675    2700           0    58.3
 Nábytok      sedaci                 118    1.0      1023       -           0    54.8
-Nábytok      sedaci souprava        114    1.0      1023       -           0    53.0
+Nábytok      sedaci souprava        114    1.0      1024       -           0    53.0
 Šport        cube stereo             25    0.3      2900       -           0    49.5
 Šport        stereo                  25    0.3      2900       -           0    49.5
 Šport        stereo hybrid           24    0.3      2888       -           0    47.3
 Nábytok      kozena sedaci           93    1.0      1023       -           0    43.2
-Stroje       traktor                292    5.8      2100   43400           1    40.5
+Stroje       traktor                292    5.8      2000   43400           1    38.6
 Nábytok      souprava               124    2.2      1026       -           0    35.3
-Šport        carbon                  16    0.3      2750    8000           0    30.0
+Šport        carbon                  17    0.3      2750    6250           0    31.9
 Šport        cestny                 102    0.3       425       -           0    29.6
 Nábytok      linka spotrebici        51    3.4      2666       -           0    27.7
 Dom a záhrad malotraktor            201    5.1       900       -           0    26.7
@@ -22,14 +22,13 @@ Nábytok      gauc                   124    0.3       300     530           0   
 Nábytok      venkovska               44    3.4      2673       -           0    24.0
 Stroje       pila                   132    6.2      1400       -           0    22.9
 Šport        cestny bicykel          80    0.3       400       -           0    21.8
-Šport        bicykel                636    1.8       100     450           0    20.5
+Šport        bicykel                637    1.8       100     450           0    20.5
 Nábytok      kozena                 222    3.5       906     895           1    20.1
+Nábytok      luxusni                 43    1.0      1023       -           0    20.0
 Nábytok      venkovska linka         36    3.4      2673       -           0    19.6
-Nábytok      luxusni                 42    1.0      1023       -           0    19.5
-Stroje       zetor                  700    6.0       800   20675           3    17.9
-Šport        ctm                     33    1.8      1600       -           0    17.0
-Šport        cube                    50    5.8      2500       -           0    16.4
-Stroje       vlecka                  93    5.8      1300       -           0    16.0
+Šport        ctm                     34    1.8      1600       -           0    17.5
+Šport        cube                    51    5.8      2500       -           0    16.7
+Stroje       zetor                  702    6.0       745   20675           3    16.7
 Nábytok      dubova                  14    1.0      2477       -           0    15.7
 Šport        bezecky                 72    0.3       300     950           0    15.2
 Šport        pneu                    26    1.8      1800       -           0    15.1
@@ -37,22 +36,23 @@ Nábytok      dubova                  14    1.0      2477       -           0   
 Šport        bezecky pas             67    0.3       300     950           0    14.2
 Nábytok      masivu spotrebici       24    3.4      2799       -           0    13.7
 Nábytok      masivu                  24    3.4      2799       -           0    13.7
+Stroje       vlecka                  93    5.8      1100       -           0    13.5
 Nábytok      dubova linka            12    1.0      2477       -           0    13.5
 Nábytok      kuchyne                 26    3.4      2428       -           0    12.9
+Šport        velkost                 54    5.8      1800    2690           0    12.7
 Šport        termovizia              21    0.2       800       -           0    12.6
-Šport        velkost                 53    5.8      1800    2690           0    12.5
-Dom a záhrad pelety                  20    0.2       800       -           0    12.1
 Šport        zeiss                   27    0.3       624       -           0    11.2
 Nábytok      linka masivu            19    3.4      2846       -           0    11.0
 Nábytok      drevena                  8    0.7      2466       -           0    10.2
-Dom a záhrad kotol                  202    3.0       449    1785           1    10.0
 Stroje       200mm                   22    4.3      2700       -           0    10.0
 Šport        scott                   11    1.8      2800       -           0     9.9
 Šport        750wh                   11    1.8      2750       -           0     9.7
 Šport        trek                    79    4.1       700       -           0     9.7
-Nábytok      sedacia                273    0.3       360     585           6     9.3
-Nábytok      sedacia suprava        266    0.3       365     585           6     9.2
-Nábytok      suprava                276    0.3       350     585           6     9.2
+Nábytok      sedacia                274    0.3       365     585           6     9.5
+Nábytok      sedacia suprava        267    0.3       370     585           6     9.4
+Nábytok      supravu                 52    0.2       250       -           0     9.3
+Nábytok      suprava                277    0.3       355     585           6     9.3
+Šport        cube                   127    5.3       500    2500           0     9.0
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
