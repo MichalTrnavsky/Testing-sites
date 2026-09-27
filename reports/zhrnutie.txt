@@ -1,18 +1,18 @@
 Zhrnutie: Dom a záhrada  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    20270  (≈ 2066.6/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    20691  (≈ 2066.6/deň, z dátumov na inzerátoch)
   Zmazané:          477  (≈ 15.9/deň)
   Medián životnosti: 5.4 dňa
   Cena:             min 1 / medián 50 / max 489250 € (rozptyl 489249 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. dvere                        536×
-     2. plastove                     399×
-     3. aku                          379×
-     4. pila                         371×
-     5. kosacka                      346×
-     6. vari                         339×
-     7. cerpadlo                     321×
-     8. drevo                        283×
+     1. dvere                        546×
+     2. plastove                     405×
+     3. aku                          390×
+     4. pila                         378×
+     5. kosacka                      355×
+     6. vari                         342×
+     7. cerpadlo                     330×
+     8. drevo                        289×
   TOP predané typy (podľa zmazaní):
      1. palety                       16×
      2. zemiaky                      15×
@@ -25,19 +25,19 @@ Zhrnutie: Dom a záhrada  —  posledných 30 dní
 
 Zhrnutie: Nábytok  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    14275  (≈ 1386.6/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    14638  (≈ 1386.6/deň, z dátumov na inzerátoch)
   Zmazané:          354  (≈ 11.8/deň)
   Medián životnosti: 3.8 dňa
   Cena:             min 1 / medián 70 / max 490260 € (rozptyl 490259 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. stol                         1241×
-     2. postel                       1085×
-     3. stolik                       955×
-     4. ikea                         649×
-     5. stolicky                     638×
-     6. kreslo                       461×
-     7. konferencny                  405×
-     8. komoda                       404×
+     1. stol                         1276×
+     2. postel                       1117×
+     3. stolik                       980×
+     4. ikea                         668×
+     5. stolicky                     655×
+     6. kreslo                       463×
+     7. konferencny                  415×
+     8. komoda                       413×
   TOP predané typy (podľa zmazaní):
      1. postel                       26×
      2. stol                         23×
@@ -50,44 +50,44 @@ Zhrnutie: Nábytok  —  posledných 30 dní
 
 Zhrnutie: Stroje  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    13955  (≈ 1412.7/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    14210  (≈ 1412.7/deň, z dátumov na inzerátoch)
   Zmazané:          358  (≈ 11.9/deň)
   Medián životnosti: 4.6 dňa
   Cena:             min 1 / medián 300 / max 481095 € (rozptyl 481094 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. zetor                        1080×
-     2. traktor                      422×
-     3. stroj                        401×
-     4. lis                          289×
-     5. pila                         285×
-     6. vozik                        279×
-     7. bruska                       220×
-     8. cerpadlo                     212×
+     1. zetor                        1098×
+     2. traktor                      425×
+     3. stroj                        410×
+     4. lis                          292×
+     5. pila                         287×
+     6. vozik                        285×
+     7. bruska                       221×
+     8. cerpadlo                     215×
   TOP predané typy (podľa zmazaní):
      1. zetor                        24×
      2. vrtaky                       9×
      3. motor                        6×
-     4. sustruznicke                 6×
-     5. noze                         6×
+     4. noze                         6×
+     5. sustruznicke                 6×
      6. traktor                      6×
      7. sustruznicke noze            5×
      8. pluh                         5×
 
 Zhrnutie: Elektro  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    15447  (≈ 1479.1/deň, z dátumov na inzerátoch)
-  Zmazané:          518  (≈ 17.3/deň)
-  Medián životnosti: 5.7 dňa
+  Nové inzeráty:    15856  (≈ 1479.1/deň, z dátumov na inzerátoch)
+  Zmazané:          523  (≈ 17.4/deň)
+  Medián životnosti: 5.8 dňa
   Cena:             min 1 / medián 60 / max 333500 € (rozptyl 333499 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. samsung                      569×
-     2. led                          457×
-     3. philips                      414×
-     4. pracka                       391×
-     5. kavovar                      334×
-     6. sony                         308×
-     7. smart                        304×
-     8. chladnicka                   287×
+     1. samsung                      577×
+     2. led                          471×
+     3. philips                      423×
+     4. pracka                       395×
+     5. kavovar                      349×
+     6. sony                         320×
+     7. smart                        312×
+     8. chladnicka                   298×
   TOP predané typy (podľa zmazaní):
      1. pracka                       24×
      2. chladnicka                   23×
@@ -100,44 +100,44 @@ Zhrnutie: Elektro  —  posledných 30 dní
 
 Zhrnutie: Šport  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    14378  (≈ 1403.0/deň, z dátumov na inzerátoch)
-  Zmazané:          243  (≈ 8.1/deň)
+  Nové inzeráty:    14895  (≈ 1403.0/deň, z dátumov na inzerátoch)
+  Zmazané:          277  (≈ 9.2/deň)
   Medián životnosti: 5.4 dňa
-  Cena:             min 1 / medián 105 / max 480550 € (rozptyl 480549 €)
+  Cena:             min 1 / medián 100 / max 480550 € (rozptyl 480549 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. bicykel                      2119×
-     2. horsky                       587×
-     3. horsky bicykel               504×
-     4. detsky                       495×
-     5. kolobezka                    413×
-     6. detsky bicykel               342×
-     7. ctm                          308×
-     8. velkost                      294×
+     1. bicykel                      2175×
+     2. horsky                       600×
+     3. horsky bicykel               515×
+     4. detsky                       509×
+     5. kolobezka                    425×
+     6. detsky bicykel               351×
+     7. ctm                          320×
+     8. velkost                      306×
   TOP predané typy (podľa zmazaní):
-     1. bicykel                      47×
+     1. bicykel                      49×
      2. horsky                       18×
      3. horsky bicykel               15×
-     4. detsky                       10×
-     5. ctm                          9×
-     6. cube                         8×
+     4. ctm                          10×
+     5. detsky                       10×
+     6. cube                         9×
      7. detsky bicykel               8×
-     8. kellys                       6×
+     8. kellys                       7×
 
 Zhrnutie: Detský bazár  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    13168  (≈ 1320.1/deň, z dátumov na inzerátoch)
-  Zmazané:          200  (≈ 6.7/deň)
+  Nové inzeráty:    13439  (≈ 1320.1/deň, z dátumov na inzerátoch)
+  Zmazané:          206  (≈ 6.9/deň)
   Medián životnosti: 5.4 dňa
   Cena:             min 1 / medián 40 / max 400150 € (rozptyl 400149 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. lego                         1460×
-     2. detska                       970×
-     3. kocik                        956×
-     4. detsky                       846×
-     5. bicykel                      824×
-     6. autosedacka                  556×
-     7. cybex                        505×
-     8. detsky bicykel               425×
+     1. lego                         1481×
+     2. detska                       993×
+     3. kocik                        982×
+     4. detsky                       876×
+     5. bicykel                      853×
+     6. autosedacka                  572×
+     7. cybex                        511×
+     8. detsky bicykel               440×
   TOP predané typy (podľa zmazaní):
      1. bicykel                      16×
      2. detsky                       14×
