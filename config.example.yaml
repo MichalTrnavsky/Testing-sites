@@ -79,3 +79,4 @@ expiry_tolerance_days: 8       # pásmo okolo expirácie
 repost_window_days: 14         # okno na spárovanie re-inzerátu
 repost_price_tolerance: 0.15   # ±15 % cena pre re-inzerát
 repost_min_tokens: 3           # min. slov v nadpise, aby sme odtlačku verili
+sell_through_maturity_days: 7  # inzerát „mal šancu" po toľkých dňoch (sell-through)

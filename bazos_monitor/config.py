@@ -64,6 +64,9 @@ class Config:
     # min. počet zmysluplných slov v odtlačku nadpisu, aby sme mu verili
     repost_min_tokens: int = 3
 
+    # sell-through: inzerát „mal šancu", ak je starý aspoň toľko dní (kohorta)
+    sell_through_maturity_days: float = 7.0
+
     @staticmethod
     def load(path: str | None) -> "Config":
         cfg = Config()

@@ -147,15 +147,17 @@ def cmd_export(args) -> int:
                                 max_used_price=None, max_age_days=age, top=3000)
         # zhrnutia: celá kategória + každá podkategória s dátami
         summaries = []
+        mat = cfg.sell_through_maturity_days
         for c in cats:
             summaries.append(summarize(store, category=c.key, window_days=args.window,
-                                       top_products=25, max_age_days=age))
+                                       top_products=25, max_age_days=age,
+                                       sell_through_maturity_days=mat))
             for sub, _cnt in subcats_with_data(store, c.key, args.window, age):
                 if sub == "(nezaradené)":
                     continue
                 summaries.append(summarize(store, category=c.key, window_days=args.window,
                                            top_products=25, max_age_days=age,
-                                           subcategory=sub))
+                                           subcategory=sub, sell_through_maturity_days=mat))
         # čerstvo zmazané (pravdepodobne predané) v rámci okna
         from datetime import timedelta
         since_iso = (datetime.utcnow() - timedelta(days=args.window)).isoformat()

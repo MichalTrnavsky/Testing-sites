@@ -121,7 +121,8 @@
     <h1>Bazoš dopyt</h1>
     <span class="sub" id="meta">načítavam…</span>
     <div class="tabs" role="tablist" id="tabs">
-      <button class="tab" role="tab" data-view="prilezitosti" aria-selected="true">Príležitosti</button>
+      <button class="tab" role="tab" data-view="prehlad" aria-selected="true">Prehľad</button>
+      <button class="tab" role="tab" data-view="prilezitosti" aria-selected="false">Príležitosti</button>
       <button class="tab" role="tab" data-view="dopyt" aria-selected="false">Dopyt</button>
       <button class="tab" role="tab" data-view="predane" aria-selected="false">Predané</button>
       <button class="tab" role="tab" data-view="arbitraz" aria-selected="false">Arbitráž</button>
@@ -140,7 +141,7 @@
 <script>
 "use strict";
 const CATLABEL = {};
-let DATA = null, VIEW = "prilezitosti";
+let DATA = null, VIEW = "prehlad";
 const F = { cat:"", subcat:"", q:"", minPrice:0, maxPrice:0, minVol:0, sort:"", top:15,
   groupBy:"subcat", soldWin:7, soldGroup:"subcat", prilLevel:"brand" };
 
@@ -258,6 +259,7 @@ function soldGroupBox(){
 function render(){
   const c=$("#controls"); c.innerHTML="";
   const p=$("#panel"); p.innerHTML="";
+  if(VIEW==="prehlad"){ c.append(catOptions()); renderPrehlad(p); return; }
   if(VIEW==="zhrnutie"){ c.append(catOptions(), subcatOptions()); renderZhrnutie(p); return; }
   if(VIEW==="prilezitosti"){
     c.append(catOptions(), subcatOptions(), prilLevelBox());
@@ -311,6 +313,81 @@ function applyCommon(rows,keyword){
   return rows.filter(r=>(!F.cat||r.category===F.cat)
     && (!F.subcat||r.subcat===F.subcat)
     && (!F.q||r.keyword.includes(F.q)));
+}
+
+/* ---------- PREHĽAD (hlavný dashboard – najsilnejšie signály) ---------- */
+function fmtDays(d){ return d==null?"–":(d<2?Math.round(d*24)+" h":(Math.round(d*10)/10)+" d"); }
+function barPanel(emoji,title,subtitle,items,o){
+  const ch=el("div",{class:"chart"});
+  ch.append(el("h2",{},emoji+" "+title));
+  if(subtitle) ch.append(el("div",{style:"color:var(--muted);font-size:.75rem;margin:-6px 0 10px"},subtitle));
+  if(!items||!items.length){ ch.append(el("div",{style:"color:var(--muted);font-size:.85rem"},"zatiaľ málo dát")); return ch; }
+  items.forEach(it=>{
+    const frac=Math.max(0.02,Math.min(1,o.frac(it)||0));
+    ch.append(el("div",{class:"row"},
+      el("div",{class:"name",style:"white-space:normal;overflow:visible"},
+        el("div",{},o.name(it)),
+        el("small",{style:"display:block"},o.sub(it))),
+      el("div",{class:"track"},el("div",{class:"fill "+(o.cls?o.cls(it):""),style:`width:${frac*100}%`})),
+      el("div",{class:"val"},o.val(it))));
+  });
+  return ch;
+}
+function renderPrehlad(p){
+  const W=DATA.window_days;
+  const subs=(DATA.summaries||[]).filter(s=>s.subcategory && (!F.cat||s.category===F.cat));
+  const cats=(DATA.summaries||[]).filter(s=>!s.subcategory && (!F.cat||s.category===F.cat));
+  const newTot=cats.reduce((a,s)=>a+(s.new_total||0),0);
+  const soldTot=subs.reduce((a,s)=>a+(s.sold_total||0),0);
+  const relTot=subs.reduce((a,s)=>a+(s.relisted_total||0),0);
+  const repPct=(soldTot+relTot)? Math.round(100*relTot/(soldTot+relTot)):0;
+  const nModels=(DATA.price_spread||[]).filter(o=>!F.cat||o.category===F.cat).length;
+  const cc=$("#count"); if(cc) cc.hidden=true;
+
+  const kpi=el("div",{class:"stats",style:"grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin:4px 0 6px"});
+  kpi.append(
+    stat("nové / okno",num(newTot),`za ${W} dní`),
+    stat("predané",num(soldTot),`za ${W} dní`),
+    stat("obnovené (repost)",repPct+" %",repPct>=30?"vysoká churn":"ok"),
+    stat("modely s cenou",num(nModels),"cenové rozpätie"));
+  p.append(el("div",{class:"chart"},el("h2",{},"Súhrn"),kpi));
+
+  // 1) najrýchlejšie sa predáva (likvidita)
+  const fast=subs.filter(s=>(s.sold_total||0)>=8 && s.sold_lifespan_days!=null)
+    .sort((a,b)=>a.sold_lifespan_days-b.sold_lifespan_days).slice(0,10);
+  const maxd=Math.max(...fast.map(s=>s.sold_lifespan_days),1);
+  p.append(barPanel("🔥","Najrýchlejšie sa predáva","medián dní do predaja · nižšie = likvidnejšie (min 8 predaných)",fast,{
+    name:s=>s.subcategory, sub:s=>lab(s.category)+" · "+s.sold_total+"× · ~"+(s.price_median!=null?eur(s.price_median):"–"),
+    val:s=>fmtDays(s.sold_lifespan_days), frac:s=>1-(s.sold_lifespan_days/(maxd*1.1)), cls:()=>""}));
+
+  // 2) najväčší dopyt (objem)
+  const dem=subs.filter(s=>(s.sold_total||0)>0).sort((a,b)=>b.sold_total-a.sold_total).slice(0,10);
+  const maxs=Math.max(...dem.map(s=>s.sold_total),1);
+  p.append(barPanel("📊","Najväčší dopyt","počet predaných za okno",dem,{
+    name:s=>s.subcategory, sub:s=>lab(s.category)+" · "+fmtDays(s.sold_lifespan_days)+" · ~"+(s.price_median!=null?eur(s.price_median):"–"),
+    val:s=>String(s.sold_total), frac:s=>s.sold_total/maxs, cls:()=>""}));
+
+  // 3) najväčšie cenové rozpätie (modely – priestor kúp lacné/predaj drahšie)
+  const sp=(DATA.price_spread||[]).filter(o=>(!F.cat||o.category===F.cat) && o.n>=8
+      && o.spread_pct>=50 && o.price_typical>=50 && o.price_typical<=3000 && o.model.includes(' '))
+    .sort((a,b)=>b.spread_pct-a.spread_pct).slice(0,10);
+  p.append(barPanel("💰","Najväčšie cenové rozpätie (modely)","kúp lacné → predaj za typickú · spodná → typická (min 8 v ponuke)",sp,{
+    name:o=>o.model, sub:o=>(o.subcat||lab(o.category))+" · "+eur(o.price_low)+" → "+eur(o.price_typical),
+    val:o=>Math.round(o.spread_pct)+" %", frac:o=>o.spread_pct/100, cls:()=>""}));
+
+  // 4) presýtené / ťažko predať (veľa repostov)
+  const glut=subs.map(s=>{const t=(s.sold_total||0)+(s.relisted_total||0);
+      return {s, rep:t>=12? (s.relisted_total||0)/t : -1};})
+    .filter(x=>x.rep>=0.4).sort((a,b)=>b.rep-a.rep).slice(0,8).map(x=>x.s);
+  if(glut.length) p.append(barPanel("🚩","Presýtené / ťažko predať","veľa obnovených = predajcovia to nevedia predať (pozor na vstup)",glut,{
+    name:s=>s.subcategory, sub:s=>lab(s.category)+" · predané "+s.sold_total+" / obnovené "+s.relisted_total,
+    val:s=>{const t=(s.sold_total||0)+(s.relisted_total||0);return Math.round(100*(s.relisted_total||0)/t)+" %";},
+    frac:s=>{const t=(s.sold_total||0)+(s.relisted_total||0);return (s.relisted_total||0)/t;}, cls:()=>"bad"}));
+
+  p.append(el("div",{class:"note"},
+    `Prehľad vyberá najsilnejšie signály za okno ${W} dní (filter kategórie hore). `
+    +"Rýchlosť predaja a dopyt sú najrobustnejšie; cenové rozpätie je orientačné (inzerované ceny). "
+    +"Detaily nájdeš v taboch Príležitosti / Predané / Dopyt."));
 }
 
 /* ---------- ARBITRÁŽ ---------- */
@@ -563,8 +640,8 @@ function renderZhrnutie(p){
       stat("nové spolu",num(s.new_total),`za ${W} dní`),
       stat("predané",num(s.sold_total||0),
         s.sold_total?`za ${W} dní`:"čaká na dáta"),
-      stat("sell-through",s.sell_through==null?"–":s.sell_through+" %",
-        s.sell_through==null?"treba viac dní":"predané ÷ (pred.+expir.)"),
+      stat("rýchlosť predaja",s.sold_lifespan_days==null?"–":fmtDays(s.sold_lifespan_days),
+        s.sold_lifespan_days==null?"treba viac dní":"medián dní do predaja"),
       stat("cena medián",s.price_median==null?"–":eur(s.price_median),
         s.price_min==null?"":`${eur(s.price_min)}–${eur(s.price_max)}`));
     card.append(stats);
