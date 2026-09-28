@@ -477,7 +477,10 @@ class SegmentSummary:
     sold_total: int = 0        # pravdepodobne predané
     relisted_total: int = 0    # len obnovené (nepredané)
     expired_total: int = 0     # vypršané (nepredané)
-    sell_through: float | None = None  # sold / (sold + expired), %; None = málo dát
+    # sell-through cez „stale" kohortu: z inzerátov, čo mali aspoň N dní šancu,
+    # koľko % sa predalo vs. stále visí (funguje už teraz, nečaká na expiráciu).
+    sell_through: float | None = None
+    sold_lifespan_days: float | None = None  # medián DNÍ DO PREDAJA (len predané) = rýchlosť
 
 
 def _pct(prices: list[int]):
@@ -511,6 +514,7 @@ def summarize(
     top_products: int = 10,
     max_age_days: float | None = None,
     subcategory: str | None = None,
+    sell_through_maturity_days: float = 7.0,
 ) -> SegmentSummary:
     """Zhrnie kategóriu (voliteľne len podkategóriu ``subcategory`` a/alebo
     segment podľa ``keyword``): denné prírastky/úbytky, cena, top produkty."""
@@ -524,12 +528,16 @@ def summarize(
     relisted_total = 0
     expired_total = 0
     lifespans: list[float] = []
+    sold_lifespans: list[float] = []       # dni do predaja, len predané
     prices: list[int] = []
     phrase_counts: dict[str, int] = defaultdict(int)
     sold_phrase_counts: dict[str, int] = defaultdict(int)  # typy medzi predanými
     posted_days: list = []  # dátumy pridania (z inzerátov) v okne
+    cohort_sold = 0          # kohorta „mali aspoň N dní šancu": predané
+    cohort_active = 0        # kohorta: stále visia (nepredané)
 
     since_date = since.date()
+    cohort_cutoff = now - timedelta(days=sell_through_maturity_days)
     for r in store.iter_ads(category):
         title = r["title"] or ""
         if subcategory is not None and _subcat(r) != subcategory:
@@ -544,6 +552,19 @@ def summarize(
 
         first_seen = _parse_iso(r["first_seen"])
         deleted_at = _parse_iso(r["deleted_at"])
+        last_seen = _parse_iso(r["last_seen"])
+        is_deleted = r["status"] == "deleted"
+        outcome = _row_outcome(r)
+
+        # „stale" kohorta: inzeráty, čo mali aspoň N dní na predaj.
+        # Za „nepredané" rátame len tie, čo sme naozaj nedávno videli živé
+        # (nie tie, čo čakajú na overenie zmazania) – inak by konverzia klesala.
+        if first_seen is not None and since <= first_seen <= cohort_cutoff:
+            if is_deleted and outcome == "sold":
+                cohort_sold += 1
+            elif (not is_deleted and last_seen is not None
+                  and last_seen >= now - timedelta(days=2)):
+                cohort_active += 1        # potvrdene stále visí = zatiaľ nepredané
 
         counted_in_window = first_seen is not None and first_seen >= since
         if counted_in_window:
@@ -568,7 +589,10 @@ def summarize(
             elif outcome == "expired":
                 expired_total += 1
             if first_seen is not None:
-                lifespans.append((deleted_at - first_seen).total_seconds() / 86400.0)
+                life = (deleted_at - first_seen).total_seconds() / 86400.0
+                lifespans.append(life)
+                if outcome == "sold":
+                    sold_lifespans.append(life)
             # „predané typy" počítame len z pravdepodobne PREDANÝCH
             if outcome in ("sold", None):
                 for ph in set(keyphrases(title, max_n=3)):
@@ -620,8 +644,9 @@ def summarize(
         sold_total=sold_total,
         relisted_total=relisted_total,
         expired_total=expired_total,
-        sell_through=(round(100.0 * sold_total / (sold_total + expired_total), 1)
-                      if (sold_total + expired_total) > 0 else None),
+        sell_through=(round(100.0 * cohort_sold / (cohort_sold + cohort_active), 1)
+                      if (cohort_sold + cohort_active) > 0 else None),
+        sold_lifespan_days=round(median(sold_lifespans), 2) if sold_lifespans else None,
     )
 
 
