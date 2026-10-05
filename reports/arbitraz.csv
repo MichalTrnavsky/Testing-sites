@@ -1,127 +1,128 @@
 category,subcat,keyword,volume,deleted_count,median_lifespan_days,used_median_eur,new_median_eur,cheap_new_competitors,price_gap_eur,arbitrage_score
-sport,Elektrobicykle,hybrid,61,1,0.31,2700.0,,0,,60.97
-nabytok,Kuchyne,spotrebici,183,28,3.4,2789,,0,,56.45
-sport,Elektrobicykle,stereo,47,1,0.31,2900,,0,,50.45
-sport,Elektrobicykle,cube stereo,45,1,0.31,2925.0,,0,,48.72
-sport,Elektrobicykle,stereo hybrid,44,1,0.31,2900.0,,0,,47.23
-sport,Elektrobicykle,bosch,88,3,0.31,1800,2700,1,900,29.32
-nabytok,Kuchyne,linka spotrebici,87,12,3.4,2666,,0,,25.65
-nabytok,Kuchyne,venkovska,78,9,3.4,2680.0,,0,,23.12
-nabytok,Sedacie súpravy,kozena,405,44,3.5,914.0,1200,1,286.0,20.02
-dom,"Malotraktory, Kultivátory",malotraktor,339,7,6.02,800.0,8000,0,7200.0,18.78
-stroje,Poľnohospodárska technika,nakladac,97,3,6.29,2800,,0,,18.12
-stroje,Poľnohospodárska technika,traktor zetor,193,2,7.04,1500.0,45900,0,44400.0,17.52
-sport,Elektrobicykle,cube,88,3,5.85,2550,,0,,15.94
-sport,"Poľovníctvo, lov",termovizia,48,1,0.2,800,,0,,15.62
-sport,"Poľovníctvo, lov",zeiss,44,1,0.35,950,,0,,15.07
-sport,Cestné bicykle,cestny,195,1,0.31,400,800.0,1,400.0,14.44
-stroje,Poľnohospodárska technika,vlecka,170,3,5.78,1180,6195.0,0,5015.0,14.39
+sport,Elektrobicykle,hybrid,61,1,0.31,2700.0,,0,,60.94
+nabytok,Kuchyne,spotrebici,183,28,3.4,2789,,0,,56.42
+sport,Elektrobicykle,stereo,47,1,0.31,2900,,0,,50.43
+sport,Elektrobicykle,cube stereo,45,1,0.31,2925.0,,0,,48.7
+sport,Elektrobicykle,stereo hybrid,44,1,0.31,2900.0,,0,,47.21
+sport,Elektrobicykle,bosch,88,3,0.31,1800,2700,1,900,29.3
+nabytok,Kuchyne,linka spotrebici,87,12,3.4,2666,,0,,25.64
+nabytok,Kuchyne,venkovska,78,9,3.4,2680.0,,0,,23.11
+nabytok,Sedacie súpravy,kozena,405,44,3.5,914.0,1200,1,286.0,20.01
+dom,"Malotraktory, Kultivátory",malotraktor,339,7,6.02,850.0,8000,0,7150.0,19.94
+stroje,Poľnohospodárska technika,nakladac,97,3,6.29,2800,,0,,18.11
+stroje,Poľnohospodárska technika,traktor zetor,193,2,7.04,1500.0,45900,0,44400.0,17.51
+sport,Elektrobicykle,cube,88,3,5.85,2550,,0,,15.93
+sport,"Poľovníctvo, lov",termovizia,48,1,0.2,800,,0,,15.61
+sport,"Poľovníctvo, lov",zeiss,44,1,0.35,950,,0,,15.06
+stroje,Poľnohospodárska technika,vlecka,171,3,5.78,1190.0,6195.0,0,5005.0,14.59
 nabytok,Sedacie súpravy,sedaci,210,34,6.11,994.0,,0,,14.27
-sport,Elektrobicykle,ctm,53,1,1.78,1525.0,,0,,14.12
-nabytok,Sedacie súpravy,sedaci souprava,204,34,6.11,1008.5,,0,,14.07
-nabytok,Kuchyne,dubova,22,3,0.98,2477.0,,0,,13.42
-sport,Cestné bicykle,cestny bicykel,162,1,0.31,425.0,800.0,1,375.0,12.74
-stroje,Stavebné stroje,unc,73,1,7.13,2775.0,,0,,12.12
-nabytok,Sedacie súpravy,supravu,97,3,0.28,325.0,550,0,225.0,12.01
-stroje,Poľnohospodárska technika,traktor,549,8,6.0,1500,17990,4,16490,11.44
+sport,Elektrobicykle,ctm,53,1,1.78,1525.0,,0,,14.11
+nabytok,Sedacie súpravy,sedaci souprava,204,34,6.11,1008.5,,0,,14.06
+nabytok,Kuchyne,dubova,22,3,0.98,2477.0,,0,,13.41
+nabytok,Sedacie súpravy,supravu,97,3,0.28,325.0,550,0,225.0,12.0
+stroje,Stavebné stroje,unc,73,1,7.13,2690.0,,0,,11.74
+stroje,Poľnohospodárska technika,traktor,550,8,6.0,1500.0,17990,4,16490.0,11.46
 nabytok,Sedacie súpravy,souprava,222,37,8.73,1023.0,,0,,11.35
-nabytok,Kuchyne,dubova linka,18,3,0.98,2477.0,,0,,10.98
-nabytok,Sedacie súpravy,sedaciu,94,3,0.28,300,550,0,250,10.74
-nabytok,Sedacie súpravy,sedaciu supravu,94,3,0.28,300,550,0,250,10.74
+nabytok,Kuchyne,dubova linka,18,3,0.98,2477.0,,0,,10.97
+nabytok,Sedacie súpravy,sedaciu,94,3,0.28,300,550,0,250,10.73
+nabytok,Sedacie súpravy,sedaciu supravu,94,3,0.28,300,550,0,250,10.73
 sport,Elektrobicykle,velkost,80,1,5.85,1880.0,2690,0,810.0,10.68
-stroje,Poľnohospodárska technika,celny,49,2,5.78,2800.0,,0,,9.84
+stroje,Skladová technika,nosnost,39,3,4.34,2850.0,,0,,10.12
+stroje,Poľnohospodárska technika,celny,49,2,5.78,2800.0,,0,,9.83
 sport,Elektrobicykle,scott,20,1,1.78,2800.0,,0,,9.78
-stroje,Poľnohospodárska technika,celny nakladac,47,2,5.78,2800.0,,0,,9.43
+stroje,Poľnohospodárska technika,celny nakladac,47,2,5.78,2850.0,,0,,9.6
 sport,Horské bicykle,carbon,100,3,5.34,1200,4300.0,0,3100.0,9.2
-nabytok,Sedacie súpravy,kozena sedaci,170,29,8.73,994.0,,0,,8.45
-stroje,Poľnohospodárska technika,kombajn,77,0,,2200.0,,0,,8.24
+stroje,Poľnohospodárska technika,kombajn,77,0,,2350.0,,0,,8.8
+nabytok,Sedacie súpravy,kozena sedaci,170,29,8.73,994.0,,0,,8.44
 sport,Elektrobicykle,pneu,26,1,1.78,1800.0,,0,,8.17
 sport,Horské bicykle,cube,211,9,5.34,499.0,1774.5,0,1275.5,8.07
 sport,Elektrobicykle,elektrobicykel pneu,25,1,1.78,1800,,0,,7.86
 sport,Horské bicykle,damsky,108,1,0.27,190,975.0,0,785.0,7.85
-sport,Elektrobicykle,750wh,16,1,1.78,2750,,0,,7.69
+sport,Elektrobicykle,750wh,16,1,1.78,2750,,0,,7.68
 sport,Elektrobicykle,gen,34,2,5.38,2899,,0,,7.51
-nabytok,Kuchyne,venkovska linka,66,7,10.51,2680.0,,0,,7.48
-stroje,Ostatné,skrutkovy kompresor,9,1,0.56,2494,,0,,6.98
+nabytok,Kuchyne,venkovska linka,66,7,10.51,2680.0,,0,,7.47
 stroje,Ostatné,skrutkovy,9,1,0.56,2494,,0,,6.98
-sport,"Poľovníctvo, lov",sauer,78,3,6.49,1350,2600,0,1250,6.84
-dom,Kosačky,traktor,38,1,6.31,2690,,0,,6.81
-stroje,Poľnohospodárska technika,zetor forterra,45,1,6.29,2200.0,51900,0,49700.0,6.6
-stroje,Poľnohospodárska technika,zetor,1306,42,7.72,530.0,375.0,5,-155.0,6.43
+stroje,Ostatné,skrutkovy kompresor,9,1,0.56,2494,,0,,6.98
+sport,"Poľovníctvo, lov",sauer,78,3,6.49,1350,2600,0,1250,6.83
+dom,Kosačky,traktor,38,1,6.31,2690,,0,,6.8
+stroje,Poľnohospodárska technika,zetor,1310,42,7.72,550.0,375.0,5,-175.0,6.69
+stroje,Skladová technika,desta,44,0,,3000.0,,0,,6.42
 dom,"Malotraktory, Kultivátory",system,46,2,1.61,750,,0,,6.42
 sport,Elektrobicykle,bosch gen,28,1,5.42,2999.0,,0,,6.36
 nabytok,Kuchyne,linka masivu,30,6,5.59,2846.0,,0,,6.3
 nabytok,Kuchyne,masivu,40,7,7.78,2799.0,,0,,6.2
 stroje,Kovoobrábacie stroje,otocny hrot,25,3,4.34,2700.0,,0,,6.15
-stroje,Stavebné stroje,zipper,22,2,3.59,2640.0,,0,,6.15
+stroje,Stavebné stroje,zipper,22,2,3.59,2640.0,,0,,6.14
+sport,Horské bicykle,trek,134,3,6.49,699,,0,,6.08
+stroje,Kovoobrábacie stroje,hrot,37,4,4.34,1800,,0,,6.06
 deti,Kočíky,thule chariot,22,1,0.24,700.0,,0,,6.06
 deti,Kočíky,chariot,22,1,0.24,700.0,,0,,6.06
 nabytok,Sedacie súpravy,suprava gauc,60,1,0.35,1399,490.0,4,-909.0,6.04
 stroje,Kovoobrábacie stroje,200mm,41,4,4.34,1590.0,,0,,5.94
-sport,Horské bicykle,trek,133,3,6.49,684.5,,0,,5.91
 nabytok,Kuchyne,masivu spotrebici,38,7,7.78,2799.0,,0,,5.89
 stroje,Poľnohospodárska technika,baliky,42,1,5.35,1800,,0,,5.79
 elektro,Kávovary,jura,68,3,0.32,230,,0,,5.76
-stroje,Poľnohospodárska technika,brany,85,2,2.65,500.0,,0,,5.67
 nabytok,Kuchyne,kuchyne,38,4,6.95,2435.0,,0,,5.66
 sport,Horské bicykle,mondraker,20,1,1.78,1600,,0,,5.59
-sport,"Poľovníctvo, lov",12x56,21,1,0.35,730,,0,,5.53
-sport,Elektrobicykle,800wh,24,2,5.38,2999,4500,0,1501,5.49
-stroje,Poľnohospodárska technika,forterra,51,1,6.29,1600.0,51900,0,50300.0,5.44
+sport,"Poľovníctvo, lov",12x56,21,1,0.35,730,,0,,5.52
+sport,Elektrobicykle,800wh,24,2,5.38,2999,4500,0,1501,5.48
 sport,Elektrobicykle,crussis,58,1,6.26,1400,,0,,5.44
-sport,Elektrobicykle,trek,31,3,6.49,2700.0,,0,,5.44
-sport,Elektrobicykle,specialized,46,0,,2420.0,8000,0,5580.0,5.41
+sport,Elektrobicykle,trek,31,3,6.49,2700.0,,0,,5.43
+stroje,Poľnohospodárska technika,brany,85,2,2.65,475.0,,0,,5.38
 sport,Elektrobicykle,eride,11,1,1.78,2800,,0,,5.38
 sport,Elektrobicykle,celoodpruzeny,49,0,,2250,,0,,5.36
 sport,Elektrobicykle,hybrid slx,5,1,0.31,2875,,0,,5.32
+sport,Elektrobicykle,specialized,46,0,,2325.0,8000,0,5675.0,5.2
 sport,Horské bicykle,canyon,90,1,5.42,1500.0,1150,1,-350.0,5.11
-sport,Elektrobicykle,kellys,43,1,6.49,1800,,0,,5.03
-stroje,Poľnohospodárska technika,prives,40,1,5.35,1625.0,,0,,4.98
-sport,Elektrobicykle,turbo,38,0,,2690,8499.5,0,5809.5,4.97
+stroje,Poľnohospodárska technika,zetor forterra,45,1,6.29,1700.0,51900,0,50200.0,5.1
+sport,Elektrobicykle,kellys,43,1,6.49,1800,,0,,5.02
+stroje,Poľnohospodárska technika,pneu,61,1,5.22,1049.5,,0,,5.01
+stroje,Poľnohospodárska technika,prives,40,1,5.35,1625.0,,0,,4.97
 stroje,Poľnohospodárska technika,mulcovac traktor,6,1,0.77,3000.0,,0,,4.95
 stroje,Drevoobrábacie stroje,pila,217,6,6.64,1050,300.0,2,-750.0,4.83
 stroje,Drevoobrábacie stroje,co2,31,1,5.29,1999,,0,,4.79
+sport,Elektrobicykle,turbo,38,0,,2490,8499.5,0,6009.5,4.6
 stroje,Kovoobrábacie stroje,tos,345,2,8.3,250,,0,,4.51
 dom,Bazény,prekrytie,16,1,2.57,2049.5,,0,,4.47
+sport,"Poľovníctvo, lov",gulovnica,84,1,8.14,990.0,3445.0,0,2455.0,4.42
+stroje,Drevoobrábacie stroje,pasova,66,0,,1375.0,,0,,4.41
 stroje,Poľnohospodárska technika,rozmetadlo,99,2,5.57,1200.0,750,1,-450.0,4.4
 sport,"Vodné športy, potápanie",mercury,36,0,,2500,,0,,4.38
-sport,"Poľovníctvo, lov",gulovnica,83,1,8.14,990,3445.0,0,2455.0,4.37
-stroje,Kovoobrábacie stroje,bruska,309,2,4.27,150.0,,0,,4.28
+stroje,Kovoobrábacie stroje,bruska,309,2,4.27,150.0,,0,,4.27
 deti,Kočíky,chariot sport,14,1,0.24,775.0,,0,,4.27
 stroje,Poľnohospodárska technika,trac,23,3,6.35,2800.0,,0,,4.26
 stroje,Poľnohospodárska technika,hnoja,44,1,5.78,1350,,0,,4.26
 nabytok,Sedacie súpravy,rozkladaciu,25,2,0.15,400,,0,,4.24
-stroje,Poľnohospodárska technika,mulcovac,74,2,2.99,1400.0,990,2,-410.0,4.21
-sport,Elektrobicykle,orbea,14,1,1.78,1700,2990,0,1290,4.16
+stroje,Poľnohospodárska technika,mulcovac,74,2,2.99,1400.0,990,2,-410.0,4.2
+sport,Elektrobicykle,orbea,14,1,1.78,1700,2990,0,1290,4.15
 stroje,Stavebné stroje,3cx,47,1,4.48,1980,23030.0,1,21050.0,4.13
 nabytok,Kuchyne,rustikalni dubova,11,2,1.95,2264,,0,,4.11
-nabytok,Sedacie súpravy,kozena rohova,37,3,3.5,1026,,0,,4.11
-nabytok,Kuchyne,linka,405,29,3.4,1822.0,400,19,-1422.0,4.08
+nabytok,Sedacie súpravy,kozena rohova,37,3,3.5,1026,,0,,4.1
 stroje,Stavebné stroje,lzice,25,3,4.48,1840,,0,,4.08
-stroje,Kovoobrábacie stroje,hrot,37,4,4.34,1200,,0,,4.04
-stroje,Drevoobrábacie stroje,pasova,66,0,,1250.0,,0,,4.01
-sport,Elektrobicykle,specialized turbo,33,0,,2490,8000,0,5510,4.0
-stroje,Poľnohospodárska technika,pneu,61,1,5.22,824.5,,0,,3.93
+nabytok,Kuchyne,linka,406,29,3.4,1844.0,385.0,20,-1459.0,3.94
 sport,Elektrobicykle,haibike,41,0,,1950.0,4099,0,2149.0,3.89
 sport,Elektrobicykle,slx,20,3,5.85,2725.0,,0,,3.87
 sport,Elektrobicykle,ktm,28,1,5.34,1800,,0,,3.86
 stroje,Poľnohospodárska technika,lift,21,2,6.5,2800.0,,0,,3.81
 stroje,Lesná technika,zetor,26,0,,3000.0,8800.0,0,5800.0,3.79
-nabytok,Kuchyne,rustikalni,15,3,3.4,2264,,0,,3.76
+sport,Elektrobicykle,specialized turbo,33,0,,2350,8000,0,5650,3.77
+nabytok,Kuchyne,rustikalni,15,3,3.4,2264,,0,,3.75
+stroje,Poľnohospodárska technika,forterra,51,1,6.29,1100.0,51900,0,50800.0,3.74
 sport,"Poľovníctvo, lov",hikmicro,82,1,7.32,780,,0,,3.74
-stroje,Poľnohospodárska technika,obracak,35,1,6.77,1700,,0,,3.73
+deti,Kočíky,sport,34,1,0.24,279.0,,0,,3.73
+stroje,Poľnohospodárska technika,obracak,35,1,6.77,1700,,0,,3.72
 stroje,Poľnohospodárska technika,unc,28,1,6.29,1980.0,,0,,3.7
 stroje,Kovoobrábacie stroje,sklucovadlo tos,15,1,4.34,2700,,0,,3.69
+stroje,Drevoobrábacie stroje,olepovacka,25,0,,3000,,0,,3.65
 stroje,Drevoobrábacie stroje,stiepkovac,19,2,4.07,2000,,0,,3.64
-stroje,Stavebné stroje,lopata,47,4,4.48,1730.0,13500,1,11770.0,3.61
-nabytok,Kuchyne,smrk,5,1,0.98,2888,,0,,3.56
-nabytok,Kuchyne,kartacovany,5,1,0.98,2888,,0,,3.56
-nabytok,Kuchyne,smrk spotrebici,5,1,0.98,2888,,0,,3.56
-nabytok,Kuchyne,linka kartacovany,5,1,0.98,2888,,0,,3.56
-nabytok,Kuchyne,kartacovany smrk,5,1,0.98,2888,,0,,3.56
+nabytok,Kuchyne,kartacovany smrk,5,1,0.98,2888,,0,,3.55
+nabytok,Kuchyne,smrk spotrebici,5,1,0.98,2888,,0,,3.55
+nabytok,Kuchyne,smrk,5,1,0.98,2888,,0,,3.55
+nabytok,Kuchyne,kartacovany,5,1,0.98,2888,,0,,3.55
+nabytok,Kuchyne,linka kartacovany,5,1,0.98,2888,,0,,3.55
+stroje,Drevoobrábacie stroje,pasova pila,46,0,,1580,,0,,3.53
 stroje,Poľnohospodárska technika,trac lift,19,2,6.5,2800.0,,0,,3.45
 nabytok,Kuchyne,drevena linka,5,1,0.74,2466,,0,,3.45
-stroje,Poľnohospodárska technika,lkt,79,0,,890.0,,0,,3.42
 stroje,Stavebné stroje,rezacka,55,4,4.48,700.0,,0,,3.42
 stroje,Poľnohospodárska technika,nakladac trac,17,2,5.78,2800.0,,0,,3.41
 sport,Elektrobicykle,800wh bosch,15,1,5.42,2999,,0,,3.41
@@ -129,73 +130,72 @@ stroje,Kovoobrábacie stroje,odvalovaci,26,0,,2690.0,,0,,3.4
 stroje,Kovoobrábacie stroje,soustruh,279,0,,250,,0,,3.39
 stroje,Drevoobrábacie stroje,freza,60,1,4.2,600,4000,0,3400,3.36
 sport,"Poľovníctvo, lov",gulova,9,1,0.56,1200,,0,,3.36
-sport,Cestné bicykle,canyon,30,0,,2300,,0,,3.36
-stroje,Drevoobrábacie stroje,olepovacka,24,0,,2845.0,,0,,3.32
+sport,Cestné bicykle,canyon,30,0,,2300,,0,,3.35
 sport,Horské bicykle,cannondale,36,1,5.34,1200.0,,0,,3.31
-nabytok,Kuchyne,prostorna dubova,5,1,0.98,2680,,0,,3.3
 nabytok,Kuchyne,prostorna,5,1,0.98,2680,,0,,3.3
+nabytok,Kuchyne,prostorna dubova,5,1,0.98,2680,,0,,3.3
 stroje,Stavebné stroje,jcb 3cx,42,1,4.48,1765.0,23030.0,1,21265.0,3.29
-nabytok,Sedacie súpravy,luxusni,79,14,11.0,1023,,0,,3.28
+nabytok,Sedacie súpravy,luxusni,79,14,11.0,1023,,0,,3.27
 stroje,Kovoobrábacie stroje,obrazecka,24,0,,2800,,0,,3.27
+stroje,Kovoobrábacie stroje,zverak,143,10,4.34,250,,0,,3.26
 elektro,Repro sústavy,edition,33,1,5.38,1290,,0,,3.24
 sport,Elektrobicykle,750w,23,0,,2899,,0,,3.24
 nabytok,Kuchyne,kuchyna,63,2,1.84,1199.5,1066.0,3,-133.5,3.23
-stroje,Poľnohospodárska technika,diely,83,0,,800.0,,0,,3.23
-deti,Kočíky,sport,34,1,0.24,240.0,,0,,3.21
 sport,Cestné bicykle,ultegra,22,0,,2999,,0,,3.21
 nabytok,Sedacie súpravy,rohova kozena,78,13,11.0,1011.5,,0,,3.2
-stroje,Kovoobrábacie stroje,valcovou stopkou,13,1,4.34,2700,,0,,3.2
 stroje,Kovoobrábacie stroje,valcovou,13,1,4.34,2700,,0,,3.2
+stroje,Kovoobrábacie stroje,valcovou stopkou,13,1,4.34,2700,,0,,3.2
 stroje,Poľnohospodárska technika,navijak,45,1,5.22,900,,0,,3.17
-dom,"Malotraktory, Kultivátory",vari system,36,1,3.15,750,,0,,3.17
-stroje,Kovoobrábacie stroje,vrtacka,209,11,8.73,300.0,,0,,3.14
-stroje,Drevoobrábacie stroje,pasova pila,46,0,,1400,,0,,3.13
-nabytok,Sedacie súpravy,kreslem,26,4,3.5,1108.0,,0,,3.12
-sport,Horské bicykle,slash,24,1,6.49,1999,,0,,3.12
-sport,Cestné bicykle,bicykel,1169,18,3.56,100,165.0,3,65.0,3.11
-nabytok,Sedacie súpravy,luxusni kozena,26,5,3.5,1097.0,,0,,3.09
+dom,"Malotraktory, Kultivátory",vari system,36,1,3.15,750,,0,,3.16
+stroje,Kovoobrábacie stroje,vrtacka,209,11,8.73,300.0,,0,,3.13
+nabytok,Sedacie súpravy,kreslem,26,4,3.5,1108.0,,0,,3.11
+sport,Horské bicykle,slash,24,1,6.49,1999,,0,,3.11
 nabytok,Kuchyne,drevena,17,2,5.62,2466,,0,,3.08
+nabytok,Sedacie súpravy,luxusni kozena,26,5,3.5,1097.0,,0,,3.08
 sport,Elektrobicykle,ebike,89,2,6.58,1600,1425.0,2,-175.0,3.04
+stroje,Poľnohospodárska technika,malotraktor,142,1,5.5,1700.0,990,5,-710.0,3.01
 stroje,Drevoobrábacie stroje,drvic,11,3,4.2,2900,,0,,2.98
 sport,Horské bicykle,specialized,132,3,8.14,425,,0,,2.98
-sport,Cestné bicykle,specialized,61,0,,999.5,,0,,2.97
 sport,Elektrobicykle,focus jam2,21,0,,2899,,0,,2.96
 sport,Elektrobicykle,jam2,21,0,,2899,,0,,2.96
 stroje,Kovoobrábacie stroje,kompresor,81,1,4.34,400,,0,,2.95
 stroje,Poľnohospodárska technika,diskova,26,0,,2330.0,,0,,2.95
-sport,Elektrobicykle,velk,13,1,5.42,2999,,0,,2.95
 sport,Elektrobicykle,gen velk,13,1,5.42,2999,,0,,2.95
-stroje,Poľnohospodárska technika,rozmetadlo mastalneho,27,1,5.78,1525.0,,0,,2.95
-stroje,Poľnohospodárska technika,mastalneho,27,1,5.78,1525.0,,0,,2.95
+sport,Elektrobicykle,velk,13,1,5.42,2999,,0,,2.95
 stroje,Poľnohospodárska technika,mastalneho hnoja,27,1,5.78,1525.0,,0,,2.95
+stroje,Poľnohospodárska technika,mastalneho,27,1,5.78,1525.0,,0,,2.95
+stroje,Poľnohospodárska technika,rozmetadlo mastalneho,27,1,5.78,1525.0,,0,,2.95
 sport,Horské bicykle,kellys,161,7,6.49,280,525.0,0,245.0,2.93
 nabytok,Sedacie súpravy,rustikalni,22,4,3.5,1232.0,,0,,2.93
 nabytok,Postele,manzelska,305,14,7.18,160.0,370,0,210.0,2.9
-nabytok,Sedacie súpravy,souprava kreslem,16,2,2.24,1187.0,,0,,2.86
-dom,"Malotraktory, Kultivátory",vari malotraktor,11,1,0.08,575.0,,0,,2.85
+nabytok,Sedacie súpravy,souprava kreslem,16,2,2.24,1187.0,,0,,2.85
+dom,"Malotraktory, Kultivátory",vari malotraktor,11,1,0.08,575.0,,0,,2.84
 nabytok,Postele,manzelska postel,298,14,7.18,160.0,370,0,210.0,2.83
-stroje,Poľnohospodárska technika,malotraktor,142,1,5.5,1600.0,990,5,-610.0,2.83
 sport,Horské bicykle,trek slash,23,1,6.49,1894.5,,0,,2.83
 dom,"Kotle, Kachle, Bojlery",kachle,328,8,5.78,240.0,750.0,1,510.0,2.82
 stroje,Kovoobrábacie stroje,zvaracka,76,2,4.24,400.0,,0,,2.82
-sport,Elektrobicykle,rail,16,3,6.49,2700.0,,0,,2.81
+sport,Elektrobicykle,rail,16,3,6.49,2700.0,,0,,2.8
 sport,Elektrobicykle,focus,41,0,,2799.0,2349,1,-450.0,2.79
-sport,Elektrobicykle,mtb,23,0,,2490,,0,,2.79
 stroje,Drevoobrábacie stroje,ruida,18,1,5.29,1999.0,,0,,2.78
-dom,"Dvere, brány",brana,139,2,4.52,225,615.0,0,390.0,2.76
-stroje,Kovoobrábacie stroje,zverak,143,10,4.34,210,,0,,2.74
+sport,Elektrobicykle,mtb,23,0,,2490,,0,,2.78
+stroje,Drevoobrábacie stroje,olepovacka hran,21,0,,2690,,0,,2.75
 stroje,Poľnohospodárska technika,sena,41,0,,1375.0,,0,,2.74
 dom,"Malotraktory, Kultivátory",tomo,9,1,3.15,2600,,0,,2.74
-dom,"Malotraktory, Kultivátory",vinkovic,9,1,3.15,2600,,0,,2.74
 dom,"Malotraktory, Kultivátory",tomo vinkovic,9,1,3.15,2600,,0,,2.74
-stroje,Vybavenie prevádzkarne,zdvihak,38,0,,1475.0,,0,,2.73
-stroje,Kovoobrábacie stroje,nadstavcom,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,hrot nadstavcom,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,160mm strojny,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,160mm zverak,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,brusku vreteno,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,valcovy vrtak,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,stopkou valcovy,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,vrtak valcovou,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,valcovy,11,1,4.34,2700,,0,,2.71
-stroje,Kovoobrábacie stroje,200mm kuzelova,11,1,4.34,2700,,0,,2.71
+dom,"Malotraktory, Kultivátory",vinkovic,9,1,3.15,2600,,0,,2.74
+stroje,Vybavenie prevádzkarne,zdvihak,38,0,,1475.0,,0,,2.72
+sport,Elektrobicykle,ktm macina,16,1,5.34,2199.5,,0,,2.7
+sport,Elektrobicykle,macina,16,1,5.34,2199.5,,0,,2.7
+stroje,Kovoobrábacie stroje,hrot specialny,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,nadstavcom,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,hrot nadstavcom,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,160mm strojny,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,160mm zverak,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,brusku vreteno,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,valcovy vrtak,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,valcovy,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,stopkou valcovy,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,vrtak valcovou,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,200mm kuzelova,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,65mm,11,1,4.34,2700,,0,,2.7
+stroje,Kovoobrábacie stroje,narex 65mm,11,1,4.34,2700,,0,,2.7
