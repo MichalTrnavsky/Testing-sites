@@ -3,56 +3,56 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
-Stroje       nakladac               118    6.3      2800       -           0    18.4
-Nábytok      spotrebici             185   10.5      2717       -           0    17.8
-Šport        slx                     20    0.3      2725       -           0    16.9
-Šport        termovizia              58    0.2       800       -           0    15.8
-Šport        hybrid                  88    0.3      2750     350           4    15.0
-Šport        zeiss                   52    0.3       950       -           0    14.9
-Nábytok      supravu                121    0.2       350     550           0    14.2
-Dom a záhrad malotraktor            402    7.8       750    4600           0    14.0
-Nábytok      sedaciu                118    0.2       350     550           0    13.8
-Nábytok      sedaciu supravu        117    0.2       350     550           0    13.7
-Šport        stereo                  71    0.3      2900     350           4    12.8
-Stroje       unc                     94    7.1      2680       -           0    12.6
-Šport        stereo hybrid           68    0.3      2900     350           4    12.2
-Šport        cube stereo             67    0.3      2900     350           4    12.1
-Stroje       celny                   61    6.3      2800       -           0     9.5
-Stroje       celny nakladac          58    6.3      2800       -           0     9.0
-Nábytok      linka spotrebici        92   10.5      2666       -           0     8.7
-Šport        carbon                 120    5.3      1100    4300           0     8.5
-Šport        damsky                 136    0.3       190     900           0     8.3
-Stroje       traktor zetor          266   13.5      1075   45900           0     8.1
-Nábytok      venkovska               82   10.5      2734       -           0     7.9
-Stroje       lkt                     69      -      2500       -           0     7.0
-Šport        slavia                 145    0.5       170       -           0     6.8
-Nábytok      venkovska linka         71   10.5      2680       -           0     6.7
-Šport        velkost                 86      -      1880    2690           0     6.6
-Šport        gen                     35    5.4      2949       -           0     6.5
-Šport        cube                   257    7.3       499    1774           0     6.3
-Nábytok      kozena sedaci          187   11.1       994       -           0     6.3
-Nábytok      kuchyna                 72    0.2       999    1293           3     6.0
+Stroje       nakladac               119    6.3      2850       -           0    18.7
+Nábytok      spotrebici             195   10.5      2717       -           0    18.6
+Šport        slx                     20    0.3      2725       -           0    16.7
+Šport        termovizia              59    0.2       800       -           0    15.9
+Šport        hybrid                  88    0.3      2750     350           4    14.9
+Šport        zeiss                   52    0.3       950       -           0    14.8
+Nábytok      supravu                122    0.2       350     550           0    14.2
+Dom a záhrad malotraktor            407    7.8       750    4600           0    14.1
+Nábytok      sedaciu                119    0.2       350     550           0    13.8
+Nábytok      sedaciu supravu        118    0.2       350     550           0    13.7
+Šport        stereo                  71    0.3      2900     350           4    12.6
+Stroje       unc                     94    7.1      2690       -           0    12.5
+Šport        stereo hybrid           68    0.3      2900     350           4    12.1
+Šport        cube stereo             67    0.3      2900     350           4    11.9
+Stroje       celny                   61    6.3      2800       -           0     9.4
+Stroje       celny nakladac          58    6.3      2800       -           0     8.9
+Nábytok      linka spotrebici        95   10.5      2666       -           0     8.9
+Šport        carbon                 121    5.3      1100    4300           0     8.5
+Nábytok      venkovska               86   10.5      2789       -           0     8.4
+Šport        damsky                 138    0.3       188     900           0     8.2
+Stroje       traktor zetor          268   13.5      1075   45900           0     8.0
+Nábytok      venkovska linka         73   10.5      2680       -           0     6.9
+Šport        slavia                 147    0.5       170       -           0     6.8
+Šport        velkost                 86      -      1880    2690           0     6.5
+Nábytok      kozena sedaci          193   11.1       994       -           0     6.4
+Nábytok      kuchyna                 72    0.2      1300    1293           4     6.2
+Nábytok      kuchyne                 61      -      2460       -           0     6.0
 Šport        trek                   159    7.3       750       -           0     5.8
-Nábytok      kuchyne                 57      -      2460       -           0     5.7
-Šport        bosch gen               30    5.4      2999       -           0     5.7
-Detský bazár chariot                 24    0.2       695       -           0     5.5
+Šport        cube                   261    8.1       499    1774           0     5.8
+Stroje       baliky                  56      -      2500       -           0     5.7
 Detský bazár thule chariot           24    0.2       695       -           0     5.5
-Stroje       baliky                  54      -      2500       -           0     5.5
-Šport        specialized             53      -      2490    8000           0     5.4
-Šport        focus                   47      -      2799       -           0     5.4
-Stroje       vlecka                 219   19.3      1200    6100           0     5.3
-Šport        12x56                   24    0.3       715       -           0     5.2
-Stroje       malotraktor            175    5.5      1850     990           3     5.1
+Detský bazár chariot                 24    0.2       695       -           0     5.5
+Šport        focus                   47      -      2799       -           0     5.3
+Stroje       traktor                715   19.1      1450   17045           3     5.2
+Stroje       vlecka                 221   19.3      1165    6100           0     5.1
+Šport        12x56                   24    0.3       715       -           0     5.1
 Šport        celoodpruzeny           55      -      2250       -           0     5.0
-Šport        canyon                 105    5.4      1500    1150           1     5.0
-Šport        crussis                 67    6.3      1300       -           0     4.9
+Stroje       malotraktor            178    5.5      1800     990           3     5.0
+Nábytok      kozena                 478   11.0       914     685           2     4.9
+Šport        crussis                 67    6.3      1300       -           0     4.8
 Šport        carbon                  38    8.1      2812    6250           0     4.8
-Nábytok      kozena                 464   11.0       899     685           2     4.7
-Šport        turbo                   44      -      2590    8500           0     4.7
-Šport        mercury                 44      -      2500       -           0     4.5
-Šport        canyon                  41      -      2675       -           0     4.5
-Šport        hybrid slx               5    0.3      2875       -           0     4.5
-Stroje       kombajn                101   19.4      2200       -           0     4.5
+Šport        mercury                 44      -      2675       -           0     4.8
+Šport        turbo                   44      -      2590    8500           0     4.6
+Šport        canyon                  42      -      2650       -           0     4.5
+Šport        gulovnica              112      -       980    3445           0     4.4
+Šport        hybrid slx               5    0.3      2875       -           0     4.4
+Šport        levo                    37      -      2950    8500           0     4.4
+Nábytok      masivu                  40      -      2717       -           0     4.4
+Nábytok      souprava               255   11.1      1023    1565           1     4.4
+Stroje       kombajn                101   19.4      2100       -           0     4.2
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
