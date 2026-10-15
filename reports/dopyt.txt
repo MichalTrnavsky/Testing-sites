@@ -2,55 +2,55 @@ TOP dopyt segmenty za posledných 30 dní
 ================================================================
 kategória    segment (kľúč)             nové zmaz. život.dní   skóre
 --------------------------------------------------------------------
-Detský bazár lego                       2476     0         -    10.0
-Šport        bicykel                    2362     0         -     9.5
-Nábytok      postel                     2113     0         -     8.5
-Nábytok      stol                       2073     0         -     8.4
-Detský bazár kocik                      1816     0         -     7.3
-Stroje       zetor                      1544     0         -     6.2
-Šport        bicykel                    1421     0         -     5.7
-Detský bazár bicykel                    1419     0         -     5.7
-Nábytok      stolik                     1338     0         -     5.4
+Detský bazár lego                       2477     0         -    10.0
+Šport        bicykel                    2365     0         -     9.6
+Nábytok      postel                     2118     0         -     8.6
+Nábytok      stol                       2077     0         -     8.4
+Detský bazár kocik                      1818     0         -     7.3
+Stroje       zetor                      1561     0         -     6.3
+Detský bazár bicykel                    1422     0         -     5.7
+Šport        bicykel                    1423     0         -     5.7
+Nábytok      stolik                     1341     0         -     5.4
 Detský bazár autosedacka                1159     0         -     4.7
-Detský bazár detska                     1132     0         -     4.6
+Detský bazár detska                     1133     0         -     4.6
 Šport        horsky                     1096     0         -     4.4
-Detský bazár lego                       1017     0         -     4.1
-Nábytok      stolicky                   1010     0         -     4.1
-Detský bazár detsky                      979     0         -     4.0
+Detský bazár lego                       1018     0         -     4.1
+Nábytok      stolicky                   1012     0         -     4.1
+Detský bazár detsky                      982     0         -     4.0
 Šport        horsky bicykel              950     0         -     3.8
-Dom a záhrad dvere                       882     0         -     3.6
-Detský bazár detsky bicykel              858     0         -     3.5
-Detský bazár postielka                   824     0         -     3.3
+Dom a záhrad dvere                       884     0         -     3.6
+Detský bazár detsky bicykel              860     0         -     3.5
+Detský bazár postielka                   825     0         -     3.3
 Šport        kolobezka                   805     0         -     3.2
-Elektro      pracka                      773     0         -     3.1
+Elektro      pracka                      774     0         -     3.1
 Nábytok      konferencny                 724     0         -     2.9
-Elektro      samsung                     721     0         -     2.9
-Nábytok      skrina                      711     0         -     2.9
-Stroje       traktor                     700     0         -     2.8
+Elektro      samsung                     723     0         -     2.9
+Nábytok      skrina                      713     0         -     2.9
+Stroje       traktor                     701     0         -     2.8
 Nábytok      kreslo                      698     0         -     2.8
 Nábytok      stolicka                    696     0         -     2.8
-Nábytok      suprava                     685     0         -     2.8
-Nábytok      sedacia                     673     0         -     2.7
-Nábytok      sedacia suprava             663     0         -     2.7
-Elektro      kavovar                     645     0         -     2.6
+Nábytok      suprava                     689     0         -     2.8
+Nábytok      sedacia                     677     0         -     2.7
+Nábytok      sedacia suprava             667     0         -     2.7
+Elektro      kavovar                     649     0         -     2.6
 Nábytok      konferencny stolik          624     0         -     2.5
-Elektro      chladnicka                  602     0         -     2.4
+Elektro      chladnicka                  604     0         -     2.4
 Šport        detsky                      599     0         -     2.4
 Dom a záhrad vari                        590     0         -     2.4
-Nábytok      sedacka                     573     0         -     2.3
+Nábytok      sedacka                     576     0         -     2.3
 Detský bazár romer                       573     0         -     2.3
 Detský bazár britax                      566     0         -     2.3
 Dom a záhrad kosacka                     560     0         -     2.3
-Dom a záhrad pila                        550     0         -     2.2
+Dom a záhrad pila                        551     0         -     2.2
 Dom a záhrad agzat                       544     0         -     2.2
-Elektro      vysavac                     524     0         -     2.1
+Elektro      vysavac                     525     0         -     2.1
 Detský bazár odrazadlo                   520     0         -     2.1
-Dom a záhrad aku                         516     0         -     2.1
-Detský bazár cybex                       514     0         -     2.1
+Dom a záhrad aku                         517     0         -     2.1
+Detský bazár cybex                       515     0         -     2.1
 Elektro      televizor                   516     0         -     2.1
-Nábytok      kozena                      504     0         -     2.0
-Elektro      sluchadla                   504     0         -     2.0
-Stroje       lis                         505     0         -     2.0
+Stroje       lis                         507     0         -     2.0
+Nábytok      kozena                      505     0         -     2.0
+Elektro      sluchadla                   505     0         -     2.0
 Stroje       tos                         492     0         -     2.0
 
 Čítanie: vysoké 'nové' + nízka 'život.dní' = silný dopyt (inzeráty rýchlo miznú = predávajú sa).
