@@ -1,108 +1,108 @@
 Zhrnutie: Dom a záhrada  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    43639  (≈ 2027.6/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    43996  (≈ 2027.6/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 50 / max 495100 € (rozptyl 495099 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. dvere                        1042×
-     2. aku                          864×
-     3. pila                         845×
-     4. plastove                     795×
-     5. parkside                     690×
-     6. drevo                        680×
-     7. vari                         640×
-     8. kosacka                      618×
+     1. dvere                        1053×
+     2. aku                          872×
+     3. pila                         847×
+     4. plastove                     803×
+     5. parkside                     692×
+     6. drevo                        683×
+     7. vari                         642×
+     8. kosacka                      623×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Nábytok  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    29500  (≈ 1403.6/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    29751  (≈ 1403.6/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 70 / max 471000 € (rozptyl 470999 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. stol                         2657×
-     2. postel                       2229×
-     3. stolik                       1918×
-     4. ikea                         1427×
-     5. stolicky                     1405×
-     6. kreslo                       973×
-     7. suprava                      856×
-     8. komoda                       816×
+     1. stol                         2692×
+     2. postel                       2242×
+     3. stolik                       1944×
+     4. ikea                         1434×
+     5. stolicky                     1422×
+     6. kreslo                       980×
+     7. suprava                      863×
+     8. komoda                       825×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Stroje  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    29094  (≈ 1319.6/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    29339  (≈ 1319.6/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 300 / max 481095 € (rozptyl 481094 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. zetor                        2103×
-     2. traktor                      821×
-     3. stroj                        812×
-     4. lis                          643×
-     5. vozik                        578×
-     6. pila                         565×
-     7. bruska                       549×
-     8. tos                          488×
+     1. zetor                        2124×
+     2. traktor                      828×
+     3. stroj                        816×
+     4. lis                          671×
+     5. vozik                        581×
+     6. pila                         567×
+     7. bruska                       551×
+     8. tos                          494×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Elektro  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    31547  (≈ 1467.1/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    31775  (≈ 1467.1/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 59 / max 485180 € (rozptyl 485179 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. samsung                      1135×
-     2. led                          895×
-     3. pracka                       766×
-     4. philips                      763×
-     5. kavovar                      674×
-     6. sony                         630×
-     7. chladnicka                   609×
-     8. smart                        586×
+     1. samsung                      1141×
+     2. led                          907×
+     3. pracka                       772×
+     4. philips                      770×
+     5. kavovar                      682×
+     6. sony                         634×
+     7. chladnicka                   613×
+     8. smart                        588×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Šport  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    29110  (≈ 1344.4/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    29347  (≈ 1344.4/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 100 / max 471670 € (rozptyl 471669 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. bicykel                      4148×
-     2. horsky                       1114×
-     3. horsky bicykel               955×
-     4. detsky                       923×
-     5. kolobezka                    798×
-     6. detsky bicykel               631×
-     7. ctm                          616×
-     8. velkost                      579×
+     1. bicykel                      4192×
+     2. horsky                       1127×
+     3. horsky bicykel               967×
+     4. detsky                       929×
+     5. kolobezka                    801×
+     6. detsky bicykel               637×
+     7. ctm                          626×
+     8. velkost                      583×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
 Zhrnutie: Detský bazár  —  posledných 30 dní
 ============================================================
-  Nové inzeráty:    27231  (≈ 1236.7/deň, z dátumov na inzerátoch)
+  Nové inzeráty:    27419  (≈ 1236.7/deň, z dátumov na inzerátoch)
   Zmazané:          0  (≈ 0.0/deň)
   Medián životnosti:       -
   Cena:             min 1 / medián 39 / max 420618 € (rozptyl 420617 €)
   TOP produkty (podľa výskytu v nadpisoch):
-     1. lego                         3444×
-     2. detska                       2075×
-     3. kocik                        1851×
-     4. detsky                       1708×
-     5. bicykel                      1553×
-     6. autosedacka                  1176×
-     7. cybex                        965×
-     8. postielka                    861×
+     1. lego                         3467×
+     2. detska                       2094×
+     3. kocik                        1866×
+     4. detsky                       1725×
+     5. bicykel                      1564×
+     6. autosedacka                  1182×
+     7. cybex                        978×
+     8. postielka                    870×
 
   Pozn.: úbytky/životnosť sa naplnia po ďalších behoch (treba viac dní).
 
