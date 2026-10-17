@@ -3,56 +3,56 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
-Nábytok      spotrebici             176      -      2728       -           0    19.5
-Stroje       traktor                651      -      1150    9900           1    15.2
-Stroje       traktor zetor          276      -      1150       -           0    12.9
-Stroje       nakladac               104      -      2700       -           0    11.4
-Dom a záhrad malotraktor            387      -       700    4600           0    11.0
-Nábytok      linka spotrebici        94      -      2680       -           0    10.2
-Nábytok      venkovska               85      -      2789       -           0     9.6
-Nábytok      kozena                 474      -       914    1599           1     8.8
-Stroje       unc                     77      -      2590       -           0     8.1
-Nábytok      kuchyne                 81      -      2460       -           0     8.1
-Stroje       kombajn                 83      -      2400       -           0     8.1
-Nábytok      venkovska linka         72      -      2730       -           0     8.0
-Nábytok      kozena sedaci          197      -       978       -           0     7.8
-Stroje       vlecka                 213      -       800    6100           0     6.9
-Stroje       celny                   57      -      2700       -           0     6.2
-Stroje       celny nakladac          54      -      2700       -           0     5.9
-Šport        canyon                  96      -      1500    2990           0     5.8
-Šport        velkost                 62      -      2299       -           0     5.8
-Šport        karbonovy               81      -      1700       -           0     5.6
-Stroje       turbo                   54      -      2500       -           0     5.5
-Stroje       wacker                  56      -      2375       -           0     5.4
-Stroje       zetor                 1482      -       700     500           7     5.3
-Nábytok      souprava               257      -       994    1565           1     5.2
-Šport        haibike                 57      -      2200       -           0     5.1
-Nábytok      sedaci                 245      -       994    1565           1     4.9
-Šport        trek                   152      -       800    1049           0     4.9
-Nábytok      sedaci souprava        239      -       994    1565           1     4.8
-Šport        focus                   42      -      2799       -           0     4.8
-Dom a záhrad traktor                 43      -      2700       -           0     4.7
-Šport        canyon                  48      -      2400       -           0     4.7
-Stroje       olepovacka              38      -      3000       -           0     4.6
-Šport        cube                   226      -       500    1699           0     4.6
-Šport        gulovnica              116      -       945    2675           0     4.5
-Šport        bicykel               2307      -       140     415           2     4.4
-Stroje       hrotovy soustruh       119      -       900       -           0     4.3
+Nábytok      spotrebici             176      -      2728       -           0    19.1
+Stroje       traktor                652      -      1100    9900           1    14.3
+Stroje       traktor zetor          277      -      1150       -           0    12.7
+Stroje       nakladac               105      -      2700       -           0    11.3
+Dom a záhrad malotraktor            391      -       650    4600           0    10.1
+Nábytok      linka spotrebici        94      -      2680       -           0    10.0
+Nábytok      venkovska               85      -      2789       -           0     9.4
+Nábytok      kozena                 474      -       918    1599           1     8.7
+Stroje       unc                     79      -      2685       -           0     8.4
+Nábytok      kuchyne                 82      -      2460       -           0     8.0
+Stroje       kombajn                 83      -      2400       -           0     7.9
+Nábytok      venkovska linka         72      -      2730       -           0     7.8
+Nábytok      kozena sedaci          197      -       978       -           0     7.7
+Stroje       vlecka                 213      -       800    6100           0     6.8
+Stroje       celny                   58      -      2700       -           0     6.2
+Stroje       celny nakladac          55      -      2750       -           0     6.0
+Šport        canyon                  97      -      1500    2990           0     5.8
+Šport        velkost                 63      -      2299    3300           0     5.8
+Šport        karbonovy               81      -      1700       -           0     5.5
+Stroje       wacker                  56      -      2375       -           0     5.3
+Šport        trek                   153      -       845    1049           0     5.2
+Nábytok      souprava               257      -       994    1565           1     5.1
+Nábytok      sedaci                 245      -       994    1565           1     4.8
+Stroje       zetor                 1494      -       650     500           7     4.8
+Šport        haibike                 57      -      2099       -           0     4.8
+Nábytok      sedaci souprava        239      -       994    1565           1     4.7
+Šport        focus                   42      -      2799       -           0     4.7
+Dom a záhrad traktor                 43      -      2700       -           0     4.6
+Šport        canyon                  48      -      2400       -           0     4.6
+Šport        cube                   228      -       500    1699           0     4.5
+Stroje       olepovacka              38      -      2999       -           0     4.5
+Šport        gulovnica              118      -       940    2675           0     4.4
+Šport        bicykel               2360      -       140     415           2     4.4
 Stroje       neuson                  48      -      2225       -           0     4.3
 Stroje       wacker neuson           48      -      2225       -           0     4.3
-Šport        sauer                   75      -      1350    3445           0     4.1
+Šport        sauer                   75      -      1350    3445           0     4.0
+Šport        crussis                 67      -      1500       -           0     4.0
 Šport        specialized             37      -      2690       -           0     4.0
-Šport        crussis                 66      -      1500       -           0     4.0
 Šport        mercury                 36      -      2750       -           0     4.0
-Nábytok      rohova kozena           98      -       978       -           0     3.9
-Šport        karbonovy cestny        55      -      1700       -           0     3.8
-Stroje       nuzky                  126      -       740       -           0     3.8
-Stroje       soustruh tos            84      -      1100       -           0     3.8
+Stroje       vozik                   33      -      2950       -           0     3.9
+Nábytok      rohova kozena           98      -       978       -           0     3.8
+Stroje       nuzky                  126      -       750       -           0     3.8
+Šport        karbonovy cestny        55      -      1700       -           0     3.7
+Stroje       soustruh tos            84      -      1100       -           0     3.7
+Šport        ultegra                 33      -      2750       -           0     3.6
 Stroje       stavebny                57      -      1575       -           0     3.6
-Stroje       bomag                   33      -      2700    5048           0     3.6
-Nábytok      masivu                  34      -      2616       -           0     3.6
-Šport        ultegra                 32      -      2700       -           0     3.5
-Šport        horsky                1060      -       160     360           1     3.4
+Stroje       bomag                   33      -      2700    5048           0     3.5
+Nábytok      masivu                  34      -      2616       -           0     3.5
+Šport        horsky                1091      -       160     360           1     3.5
+Stroje       hrotovy soustruh       119      -       730       -           0     3.5
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
