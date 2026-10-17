@@ -10,34 +10,34 @@ Stroje       nakladac               108      -      2700       -           0    
 Dom a záhrad malotraktor            395      -       650    4600           0    10.0
 Nábytok      linka spotrebici        94      -      2680       -           0     9.8
 Nábytok      venkovska               85      -      2789       -           0     9.3
+Stroje       unc                     82      -      2680       -           0     8.6
 Nábytok      kozena                 475      -       914    1599           1     8.5
-Stroje       unc                     81      -      2590       -           0     8.2
-Nábytok      kuchyne                 83      -      2460       -           0     8.0
+Nábytok      kuchyne                 84      -      2460       -           0     8.1
+Stroje       kombajn                 83      -      2400       -           0     7.8
 Nábytok      venkovska linka         72      -      2730       -           0     7.7
 Nábytok      kozena sedaci          197      -       978       -           0     7.5
-Stroje       kombajn                 83      -      2300       -           0     7.5
-Stroje       vlecka                 215      -       790    6100           0     6.6
+Stroje       vlecka                 215      -       800    6100           0     6.7
 Stroje       celny                   60      -      2700       -           0     6.3
 Stroje       celny nakladac          57      -      2700       -           0     6.0
 Šport        velkost                 64      -      2299    3300           0     5.8
 Šport        canyon                  97      -      1500    2990           0     5.7
 Šport        karbonovy               82      -      1700       -           0     5.5
 Stroje       wacker                  56      -      2375       -           0     5.2
-Šport        trek                   153      -       845    1049           0     5.1
+Šport        trek                   153      -       845    1049           0     5.0
 Nábytok      souprava               257      -       994    1565           1     5.0
+Stroje       zetor                 1512      -       650     500           7     4.8
 Nábytok      sedaci                 245      -       994    1565           1     4.8
+Šport        canyon                  50      -      2400       -           0     4.7
 Šport        haibike                 57      -      2099       -           0     4.7
-Nábytok      sedaci souprava        239      -       994    1565           1     4.7
+Nábytok      sedaci souprava        239      -       994    1565           1     4.6
 Šport        focus                   42      -      2799       -           0     4.6
+Šport        cube                   231      -       500    1699           0     4.5
 Šport        gulovnica              125      -       920    2675           0     4.5
-Šport        cube                   230      -       500    1699           0     4.5
-Šport        canyon                  49      -      2350       -           0     4.5
 Stroje       olepovacka              39      -      2950       -           0     4.5
-Stroje       zetor                 1507      -       600     500           7     4.4
-Šport        bicykel               2379      -       140     430           2     4.3
-Stroje       wacker neuson           48      -      2225       -           0     4.2
+Šport        bicykel               2382      -       140     430           2     4.3
 Stroje       neuson                  48      -      2225       -           0     4.2
-Šport        sauer                   75      -      1350    3445           0     4.0
+Stroje       wacker neuson           48      -      2225       -           0     4.2
+Šport        sauer                   76      -      1350    3445           0     4.0
 Šport        crussis                 67      -      1500       -           0     3.9
 Šport        specialized             37      -      2690       -           0     3.9
 Šport        mercury                 36      -      2750       -           0     3.9
@@ -50,9 +50,9 @@ Stroje       vozik                   33      -      2700       -           0    
 Šport        trek                    33      -      2700       -           0     3.5
 Stroje       bomag                   33      -      2700    5048           0     3.5
 Nábytok      masivu                  34      -      2616       -           0     3.5
-Šport        horsky                1099      -       160     360           1     3.4
+Šport        horsky                1100      -       160     360           1     3.4
 Stroje       stavebny                58      -      1500       -           0     3.4
-Šport        elektronickym           50      -      1700       -           0     3.3
+Šport        bicykel elektronicky    50      -      1700       -           0     3.3
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
