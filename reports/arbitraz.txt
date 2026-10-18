@@ -3,43 +3,43 @@ TOP arbitrážne segmenty za posledných 30 dní
 ==============================================================================
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
-Nábytok      spotrebici             165      -      2717       -           0    18.4
-Stroje       traktor                636      -      1100    6400           1    14.3
-Stroje       traktor zetor          279      -      1150       -           0    13.2
+Nábytok      spotrebici             165      -      2717       -           0    18.3
+Stroje       traktor                636      -      1090    6400           1    14.2
+Stroje       traktor zetor          279      -      1150       -           0    13.1
 Stroje       nakladac               104      -      2700       -           0    11.5
-Dom a záhrad malotraktor            374      -       650    4600           0    10.0
+Dom a záhrad malotraktor            375      -       650    4600           0    10.0
 Nábytok      linka spotrebici        84      -      2680       -           0     9.2
 Stroje       unc                     82      -      2680       -           0     9.0
 Nábytok      venkovska               75      -      2789       -           0     8.6
-Nábytok      kozena                 452      -       914    1599           1     8.5
-Nábytok      kuchyne                 83      -      2460       -           0     8.4
+Nábytok      kozena                 452      -       914    1599           1     8.4
+Nábytok      kuchyne                 83      -      2460       -           0     8.3
 Stroje       kombajn                 81      -      2500       -           0     8.3
 Nábytok      kozena sedaci          183      -       978       -           0     7.3
 Nábytok      venkovska linka         63      -      2680       -           0     6.9
 Stroje       vlecka                 210      -       800    6100           0     6.9
 Stroje       celny                   56      -      2700       -           0     6.2
 Šport        velkost                 57      -      2600    3300           0     6.1
-Stroje       celny nakladac          53      -      2700       -           0     5.9
+Stroje       celny nakladac          53      -      2700       -           0     5.8
 Stroje       zetor                 1426      -       800     500           7     5.8
-Šport        karbonovy               77      -      1700       -           0     5.4
+Šport        karbonovy               77      -      1700       -           0     5.3
 Šport        canyon                  87      -      1500    2990           0     5.3
-Stroje       wacker                  54      -      2375       -           0     5.3
+Stroje       wacker                  54      -      2375       -           0     5.2
 Šport        blaser                 111      -      1125    3350           0     5.1
 Šport        canyon                  50      -      2400       -           0     4.9
 Nábytok      souprava               239      -       994    1565           1     4.9
 Stroje       olepovacka              39      -      2950       -           0     4.7
-Nábytok      sedaci                 228      -       994    1565           1     4.7
+Nábytok      sedaci                 228      -       994    1565           1     4.6
+Šport        gulovnica              123      -       920    2675           0     4.6
 Šport        focus                   40      -      2799       -           0     4.6
 Nábytok      sedaci souprava        222      -       994    1565           1     4.5
 Šport        cube                   220      -       500    1699           0     4.5
-Šport        gulovnica              122      -       900    2675           0     4.5
 Šport        haibike                 52      -      2050       -           0     4.4
-Šport        bicykel               2239      -       140     430           2     4.3
+Šport        bicykel               2240      -       140     430           2     4.3
 Stroje       prives                  45      -      2300       -           0     4.2
-Stroje       wacker neuson           46      -      2225       -           0     4.2
 Stroje       neuson                  46      -      2225       -           0     4.2
+Stroje       wacker neuson           46      -      2225       -           0     4.2
 Šport        sauer                   74      -      1350    3445           0     4.1
-Šport        mercury                 36      -      2750       -           0     4.1
+Šport        mercury                 36      -      2750       -           0     4.0
 Šport        specialized             35      -      2700       -           0     3.9
 Šport        crussis                 63      -      1500       -           0     3.9
 Stroje       vozik                   32      -      2900       -           0     3.8
