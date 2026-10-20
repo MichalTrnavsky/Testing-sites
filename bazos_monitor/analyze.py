@@ -222,7 +222,7 @@ def analyze(
         first_seen = _parse_iso(r["first_seen"])
         if first_seen is None or first_seen < since:
             continue  # mimo okna
-        if _too_old(r, now, max_age_days):
+        if r["status"] == "active" and _too_old(r, now, max_age_days):
             continue  # stará ležiačka -> irelevantná pre dopyt
         cat = r["category"]
         sub = _subcat(r)
@@ -348,7 +348,7 @@ def analyze_arbitrage(
         first_seen = _parse_iso(r["first_seen"])
         if first_seen is None or first_seen < since:
             continue
-        if _too_old(r, now, max_age_days):
+        if r["status"] == "active" and _too_old(r, now, max_age_days):
             continue  # stará ležiačka -> nie je to živý dopyt
         cat = r["category"]
         sub = _subcat(r)
@@ -500,7 +500,7 @@ def subcats_with_data(store, category: str, window_days: int,
         fs = _parse_iso(r["first_seen"])
         if fs is None or fs < since:
             continue
-        if _too_old(r, now, max_age_days):
+        if r["status"] == "active" and _too_old(r, now, max_age_days):
             continue
         counts[_subcat(r)] += 1
     return sorted(counts.items(), key=lambda kv: kv[1], reverse=True)
@@ -547,7 +547,7 @@ def summarize(
             toks = set(normalize_tokens(title))
             if kw_norm not in toks and kw_norm not in strip_diacritics(title.lower()):
                 continue
-        if _too_old(r, now, max_age_days):
+        if r["status"] == "active" and _too_old(r, now, max_age_days):
             continue  # stará ležiačka -> irelevantná
 
         first_seen = _parse_iso(r["first_seen"])
@@ -679,7 +679,7 @@ def price_spreads(store, window_days: int, max_age_days: float | None = None,
         fs = _parse_iso(r["first_seen"])
         if fs is None or fs < since:
             continue
-        if _too_old(r, now, max_age_days):
+        if r["status"] == "active" and _too_old(r, now, max_age_days):
             continue
         mk = model_key(r["title"])
         if mk is None:
