@@ -4,55 +4,55 @@ TOP arbitrážne segmenty za posledných 30 dní
 kategória    segment                 ks  život  použité€   nové€ lacná konk.   skóre
 ------------------------------------------------------------------------------------
 Nábytok      spotrebici             180      -      2717       -           0    19.6
-Stroje       traktor                607      -      1250    2350           1    15.2
-Stroje       nakladac               111      -      2700       -           0    12.0
-Stroje       traktor zetor          257      -      1150       -           0    11.9
+Stroje       traktor                611      -      1225    2350           1    15.0
+Stroje       nakladac               112      -      2700       -           0    12.1
+Stroje       traktor zetor          257      -      1150       -           0    11.8
 Nábytok      linka spotrebici        90      -      2680       -           0     9.7
-Dom a záhrad malotraktor            392      -       600    1200           0     9.4
+Dom a záhrad malotraktor            394      -       600    1200           0     9.5
 Nábytok      venkovska               82      -      2789       -           0     9.2
 Nábytok      kuchyne                 92      -      2448       -           0     9.0
-Nábytok      kozena                 472      -       918    2300           1     8.7
-Stroje       kombajn                 83      -      2500   59500           0     8.3
+Stroje       kombajn                 83      -      2700   59500           0     9.0
+Nábytok      kozena sedaci          197      -       994       -           0     7.8
 Stroje       unc                     77      -      2500       -           0     7.7
-Nábytok      kozena sedaci          189      -       994       -           0     7.5
-Nábytok      venkovska linka         68      -      2730       -           0     7.5
+Nábytok      venkovska linka         68      -      2730       -           0     7.4
 Stroje       wacker                  60      -      2950       -           0     7.1
-Stroje       vlecka                 214      -       800    6100           0     6.9
-Stroje       zetor                 1498      -       880     500           7     6.6
-Šport        bicykel               2285      -       140     430           1     6.4
-Stroje       neuson                  54      -      2950       -           0     6.4
+Stroje       vlecka                 214      -       800    6100           0     6.8
+Šport        bicykel               2293      -       140     430           1     6.4
 Stroje       wacker neuson           54      -      2950       -           0     6.4
-Stroje       celny                   57      -      2575       -           0     5.9
+Stroje       neuson                  54      -      2950       -           0     6.4
+Nábytok      kozena                 484      -       918     949           2     5.9
+Stroje       celny                   58      -      2550       -           0     5.9
 Šport        karbonovy               85      -      1700       -           0     5.8
-Stroje       celny nakladac          52      -      2700       -           0     5.6
+Stroje       celny nakladac          53      -      2700       -           0     5.7
 Šport        velkost                 57      -      2399    3450           0     5.5
+Nábytok      souprava               262      -      1024    1565           1     5.4
+Stroje       zetor                 1502      -       800     400           8     5.3
 Šport        canyon                  55      -      2350       -           0     5.2
-Nábytok      souprava               251      -      1026    1565           1     5.2
-Nábytok      sedaci                 240      -      1023    1565           1     4.9
-Nábytok      sedaci souprava        233      -      1023    1565           1     4.8
-Šport        sauer                   83      -      1400    3445           0     4.7
-Šport        cube                   216      -       500    1699           0     4.3
+Nábytok      sedaci                 250      -      1023    1565           1     5.1
+Nábytok      sedaci souprava        243      -      1023    1565           1     5.0
+Šport        sauer                   84      -      1400    3445           0     4.7
+Šport        haibike                 53      -      2099       -           0     4.5
+Šport        cube                   218      -       500    1699           0     4.4
 Stroje       balikovac               35      -      3000       -           0     4.2
 Stroje       soustruh tos           100      -      1050       -           0     4.2
 Šport        mercury                 35      -      3000       -           0     4.2
-Stroje       prives                  45      -      2300       -           0     4.2
-Šport        haibike                 51      -      2000       -           0     4.1
+Stroje       prives                  45      -      2300       -           0     4.1
 Šport        specialized             35      -      2900       -           0     4.1
 Šport        focus                   36      -      2799       -           0     4.0
 Šport        crussis                 67      -      1500       -           0     4.0
 Nábytok      masivu                  38      -      2616       -           0     4.0
 Šport        karbonovy cestny        57      -      1700       -           0     3.9
 Stroje       vozik                   33      -      2900       -           0     3.8
-Šport        horsky                1056      -       180     360           1     3.8
+Šport        horsky                1057      -       180     360           1     3.8
+Nábytok      rohova kozena           97      -       978       -           0     3.8
+Stroje       lis                    577      -       160       -           0     3.7
 Dom a záhrad tepelne cerpadlo        40      -      2290       -           0     3.7
-Stroje       lis                    568      -       160       -           0     3.6
-Nábytok      rohova kozena           91      -       994       -           0     3.6
-Šport        horsky bicykel         931      -       190     360           1     3.5
+Stroje       nuzky                  138      -       650       -           0     3.6
+Stroje       baliky                  63      -      1390       -           0     3.5
 Šport        bike                   145      -      1200    2899           1     3.5
+Šport        elektronickym radeni    51      -      1700       -           0     3.5
 Šport        bicykel elektronicky    51      -      1700       -           0     3.5
 Šport        elektronickym           51      -      1700       -           0     3.5
-Šport        elektronickym radeni    51      -      1700       -           0     3.5
-Šport        radenim                 51      -      1700       -           0     3.5
 
 Čítanie: vysoké 'ks' + krátky 'život' + vysoké 'použité€' + nízka
 'lacná konk.' = najlepší kandidát na dovoz. Overiť veľkoobchodnú cenu
